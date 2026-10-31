@@ -8,6 +8,7 @@ critical-path highlighting, a dependency network, named browser saves, and JSON
 export/import. WP5 adds persistent manual order, temporary sorts, duplication,
 inline editing and Files / Project Settings / Workspace navigation. The WP5.1
 owner follow-up refines workspace hierarchy and stages dependency selections.
+WP5.2 adapts weekly header labels and adds network zoom, pan and Fit to View.
 Resource levelling, costs, progress and probabilistic PERT are outside
 this release.
 
@@ -166,9 +167,24 @@ valid target changes feasibility without changing criticality.
 Select Network / Critical Path to see a read-only directed graph of the same tasks.
 Node positions represent dependency levels, not dates. Bold solid critical edges,
 dashed other edges, zero-slack labels and shared task inspection explain the graph.
-Use zoom, scrolling and Go to selected node as needed. Gantt/network switching
+Use zoom, background panning and Go to selected node as needed. Gantt/network switching
 preserves selection and the existing Gantt mode. This is a deterministic network
 view using single duration estimates, not three-point probabilistic PERT.
+
+Network opens fitted to the visible canvas. Zoom In/Out and the Network zoom
+selector scale nodes, text and connectors together. Drag blank background to pan;
+node clicks still select tasks. Fit to View centres the complete graph, and Go to
+selected node brings a chosen task to a readable scale. Focus the canvas for arrow
+key panning or Home to fit. Normal mouse-wheel/browser scrolling is unchanged.
+The network viewport survives Gantt/Network and top-level tab changes. Loading a
+project starts a fresh fitted viewport; zoom/pan is session display state and is
+not saved in project JSON. Very large fitted networks use compact outlines until
+zoomed in; individual details remain available through task selection.
+
+Week-scale headers stay inside their own projected columns. Compressed labels use
+measured space to choose a full date, short month/day, numeric date or tooltip-only
+label. Hover or keyboard-focus a week header for its full week-start date. Label
+changes do not resize working-hour columns or alter bars and connectors.
 
 ## ENGINE and VIEW separation
 
@@ -237,3 +253,6 @@ The [WP5.1 follow-up handoff](docs/WP5-1-HANDOFF.md) records the chart-first
 hierarchy, bottom Task Details section, staged dependency picker and owner checks.
 This follow-up is distinct from WP5's earlier task-ordering slice. It is ready for
 owner testing and has not been marked owner-accepted.
+
+See the [WP5.2 visualization handoff](docs/WP5-2-HANDOFF.md) for weekly-label and
+network-navigation verification, before/after screenshots, and the owner checklist.

@@ -16,13 +16,38 @@ long visible labels are abbreviated/clipped to the node bounds.
 
 NetworkView displays bold solid critical edges, dashed other edges, explicit
 CRITICAL/zero-slack labels, effort, current dates and release waiting where relevant.
-It shares selection and TaskInspection with Gantt, and provides native scrolling,
-50%-150% zoom, Reset position and Go to selected node. It is read-only: no graph
-dragging or editing, no three-point estimates and no probabilistic PERT claims.
+It shares selection and TaskInspection with Gantt. WP5.2 adds visible Zoom In/Out,
+Fit to View and background panning alongside the zoom selector, Reset position
+and Go to selected node. Dragging blank background pans the view; nodes remain
+read-only. There is no scheduling by dragging, graph editing, three-point estimate
+or probabilistic PERT behavior.
 
-Only viewport-intersecting nodes and edges, with a node-sized overscan, are mounted
-in SVG. Graph/layout calculation still processes all tasks and relationships. A
-1000-root component test keeps mounted DOM below 300 elements and navigates to an
-offscreen selection. Dimensions over 4,000,000px at the selected zoom show a clear
-display-limit message; reducing zoom can restore rendering. The WP2 input table
-remains fully rendered. These scoped checks are not a general graph-size benchmark.
+viewport.ts supplies pure fit, anchored zoom, pan, centring, inverse hit testing and
+visible-world bounds. One SVG translate/scale group transforms nodes, text, edges,
+stroke emphasis and arrowheads uniformly. The outer canvas has fixed viewport
+dimensions, replacing the former enormous native-scroll SVG and its 4,000,000px
+display cutoff. Graph positions and relationship paths remain unchanged.
+
+Fit includes layout padding plus 24 screen pixels of margin and centres both axes.
+It caps scale at 100% for a small graph; manual zoom is 5%-300%. Fit may go below
+5% for a large overview. Go to selected node centres its node at at least 75% for
+readability. Fit mode responds to resize/layout changes. Manual zoom/pan stays
+chosen across unrelated edits, Gantt/Network and top-level tab changes. App supplies
+an active flag so a hidden canvas is measured when opened, and remounts the network
+on an explicit project load/new action. No viewport state enters persistence.
+
+Pointer capture supports blank-background dragging without starting a pan on nodes
+or edges; the click following a pan cannot select an unintended node. Arrow keys
+pan a focused canvas and Home fits; buttons are keyboard accessible. No wheel or
+Ctrl+wheel handler intercepts page/browser zoom. All pointer and culling coordinates
+use the same inverse transform, including the canvas border offset for overview hits.
+
+Only viewport-intersecting nodes and edges, with 48 screen pixels of overscan, are
+rendered. If more than 100 nodes are visible, batched SVG outlines preserve the
+whole graph overview without mounting thousands of label/control elements. A
+selected node retains its normal label/inspection; Go to selected node zooms back
+to readable detail. Dense overview edges are also batched by criticality. Layout
+still processes all tasks/relationships. The 1000-root component and browser tests
+keep network DOM below 300 elements and navigate to an offscreen selection. The
+task input table remains fully rendered; these are scoped performance checks,
+not an unrestricted graph-size or cross-browser benchmark.

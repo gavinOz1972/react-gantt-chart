@@ -1,23 +1,18 @@
-import { useId } from 'react'
-import { ordinalToDate } from '../../domain'
+import { useId, useLayoutEffect, useRef, useState } from 'react'
 import { visibleHourTicks } from '../../timeline/projection'
 import type { TimelineAxis, TimelineDay, TimelineZoom } from '../../timeline/projection'
+import { fitWeekLabel, visibleWeeks, weekLabelCandidates } from '../../timeline/headers'
 
 export function TimelineHeader({ axis, days, zoom, x, width, left, right, scale }: {
   axis: TimelineAxis; days: readonly TimelineDay[]; zoom: TimelineZoom; x: (unit: number) => number; width: number; left: number; right: number; scale: number
 }) {
   const prefix = useId().replace(/:/g, '')
-  const weeks = new Map<number, { start: number; end: number }>()
-  for (const day of days) {
-    const monday = Math.max(0, day.ordinal - ((day.ordinal + 1) % 7 + 6) % 7)
-    const existing = weeks.get(monday)
-    weeks.set(monday, { start: existing?.start ?? day.start, end: day.end })
-  }
+  const weeks = visibleWeeks(axis, days)
   return <svg className="gantt-axis" width={width} height={72} aria-label={`${axis.mode === 'expanded' ? 'Calendar dates' : 'Working dates only'}, ${zoom} scale`}>
     <rect width={width} height={72} fill="#f5f8fb" />
-    {zoom === 'week' && [...weeks].map(([monday, week]) => <g key={monday}>
+    {zoom === 'week' && weeks.map(week => <g key={week.monday}>
       <rect x={x(week.start)} y={0} width={x(week.end) - x(week.start)} height={36} fill="none" stroke="#d5e0e9" />
-      <text x={Math.max(4, x(week.start) + 6)} y={23}>Week of {ordinalToDate(monday)}</text>
+      <WeekLabel date={week.date} compressed={axis.mode === 'compressed'} left={Math.max(0, x(week.start))} right={Math.min(width, x(week.end))} clipId={`${prefix}-week-${week.monday}`} />
     </g>)}
     {days.map(day => {
       const dayLeft = x(day.start)
@@ -36,4 +31,25 @@ export function TimelineHeader({ axis, days, zoom, x, width, left, right, scale 
       </g>
     })}
   </svg>
+}
+
+function WeekLabel({ date, compressed, left, right, clipId }: { date: string; compressed: boolean; left: number; right: number; clipId: string }) {
+  const [label, setLabel] = useState('')
+  const probe = useRef<SVGTextElement>(null)
+  const available = Math.max(0, right - left - 12)
+  useLayoutEffect(() => {
+    const element = probe.current
+    if (!element) return
+    setLabel(fitWeekLabel(weekLabelCandidates(date, compressed), available, text => {
+      element.textContent = text
+      return element.getComputedTextLength?.() ?? Infinity
+    }))
+  }, [date, compressed, available])
+  if (right <= left) return null
+  return <g role="img" tabIndex={0} aria-label={`Week of ${date}`} data-week-start={date} data-label-left={left} data-label-right={right}>
+    <title>{date} (week start)</title>
+    <defs><clipPath id={clipId}><rect x={left} y={0} width={right - left} height={36} /></clipPath></defs>
+    <text data-week-label="true" x={left + 6} y={23} clipPath={`url(#${clipId})`}>{label}</text>
+    <text ref={probe} visibility="hidden" aria-hidden="true" />
+  </g>
 }

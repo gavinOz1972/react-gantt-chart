@@ -49,6 +49,8 @@ within that range. All dates remain strict date-only strings and ordinals.
 - pixelsPerUnit: Hour/Day/Week presentation scales, leaving fractional coordinates intact.
 - timelineWindow: maps a bounded native scroll surface to logical time positions.
 - connectorPath: orthogonal arrow routing from bar finish to successor start.
+- headers.ts: visible full/partial week spans from the same axis, with measured
+  label selection; no new columns or scheduling coordinates.
 
 Task keys use stable IDs; connector keys encode both IDs. Reordering rows changes
 y positions, not schedule references or x coordinates. Multiple relationships can
@@ -61,6 +63,16 @@ and connectors intersecting that viewport. Sticky HTML labels share the same
 52px row metric; sticky headers occupy 72px. Hour labels are sampled when dense,
 with no more than 100 ticks per visible day. Day/Week scales aggregate labels
 while keeping fractional bar endpoints and hatching.
+
+WP5.2 clips each Week label to its own projected span and its visible viewport
+fragment. The browser measures candidate text with SVG getComputedTextLength
+using the chart font. Compressed mode prefers `Week of Nov 2, 2026`, then `Nov 2`,
+then `11/2`, then tooltip-only if no candidate fits. Full ISO week-start dates
+remain available through the focusable header's accessible label and hover title.
+Expanded Week retains its existing full ISO label where it fits. Partial first/
+last weeks and sparse calendars use axis.dayStart/dayEnd, and compressed weeks
+without working columns are not invented. Only label content/painting changes;
+bar, grid, connector and scroll dimensions retain the existing projection.
 
 The horizontal scroll surface is capped at 4,000,000px to avoid browser element
 size limits on extremely long calendars. Beyond that width, scroll position maps
