@@ -36,9 +36,9 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
         onDragOver={event => { if (manual && !blocked && dragging.current) event.preventDefault() }}
         onDrop={event => { event.preventDefault(); if (manual && !blocked && dragging.current) onMove?.(dragging.current, task.taskId); dragging.current = null }}>
         {onMove && <td className="order-cell"><button type="button" className="quiet drag-handle" draggable={manual && !blocked} disabled={!manual || blocked} aria-label={`Drag ${task.taskId} to reorder`} title={manual ? 'Drag onto a row to place above it, or use Move up / Move down' : 'Choose Manual Order to rearrange tasks'}
-          onDragStart={event => { dragging.current = task.taskId; event.dataTransfer.setData('text/plain', task.taskId); event.dataTransfer.effectAllowed = 'move' }} onDragEnd={() => { dragging.current = null }}>⠿</button>
-          <div className="order-actions"><button type="button" className="quiet" disabled={!manual || blocked || index === 0} aria-label={`Move ${task.taskId} up`} onClick={() => onMove(task.taskId, tasks[index - 1].taskId)}>↑</button>
-          <button type="button" className="quiet" disabled={!manual || blocked || index === tasks.length - 1} aria-label={`Move ${task.taskId} down`} onClick={() => onMove(tasks[index + 1].taskId, task.taskId)}>↓</button></div></td>}
+          onDragStart={event => { dragging.current = task.taskId; event.dataTransfer.setData('text/plain', task.taskId); event.dataTransfer.effectAllowed = 'move' }} onDragEnd={() => { dragging.current = null }}><OrderIcon kind="grip" /></button>
+          <div className="order-actions"><button type="button" className="quiet" disabled={!manual || blocked || index === 0} aria-label={`Move ${task.taskId} up`} onClick={() => onMove(task.taskId, tasks[index - 1].taskId)}><OrderIcon kind="up" /></button>
+          <button type="button" className="quiet" disabled={!manual || blocked || index === tasks.length - 1} aria-label={`Move ${task.taskId} down`} onClick={() => onMove(tasks[index + 1].taskId, task.taskId)}><OrderIcon kind="down" /></button></div></td>}
         <th scope="row"><button type="button" className="task-id task-inspect" aria-label={`Select ${task.taskId} in chart`} onClick={() => onSelect?.(task.taskId)}>{task.taskId}</button></th>
         <td className="task-text">{field(task, 'name', 'text')}<div className="task-description">{field(task, 'description', 'multiline')}</div>
           <small>{task.predecessorTaskIds.length ? 'Dependency start' : task.independentStartMode === 'MANUAL' ? 'Manual start' : 'Follows project start'}{editingId === task.taskId ? ' · Unsaved preview' : ''}</small></td>
@@ -55,6 +55,14 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
           <button type="button" className="danger-text" disabled={blocked} onClick={() => onDelete(task)} aria-label={`Delete ${task.taskId}`}>Delete</button></div></td>
       </tr>
     })}</tbody></table></div></>
+}
+
+function OrderIcon({ kind }: { kind: 'grip' | 'up' | 'down' }) {
+  return <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false" style={{ pointerEvents: 'none' }}>
+    {kind === 'grip'
+      ? <g fill="currentColor">{[4, 8, 12].flatMap(y => [5, 11].map(x => <circle key={`${x}-${y}`} cx={x} cy={y} r="1.2" />))}</g>
+      : <path d={kind === 'up' ? 'M8 13V3M3 8l5-5 5 5' : 'M8 3v10M3 8l5 5 5-5'} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />}
+  </svg>
 }
 
 function ResetStart({ task, disabled, onCommit }: { task: TaskInput; disabled: boolean; onCommit: (task: TaskInput) => string | undefined }) {
