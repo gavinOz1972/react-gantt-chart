@@ -1,7 +1,8 @@
 # React Gantt Chart
 
-WP0 provides a tested React and TypeScript development environment. Scheduling,
-Gantt rendering, persistence, and application features begin in later work packages.
+WP0 provides a tested React and TypeScript development environment. WP1 adds a
+pure scheduling engine and automated tests. The interactive task editor,
+Gantt rendering, and persistence belong to later work packages.
 
 ## Prerequisites and setup
 
@@ -29,7 +30,7 @@ Open this folder in VS Code with `code .` or File > Open Folder.
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | ESLint including the domain import boundary |
 | `npm run typecheck` | TypeScript project checks |
-| `npm test` | Vitest and React Testing Library smoke test with jsdom |
+| `npm test` | Scheduling tests in Node and React smoke test with jsdom |
 | `npm run test:watch` | Watch unit/component tests |
 | `npm run check` | Lint, types, unit tests, and build |
 | `npx playwright install chromium` | Install the browser for the smoke test |
@@ -41,14 +42,15 @@ Browser tests reserve 127.0.0.1:5173; stop other servers on that port first.
 
 - `src/domain/`: ENGINE pure TypeScript calculations, explicit inputs/outputs,
   no React, DOM, view imports, or hidden browser state.
-- `src/domain/__tests__/`: future scheduling calculation unit tests.
-- `src/types/`: shared data contracts, once defined in WP1.
+- `src/domain/__tests__/`: calendar, validation, and scheduling unit tests.
+- `src/types/`: shared scheduling data contracts.
 - `src/components/` and `src/App.tsx`: VIEW React presentation and interaction.
 - `src/styles/`: simple CSS; `src/test/`: component test setup.
 - `tests/`: browser smoke test.
 
 The VIEW will consume ENGINE results. Keep scheduling rules in the ENGINE.
-No scheduling models or business rules have been invented in WP0. ESLint blocks
+The [engine API documentation](src/domain/README.md) describes WP1 contracts,
+slot boundaries, errors, and owner policies. ESLint blocks
 React and common view imports from domain files; code review must also preserve
 purity and avoid browser APIs or indirect view dependencies.
 
@@ -59,8 +61,9 @@ because typescript-eslint currently supports versions below 6.1, and uses ESLint
 to match the work package. The lockfile fixes the verified dependency graph.
 
 No deployment, paid service, database, authentication, or Gantt library is included.
-The referenced Application Requirements v1.0 was not supplied with WP0. Obtain it
-before implementing WP1 scheduling contracts and calculation rules.
+The referenced Application Requirements v1.0 was not supplied. WP1 follows the
+explicit rules in its work package. The two earlier-date policies remain owner
+decisions and return explicit errors until configured.
 
 See [WP0 verification and WP1 handoff](docs/WP0-HANDOFF.md) for workstation findings,
 verification results, and publication status.
@@ -69,3 +72,6 @@ The latest clean-install audit reports 12 moderate development-tool findings
 stemming from minimatch (GHSA-g3hv-75wg-m249), with no high or critical findings.
 Review upstream ESLint dependency fixes before processing untrusted lint patterns.
 See the handoff for the full context; no forced dependency downgrade was applied.
+
+See [WP1 verification and handoff](docs/WP1-HANDOFF.md) for the scheduling engine
+acceptance matrix and deferred work.
