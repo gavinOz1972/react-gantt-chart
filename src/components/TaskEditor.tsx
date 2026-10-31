@@ -2,12 +2,13 @@ import { useEffect, useRef } from 'react'
 import type { ScheduleError, ScheduledTask, TaskInput } from '../domain'
 import type { TaskDraft } from './projectEntry'
 import { FieldError } from './EntryErrors'
+import { DependencyPicker } from './DependencyPicker'
 
-export function TaskEditor({ draft, isNew, tasks, projectStartDate, scheduled, errors, linkError, optionError, onChange, onToggle, onSave, onCancel }: {
+export function TaskEditor({ draft, isNew, tasks, projectStartDate, scheduled, errors, optionError, onChange, onPredecessors, onSave, onCancel }: {
   draft: TaskDraft; isNew: boolean; tasks: readonly TaskInput[]; projectStartDate: string
-  scheduled?: ScheduledTask; errors: readonly ScheduleError[]; linkError: string
-  optionError: (id: string) => string | undefined
-  onChange: (draft: TaskDraft) => void; onToggle: (id: string) => void; onSave: () => void; onCancel: () => void
+  scheduled?: ScheduledTask; errors: readonly ScheduleError[]
+  optionError: (ids: readonly string[]) => string | undefined
+  onChange: (draft: TaskDraft) => void; onPredecessors: (ids: string[]) => string | undefined; onSave: () => void; onCancel: () => void
 }) {
   const nameInput = useRef<HTMLInputElement>(null)
   useEffect(() => { nameInput.current?.focus() }, [])
@@ -15,7 +16,7 @@ export function TaskEditor({ draft, isNew, tasks, projectStartDate, scheduled, e
   const invalid = (field: string) => errors.some(error => error.taskId === draft.taskId && error.field.split('/').includes(field))
   const independent = !draft.predecessorTaskIds.length
   return <section className="panel editor" aria-labelledby="task-editor-heading">
-    <div className="section-heading"><div><span className="eyebrow">Task details</span><h2 id="task-editor-heading">{isNew ? 'Add task' : 'Edit task'} <span className="task-id">{draft.taskId}</span></h2></div>
+    <div className="section-heading"><div><span className="eyebrow">Task entry</span><h2 id="task-editor-heading">{isNew ? 'Add task' : 'Edit task'} <span className="task-id">{draft.taskId}</span></h2></div>
       <span className="preview-label">Live preview</span></div>
     <p className="muted">Dates preview as you edit. Save to keep your changes, or Cancel to return to your saved tasks.</p>
     <form noValidate onSubmit={event => { event.preventDefault(); onSave() }}>
@@ -26,22 +27,8 @@ export function TaskEditor({ draft, isNew, tasks, projectStartDate, scheduled, e
           onChange={event => onChange({ ...draft, durationHours: event.target.value })} aria-invalid={invalid('durationHours')} aria-describedby="task-durationHours-error" />{fieldError('durationHours')}</label>
         <label className="wide">Description<textarea rows={2} value={draft.description} onChange={event => onChange({ ...draft, description: event.target.value })} /></label>
         <div className="wide">
-          <details className="dependency-picker"><summary>Predecessors ({draft.predecessorTaskIds.length} selected)</summary>
-            <fieldset><legend className="sr-only">Choose predecessor tasks</legend>
-              {!tasks.length && <p className="muted">Save another task first to add a predecessor.</p>}
-              {tasks.map(task => {
-                const checked = draft.predecessorTaskIds.includes(task.taskId)
-                const problem = task.taskId === draft.taskId ? 'A task cannot depend on itself.' : checked ? undefined : optionError(task.taskId)
-                return <label className="dependency-option" key={task.taskId}>
-                  <input type="checkbox" checked={checked} disabled={!!problem} onChange={() => onToggle(task.taskId)}
-                    aria-describedby={problem ? `dependency-${task.taskId}-reason` : undefined} />
-                  <span>{task.taskId} — {task.name}{problem && <small id={`dependency-${task.taskId}-reason`}>{problem}</small>}</span>
-                </label>
-              })}
-            </fieldset>
-          </details>
+          <DependencyPicker taskId={draft.taskId} tasks={tasks} selected={draft.predecessorTaskIds} optionError={optionError} onCommit={onPredecessors} />
           <p className="selected-dependencies">{draft.predecessorTaskIds.length ? draft.predecessorTaskIds.map(id => `${id} — ${tasks.find(task => task.taskId === id)?.name ?? id}`).join('; ') : 'No predecessors. This task can start independently.'}</p>
-          {linkError && <p className="field-error" role="alert">{linkError}</p>}
         </div>
         {independent ? <div className="wide start-fields">
           <label>Independent start date<input type="date" value={draft.independentStartMode === 'MANUAL' ? draft.requestedStartDate : projectStartDate}

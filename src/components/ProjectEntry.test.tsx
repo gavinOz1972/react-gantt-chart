@@ -29,9 +29,13 @@ function add(name: string, hours = '1') {
   fireEvent.click(screen.getByRole('button', { name: 'Save task' }))
 }
 function edit(id: string) { tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: `Edit ${id}` })) }
-function save() { fireEvent.click(screen.getByRole('button', { name: 'Save task' })) }
+function save() { if (screen.queryByRole('group', { name: /predecessor selection/ })) fireEvent.click(screen.getByRole('button', { name: 'Done' })); fireEvent.click(screen.getByRole('button', { name: 'Save task' })) }
 function row(id: string, name: string) { tab('Workspace'); return within(screen.getByRole('row', { name: `${id} ${name}` })) }
-function predecessor(name: string) { return screen.getByLabelText(new RegExp(`^${name}`)) }
+function predecessor(name: string) {
+  if (!screen.queryByRole('group', { name: /predecessor selection/ })) fireEvent.click(within(screen.getByRole('region', { name: /^(Edit|Add) task/ })).getByRole('button', { name: /predecessors$/ }))
+  return screen.getByRole('checkbox', { name: new RegExp('^T\\d+ predecessor ' + name) })
+}
+function togglePredecessor(name: string) { fireEvent.click(predecessor(name)); fireEvent.click(screen.getByRole('button', { name: 'Done' })) }
 
 test('A01/A02 calendar controls and first task produce WP1 rollover dates', () => {
   render(<App />)
@@ -55,7 +59,7 @@ test('Monday/Tuesday/Friday three-hour calendar finishes a five-hour T3 on Tuesd
   add('First', '2')
   add('Second')
   edit('T2')
-  fireEvent.click(predecessor('T1 — First'))
+  togglePredecessor('T1 — First')
   save()
   add('Concurrent task', '5')
   expect(row('T3', 'Concurrent task').getByText('2026-11-02')).toBeInTheDocument()
@@ -91,19 +95,19 @@ test('A03/A04 default following, manual retention, reset and rejected project ed
   expect(row('T1', 'Research').getAllByText('2026-11-09')).toHaveLength(2)
 })
 
-test('A05/A06 dependency checking and immediate unchecking never remove the predecessor', () => {
+test('A05/A06 dependency checking and committed unchecking never remove the predecessor', () => {
   render(<App />)
   calendar()
   add('Research', '3')
   add('Draft')
   edit('T2')
   field('Independent start date', '2026-11-12')
-  fireEvent.click(predecessor('T1 — Research'))
+  togglePredecessor('T1 — Research')
   expect(screen.queryByLabelText(/^Independent start date/)).not.toBeInTheDocument()
   expect(screen.getByLabelText('Calculated Start')).toHaveTextContent('2026-11-05 · hour 2')
   expect(screen.getByText('Predecessors (1 selected)')).toBeInTheDocument()
   expect(screen.getByRole('row', { name: 'T1 Research' })).toBeInTheDocument()
-  fireEvent.click(predecessor('T1 — Research'))
+  togglePredecessor('T1 — Research')
   expect(screen.getByLabelText(/^Independent start date/)).toHaveValue('2026-11-12')
   expect(screen.getByRole('row', { name: 'T1 Research' })).toBeInTheDocument()
   save()
@@ -117,8 +121,8 @@ test('A07 multiple predecessors and duration changes update downstream dates bef
   add('Long', '5')
   add('Join', '1')
   edit('T3')
-  fireEvent.click(predecessor('T1 — Short'))
-  fireEvent.click(predecessor('T2 — Long'))
+  togglePredecessor('T1 — Short')
+  togglePredecessor('T2 — Long')
   expect(screen.getByLabelText('Calculated Start')).toHaveTextContent('2026-11-09 · hour 2')
   save()
   edit('T1')
@@ -128,18 +132,21 @@ test('A07 multiple predecessors and duration changes update downstream dates bef
   save()
 })
 
-test('A08 self-reference and cycle choices are disabled with actionable explanations', () => {
+test('A08 self-reference is disabled and cyclic drafts are rejected with actionable explanations', () => {
   render(<App />)
   add('First')
   add('Second')
   edit('T2')
-  fireEvent.click(predecessor('T1 — First'))
+  togglePredecessor('T1 — First')
   save()
   edit('T1')
   expect(predecessor('T1 — First')).toBeDisabled()
-  expect(predecessor('T2 — Second')).toBeDisabled()
+  expect(predecessor('T2 — Second')).not.toBeDisabled()
+  fireEvent.click(predecessor('T2 — Second')); fireEvent.click(screen.getByRole('button', { name: 'Done' }))
+  expect(screen.getByRole('alert')).toHaveTextContent(/cycle/i)
   expect(screen.getByText('A task cannot depend on itself.')).toBeInTheDocument()
   expect(screen.getAllByText(/Remove a dependency to break this cycle/).length).toBeGreaterThan(0)
+  if (screen.queryByRole('group', { name: /predecessor selection/ })) fireEvent.click(within(screen.getByRole('group', { name: /predecessor selection/ })).getByRole('button', { name: 'Cancel' }))
   fireEvent.click(screen.getByRole('button', { name: 'Cancel' }))
   expect(row('T2', 'Second').getByText('T1 — First')).toBeInTheDocument()
 })
@@ -162,7 +169,7 @@ test('A10 deletion discloses links, can be cancelled, and keeps dependent tasks'
   add('First')
   add('Second')
   edit('T2')
-  fireEvent.click(predecessor('T1 — First'))
+  togglePredecessor('T1 — First')
   save()
   tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
   expect(screen.getByRole('dialog')).toHaveTextContent('T2 — Second: remove predecessor T1')
@@ -199,7 +206,7 @@ test('rejected deletion preserves tasks when removing a link would reactivate an
   add('Second')
   edit('T2')
   field('Independent start date', '2026-11-03')
-  fireEvent.click(predecessor('T1 — First'))
+  togglePredecessor('T1 — First')
   save()
   setting('Project start date', '2026-11-09')
   tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
@@ -223,7 +230,7 @@ test('A12 repeated edits retain focus, descriptions and stable IDs; dependency r
   add('Second')
   edit('T2')
   field('Description', 'Preserve these notes')
-  fireEvent.click(predecessor('T1 — First'))
+  togglePredecessor('T1 — First')
   save()
   edit('T2')
   const name = screen.getByLabelText(/^Task name/)
@@ -232,7 +239,7 @@ test('A12 repeated edits retain focus, descriptions and stable IDs; dependency r
   expect(name).toHaveFocus()
   expect(screen.getByLabelText('Description')).toHaveValue('Preserve these notes')
   field('Estimated duration', '0')
-  fireEvent.click(predecessor('T1 — First'))
+  togglePredecessor('T1 — First')
   expect(predecessor('T1 — First')).not.toBeChecked()
   field('Estimated duration', '2')
   save()

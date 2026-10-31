@@ -6,7 +6,8 @@ selection, and live schedule dates. WP3 adds expanded-calendar and compressed
 working-time Gantt views with dependency connectors. WP4 adds working-hour slack,
 critical-path highlighting, a dependency network, named browser saves, and JSON
 export/import. WP5 adds persistent manual order, temporary sorts, duplication,
-inline editing and Files / Project Settings / Workspace navigation.
+inline editing and Files / Project Settings / Workspace navigation. The WP5.1
+owner follow-up refines workspace hierarchy and stages dependency selections.
 Resource levelling, costs, progress and probabilistic PERT are outside
 this release.
 
@@ -67,7 +68,9 @@ this configuration change, save/export your plan and restart that server once.
 5. Select an existing task's name, description, duration or independent date to edit
    inline. Enter, Tab or blur commits; Escape cancels. Descriptions use Enter for a
    newline and Ctrl+Enter to commit. Invalid inline drafts keep the committed
-   schedule intact. Predecessor checkboxes commit immediately after validation.
+   schedule intact. Dependency checkboxes stage a separate selection: Done, Enter
+   or a click outside commits valid choices; Escape or Cancel discards them.
+   The outside click closes the picker without activating another task action.
    Edit form remains available for the full preview form.
 6. Drag a task handle onto another row to place it above that row, or use the up/down
    buttons in Manual Order. Start Date, Task Name and Duration are display sorts;
@@ -137,7 +140,10 @@ not part of that task. In Compressed, the bar covers three adjacent slots.
 Use Hour, Day or Week scale and the timeline's horizontal scrollbar. Labels stay
 fixed at the left and headers at the top. Click or focus a bar, its task label,
 or its ID in the task table to select the same stable task. Its source duration,
-calculated boundaries and predecessors appear below the chart. Dependency lines
+calculated boundaries, predecessors, criticality and slack appear in the final
+03 / Task Details section, after 02 / Tasks & Schedule. The chart/network area is
+01 / Timeline. Add/full task forms stay inside the task section. Selection updates
+details without automatically scrolling to them. Dependency lines
 have arrowheads and can be inspected by hover or keyboard focus. Go to selected
 task brings an offscreen selection into view. Bars are not draggable.
 
@@ -225,5 +231,9 @@ artifacts.
 
 See [WP5 verification and handoff](docs/WP5-HANDOFF.md) and the
 [WP5 owner test guide](docs/WP5-OWNER-GUIDE.md) for task management, the three-tab
-workspace, migration details and before/after screenshots. WP5 is ready for owner
-testing; it has not been marked owner-accepted.
+workspace, migration details and before/after screenshots.
+
+The [WP5.1 follow-up handoff](docs/WP5-1-HANDOFF.md) records the chart-first
+hierarchy, bottom Task Details section, staged dependency picker and owner checks.
+This follow-up is distinct from WP5's earlier task-ordering slice. It is ready for
+owner testing and has not been marked owner-accepted.

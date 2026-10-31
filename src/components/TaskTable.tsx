@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { ProjectSettings, ScheduleResult, TaskInput } from '../domain'
 import { dependencyError } from './projectEntry'
 import { InlineField } from './InlineField'
+import { DependencyPicker } from './DependencyPicker'
 
 export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, onEdit, onDelete, onSelect, project, manual = false, onMove, onDuplicate, onCommit, onDraftChange }: {
   tasks: readonly TaskInput[]; result: ScheduleResult; editingId?: string; blocked: boolean
@@ -33,6 +34,7 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
     </tr></thead><tbody>{tasks.map((task, index) => {
       const dates = scheduled.get(task.taskId)
       return <tr key={task.taskId} data-task-row={task.taskId} aria-label={`${task.taskId} ${task.name}`} aria-selected={selectedTaskId === task.taskId} className={`${editingId === task.taskId ? 'editing-row' : ''}${selectedTaskId === task.taskId ? ' selected-task-row' : ''}`}
+        onClick={event => { if (!(event.target as HTMLElement).closest('button,input,textarea,select,a,label,.dependency-popover')) onSelect?.(task.taskId) }}
         onDragOver={event => { if (manual && !blocked && dragging.current) event.preventDefault() }}
         onDrop={event => { event.preventDefault(); if (manual && !blocked && dragging.current) onMove?.(dragging.current, task.taskId); dragging.current = null }}>
         {onMove && <td className="order-cell"><button type="button" className="quiet drag-handle" draggable={manual && !blocked} disabled={!manual || blocked} aria-label={`Drag ${task.taskId} to reorder`} title={manual ? 'Drag onto a row to place above it, or use Move up / Move down' : 'Choose Manual Order to rearrange tasks'}
@@ -43,7 +45,12 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
         <td className="task-text">{field(task, 'name', 'text')}<div className="task-description">{field(task, 'description', 'multiline')}</div>
           <small>{task.predecessorTaskIds.length ? 'Dependency start' : task.independentStartMode === 'MANUAL' ? 'Manual start' : 'Follows project start'}{editingId === task.taskId ? ' · Unsaved preview' : ''}</small></td>
         <td>{field(task, 'durationHours', 'number')}</td>
-        <td>{onCommit && project ? <InlineDependencies task={task} tasks={tasks} project={project} disabled={blocked} onCommit={onCommit} /> : task.predecessorTaskIds.length ? task.predecessorTaskIds.map(id => `${id} — ${tasks.find(entry => entry.taskId === id)?.name ?? id}`).join('; ') : 'None'}</td>
+        <td>{onCommit && project ? <div className="inline-dependencies"><DependencyPicker taskId={task.taskId} tasks={tasks} selected={task.predecessorTaskIds} disabled={blocked} compact
+          optionError={predecessors => dependencyError(project, tasks, task, predecessors)?.message} onDraftChange={dirty => onDraftChange?.(`${task.taskId}:predecessors`, dirty)}
+          onCommit={predecessorTaskIds => onCommit({ ...task, predecessorTaskIds })} />
+          {task.predecessorTaskIds.length > 0 && task.independentStartMode === 'MANUAL' && <><small>Retained independent date: {task.requestedStartDate}</small><ResetStart task={task} disabled={blocked} onCommit={onCommit} /></>}
+          {task.predecessorTaskIds.length > 0 && <small>{task.predecessorTaskIds.map(id => `${id} — ${tasks.find(entry => entry.taskId === id)?.name ?? id}`).join('; ')}</small>}
+        </div> : task.predecessorTaskIds.length ? task.predecessorTaskIds.map(id => `${id} — ${tasks.find(entry => entry.taskId === id)?.name ?? id}`).join('; ') : 'None'}</td>
         <td>{!task.predecessorTaskIds.length && onCommit && project ? <><InlineField label={`${task.taskId} independent start date`} type="date" disabled={blocked}
           value={task.independentStartMode === 'MANUAL' ? task.requestedStartDate : project.projectStartDate} display={task.independentStartMode === 'MANUAL' ? `Requested: ${task.requestedStartDate}` : 'Change start date'} onDraftChange={dirty => onDraftChange?.(`${task.taskId}:date`, dirty)}
           onCommit={value => onCommit({ ...task, independentStartMode: 'MANUAL', requestedStartDate: value })} />
@@ -68,19 +75,4 @@ function OrderIcon({ kind }: { kind: 'grip' | 'up' | 'down' }) {
 function ResetStart({ task, disabled, onCommit }: { task: TaskInput; disabled: boolean; onCommit: (task: TaskInput) => string | undefined }) {
   const [error, setError] = useState('')
   return <><button className="quiet inline-reset" type="button" disabled={disabled} aria-label={`Reset ${task.taskId} to Project Start`} onClick={() => setError(onCommit({ taskId: task.taskId, name: task.name, description: task.description, durationHours: task.durationHours, predecessorTaskIds: task.predecessorTaskIds, independentStartMode: 'DEFAULT' }) ?? '')}>Reset to Project Start</button>{error && <span role="alert" className="field-error">{error}</span>}</>
-}
-
-function InlineDependencies({ task, tasks, project, disabled, onCommit }: { task: TaskInput; tasks: readonly TaskInput[]; project: ProjectSettings; disabled: boolean; onCommit: (task: TaskInput) => string | undefined }) {
-  const [error, setError] = useState('')
-  const [open, setOpen] = useState(false)
-  return <details open={open} className="dependency-picker inline-dependencies"><summary onClick={event => { event.preventDefault(); setOpen(value => !value) }}>{task.predecessorTaskIds.length ? `Predecessors (${task.predecessorTaskIds.length})` : 'None'}</summary>
-    {open && <fieldset disabled={disabled} aria-label={`${task.taskId} predecessors`}>{tasks.map(option => {
-      const checked = task.predecessorTaskIds.includes(option.taskId)
-      const problem = checked ? undefined : dependencyError(project, tasks, task, [...task.predecessorTaskIds, option.taskId])?.message
-      return <label key={option.taskId} className="dependency-option"><input type="checkbox" aria-label={`${task.taskId} predecessor ${option.taskId} — ${option.name}`} checked={checked} disabled={!!problem}
-        onChange={() => setError(onCommit({ ...task, predecessorTaskIds: checked ? task.predecessorTaskIds.filter(id => id !== option.taskId) : [...task.predecessorTaskIds, option.taskId] }) ?? '')} /><span>{option.taskId} — {option.name}{problem && <small>{problem}</small>}</span></label>
-    })}</fieldset>}{error && <p className="field-error" role="alert">{error}</p>}
-    {task.predecessorTaskIds.length > 0 && task.independentStartMode === 'MANUAL' && <><small>Retained independent date: {task.requestedStartDate}</small><ResetStart task={task} disabled={disabled} onCommit={onCommit} /></>}
-    <small>{task.predecessorTaskIds.map(id => `${id} — ${tasks.find(entry => entry.taskId === id)?.name ?? id}`).join('; ')}</small>
-  </details>
 }

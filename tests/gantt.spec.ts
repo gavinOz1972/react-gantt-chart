@@ -1,3 +1,4 @@
+import { chooseDependency, finishDependencies } from './dependencyHelpers'
 import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
 
@@ -6,6 +7,7 @@ async function add(page: Page, name: string, hours: string) {
   await page.getByRole('button', { name: 'Add task', exact: true }).click()
   await page.getByLabel(/^Task name/).fill(name)
   await page.getByLabel(/^Estimated duration/).fill(hours)
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task' }).click()
 }
 async function sample(page: Page) {
@@ -24,15 +26,17 @@ async function sample(page: Page) {
   await page.getByRole('tab', { name: 'Workspace', exact: true }).click()
   await page.getByRole('button', { name: 'Edit T2', exact: true }).click()
   await page.getByText('Predecessors (0 selected)', { exact: true }).click()
-  await page.getByRole('checkbox', { name: 'T1 — Research', exact: true }).check()
+  await chooseDependency(page, 'T1 — Research', true)
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task' }).click()
   await add(page, 'Parallel review', '3')
   await add(page, 'Publish', '1')
   await page.getByRole('tab', { name: 'Workspace', exact: true }).click()
   await page.getByRole('button', { name: 'Edit T4', exact: true }).click()
   await page.getByText('Predecessors (0 selected)', { exact: true }).click()
-  await page.getByRole('checkbox', { name: 'T2 — Draft', exact: true }).check()
-  await page.getByRole('checkbox', { name: 'T3 — Parallel review', exact: true }).check()
+  await chooseDependency(page, 'T2 — Draft', true)
+  await chooseDependency(page, 'T3 — Parallel review', true)
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task' }).click()
 }
 const bar = (page: Page, id: string) => page.getByRole('button', { name: new RegExp(`^${id} .*working hours; starts`) })
@@ -49,12 +53,12 @@ test('owner screenshots: expanded hatching and compressed work slots preserve se
   await expect(chart.getByRole('img', { name: 'Dependency T1 to T2', exact: true })).toBeVisible()
   await expect(chart.getByRole('img', { name: 'Dependency T2 to T4', exact: true })).toBeVisible()
   await expect(chart.getByRole('img', { name: 'Dependency T3 to T4', exact: true })).toBeVisible()
-  const details = await chart.getByLabel('Selected task details', { exact: true }).textContent()
+  const details = await page.getByLabel('Selected task details', { exact: true }).textContent()
   await chart.screenshot({ path: info.outputPath('wp3-expanded.png') })
   for (const mode of ['Compressed', 'Expanded', 'Compressed']) {
     await chart.getByRole('button', { name: mode, exact: true }).click()
     await expect(bar(page, 'T1')).toHaveAttribute('aria-pressed', 'true')
-    await expect(chart.getByLabel('Selected task details', { exact: true })).toHaveText(details!)
+    await expect(page.getByLabel('Selected task details', { exact: true })).toHaveText(details!)
   }
   await expect(bar(page, 'T1')).toHaveAttribute('data-end', '3')
   await expect(bar(page, 'T1').locator('.gantt-bar-outline')).toHaveAttribute('width', '120')
@@ -79,13 +83,15 @@ test('live upstream edits, checkbox removal, calendar edits and invalid drafts r
   await chart.getByRole('button', { name: 'Compressed', exact: true }).click()
   await expect(bar(page, 'T1')).toHaveAttribute('data-end', '5')
   await expect(bar(page, 'T2')).toHaveAttribute('data-start', '5')
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task' }).click()
   await page.getByRole('tab', { name: 'Workspace', exact: true }).click()
   await page.getByRole('button', { name: 'Edit T2', exact: true }).click()
   await page.getByText('Predecessors (1 selected)', { exact: true }).click()
-  await page.getByRole('checkbox', { name: 'T1 — Research', exact: true }).uncheck()
+  await chooseDependency(page, 'T1 — Research', false)
   await expect(chart.getByRole('img', { name: 'Dependency T1 to T2', exact: true })).toHaveCount(0)
   await expect(bar(page, 'T2')).toHaveAttribute('data-start', '0')
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task' }).click()
   await page.getByRole('tab', { name: 'Project Settings', exact: true }).click()
   await page.getByRole('checkbox', { name: 'Tuesday', exact: true }).check()
@@ -113,6 +119,7 @@ test('multiweek timeline scroll, zoom and sticky labels remain aligned at narrow
   await page.getByRole('tab', { name: 'Workspace', exact: true }).click()
   await page.getByRole('button', { name: 'Edit T1', exact: true }).click()
   await page.getByLabel(/^Estimated duration/).fill('100')
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task' }).click()
   const chart = page.getByRole('region', { name: 'Gantt chart', exact: true })
   const region = chart.getByRole('region', { name: 'Scrollable Gantt timeline', exact: true })

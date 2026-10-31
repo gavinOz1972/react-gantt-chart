@@ -5,10 +5,11 @@ import { connectorPath, createTimelineAxis, HEADER_HEIGHT, LABEL_WIDTH, pixelsPe
 import type { TimelineMode, TimelineZoom } from '../../timeline/projection'
 import { TimelineHeader } from './TimelineHeader'
 
-export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, analysis, highlightCritical = false, onHighlightChange }: {
+export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, analysis, highlightCritical = false, onHighlightChange, showInspection = true }: {
   project: ProjectSettings; tasks: readonly TaskInput[]; result: ScheduleResult; selectedTaskId: string | null
   previewing: boolean; onSelect: (id: string) => void
   analysis?: CriticalPathResult; highlightCritical?: boolean; onHighlightChange?: (enabled: boolean) => void
+  showInspection?: boolean
 }) {
   const [mode, setMode] = useState<TimelineMode>('expanded')
   const [zoom, setZoom] = useState<TimelineZoom>('hour')
@@ -68,7 +69,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   }
 
   return <section className="panel gantt-panel" aria-labelledby="gantt-heading">
-    <div className="section-heading"><div><span className="eyebrow">03 / Timeline</span><h2 id="gantt-heading">Gantt chart</h2></div>
+    <div className="section-heading"><div><span className="eyebrow">01 / Timeline</span><h2 id="gantt-heading">Gantt chart</h2></div>
       <span className="preview-label">{previewing ? 'Unsaved preview' : 'Live schedule'}</span></div>
     <div className="gantt-toolbar">
       <div role="group" aria-label="Timeline representation" className="gantt-mode">
@@ -143,6 +144,6 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
             </div>
           </div>}
     <div className="gantt-link-inspection" role="status">{geometry?.links.some(link => `Dependency ${link.predecessorId} to ${link.successorId}` === inspectedLink) ? inspectedLink : ''}</div>
-    {selected && selectedSchedule && <TaskInspection task={selected} scheduled={selectedSchedule} analysis={analyzed.get(selected.taskId)} />}
+    {showInspection && selected && selectedSchedule && <TaskInspection task={selected} scheduled={selectedSchedule} analysis={analyzed.get(selected.taskId)} />}
   </section>
 }

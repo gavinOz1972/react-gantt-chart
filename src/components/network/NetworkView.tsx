@@ -3,7 +3,7 @@ import type { CriticalPathResult, ScheduleResult, TaskInput } from '../../domain
 import { layoutNetwork, NODE_HEIGHT, NODE_WIDTH } from '../../network/layout'
 import { TaskInspection } from '../TaskInspection'
 
-export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect }: { tasks: readonly TaskInput[]; result: ScheduleResult; analysis: CriticalPathResult; selectedTaskId: string | null; onSelect: (id: string) => void }) {
+export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect, showInspection = true }: { tasks: readonly TaskInput[]; result: ScheduleResult; analysis: CriticalPathResult; selectedTaskId: string | null; onSelect: (id: string) => void; showInspection?: boolean }) {
   const [zoom, setZoom] = useState(1)
   const [viewport, setViewport] = useState({ left: 0, top: 0, width: 1000, height: 500 })
   const [inspected, setInspected] = useState('')
@@ -44,7 +44,7 @@ export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect 
     setViewport(value => ({ ...value, left: element.scrollLeft, top: element.scrollTop }))
   }
   return <section className="panel network-panel" aria-labelledby="network-heading">
-    <div className="section-heading"><div><span className="eyebrow">04 / Relationships</span><h2 id="network-heading">Network / Critical Path</h2></div><span className="phase-label">Read-only dependency view</span></div>
+    <div className="section-heading"><div><span className="eyebrow">01 / Timeline</span><h2 id="network-heading">Network / Critical Path</h2></div><span className="phase-label">Read-only dependency view</span></div>
     <p className="gantt-help">Follow the arrows from predecessor to successor. Critical nodes have zero working-hour slack against calculated completion, not the target. Independent release dates are not task effort.</p>
     <div className="gantt-toolbar"><label className="gantt-zoom">Network zoom<select aria-label="Network zoom" value={zoom} onChange={event => { setZoom(Number(event.target.value)); reset() }}>
       {[0.5, 0.75, 1, 1.25, 1.5].map(value => <option key={value} value={value}>{Math.round(value * 100)}%</option>)}</select></label>
@@ -84,6 +84,6 @@ export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect 
             </svg>
           </div>}
     <p role="status" className="gantt-link-inspection">{layout?.edges.some(edge => `Network dependency ${edge.predecessorId} to ${edge.successorId}` === inspected) ? inspected : ''}</p>
-    {selected && selectedSchedule && <TaskInspection task={selected} scheduled={selectedSchedule} analysis={analyzed.get(selected.taskId)} />}
+    {showInspection && selected && selectedSchedule && <TaskInspection task={selected} scheduled={selectedSchedule} analysis={analyzed.get(selected.taskId)} />}
   </section>
 }

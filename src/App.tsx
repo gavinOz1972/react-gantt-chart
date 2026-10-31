@@ -5,6 +5,7 @@ import { EntryErrors } from './components/EntryErrors'
 import { ProjectSettingsForm } from './components/ProjectSettingsForm'
 import { TaskEditor } from './components/TaskEditor'
 import { TaskTable } from './components/TaskTable'
+import { TaskInspection } from './components/TaskInspection'
 import { DeleteTaskDialog } from './components/DeleteTaskDialog'
 import { GanttChart } from './components/gantt/GanttChart'
 import { NetworkView } from './components/network/NetworkView'
@@ -31,7 +32,6 @@ function App() {
   const [tab, setTab] = useState<Tab>('Files')
   const [saveTarget, setSaveTarget] = useState<HTMLDivElement | null>(null)
   const [editor, setEditor] = useState<TaskDraft | null>(null)
-  const [linkError, setLinkError] = useState('')
   const [deleting, setDeleting] = useState<TaskInput | null>(null)
   const [deleteError, setDeleteError] = useState('')
   const [notice, setNotice] = useState('')
@@ -57,6 +57,8 @@ function App() {
   const errors = result.ok ? [] : result.errors
   const projectDirty = JSON.stringify(projectDraft) !== JSON.stringify(projectToDraft(project))
   const isNew = !!editor && !tasks.some(task => task.taskId === editor.taskId)
+  const selectedTask = proposedTasks.find(task => task.taskId === selectedTaskId)
+  const selectedSchedule = result.ok ? result.tasks.find(task => task.taskId === selectedTaskId) : undefined
   const completion = result.ok ? result.projectCompletion : null
   const previewing = !!editor || projectDirty
   const idLimitReached = nextId >= Number.MAX_SAFE_INTEGER - 1
@@ -91,7 +93,7 @@ function App() {
   function openProject(file: ProjectFile, name: string | null) {
     setProject(file.project); setProjectDraft(projectToDraft(file.project)); setTasks(file.tasks); setNextId(file.nextTaskNumber)
     setManualOrder(file.manualOrder); setSortMode(file.sortMode); setDuplicateOrigins(file.duplicateOrigins); setInlineDrafts(new Set()); setTab('Workspace')
-    setEditor(null); setLinkError(''); setDeleting(null); setDeleteError(''); setSelectedTaskId(null)
+    setEditor(null); setDeleting(null); setDeleteError(''); setSelectedTaskId(null)
     setCurrentSavedName(name); setSavedFingerprint(name ? projectFingerprint(file) : '')
     setDocumentEpoch(value => value + 1)
     setNotice(name ? `Opened “${name}”. Schedule and critical path recalculated.` : 'JSON imported. Schedule and critical path recalculated; save a browser copy if needed.')
@@ -104,7 +106,7 @@ function App() {
     const fresh = { ...initialProject, projectId: `P-${crypto.randomUUID()}` }
     setProject(fresh); setProjectDraft(projectToDraft(fresh)); setTasks([]); setNextId(1); setEditor(null); setSelectedTaskId(null)
     setManualOrder([]); setSortMode('manual'); setDuplicateOrigins({}); setInlineDrafts(new Set()); setTab('Project Settings')
-    setLinkError(''); setDeleting(null); setDeleteError(''); setCurrentSavedName(null)
+    setDeleting(null); setDeleteError(''); setCurrentSavedName(null)
     setSavedFingerprint(projectFingerprint({ project: fresh, tasks: [], nextTaskNumber: 1 })); setDocumentEpoch(value => value + 1)
     setNotice('New project started. Named browser saves were kept.')
   }
@@ -120,35 +122,34 @@ function App() {
   function startEditing(task: TaskInput) {
     setProject(proposedProject)
     setEditor(taskToDraft(task))
-    setLinkError('')
     setNotice('')
   }
 
   function changeEditor(draft: TaskDraft) {
     setEditor(draft)
-    setLinkError('')
   }
 
-  function predecessorProblem(id: string) {
+  function predecessorProblem(ids: readonly string[]) {
     if (!editor) return undefined
     const seed = tasks.find(task => task.taskId === editor.taskId) ?? newTask(editor.taskId)
-    return dependencyError(project, tasks, seed, [...editor.predecessorTaskIds, id])?.message
+    return dependencyError(project, tasks, seed, ids)?.message
   }
 
-  function togglePredecessor(id: string) {
-    if (!editor) return
-    const predecessors = editor.predecessorTaskIds.includes(id)
-      ? editor.predecessorTaskIds.filter(value => value !== id) : [...editor.predecessorTaskIds, id]
+  function commitEditorPredecessors(predecessorTaskIds: string[]) {
+    if (!editor) return 'Open a task before editing predecessors.'
+    // Validate graph/start effects against valid saved text and effort, so an
+    // unfinished name or duration cannot prevent correcting relationships.
     const seed = tasks.find(task => task.taskId === editor.taskId) ?? newTask(editor.taskId)
-    const problem = dependencyError(project, tasks, seed, predecessors)
-    if (problem) { setLinkError(problem.message); return }
-    changeEditor({ ...editor, predecessorTaskIds: predecessors })
+    const candidate = taskFromDraft({ ...taskToDraft({ ...seed, name: seed.name || 'New task' }), predecessorTaskIds,
+      independentStartMode: editor.independentStartMode, requestedStartDate: editor.requestedStartDate })
+    const checked = calculateSchedule(project, replaceTask(tasks, candidate))
+    if (!checked.ok) return checked.errors.map(error => `${error.taskId ?? 'Project'}: ${error.message}`).join(' ')
+    changeEditor({ ...editor, predecessorTaskIds })
   }
 
   function closeEditor(message: string) {
     restoreEditorFocus.current = true
     setEditor(null)
-    setLinkError('')
     setNotice(message)
   }
 
@@ -208,25 +209,30 @@ function App() {
     <button type="button" className="next-step" onClick={() => setTab('Workspace')}>Next: Workspace →</button></div>
     <EntryErrors errors={errors} />
     <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden={tab !== 'Workspace'}>
-    {editor && <TaskEditor key={editor.taskId} draft={editor} isNew={isNew} tasks={tasks} projectStartDate={project.projectStartDate}
-      scheduled={result.ok ? result.tasks.find(task => task.taskId === editor.taskId) : undefined} errors={errors} linkError={linkError}
-      optionError={predecessorProblem} onChange={changeEditor} onToggle={togglePredecessor} onSave={saveTask} onCancel={() => closeEditor('Task changes discarded. Saved schedule restored.')} />}
     {result.ok && !analysis.ok && <div className="error-summary" role="alert">Critical-path analysis unavailable: {analysis.errors.map(error => error.message).join(' ')}</div>}
     <div className="view-switch" role="group" aria-label="Project visualization"><button type="button" aria-pressed={chartView === 'gantt'} onClick={() => setChartView('gantt')}>Gantt</button>
       <button type="button" aria-pressed={chartView === 'network'} onClick={() => setChartView('network')}>Network / Critical Path</button></div>
     <div hidden={chartView !== 'gantt'}><GanttChart project={proposedProject} tasks={displayed} result={result} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} previewing={previewing}
-      analysis={analysis} highlightCritical={highlightCritical} onHighlightChange={setHighlightCritical} /></div>
-    <div hidden={chartView !== 'network'}><NetworkView tasks={proposedTasks} result={result} analysis={analysis} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} /></div>
+      showInspection={false} analysis={analysis} highlightCritical={highlightCritical} onHighlightChange={setHighlightCritical} /></div>
+    <div hidden={chartView !== 'network'}><NetworkView showInspection={false} tasks={proposedTasks} result={result} analysis={analysis} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} /></div>
     <section className="panel tasks-panel" aria-labelledby="tasks-heading">
-      <div className="section-heading"><div><span className="eyebrow">02 / Work</span><h2 id="tasks-heading">Tasks & schedule</h2></div>
+      <div className="section-heading"><div><span className="eyebrow">02 / Tasks & Schedule</span><h2 id="tasks-heading">Tasks & schedule</h2></div>
         <div className="task-toolbar"><label>Task order<select value={sortMode} disabled={!!editor || inlineDrafts.size > 0} onChange={event => setSortMode(event.target.value as SortMode)}><option value="manual">Manual Order</option><option value="start">Start Date</option><option value="name">Task Name</option><option value="duration">Duration</option></select></label>
         <button ref={addButton} type="button" disabled={!!editor || inlineDrafts.size > 0 || !result.ok || idLimitReached} onClick={() => startEditing(newTask(`T${nextId}`))}>Add task</button></div></div>
+    {editor && <TaskEditor key={editor.taskId} draft={editor} isNew={isNew} tasks={tasks} projectStartDate={project.projectStartDate}
+      scheduled={result.ok ? result.tasks.find(task => task.taskId === editor.taskId) : undefined} errors={errors}
+      optionError={predecessorProblem} onChange={changeEditor} onPredecessors={commitEditorPredecessors} onSave={saveTask} onCancel={() => closeEditor('Task changes discarded. Saved schedule restored.')} />}
       <p className="muted order-help">{sortMode === 'manual' ? 'Drag a handle onto a row to place above it, or use the up/down buttons. Select a field to edit.' : 'Reordering is disabled while sorted. Choose Manual Order to restore your arrangement and move tasks.'}</p>
       {idLimitReached && <p className="field-error">No safe numeric task IDs remain in this plan. Existing tasks can still be edited and saved; start a new plan to add tasks.</p>}
       {editor && <p className="muted">The table previews your task changes. Save or cancel before editing another task.</p>}
       <TaskTable tasks={displayed} result={result} project={project} manual={sortMode === 'manual'} onMove={(id, before) => setManualOrder(previous => moveBefore(previous, id, before))} onDuplicate={copyTask} onCommit={commitInline} onDraftChange={inlineDraftChanged}
         editingId={editor?.taskId} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} blocked={!!editor || !result.ok || inlineDrafts.size > 0}
         onEdit={startEditing} onDelete={task => { setDeleting(task); setDeleteError('') }} />
+    </section>
+    <section className="panel task-details-panel" aria-labelledby="task-details-heading">
+      <div className="section-heading"><div><span className="eyebrow">03 / Task Details</span><h2 id="task-details-heading">Task details</h2></div></div>
+      {selectedTask && selectedSchedule ? <TaskInspection task={selectedTask} scheduled={selectedSchedule} analysis={analysis.ok ? analysis.tasks.find(task => task.taskId === selectedTaskId) : undefined} />
+        : <p className="muted">{selectedTaskId && !result.ok ? 'Task dates are unavailable until the preview is valid.' : 'Select a bar, network node or task row to inspect its dates, duration, predecessors and slack.'}</p>}
     </section>
     </div>
     <p className="save-notice" role="status">{notice}</p>

@@ -1,3 +1,4 @@
+import { chooseDependency, finishDependencies } from './dependencyHelpers'
 import { readFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
@@ -7,6 +8,7 @@ async function add(page: Page, name: string, hours: string) {
   await page.getByRole('button', { name: 'Add task', exact: true }).click()
   await page.getByLabel(/^Task name/).fill(name)
   await page.getByLabel(/^Estimated duration/).fill(hours)
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task', exact: true }).click()
 }
 async function calendar(page: Page, hours = '2', friday = false) {
@@ -21,7 +23,8 @@ async function predecessor(page: Page, id: string, labels: string[]) {
   await page.getByRole('tab', { name: 'Workspace', exact: true }).click()
   await page.getByRole('button', { name: `Edit ${id}`, exact: true }).click()
   await page.getByText('Predecessors (0 selected)', { exact: true }).click()
-  for (const label of labels) await page.getByRole('checkbox', { name: label, exact: true }).check()
+  for (const label of labels) await chooseDependency(page, label)
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task', exact: true }).click()
 }
 const bar = (page: Page, id: string) => page.getByRole('button', { name: new RegExp(`^${id} .*working hours; starts`) })
@@ -45,7 +48,7 @@ test('critical Gantt/network owner screenshots, branch changes and shared select
   await expect(bar(page, 'T2').locator('.gantt-bar-outline')).toHaveAttribute('fill', /url\(#/)
   await bar(page, 'T1').click()
   const gantt = page.getByRole('region', { name: 'Gantt chart', exact: true })
-  await expect(gantt.getByLabel('Selected task details')).toContainText('2 working hours, measured against calculated completion')
+  await expect(page.getByLabel('Selected task details')).toContainText('2 working hours, measured against calculated completion')
   await gantt.screenshot({ path: info.outputPath('wp4-critical-expanded.png') })
   await page.getByRole('button', { name: 'Compressed', exact: true }).click()
   await expect(bar(page, 'T2')).toHaveAttribute('data-end', '3')
@@ -74,6 +77,7 @@ test('critical Gantt/network owner screenshots, branch changes and shared select
   await page.getByRole('button', { name: 'Network / Critical Path', exact: true }).click()
   await expect(node(page, 'T1')).toHaveAttribute('data-critical', 'true')
   await expect(node(page, 'T2')).toHaveAttribute('data-critical', 'false')
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task', exact: true }).click()
 })
 
@@ -85,13 +89,14 @@ test('manual release delay is separate from effort and target edits do not chang
   await page.getByRole('tab', { name: 'Workspace', exact: true }).click()
   await page.getByRole('button', { name: 'Edit T2', exact: true }).click()
   await page.getByLabel(/^Independent start date/).fill('2026-11-12')
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task', exact: true }).click()
   await page.getByRole('button', { name: 'Network / Critical Path', exact: true }).click()
   await expect(node(page, 'T1')).toHaveAttribute('data-critical', 'false')
   await expect(node(page, 'T2')).toHaveAttribute('data-critical', 'true')
   await node(page, 'T2').click()
   const network = page.getByRole('region', { name: 'Network / Critical Path', exact: true })
-  await expect(network.getByLabel('Selected task details')).toContainText('6 working slots after project start; this wait is not task effort.')
+  await expect(page.getByLabel('Selected task details')).toContainText('6 working slots after project start; this wait is not task effort.')
   await network.screenshot({ path: info.outputPath('wp4-manual-release.png') })
   await page.getByRole('tab', { name: 'Project Settings', exact: true }).click()
   await page.getByLabel('Target end date', { exact: true }).fill('2026-11-02')
@@ -115,6 +120,7 @@ test('local save/reload and real JSON download/import preserve sources, retained
   await page.getByRole('button', { name: 'Edit T1', exact: true }).click()
   await page.getByLabel('Description', { exact: true }).fill('Carry research notes between computers')
   await page.getByLabel(/^Independent start date/).fill('2026-11-05')
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task', exact: true }).click()
   await add(page, 'Parallel', '2')
   await add(page, 'Join', '1')
@@ -122,8 +128,9 @@ test('local save/reload and real JSON download/import preserve sources, retained
   await page.getByRole('button', { name: 'Edit T3', exact: true }).click()
   await page.getByLabel(/^Independent start date/).fill('2026-11-12')
   await page.getByText('Predecessors (0 selected)', { exact: true }).click()
-  await page.getByRole('checkbox', { name: 'T1 — Research', exact: true }).check()
-  await page.getByRole('checkbox', { name: 'T2 — Parallel', exact: true }).check()
+  await chooseDependency(page, 'T1 — Research', true)
+  await chooseDependency(page, 'T2 — Parallel', true)
+  await finishDependencies(page)
   await page.getByRole('button', { name: 'Save task', exact: true }).click()
   await page.getByRole('tab', { name: 'Files', exact: true }).click()
   await page.getByLabel('Saved plan name', { exact: true }).fill('Semester backup')

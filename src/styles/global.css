@@ -269,3 +269,23 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
   .panel { padding: 16px; }
   .section-heading { flex-wrap: wrap; }
 }
+
+/* WP5.1: a single staged picker, portalled beyond the scrolling task table. */
+.dependency-trigger { background: #fff; color: #28465f; border: 1px solid #b8c7d5; display: flex; justify-content: start; gap: 8px; width: 100%; font-size: .85rem; text-align: left; }
+.dependency-trigger:hover:not(:disabled) { background: #edf3f7; }
+.dependency-trigger.compact { min-height: 34px; padding: 8px; font-size: .8rem; }
+.dependency-trigger[aria-expanded=true] { border-color: #24779b; box-shadow: 0 0 0 1px #24779b; }
+.dependency-popover { position: fixed; z-index: 100; display: flex; flex-direction: column; background: #fff; border: 1px solid #8caec3; border-radius: 8px; box-shadow: 0 12px 32px #163b552b; overflow: hidden; color: #1b3046; }
+.dependency-popover-heading { padding: 12px 14px 8px; }
+.dependency-popover-heading strong { font-size: .85rem; }
+.dependency-popover-heading small { display: block; margin-top: 5px; font-size: .72rem; line-height: 1.5; color: #526b80; }
+.dependency-choices { overflow: auto; min-height: 0; padding: 0 14px 8px; }
+.dependency-choices .dependency-option { font-size: .82rem; gap: 8px; }
+.dependency-choices .dependency-option span { overflow-wrap: anywhere; min-width: 0; }
+.dependency-choices .dependency-option small { color: #526b80; }
+.dependency-popover-actions { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid #dce4ec; background: #f5f8fb; flex-shrink: 0; }
+.dependency-error { margin: 0; padding: 6px 14px 10px; overflow: auto; flex-shrink: 0; max-height: 110px; }
+.inline-dependencies > small { display: block; margin: 6px 0; padding: 0; }
+.tasks-panel > .editor { margin-top: 18px; background: #f8fbfd; }
+.task-details-panel .gantt-inspection { margin-top: 16px; }
+.task-details-panel > .muted { margin-bottom: 0; }
