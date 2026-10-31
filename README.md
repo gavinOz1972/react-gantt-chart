@@ -1,8 +1,9 @@
 # React Gantt Chart
 
 WP0 provides a tested React and TypeScript development environment. WP1 adds a
-pure scheduling engine and automated tests. The interactive task editor,
-Gantt rendering, and persistence belong to later work packages.
+pure scheduling engine. WP2 adds project calendar settings, task entry, predecessor
+selection, and live schedule dates. Graphical Gantt rendering and persistence
+belong to later work packages.
 
 ## Prerequisites and setup
 
@@ -30,13 +31,41 @@ Open this folder in VS Code with `code .` or File > Open Folder.
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | ESLint including the domain import boundary |
 | `npm run typecheck` | TypeScript project checks |
-| `npm test` | Scheduling tests in Node and React smoke test with jsdom |
+| `npm test` | Scheduling tests, entry boundary tests, and React interaction tests |
 | `npm run test:watch` | Watch unit/component tests |
 | `npm run check` | Lint, types, unit tests, and build |
 | `npx playwright install chromium` | Install the browser for the smoke test |
-| `npm run test:e2e` | Chromium home-page smoke test; starts its own dev server |
+| `npm run test:e2e` | Chromium entry workflows and smoke test; starts its own dev server |
 
-Browser tests reserve 127.0.0.1:5173; stop other servers on that port first.
+Browser tests reserve 127.0.0.1:4173, separate from the normal development server
+on port 5173. Stop other servers on the test port first.
+
+## Using the entry interface
+
+Run `npm.cmd run dev` in PowerShell and open the Local URL it prints. If a dev
+server is already running, the page should update automatically; otherwise refresh.
+
+1. Enter the project name, start, target, weekdays, and daily working hours.
+   Text/date/number settings apply when you leave the field; weekdays apply
+   immediately. Invalid drafts stay editable. Revert settings restores the last
+   accepted project settings.
+2. Choose Add task. Enter a name, description, whole-hour estimate and independent
+   start date, or select predecessors from the checkbox dropdown.
+3. Inspect the live schedule preview, then Save task or Cancel. A dependent start
+   is read-only. Removing all predecessors restores its retained independent date.
+   Reset to Project Start restores automatic following.
+4. Edit a task to change inputs. Delete requests confirmation and discloses affected
+   predecessor links; other tasks are kept. IDs are never renumbered or reused
+   after a saved task is deleted.
+
+Target status compares the last occupied working date to the inclusive target
+end date. It never changes the schedule. Starts show the first occupied hour;
+finishes show the exclusive boundary after the final occupied hour.
+
+The interface labels unsaved previews and suppresses calculated dates for invalid
+input. Saved inputs remain recoverable with Cancel or Revert settings. Project
+settings are disabled while a task is being edited to keep the two drafts separate.
+All entries live in memory in this tab; reloading or closing clears them.
 
 ## ENGINE and VIEW separation
 
@@ -46,9 +75,11 @@ Browser tests reserve 127.0.0.1:5173; stop other servers on that port first.
 - `src/types/`: shared scheduling data contracts.
 - `src/components/` and `src/App.tsx`: VIEW React presentation and interaction.
 - `src/styles/`: simple CSS; `src/test/`: component test setup.
-- `tests/`: browser smoke test.
+- `src/components/projectEntry.ts`: conversion boundary for editable strings and
+  typed WP1 inputs; no scheduling arithmetic.
+- `tests/`: browser smoke test and project/task entry workflows.
 
-The VIEW will consume ENGINE results. Keep scheduling rules in the ENGINE.
+The VIEW consumes ENGINE results. Keep scheduling rules in the ENGINE.
 The [engine API documentation](src/domain/README.md) describes WP1 contracts,
 slot boundaries, errors, and owner policies. ESLint blocks
 React and common view imports from domain files; code review must also preserve
@@ -75,3 +106,6 @@ See the handoff for the full context; no forced dependency downgrade was applied
 
 See [WP1 verification and handoff](docs/WP1-HANDOFF.md) for the scheduling engine
 acceptance matrix and deferred work.
+
+See [WP2 verification and handoff](docs/WP2-HANDOFF.md) for interface behavior,
+acceptance coverage, browser verification, and WP3 integration points.
