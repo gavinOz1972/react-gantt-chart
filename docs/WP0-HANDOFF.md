@@ -1,7 +1,6 @@
 # WP0 verification and WP1 handoff
 
-Prepared 30 October 2026. Local scaffold verification passes. Publication and
-clean-checkout verification are recorded below when complete.
+Prepared 30 October 2026. Local scaffold and clean-checkout verification pass.
 
 ## Workstation
 
@@ -55,6 +54,22 @@ backend, authentication, cloud services, deployments, or confidential inputs.
 
 ## Repository and reproducibility
 
-Publication and clean clone verification pending final execution. This section
-will be updated after verification. The initial source commit SHA is available
-from git log --reverse --format=%H and the final handoff commit from git rev-parse HEAD.
+Approved public repository: https://github.com/gavinOz1972/react-gantt-chart
+
+Initial source commit: 75897e3. A separate local clone at ../wp0-verification
+successfully ran npm ci, npm run check, and npm run test:e2e using the committed
+lockfile. No source or dependency changes were required for clean verification.
+
+The clean install and subsequent npm audit reported 12 moderate development-tool
+findings, all stemming from minimatch globparts amplification (GHSA-g3hv-75wg-m249).
+No high or critical findings were reported. The earlier install audit had reported
+zero findings; the later audit is the current result. No forced major dependency
+downgrade was applied. Review the ESLint dependency chain when upstream compatible
+fixes become available. These tools are not shipped in the browser runtime.
+
+Standalone Git HTTPS was blocked by Windows Application Control while loading
+libcurl-4.dll. GitHub Desktop bundled Git is used for publication; no security
+settings were changed. Repository-specific safe.directory command options handle
+the different sandbox and owner SIDs without changing global Git trust.
+
+The final handoff commit SHA is obtained with git rev-parse HEAD.

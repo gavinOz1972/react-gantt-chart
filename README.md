@@ -64,3 +64,8 @@ before implementing WP1 scheduling contracts and calculation rules.
 
 See [WP0 verification and WP1 handoff](docs/WP0-HANDOFF.md) for workstation findings,
 verification results, and publication status.
+
+The latest clean-install audit reports 12 moderate development-tool findings
+stemming from minimatch (GHSA-g3hv-75wg-m249), with no high or critical findings.
+Review upstream ESLint dependency fixes before processing untrusted lint patterns.
+See the handoff for the full context; no forced dependency downgrade was applied.
