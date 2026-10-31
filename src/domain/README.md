@@ -141,3 +141,14 @@ calculateSchedule converts scheduling/range errors into its error result.
 Run npm test for the A01-A13 matrix and calendar/validation tests, or npm run check
 for lint, types, tests, and build. Domain tests use Vitest's Node environment.
 See docs/WP1-HANDOFF.md for verification and deferred work.
+
+## WP4 critical-path analysis
+
+analyzeCriticalPath(project, tasks, currentSchedule?) is exported from this module.
+It consumes the current WP1 result or calculates that result when omitted, then
+returns earliest/latest boundaries, total working-hour slack, zero-slack membership
+and controlling relationship IDs. It never mutates or reschedules source inputs.
+createWorkingTimeIndex supplies exact BigInt working-slot arithmetic and inverse
+slot/boundary mapping for the backward pass.
+
+See [critical-path contract and manual-release semantics](CRITICAL_PATH.md).

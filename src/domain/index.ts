@@ -1,3 +1,6 @@
 export { calculateSchedule } from './scheduler'
+export { analyzeCriticalPath } from './criticalPath'
+export { createWorkingTimeIndex } from './workingTime'
+export type { TaskCriticalAnalysis, CriticalRelationship, CriticalPathResult } from '../types/criticalPath'
 export { createWorkingCalendar, dateToOrdinal, ordinalToDate, SchedulingError, validateCalendar } from './calendar'
 export type { CalendarDate, CalendarSettings, EarlierDatePolicy, FinishBoundary, ProjectSettings, ScheduledTask, ScheduleError, ScheduleErrorCode, SchedulePolicies, ScheduleResult, TaskInput, Weekday, WorkingSlot } from '../types/scheduling'

@@ -79,5 +79,7 @@ bounded DOM allocation. Chromium exercises a 100-hour, multiweek project, 3000px
 horizontal scroll, zoom/mode changes and a 900px browser width. These are scoped
 checks, not a guarantee for arbitrary graph sizes or a cross-browser benchmark.
 
-WP4 may consume the same geometry, but critical path, slack, resource levelling,
-network layout, persistence and drag-to-reschedule are not implemented here.
+WP4 supplies domain critical classifications to the chart component without
+changing this projection geometry. Critical path, slack, network layout and
+persistence live in their separate modules. Resource levelling and dragging to
+reschedule remain outside the release.

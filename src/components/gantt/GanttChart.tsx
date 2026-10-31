@@ -1,12 +1,14 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
-import type { ProjectSettings, ScheduleResult, TaskInput } from '../../domain'
+import type { CriticalPathResult, ProjectSettings, ScheduleResult, TaskInput } from '../../domain'
+import { TaskInspection } from '../TaskInspection'
 import { connectorPath, createTimelineAxis, HEADER_HEIGHT, LABEL_WIDTH, pixelsPerUnit, projectTimeline, ROW_HEIGHT, taskSegments, timelineWindow, visibleDays, visibleHourTicks } from '../../timeline/projection'
 import type { TimelineMode, TimelineZoom } from '../../timeline/projection'
 import { TimelineHeader } from './TimelineHeader'
 
-export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect }: {
+export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, analysis, highlightCritical = false, onHighlightChange }: {
   project: ProjectSettings; tasks: readonly TaskInput[]; result: ScheduleResult; selectedTaskId: string | null
   previewing: boolean; onSelect: (id: string) => void
+  analysis?: CriticalPathResult; highlightCritical?: boolean; onHighlightChange?: (enabled: boolean) => void
 }) {
   const [mode, setMode] = useState<TimelineMode>('expanded')
   const [zoom, setZoom] = useState<TimelineZoom>('hour')
@@ -48,6 +50,8 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   const bodyHeight = (lastRow - firstRow) * ROW_HEIGHT
   const selected = tasks.find(task => task.taskId === selectedTaskId)
   const selectedSchedule = result.ok ? result.tasks.find(task => task.taskId === selectedTaskId) : undefined
+  const analyzed = new Map(analysis?.ok ? analysis.tasks.map(task => [task.taskId, task]) : [])
+  const criticalLinks = new Set(analysis?.ok ? analysis.relationships.filter(link => link.critical).map(link => link.key) : [])
 
   function resetScroll() {
     if (scroll.current) scroll.current.scrollLeft = 0
@@ -76,9 +80,11 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
       </select></label>
       <button className="quiet" type="button" onClick={resetScroll}>Go to start</button>
       <button className="quiet" type="button" disabled={!selected || !geometry} onClick={goToSelected}>Go to selected task</button>
+      {analysis && tasks.length > 0 && <label className="critical-toggle"><input type="checkbox" checked={highlightCritical} disabled={!analysis.ok} onChange={event => onHighlightChange?.(event.target.checked)} />Highlight Critical Path</label>}
     </div>
     <p className="gantt-help" id="gantt-help">Expanded keeps every calendar day, with hatched nonworking gaps. Compressed joins working slots and omits nonworking dates. Neither view changes the schedule.</p>
     <div className="gantt-legend" aria-label="Chart legend"><span><i className="legend-work" />Occupied working time</span><span><i className="legend-gap" />Nonworking elapsed time</span><span><i className="legend-link" />Finish-to-start dependency</span></div>
+    {analysis?.ok && tasks.length > 0 && <p className="critical-help">{analysis.tasks.filter(task => task.critical).length} critical tasks. Zero slack means no working-slot delay is possible without moving calculated completion. The target date is not the critical-path deadline.{highlightCritical && <span className="critical-badge">Critical work · bold outline and label; hatching still means nonworking time</span>}</p>}
     <p className="muted gantt-convention">Each selected day is divided into {project.workingHoursPerDay} numbered working slots, not wall-clock hours. {mode === 'compressed' ? 'Date jumps in the header show omitted nonworking days.' : 'Hatching is elapsed time, not performed effort.'} Click or focus a bar to inspect a task.</p>
     {!result.ok ? <p className="gantt-state" role="status">Timeline unavailable. Correct the entries above to show the current schedule.</p>
       : !tasks.length ? <p className="gantt-state">No tasks to plot yet. Add a task to see its working time and calendar span.</p>
@@ -92,7 +98,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
               </div>
               {rows.map(row => <div key={row.taskId} className={`gantt-row${selectedTaskId === row.taskId ? ' selected' : ''}`} style={{ top: HEADER_HEIGHT + row.index * ROW_HEIGHT, height: ROW_HEIGHT }}>
                 <button type="button" className="gantt-row-label" style={{ width: LABEL_WIDTH, height: ROW_HEIGHT }} aria-label={`Inspect ${row.taskId} ${row.task.name}`} aria-pressed={selectedTaskId === row.taskId} onClick={() => onSelect(row.taskId)}>
-                  <span className="task-id">{row.taskId}</span><span className="gantt-row-name">{row.task.name}<small>{row.task.durationHours} working hours</small></span>
+                  <span className="task-id">{row.taskId}</span><span className="gantt-row-name">{row.task.name}<small>{row.task.durationHours} working hours{highlightCritical && analyzed.get(row.taskId)?.critical && <b className="critical-word"> · Critical</b>}</small></span>
                 </button>
               </div>)}
               <svg className="gantt-drawing" width={view.width} height={bodyHeight} style={{ left: viewport.left + LABEL_WIDTH, top: HEADER_HEIGHT + firstRow * ROW_HEIGHT }} aria-label="Task bars and dependencies">
@@ -105,17 +111,18 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
                   const left = Math.max(-1, view.x(row.start))
                   const right = Math.min(view.width + 1, view.x(row.end))
                   const selected = selectedTaskId === row.taskId
+                  const critical = highlightCritical && !!analyzed.get(row.taskId)?.critical
                   const label = `${row.taskId} ${row.task.name}: ${row.task.durationHours} working hours; starts ${row.scheduled.startDate} hour ${row.scheduled.startSlot.hour}; finishes ${row.scheduled.finishDate} after hour ${row.scheduled.finishBoundary.afterHour}`
                   return <g key={row.taskId}>
                     <line x1={0} x2={view.width} y1={y + ROW_HEIGHT} y2={y + ROW_HEIGHT} stroke="#e1e8ef" />
                     {selected && <rect x={0} y={y} width={view.width} height={ROW_HEIGHT} fill="#24779b0d" />}
-                    {right > left && <g className={`gantt-bar${selected ? ' is-selected' : ''}`} role="button" tabIndex={0} aria-label={label} aria-pressed={selected} data-task-id={row.taskId} data-start={row.start} data-end={row.end}
+                    {right > left && <g className={`gantt-bar${selected ? ' is-selected' : ''}${critical ? ' is-critical' : ''}`} role="button" tabIndex={0} aria-label={`${label}${critical ? '; critical, zero slack' : ''}`} aria-pressed={selected} data-task-id={row.taskId} data-start={row.start} data-end={row.end} data-critical={critical}
                       onClick={() => onSelect(row.taskId)} onFocus={() => onSelect(row.taskId)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onSelect(row.taskId) } }}>
                       <title>{label}</title>
-                      <rect className="gantt-bar-outline" x={left} y={y + 14} width={right - left} height={24} rx={3} fill={mode === 'expanded' ? `url(#${patternId})` : '#24779b'} />
+                      <rect className="gantt-bar-outline" x={left} y={y + 14} width={right - left} height={24} rx={3} fill={mode === 'expanded' ? `url(#${patternId})` : critical ? '#aa3d32' : '#24779b'} />
                       {mode === 'expanded' && taskSegments(axis, row, days).filter(segment => segment.kind === 'working').map(segment => {
                         const x = Math.max(-1, view.x(segment.start))
-                        return <rect key={segment.start} data-kind="working" x={x} y={y + 14} width={Math.max(0, Math.min(view.width + 1, view.x(segment.end)) - x)} height={24} fill="#24779b" />
+                        return <rect key={segment.start} data-kind="working" x={x} y={y + 14} width={Math.max(0, Math.min(view.width + 1, view.x(segment.end)) - x)} height={24} fill={critical ? '#aa3d32' : '#24779b'} />
                       })}
                       <rect className="gantt-bar-hit" x={left} y={y + 8} width={Math.max(8, right - left)} height={36} fill="transparent" />
                     </g>}
@@ -128,17 +135,14 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
                   const toX = view.x(link.to.x)
                   if (Math.max(fromY, toY) < 0 || Math.min(fromY, toY) > bodyHeight || Math.max(fromX, toX) + 12 < 0 || Math.min(fromX, toX) - 12 > view.width) return null
                   const label = `Dependency ${link.predecessorId} to ${link.successorId}`
-                  return <path key={link.key} className="gantt-connector" d={connectorPath(fromX, fromY, toX, toY)} fill="none" stroke="#5f788d" strokeWidth={1.4} markerEnd={`url(#${arrowId})`} tabIndex={0} role="img" aria-label={label}
+                  const critical = highlightCritical && criticalLinks.has(link.key)
+                  return <path key={link.key} className={`gantt-connector${critical ? ' is-critical' : ''}`} d={connectorPath(fromX, fromY, toX, toY)} fill="none" stroke={critical ? '#aa3d32' : '#5f788d'} strokeWidth={critical ? 2.8 : 1.4} markerEnd={`url(#${arrowId})`} tabIndex={0} role="img" aria-label={label} data-critical={critical}
                     onMouseEnter={() => setInspectedLink(label)} onMouseLeave={() => setInspectedLink('')} onFocus={() => setInspectedLink(label)} onBlur={() => setInspectedLink('')}><title>{label}</title></path>
                 })}
               </svg>
             </div>
           </div>}
     <div className="gantt-link-inspection" role="status">{geometry?.links.some(link => `Dependency ${link.predecessorId} to ${link.successorId}` === inspectedLink) ? inspectedLink : ''}</div>
-    {selected && selectedSchedule && <div className="gantt-inspection" aria-label="Selected task details"><strong>{selected.taskId} — {selected.name}</strong>
-      <dl><div><dt>Estimated duration</dt><dd>{selected.durationHours} working hours total</dd></div>
-        <div><dt>Calculated start</dt><dd>{selectedSchedule.startDate}, hour {selectedSchedule.startSlot.hour}</dd></div>
-        <div><dt>Calculated finish</dt><dd>{selectedSchedule.finishDate}, after hour {selectedSchedule.finishBoundary.afterHour} that day</dd></div>
-        <div><dt>Predecessors</dt><dd>{selected.predecessorTaskIds.length ? selected.predecessorTaskIds.join(', ') : 'None'}</dd></div></dl></div>}
+    {selected && selectedSchedule && <TaskInspection task={selected} scheduled={selectedSchedule} analysis={analyzed.get(selected.taskId)} />}
   </section>
 }

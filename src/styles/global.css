@@ -8,6 +8,7 @@
   font-weight: 400;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; min-width: 320px; }
 main { max-width: 1320px; margin: 0 auto; padding: 44px 36px 24px; }
 h1 { font-size: clamp(1.8rem, 3vw, 2.3rem); letter-spacing: -.04em; margin: 8px 0 12px; line-height: 1.2; }
@@ -164,3 +165,40 @@ footer { border-top: 1px solid #dce4ec; color: #65778a; padding-top: 18px; font-
   .gantt-toolbar button { padding: 8px 10px; }
   .gantt-inspection dl { grid-template-columns: 1fr; }
 }
+
+.critical-toggle { display: flex; flex-direction: row; align-items: center; gap: 8px; min-height: 40px; font-size: .8rem; }
+.critical-help { color: #5b6c80; font-size: .78rem; line-height: 1.6; margin: 12px 0; }
+.critical-badge, .slack-badge { display: inline-block; margin-left: 12px; padding: 4px 8px; border-radius: 4px; font-size: .72rem; font-weight: 650; background: #fbe8e2; color: #8b2f25; }
+.slack-badge { background: #e0eef5; color: #28516a; }
+.critical-help .critical-badge { margin: 8px 0 0; display: block; width: fit-content; }
+.critical-word { color: #942f25; }
+.gantt-bar.is-critical .gantt-bar-outline { stroke: #842a20; stroke-width: 3; }
+.gantt-bar.is-critical:focus .gantt-bar-outline { stroke: #092d45; stroke-width: 4; }
+.gantt-connector.is-critical { stroke-width: 2.8; }
+.gantt-inspection dd small { display: block; color: #526b7c; font-size: .72rem; margin-top: 5px; line-height: 1.6; }
+
+.view-switch { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 16px; }
+.view-switch button { background: #fff; color: #28465f; border: 1px solid #aebfcd; }
+.view-switch button[aria-pressed=true] { background: #1e607f; color: #fff; }
+.view-switch button:hover:not([aria-pressed=true]) { background: #edf3f7; }
+.network-scroll { overflow: auto; max-height: 520px; margin-top: 20px; border: 1px solid #c8d6e1; border-radius: 6px; background: #fcfdfe; overscroll-behavior: contain; }
+.network-svg { display: block; }
+.network-svg text { fill: #24445e; font: 11px "Segoe UI", system-ui, sans-serif; }
+.network-svg .network-id { font-weight: 750; font-size: 12px; }
+.network-svg .network-name { font-weight: 650; font-size: 12px; }
+.network-svg .network-classification { font-size: 9px; font-weight: 750; }
+.network-node { cursor: pointer; }
+.network-node:focus { outline: none; }
+.network-node.selected .network-node-box, .network-node:focus .network-node-box { stroke: #0a344f; stroke-width: 4; }
+.network-edge:hover, .network-edge:focus { stroke: #123e59; stroke-width: 4; outline: none; }
+.gantt-legend .legend-critical { border: 0; border-bottom: 3px solid #aa3d32; height: 8px; border-radius: 0; }
+.gantt-legend .legend-other { border: 0; border-bottom: 2px dashed #647e92; height: 8px; border-radius: 0; }
+
+.storage-fields { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: end; margin: 18px 0; }
+.storage-fields select { font: inherit; min-height: 42px; padding: 9px 12px; color: #1b3046; background: #fff; border: 1px solid #b8c7d5; border-radius: 6px; }
+.storage-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.storage-current { margin-top: 14px; font-size: .88rem; overflow-wrap: anywhere; }
+.storage-panel .save-notice { margin-bottom: 0; }
+.unsaved-label { color: #88501b; background: #fff0da; padding: 6px 11px; font-size: .75rem; border-radius: 20px; }
+.storage-error { color: #972c25; background: #fff3ee; border: 1px solid #edc0b2; border-radius: 6px; padding: 12px; font-size: .85rem; line-height: 1.6; }
+@media (max-width: 650px) { .storage-fields { grid-template-columns: 1fr; } }

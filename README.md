@@ -3,8 +3,10 @@
 WP0 provides a tested React and TypeScript development environment. WP1 adds a
 pure scheduling engine. WP2 adds project calendar settings, task entry, predecessor
 selection, and live schedule dates. WP3 adds expanded-calendar and compressed
-working-time Gantt views with dependency connectors. Persistence, critical path,
-and the network view remain deferred.
+working-time Gantt views with dependency connectors. WP4 adds working-hour slack,
+critical-path highlighting, a dependency network, named browser saves, and JSON
+export/import. Resource levelling, costs, progress and probabilistic PERT are outside
+this release.
 
 ## Prerequisites and setup
 
@@ -32,11 +34,11 @@ Open this folder in VS Code with `code .` or File > Open Folder.
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | ESLint including the domain import boundary |
 | `npm run typecheck` | TypeScript project checks |
-| `npm test` | Scheduling, entry, timeline projection, and React interaction tests |
+| `npm test` | Scheduling/critical analysis, projection, storage, and UI interaction tests |
 | `npm run test:watch` | Watch unit/component tests |
 | `npm run check` | Lint, types, unit tests, and build |
 | `npx playwright install chromium` | Install the browser for the smoke test |
-| `npm run test:e2e` | Chromium entry/chart workflows and smoke test; starts its own dev server |
+| `npm run test:e2e` | Chromium entry/chart/network and save/import workflows; starts its own dev server |
 
 Browser tests reserve 127.0.0.1:4173, separate from the normal development server
 on port 5173. Stop other servers on the test port first.
@@ -67,7 +69,32 @@ restart on each working day; Total hours is the full estimate across all days.
 The interface labels unsaved previews and suppresses calculated dates for invalid
 input. Saved inputs remain recoverable with Cancel or Revert settings. Project
 settings are disabled while a task is being edited to keep the two drafts separate.
-All entries live in memory in this tab; reloading or closing clears them.
+Unsaved edits live in this tab. Use Save project or Export JSON before leaving.
+
+## Save, reopen and move a plan
+
+The Save & reopen panel shows the current project and whether it has unsaved changes.
+Enter a Saved plan name and choose Save project. Multiple named plans can coexist;
+overwriting an existing name requires confirmation. Save task only accepts that
+task's edits; Save project writes the whole plan to this browser's local storage.
+
+After a reload, choose a plan in Saved plans and click Load project. There is no
+automatic save or automatic project reopening. Storage belongs to this browser
+profile and this site's origin, including the server port. Use the same local URL
+when returning. Browser cleanup/private browsing can remove local copies.
+
+Export JSON downloads a self-contained, versioned file. New project starts a fresh
+plan while keeping named saves. Import JSON validates a selected file before
+opening it; invalid files leave the open plan unchanged. Loading/importing/new
+over unsaved project or unfinished task/settings edits raises a cancellable warning.
+Deleting a named save requires confirmation and leaves the open plan intact.
+
+Finish or cancel task drafts before saving/exporting. Imported plans are not
+automatically saved locally: choose Save project to create a browser copy. Export
+does not update a named browser save or clear the local unsaved-changes indicator.
+Files contain source fields and the next stable task-ID counter, not trusted derived
+dates or critical-path results; all calculations are rebuilt on load. See the
+[version 1 file format and storage contract](src/persistence/README.md).
 
 ## Using the Gantt chart
 
@@ -95,6 +122,25 @@ Changing modes or zoom changes display only. Invalid input removes bars and
 connectors until corrected. See [timeline projection conventions](src/timeline/README.md)
 for the coordinate model and rendering limits.
 
+## Critical path and dependency network
+
+Check Highlight Critical Path in the Gantt toolbar. Zero-slack tasks and controlling
+relationships gain bold emphasis and explicit Critical labels in both timeline
+modes; expanded nonworking hatching stays visible. Inspection also shows total
+slack, latest allowable start/finish and independent release constraints.
+
+Slack is measured in working-hour slots against the present calculated completion,
+not the target. A manual independent date is a not-before release: waiting for it
+is not task effort. Equal controlling branches can both be critical. Changing a
+valid target changes feasibility without changing criticality.
+
+Select Network / Critical Path to see a read-only directed graph of the same tasks.
+Node positions represent dependency levels, not dates. Bold solid critical edges,
+dashed other edges, zero-slack labels and shared task inspection explain the graph.
+Use zoom, scrolling and Go to selected node as needed. Gantt/network switching
+preserves selection and the existing Gantt mode. This is a deterministic network
+view using single duration estimates, not three-point probabilistic PERT.
+
 ## ENGINE and VIEW separation
 
 - `src/domain/`: ENGINE pure TypeScript calculations, explicit inputs/outputs,
@@ -107,7 +153,12 @@ for the coordinate model and rendering limits.
   typed WP1 inputs; no scheduling arithmetic.
 - `src/timeline/`: pure coordinate projection from the WP1 schedule, without React.
 - `src/components/gantt/`: windowed SVG chart, headers, legend and inspection.
-- `tests/`: browser smoke test, entry and Gantt workflows.
+- `src/domain/criticalPath.ts` and `workingTime.ts`: pure backward-pass analysis
+  and exact working-slot indices; see [critical-path semantics](src/domain/CRITICAL_PATH.md).
+- `src/network/`: pure DAG layout; `src/components/network/`: read-only SVG view.
+- `src/persistence/`: versioned JSON validation and injected local-storage operations.
+- `src/components/persistence/`: explicit save/load/import/export and confirmations.
+- `tests/`: browser smoke, entry, Gantt, network and persistence workflows.
 
 The VIEW consumes ENGINE results. Keep scheduling rules in the ENGINE.
 The [engine API documentation](src/domain/README.md) describes WP1 contracts,
@@ -142,3 +193,7 @@ acceptance coverage, browser verification, and WP3 integration points.
 
 See [WP3 verification and handoff](docs/WP3-HANDOFF.md) for chart acceptance coverage,
 performance evidence and the expanded/compressed owner-review screenshots.
+
+See [WP4 verification and handoff](docs/WP4-HANDOFF.md) and the
+[owner test guide](docs/WP4-OWNER-GUIDE.md) for the first-release features and review
+artifacts. Implementation is ready for review; owner acceptance is pending.
