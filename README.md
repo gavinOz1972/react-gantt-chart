@@ -62,8 +62,8 @@ to match the work package. The lockfile fixes the verified dependency graph.
 
 No deployment, paid service, database, authentication, or Gantt library is included.
 The referenced Application Requirements v1.0 was not supplied. WP1 follows the
-explicit rules in its work package. The two earlier-date policies remain owner
-decisions and return explicit errors until configured.
+explicit rules in its work package. Owner-approved defaults reject manual task
+starts and target end dates before project start, with explicit field errors.
 
 See [WP0 verification and WP1 handoff](docs/WP0-HANDOFF.md) for workstation findings,
 verification results, and publication status.

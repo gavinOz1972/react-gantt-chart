@@ -76,24 +76,25 @@ shorten schedules.
 
 ## Owner decisions
 
-WP1 leaves two policies unresolved. With no explicit option, encountering either
-case returns POLICY_DECISION_REQUIRED:
+The owner confirmed both rejection defaults on 30 October 2026. With no explicit
+option, either case returns the corresponding field error:
 
-- A MANUAL independent request before project start.
-- A target end date before project start.
+- A MANUAL independent request before project start: MANUAL_START_BEFORE_PROJECT.
+- A target end date before project start: TARGET_END_BEFORE_PROJECT.
 
-An owner-approved policy can be supplied as the third argument:
+Dates equal to project start remain valid. Omitted and undefined policy options
+use REJECT. The existing optional third argument supports explicit overrides:
 
 ```ts
 calculateSchedule(project, tasks, {
-  manualStartBeforeProject: 'ALLOW', // or REJECT
-  targetEndBeforeProject: 'REJECT', // or ALLOW
+  manualStartBeforeProject: 'REJECT',
+  targetEndBeforeProject: 'REJECT',
 })
 ```
 
-These examples show supported choices, not approved defaults. ALLOW preserves an
-earlier manual request and keeps an earlier target informational. REJECT returns
-the corresponding field error. A dependent task's retained MANUAL date must be a
+REJECT is the approved product behavior. Explicit ALLOW remains available for
+future policy changes; it preserves an earlier manual request and keeps an earlier
+target informational. A dependent task's retained MANUAL date must be a
 valid date, but its before-project policy is checked only when it is independent.
 Project-start edits never overwrite it.
 
@@ -113,7 +114,6 @@ Project-start edits never overwrite it.
 | SELF_DEPENDENCY | Remove self-reference |
 | MISSING_PREDECESSOR | Correct reference or restore task |
 | DEPENDENCY_CYCLE | Remove a link in the closed cycle in relatedTaskIds |
-| POLICY_DECISION_REQUIRED | Obtain owner decision and supply ALLOW or REJECT |
 | MANUAL_START_BEFORE_PROJECT | Correct manual request or change approved policy |
 | TARGET_END_BEFORE_PROJECT | Correct target or change approved policy |
 | INVALID_POLICY | Correct policy name or value |

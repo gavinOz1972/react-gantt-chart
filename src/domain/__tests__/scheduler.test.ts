@@ -163,20 +163,39 @@ describe('input validation and owner choices', () => {
     failure(calculateSchedule({ ...project, targetEndDate: 'invalid' }, []), 'INVALID_DATE', 'targetEndDate')
     failure(calculateSchedule(project, [task('A'), manual('B', 'invalid', 1, ['A'])]), 'INVALID_DATE', 'requestedStartDate')
   })
-  test('earlier manual date requires a decision; explicit ALLOW preserves it and REJECT reports it', () => {
+  test('earlier manual dates are rejected by default; explicit policy overrides remain supported', () => {
     const tasks = [manual('A', '2026-10-29'), task('B', 1, ['A'])]
-    failure(calculateSchedule(project, tasks), 'POLICY_DECISION_REQUIRED', 'requestedStartDate')
+    failure(calculateSchedule(project, tasks), 'MANUAL_START_BEFORE_PROJECT', 'requestedStartDate')
     expect(find(calculateSchedule(project, tasks, { manualStartBeforeProject: 'ALLOW' }), 'A').startDate).toBe('2026-10-29')
     failure(calculateSchedule(project, tasks, { manualStartBeforeProject: 'REJECT' }), 'MANUAL_START_BEFORE_PROJECT')
     // Dependency precedence applies even to a retained earlier manual request.
     expect(find(calculateSchedule(project, [task('B'), manual('A', '2026-10-29', 1, ['B'])]), 'A').startSlot).toEqual({ date: '2026-11-02', hour: 2 })
   })
-  test('earlier target date requires a decision and rejects only when explicitly configured', () => {
+  test('earlier target dates are rejected by default; explicit policy overrides remain supported', () => {
     const earlier = { ...project, targetEndDate: '2026-11-01' }
-    failure(calculateSchedule(earlier, []), 'POLICY_DECISION_REQUIRED', 'targetEndDate')
+    failure(calculateSchedule(earlier, []), 'TARGET_END_BEFORE_PROJECT', 'targetEndDate')
     failure(calculateSchedule(earlier, [], { targetEndBeforeProject: 'REJECT' }), 'TARGET_END_BEFORE_PROJECT')
     expect(calculateSchedule(earlier, [], { targetEndBeforeProject: 'ALLOW' }).ok).toBe(true)
     failure(calculateSchedule(project, [], { targetEndBeforeProject: 'typo' } as unknown as SchedulePolicies), 'INVALID_POLICY')
+  })
+  test('omitted, empty, partial, and undefined policy options preserve rejection defaults', () => {
+    const earlier = { ...project, targetEndDate: '2026-11-01' }
+    const tasks = [manual('A', '2026-10-29')]
+    for (const policies of [{}, { manualStartBeforeProject: undefined, targetEndBeforeProject: undefined }] satisfies SchedulePolicies[]) {
+      const errors = failure(calculateSchedule(earlier, tasks, policies), 'MANUAL_START_BEFORE_PROJECT')
+      expect(errors).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'TARGET_END_BEFORE_PROJECT' })]))
+    }
+    failure(calculateSchedule(earlier, tasks, { manualStartBeforeProject: 'ALLOW' }), 'TARGET_END_BEFORE_PROJECT')
+    failure(calculateSchedule(earlier, tasks, { targetEndBeforeProject: 'ALLOW' }), 'MANUAL_START_BEFORE_PROJECT')
+  })
+  test('dates equal to project start remain valid under rejection defaults', () => {
+    expect(calculateSchedule({ ...project, targetEndDate: project.projectStartDate }, [manual('A', project.projectStartDate)]).ok).toBe(true)
+  })
+  test('moving project start past a manual request rejects without overwriting it', () => {
+    const tasks = [manual('A', '2026-11-05')]
+    const snapshot = structuredClone(tasks)
+    failure(calculateSchedule({ ...project, projectStartDate: '2026-11-09' }, tasks), 'MANUAL_START_BEFORE_PROJECT')
+    expect(tasks).toEqual(snapshot)
   })
   test('range exhaustion returns an actionable error without partial schedule', () => {
     const end: ProjectSettings = { ...project, projectStartDate: '9999-12-31', targetEndDate: '9999-12-31', workingWeekdays: [0, 1, 2, 3, 4, 5, 6], workingHoursPerDay: 1 }

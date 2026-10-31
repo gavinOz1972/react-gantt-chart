@@ -26,11 +26,11 @@ No dependencies, lockfile, UI components, or build/test configuration changed.
 | --- | --- |
 | npm.cmd run lint | Pass |
 | npm.cmd run typecheck | Pass |
-| npm.cmd test | Pass: 63 tests across 3 files, including existing React smoke test |
+| npm.cmd test | Pass: 66 tests across 3 files, including existing React smoke test and owner-policy regressions |
 | npm.cmd run build | Pass: 16 modules transformed |
 | npm.cmd run check | Pass: runs all four commands above sequentially |
 | npm.cmd run test:e2e | Pass: one Chromium smoke test; clean exit outside sandbox |
-| $env:TZ='America/New_York'; npm.cmd test -- src/domain/__tests__ | Pass: 62 domain tests in the final version |
+| $env:TZ='America/New_York'; npm.cmd test -- src/domain/__tests__ | Pass: 62 domain tests before the owner-policy follow-up |
 
 The first sandboxed browser run passed its assertion but stalled during shutdown;
 it was interrupted and rerun outside the sandbox, where it exited successfully.
@@ -62,18 +62,21 @@ All A01-A13 scenarios are automated in src/domain/__tests__/scheduler.test.ts.
 | A13 | Empty, one-hour, day-end, weekend, multiweek and date-range cases |
 
 Additional tests validate duplicate task/predecessor IDs, invalid dates and fields,
-invalid policies, and both explicit choices for the unresolved earlier-date policies.
+invalid policies, and the owner-approved earlier-date rejection defaults, including
+partial/undefined options, equality boundaries, and retained input immutability.
 
 ## Owner decisions and limits
 
 Application Requirements v1.0 was referenced but not provided. Implementation
-follows WP1's explicit rules. Two policies remain unresolved:
+follows WP1's explicit rules. On 30 October 2026 the owner confirmed both policies:
 
-1. May an independent MANUAL start precede project start?
-2. May target end precede project start?
+1. Reject an independent MANUAL requested start before project start.
+2. Reject a target end date before project start.
 
-Without an explicit policy, either case returns POLICY_DECISION_REQUIRED with a
-field and actionable message. SchedulePolicies isolates ALLOW/REJECT decisions.
+Default and undefined options use REJECT, returning MANUAL_START_BEFORE_PROJECT
+or TARGET_END_BEFORE_PROJECT with a field and actionable message. Equal dates
+remain valid. SchedulePolicies retains explicit ALLOW/REJECT overrides for future
+policy changes; no ALLOW override is used by default.
 A dependent task retains its manual date without applying that policy until the
 last predecessor is removed. No dates are silently clamped or overwritten.
 

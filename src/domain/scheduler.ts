@@ -14,8 +14,7 @@ function validate(project: ProjectSettings, tasks: readonly TaskInput[], policie
     }
   }
   const earlier = (policy: EarlierDatePolicy | undefined, field: string, code: ScheduleError['code'], message: string, taskId?: string) => {
-    if (policy === undefined) add('POLICY_DECISION_REQUIRED', field, `${message} Choose ALLOW or REJECT explicitly in SchedulePolicies.`, taskId)
-    else if (policy === 'REJECT') add(code, field, message, taskId)
+    if ((policy ?? 'REJECT') === 'REJECT') add(code, field, message, taskId)
   }
   for (const [field, policy] of Object.entries(policies)) {
     if (!['manualStartBeforeProject', 'targetEndBeforeProject'].includes(field) || (policy !== undefined && policy !== 'ALLOW' && policy !== 'REJECT')) {

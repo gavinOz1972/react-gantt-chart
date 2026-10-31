@@ -52,8 +52,9 @@ export interface ScheduledTask {
 
 export type EarlierDatePolicy = 'ALLOW' | 'REJECT'
 export interface SchedulePolicies {
-  /** Omitted means an owner decision is required if this case occurs. */
+  /** Owner-approved default: REJECT, including an explicitly undefined option. */
   readonly manualStartBeforeProject?: EarlierDatePolicy
+  /** Owner-approved default: REJECT, including an explicitly undefined option. */
   readonly targetEndBeforeProject?: EarlierDatePolicy
 }
 
@@ -61,7 +62,7 @@ export type ScheduleErrorCode =
   | 'INVALID_PROJECT' | 'INVALID_CALENDAR' | 'INVALID_DATE' | 'INVALID_DURATION'
   | 'INVALID_TASK' | 'INVALID_TASK_ID' | 'DUPLICATE_TASK_ID' | 'INVALID_START_MODE'
   | 'INVALID_PREDECESSORS' | 'DUPLICATE_PREDECESSOR' | 'SELF_DEPENDENCY'
-  | 'MISSING_PREDECESSOR' | 'DEPENDENCY_CYCLE' | 'POLICY_DECISION_REQUIRED'
+  | 'MISSING_PREDECESSOR' | 'DEPENDENCY_CYCLE'
   | 'MANUAL_START_BEFORE_PROJECT' | 'TARGET_END_BEFORE_PROJECT'
   | 'DATE_OUT_OF_RANGE' | 'INVALID_SLOT' | 'INVALID_POLICY'
 
