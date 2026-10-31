@@ -9,7 +9,9 @@ export/import. WP5 adds persistent manual order, temporary sorts, duplication,
 inline editing and Files / Project Settings / Workspace navigation. The WP5.1
 owner follow-up refines workspace hierarchy and stages dependency selections.
 WP5.2 adapts weekly header labels and adds network zoom, pan and Fit to View.
-Resource levelling, costs, progress and probabilistic PERT are outside
+WP6.1 protects that release and adds an explicit original baseline of the approved
+plan, separate from the editable Current Plan, with versioned file compatibility.
+Resource levelling, costs, actual-work tracking and probabilistic PERT are outside
 this release.
 
 ## Prerequisites and setup
@@ -96,6 +98,27 @@ selection and chart controls. Unsaved edits live in this browser tab; use Save o
 Export JSON before leaving.
 
 ## Save, reopen and move a plan
+
+In Project Settings, use **Establish Baseline** when the current plan is approved.
+Finish task/settings edits first and confirm the one-time snapshot. The baseline
+keeps the project calendar, every task and permanent ID, descriptions, effort,
+predecessors, retained independent starts, original manual order and calculated
+slots. **View Baseline** opens read-only details. Current Plan edits and deletions
+never change those records. Save or Export JSON after establishing it; creating a
+baseline does not automatically save. No actual work, statuses or forecasts are
+recorded in this slice.
+
+WP5 format 1 files still open with no invented baseline. Opening does not migrate
+saved copies. Files offers **Export WP5 backup** for the original loaded plan,
+even if current edits are unfinished. New saves/exports use project format 2;
+upgrading an existing format 1 named save requires confirmation and offers a
+backup download. Save As under a new name also preserves the original copy.
+Earlier application releases cannot read format 2. Baselines round-trip in local
+Save/Load and JSON Export/Import; malformed snapshots reject the whole import
+before changing your open plan.
+
+See the [WP6.1 handoff and owner checks](docs/WP6-1-HANDOFF.md) for release protection,
+compatibility and review evidence.
 
 Files contains the Save & reopen controls. Enter a Saved plan name and choose
 Save As. Multiple named plans can coexist; Save As over an existing name requires

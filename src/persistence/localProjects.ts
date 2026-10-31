@@ -12,6 +12,13 @@ function storageFailure(error: unknown): LibraryResult {
     ? failure('STORAGE_FULL', 'Browser storage is full. Export JSON for a portable copy, or delete an unneeded saved plan and retry.')
     : failure('STORAGE_UNAVAILABLE', 'Browser storage is unavailable or blocked. Your open plan is unchanged; use JSON export to keep a copy.')
 }
+/** Preserve untouched saved records, including legacy fields, during an explicit write. */
+function writeLibrary(storage: StoragePort, projects: NamedProject[], replacedName?: string) {
+  const raw = storage.getItem(LOCAL_PROJECTS_KEY)
+  const previous = raw === null ? [] : (JSON.parse(raw) as { projects: NamedProject[] }).projects
+  const untouched = new Map(previous.map(entry => [entry.name, entry]))
+  storage.setItem(LOCAL_PROJECTS_KEY, JSON.stringify({ schemaVersion: 1, projects: projects.map(entry => entry.name === replacedName ? entry : untouched.get(entry.name) ?? entry) }))
+}
 export function readLocalProjects(storage: StoragePort): LibraryResult {
   let raw: string | null
   try { raw = storage.getItem(LOCAL_PROJECTS_KEY) } catch (error) { return storageFailure(error) }
@@ -41,7 +48,7 @@ export function saveLocalProject(storage: StoragePort, name: string, plan: Proje
   if (!library.ok) return library
   if (library.projects.some(entry => entry.name === trimmed) && !overwrite) return failure('OVERWRITE_CONFIRMATION_REQUIRED', `A plan named ${trimmed} already exists. Confirm before replacing it.`)
   const projects = [...library.projects.filter(entry => entry.name !== trimmed), { name: trimmed, savedAt: plan.savedAt, plan: validated.value }].sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
-  try { storage.setItem(LOCAL_PROJECTS_KEY, JSON.stringify({ schemaVersion: 1, projects })); return { ok: true, projects } }
+  try { writeLibrary(storage, projects, trimmed); return { ok: true, projects } }
   catch (error) { return storageFailure(error) }
 }
 
@@ -51,6 +58,6 @@ export function deleteLocalProject(storage: StoragePort, name: string, confirmed
   if (!library.ok) return library
   if (!library.projects.some(entry => entry.name === name)) return failure('SAVED_PROJECT_MISSING', 'That saved plan is no longer in this browser. Refresh the saved-plan list.')
   const projects = library.projects.filter(entry => entry.name !== name)
-  try { storage.setItem(LOCAL_PROJECTS_KEY, JSON.stringify({ schemaVersion: 1, projects })); return { ok: true, projects } }
+  try { writeLibrary(storage, projects); return { ok: true, projects } }
   catch (error) { return storageFailure(error) }
 }

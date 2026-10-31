@@ -9,6 +9,9 @@ import { TaskInspection } from './components/TaskInspection'
 import { DeleteTaskDialog } from './components/DeleteTaskDialog'
 import { GanttChart } from './components/gantt/GanttChart'
 import { NetworkView } from './components/network/NetworkView'
+import { BaselinePanel } from './components/BaselinePanel'
+import { establishBaseline } from './baseline/baseline'
+import type { Baseline } from './baseline/baseline'
 import { ProjectStorage } from './components/persistence/ProjectStorage'
 import { projectFingerprint } from './persistence/projectFile'
 import type { ProjectFile } from './persistence/projectFile'
@@ -28,6 +31,8 @@ function App() {
   const [manualOrder, setManualOrder] = useState<readonly string[]>([])
   const [sortMode, setSortMode] = useState<SortMode>('manual')
   const [duplicateOrigins, setDuplicateOrigins] = useState<DuplicateOrigins>({})
+  const [baseline, setBaseline] = useState<Baseline>()
+  const [legacySource, setLegacySource] = useState<ProjectFile>()
   const [inlineDrafts, setInlineDrafts] = useState<ReadonlySet<string>>(new Set())
   const [tab, setTab] = useState<Tab>('Files')
   const [saveTarget, setSaveTarget] = useState<HTMLDivElement | null>(null)
@@ -62,7 +67,19 @@ function App() {
   const completion = result.ok ? result.projectCompletion : null
   const previewing = !!editor || projectDirty
   const idLimitReached = nextId >= Number.MAX_SAFE_INTEGER - 1
-  const unsaved = previewing || inlineDrafts.size > 0 || projectFingerprint({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins }) !== savedFingerprint
+  const unsaved = previewing || inlineDrafts.size > 0 || projectFingerprint({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline }) !== savedFingerprint
+  const baselineProblems = [
+    ...(!tasks.length ? ['Add and save at least one task.'] : []),
+    ...(previewing || inlineDrafts.size > 0 ? ['Finish or cancel task edits and commit or revert project settings.'] : []),
+    ...errors.map(error => `${error.taskId ?? 'Project'}: ${error.message}`),
+  ]
+  function freezePlan() {
+    if (baselineProblems.length) { setNotice(baselineProblems.join(' ')); return }
+    const created = establishBaseline({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins }, `BL-${crypto.randomUUID()}`, new Date().toISOString(), baseline)
+    if (!created.ok) { setNotice(created.errors.map(error => error.message).join(' ')); return }
+    setBaseline(created.value)
+    setNotice('Original baseline established. Current Plan remains editable. Save or Export JSON to keep the snapshot.')
+  }
   const displayed = useMemo(() => displayTasks(proposedTasks, isNew && editor ? [...manualOrder, editor.taskId] : manualOrder, sortMode, result), [proposedTasks, isNew, editor, manualOrder, sortMode, result])
   function inlineDraftChanged(key: string, dirty: boolean) {
     setInlineDrafts(previous => { const next = new Set(previous); if (dirty) next.add(key); else next.delete(key); return next })
@@ -91,6 +108,7 @@ function App() {
   }, [unsaved])
 
   function openProject(file: ProjectFile, name: string | null) {
+    setBaseline(file.baseline); setLegacySource(file.schemaVersion === 1 ? file : undefined)
     setProject(file.project); setProjectDraft(projectToDraft(file.project)); setTasks(file.tasks); setNextId(file.nextTaskNumber)
     setManualOrder(file.manualOrder); setSortMode(file.sortMode); setDuplicateOrigins(file.duplicateOrigins); setInlineDrafts(new Set()); setTab('Workspace')
     setEditor(null); setDeleting(null); setDeleteError(''); setSelectedTaskId(null)
@@ -99,10 +117,12 @@ function App() {
     setNotice(name ? `Opened “${name}”. Schedule and critical path recalculated.` : 'JSON imported. Schedule and critical path recalculated; save a browser copy if needed.')
   }
   function savedProject(file: ProjectFile, name: string) {
+    setBaseline(file.baseline); setLegacySource(undefined)
     setProject(file.project); setProjectDraft(projectToDraft(file.project)); setTasks(file.tasks)
     setCurrentSavedName(name); setSavedFingerprint(projectFingerprint(file))
   }
   function freshProject() {
+    setBaseline(undefined); setLegacySource(undefined)
     const fresh = { ...initialProject, projectId: `P-${crypto.randomUUID()}` }
     setProject(fresh); setProjectDraft(projectToDraft(fresh)); setTasks([]); setNextId(1); setEditor(null); setSelectedTaskId(null)
     setManualOrder([]); setSortMode('manual'); setDuplicateOrigins({}); setInlineDrafts(new Set()); setTab('Project Settings')
@@ -200,12 +220,13 @@ function App() {
       </dl>
     </section>
     <div role="tabpanel" id="panel-0" aria-labelledby="tab-0" hidden={tab !== 'Files'}>
-    <ProjectStorage key={documentEpoch} data={{ project: proposedProject, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins }} dirty={unsaved} ready={result.ok && !editor && inlineDrafts.size === 0} currentSavedName={currentSavedName}
+    <ProjectStorage key={documentEpoch} data={{ project: proposedProject, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline }} legacySource={legacySource} dirty={unsaved} ready={result.ok && !editor && inlineDrafts.size === 0} currentSavedName={currentSavedName}
       saveTarget={saveTarget} onNameRequired={() => setTab('Files')} onOpen={openProject} onSaved={savedProject} onNew={freshProject} onDeleted={name => { if (currentSavedName === name) { setCurrentSavedName(null); setSavedFingerprint('') } }} />
     <button type="button" className="next-step" onClick={() => setTab('Project Settings')}>Next: Project Settings →</button></div>
     <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" hidden={tab !== 'Project Settings'}>
     <ProjectSettingsForm draft={projectDraft} errors={errors} disabled={!!editor || inlineDrafts.size > 0} dirty={projectDirty} onChange={setProjectDraft}
       onCommit={commitProject} onRevert={() => { setProjectDraft(projectToDraft(project)); setNotice('Saved project settings restored.') }} />
+    <BaselinePanel key={documentEpoch} baseline={baseline} problems={baselineProblems} onEstablish={freezePlan} />
     <button type="button" className="next-step" onClick={() => setTab('Workspace')}>Next: Workspace →</button></div>
     <EntryErrors errors={errors} />
     <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden={tab !== 'Workspace'}>

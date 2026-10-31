@@ -1,11 +1,41 @@
-# Version 1 local project files
+# Versioned local project files (WP6.1)
+
+## Format 2 and explicit migration
+
+The reader accepts project schemaVersion 1 (WP4–WP5.2) and 2 (WP6.1). Every new
+Save/Save As and normal Export JSON writes version 2, with an optional `baseline`
+section. A baseline uses its own schemaVersion 1. A version 1 project carrying a
+baseline is rejected rather than silently losing it. Missing baseline in either
+supported format means no baseline; loading and saving do not establish one.
+
+Loading is read-only: it preserves schemaVersion 1 in memory and does not write
+localStorage. Files offers Export WP5 backup of the original loaded inputs, even
+while invalid current drafts are open. This compatible backup normalizes known
+WP5 order/sort defaults, retains the original savedAt and omits current edits and
+any subsequently established baseline. Normal Export JSON downloads format 2
+without changing any saved copy. It does not mark local edits saved.
+
+Saving over a format 1 named record requires migration confirmation, including
+header Save. The dialog also offers Export saved WP5 backup of the record being
+replaced. Cancel keeps that record untouched; Save As with a different name keeps
+the old copy. Subsequent header Save to a format 2 record keeps the existing
+explicit Save workflow. There is no automatic rewrite on first open. Saving or
+deleting another named plan preserves the original JSON objects of untouched
+records, including their legacy optional/unknown fields.
+
+The browser library key/envelope remain v1; each plan has its own version. Earlier
+application releases cannot read v2 plans (including a library containing them).
+Keep exported WP5 backups to use with the protected pre-progress release.
+
+See [the baseline contract](../baseline/README.md) for frozen fields, validation
+and the separation of Current Plan and Baseline Plan.
 
 ## Source-only schema
 
 ```json
 {
   "format": "react-gantt-chart",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "createdBy": "React Gantt Chart",
   "savedAt": "2026-10-31T05:00:00.000Z",
   "project": {
@@ -47,7 +77,7 @@ WP5 adds optional fields to the existing schema 1 reader. Missing manualOrder
 defaults to the file's existing task array order; missing sortMode defaults to
 manual; missing duplicateOrigins defaults to an empty map. Opening an older file
 does not rewrite its stored browser copy. A subsequent explicit Save/Save As or
-export includes the normalized metadata. The storage key and envelope version
+export includes the normalized metadata in format 2. The storage key and envelope version
 stay unchanged, and old task IDs, retained dates and ID counters are preserved.
 
 manualOrder must be an exact permutation of surviving task IDs. sortMode is one of
@@ -58,20 +88,22 @@ origin entry; deleting an original keeps references from surviving copies. Sorts
 never rewrite manualOrder or the source task array. Source task-array position is
 not task identity. Malformed metadata rejects the entire import/save atomically.
 
-Files never need derived schedule, critical analysis, chart positions, selection,
+Current-plan fields never need derived schedule, critical analysis, chart positions, selection,
 Gantt/network mode or zoom. Unknown extra fields, including embedded calculations, are
-ignored and dropped. The reader reconstructs known source records, then asks WP1
+ignored and dropped. The optional baseline alone stores validated frozen schedule
+slots/completion. The reader reconstructs known source records, then asks WP1
 to validate dates, calendar, IDs, estimates, predecessors, cycles and approved
 earlier-date policies. App recalculates the schedule and critical path on opening.
 
 ## APIs and validation
 
-- createProjectFile(ProjectData, savedAt?) returns a validated version 1 snapshot.
+- createProjectFile(ProjectData, savedAt?) returns a validated version 2 file.
 - serializeProject produces readable JSON with a final newline.
 - parseProject handles unknown JSON text and returns a predictable success/errors
   union; decodeProject validates an already parsed unknown object.
 - projectFingerprint compares canonical source fields, independent of object-key
-  ordering, weekday order and predecessor order, for unsaved-change tracking.
+  ordering, weekday order and predecessor order, plus the optional baseline, for
+  unsaved-change tracking. The explicit snapshot therefore marks the plan dirty.
 - acceptsProjectFile checks .json extension or JSON MIME type and file size.
 
 Malformed content, incompatible format/version, missing/wrong field types, invalid

@@ -18,10 +18,11 @@ function readFile(file: File): Promise<string> {
     reader.readAsText(file)
   })
 }
-type Pending = { kind: 'open'; file: ProjectFile; name: string | null } | { kind: 'new' } | { kind: 'overwrite'; file: ProjectFile; name: string } | { kind: 'delete'; name: string }
+type Pending = { kind: 'open'; file: ProjectFile; name: string | null } | { kind: 'new' } | { kind: 'overwrite'; file: ProjectFile; name: string; migrating?: boolean } | { kind: 'delete'; name: string }
 
-export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, onSaved, onNew, onDeleted, saveTarget, onNameRequired }: {
+export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedName, onOpen, onSaved, onNew, onDeleted, saveTarget, onNameRequired }: {
   data: ProjectData; dirty: boolean; ready: boolean; currentSavedName: string | null
+  legacySource?: ProjectFile
   onOpen: (file: ProjectFile, name: string | null) => void; onSaved: (file: ProjectFile, name: string) => void
   onNew: () => void; onDeleted: (name: string) => void
   saveTarget?: HTMLElement | null; onNameRequired?: () => void
@@ -62,7 +63,8 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
     if (!created.ok) { setIssue(created.errors.map(error => error.message).join(' ')); return }
     const current = local(readLocalProjects)
     if (!outcome(current) || !current.ok) return
-    if (current.projects.some(entry => entry.name === name.trim())) setPending({ kind: 'overwrite', file: created.value, name: name.trim() })
+    const existing = current.projects.find(entry => entry.name === name.trim())
+    if (existing) setPending({ kind: 'overwrite', file: created.value, name: name.trim(), migrating: existing.plan.schemaVersion === 1 })
     else save(created.value, name, false)
   }
   function quickSave() {
@@ -74,6 +76,12 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
     setIssue(''); setNotice('')
     const created = createProjectFile(data)
     if (!created.ok) { setIssue(created.errors.map(error => error.message).join(' ')); onNameRequired?.(); return }
+    const current = local(readLocalProjects)
+    if (!outcome(current) || !current.ok) { onNameRequired?.(); return }
+    if (current.projects.find(entry => entry.name === currentSavedName)?.plan.schemaVersion === 1) {
+      setPending({ kind: 'overwrite', file: created.value, name: currentSavedName, migrating: true })
+      return
+    }
     if (!save(created.value, currentSavedName, true)) onNameRequired?.()
   }
   function requestLoad() {
@@ -98,21 +106,24 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
     } catch (error) { setIssue(error instanceof Error ? error.message : 'Import failed. The open project was kept.') }
     finally { setBusy(false); if (input.current) input.current.value = '' }
   }
-  function exportFile() {
-    setIssue(''); setNotice('')
-    const created = createProjectFile(data)
-    if (!created.ok) { setIssue(created.errors.map(error => error.message).join(' ')); return }
-    const blob = new Blob([serializeProject(created.value)], { type: 'application/json' })
+  function download(file: ProjectFile, backup = false) {
+    const blob = new Blob([serializeProject(file)], { type: 'application/json' })
     if (blob.size > MAX_PROJECT_BYTES) { setIssue('This project exceeds the 10 MiB portable-file limit. Reduce long descriptions or split the plan.'); return }
     try {
       const url = URL.createObjectURL(blob)
       const anchor = document.createElement('a')
       anchor.href = url
-      anchor.download = `react-gantt-${data.project.name.replace(/[^\p{L}\p{N}._ -]/gu, '_').slice(0, 80) || 'project'}.json`
+      anchor.download = `react-gantt-${file.project.name.replace(/[^\p{L}\p{N}._ -]/gu, '_').slice(0, 80) || 'project'}${backup ? '-WP5-backup' : ''}.json`
       document.body.append(anchor); anchor.click(); anchor.remove()
       setTimeout(() => URL.revokeObjectURL(url), 0)
-      setNotice('JSON download started. The file contains project inputs; dates and critical paths will be recalculated when imported.')
+      setNotice(backup ? 'WP5 backup download started. It contains the original loaded version 1 plan, before your current edits.' : 'JSON download started. Current Plan inputs and the original baseline, if established, are included. Current dates and critical paths are recalculated when imported.')
     } catch { setIssue('The download could not be started. Try another browser or save this plan locally.') }
+  }
+  function exportFile() {
+    setIssue(''); setNotice('')
+    const created = createProjectFile(data)
+    if (!created.ok) { setIssue(created.errors.map(error => error.message).join(' ')); return }
+    download(created.value)
   }
   function confirm() {
     if (!pending) return
@@ -138,6 +149,8 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
       </div>
     <p className="storage-current">Current project: <strong>{data.project.name || 'Untitled project'}</strong>{currentSavedName && <> · Browser copy: {currentSavedName}</>}</p>
     <p className="muted">Plans stay in this browser profile on this site. Save is explicit. Export JSON to move or back up a plan; no account or remote storage is used.</p>
+    {legacySource && <div className="compatibility-notice"><p>This WP5 plan is still in format 1. Opening it has not changed its saved copy. Save or Export JSON writes format 2, which older releases cannot open. Download a WP5 backup before upgrading, or use Save As with a new name.</p>
+      <button type="button" className="quiet" onClick={() => download(legacySource, true)}>Export WP5 backup</button></div>}
     <div className="storage-fields"><label>Saved plan name<input ref={nameInput} value={name} onChange={event => setSaveName(event.target.value)} /></label>
       <div className="storage-actions"><button type="button" disabled={!ready || busy} onClick={requestSave}>Save As</button>
         <button type="button" className="quiet" disabled={!ready || busy} onClick={exportFile}>Export JSON</button></div>
@@ -157,6 +170,12 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
       confirmLabel={pending.kind === 'open' ? 'Replace current project' : pending.kind === 'new' ? 'Start new project' : pending.kind === 'overwrite' ? 'Overwrite saved plan' : 'Delete saved copy'} onConfirm={confirm} onCancel={() => setPending(null)}>
       <p>{pending.kind === 'open' || pending.kind === 'new' ? 'This will discard the open project’s unsaved changes and unfinished task/settings edits. Cancel to keep editing, or save/export first.'
         : pending.kind === 'overwrite' ? 'The existing named browser copy will be replaced with this plan. Other saved plans will be kept.' : 'Only this named browser copy will be deleted. The open project and other saved plans will be kept.'}</p>
+      {pending.kind === 'overwrite' && pending.migrating && <><p>This upgrades the saved plan from format 1 to format 2. Earlier releases cannot open it. Cancel to export a WP5 backup first, or save under a new name.</p>
+        <button type="button" className="quiet" onClick={() => {
+          const current = local(readLocalProjects)
+          if (current.ok) { const original = current.projects.find(entry => entry.name === pending.name); if (original) download(original.plan, true) }
+          else setIssue(current.error.message)
+        }}>Export saved WP5 backup</button></>}
     </ConfirmDialog>}
   </section></>
 }
