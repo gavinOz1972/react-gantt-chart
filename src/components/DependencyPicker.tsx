@@ -97,7 +97,8 @@ export function DependencyPicker({ taskId, tasks, selected, disabled = false, co
     </button>
     {open && createPortal(<div ref={popup} id={popupId} tabIndex={-1} className="dependency-popover" style={position} role="group" aria-label={`${taskId} predecessor selection`} onKeyDown={keyDown}>
       <div className="dependency-popover-heading"><strong>{taskId} predecessors · {draft.length} selected</strong><small>Done, Enter or outside click saves. Escape cancels. An outside click only closes this picker.</small></div>
-      <fieldset className="dependency-choices"><legend className="sr-only">Choose predecessor tasks</legend>
+      <div className="dependency-choices" role="region" aria-label={`${taskId} predecessor options`} tabIndex={0}>
+      <fieldset><legend className="sr-only">Choose predecessor tasks</legend>
         {!tasks.length && <p className="muted">Save another task first to add a predecessor.</p>}
         {tasks.map(task => {
           const checked = draft.includes(task.taskId)
@@ -107,7 +108,7 @@ export function DependencyPicker({ taskId, tasks, selected, disabled = false, co
             <span>{task.taskId} — {task.name}{problem && <small className="field-error">{problem}</small>}</span>
           </label>
         })}
-      </fieldset>
+      </fieldset></div>
       {error && <p className="field-error dependency-error" role="alert">{error}</p>}
       <div className="dependency-popover-actions"><button type="button" onClick={() => finish()}>Done</button><button type="button" className="quiet" data-dependency-cancel onClick={() => finish(true)}>Cancel</button></div>
     </div>, document.body)}

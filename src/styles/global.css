@@ -276,10 +276,10 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .dependency-trigger.compact { min-height: 34px; padding: 8px; font-size: .8rem; }
 .dependency-trigger[aria-expanded=true] { border-color: #24779b; box-shadow: 0 0 0 1px #24779b; }
 .dependency-popover { position: fixed; z-index: 100; display: flex; flex-direction: column; background: #fff; border: 1px solid #8caec3; border-radius: 8px; box-shadow: 0 12px 32px #163b552b; overflow: hidden; color: #1b3046; }
-.dependency-popover-heading { padding: 12px 14px 8px; }
+.dependency-popover-heading { padding: 12px 14px 8px; flex-shrink: 0; }
 .dependency-popover-heading strong { font-size: .85rem; }
 .dependency-popover-heading small { display: block; margin-top: 5px; font-size: .72rem; line-height: 1.5; color: #526b80; }
-.dependency-choices { overflow: auto; min-height: 0; padding: 0 14px 8px; }
+.dependency-choices { flex: 1 1 auto; overflow-y: scroll; overscroll-behavior: contain; scrollbar-gutter: stable; min-height: 0; padding: 0 14px 8px; }
 .dependency-choices .dependency-option { font-size: .82rem; gap: 8px; }
 .dependency-choices .dependency-option span { overflow-wrap: anywhere; min-width: 0; }
 .dependency-choices .dependency-option small { color: #526b80; }

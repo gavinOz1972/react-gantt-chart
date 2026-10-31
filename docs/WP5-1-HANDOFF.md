@@ -136,3 +136,19 @@ it intentionally does not also activate the outside control. In the full form,
 Done accepts dependency choices into the form preview, while Save task still
 accepts the task as a whole. Local field drafts are not added to the project file.
 Owner acceptance must be recorded only after the owner checks this running UI.
+
+## Predecessor scrolling correction
+
+Owner testing exposed a long-list scrolling failure: the native fieldset overflowed
+inside the bounded flex popup but its scroll position stayed at zero under wheel
+input. The choices now sit in a separate shrinking scroll region around the
+fieldset, with a reserved vertical scrollbar and contained scrolling. The heading
+and Done/Cancel footer stay outside that region. All checkbox entries remain
+reachable with wheel input or keyboard Tab/Space.
+
+`tests/dependency-scroll.spec.ts` reproduces the original failure and verifies the
+fix with 40 wrapping task titles at 1440px and 780px widths, including selecting
+the last entry, committing, reopening, keyboard navigation and Escape cancellation.
+After this correction, lint/typecheck/build and all 203 unit/component tests pass;
+the full browser suite passes 25 workflows (21.3 seconds). The existing owner
+server on localhost:5173 was checked for the new scroll region and styles.
