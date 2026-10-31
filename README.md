@@ -49,6 +49,9 @@ on port 5173. Stop other servers on the test port first.
 
 Run `npm.cmd run dev` in PowerShell and open the Local URL it prints. If a dev
 server is already running, the page should update automatically; otherwise refresh.
+On Windows, the development server polls source files every 300 ms so edits from
+other processes are detected reliably. If an older server is still running after
+this configuration change, save/export your plan and restart that server once.
 
 1. Start in Files: create a new project or load/import an existing one. New project
    takes you to Project Settings; loading/importing opens Workspace.
