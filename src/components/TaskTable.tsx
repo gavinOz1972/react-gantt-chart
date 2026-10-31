@@ -1,34 +1,78 @@
-import { useEffect, useRef } from 'react'
-import type { ScheduleResult, TaskInput } from '../domain'
+import { useEffect, useRef, useState } from 'react'
+import type { ProjectSettings, ScheduleResult, TaskInput } from '../domain'
+import { dependencyError } from './projectEntry'
+import { InlineField } from './InlineField'
 
-export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, onEdit, onDelete, onSelect }: {
+export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, onEdit, onDelete, onSelect, project, manual = false, onMove, onDuplicate, onCommit, onDraftChange }: {
   tasks: readonly TaskInput[]; result: ScheduleResult; editingId?: string; blocked: boolean
   selectedTaskId?: string | null; onSelect?: (id: string) => void
   onEdit: (task: TaskInput) => void; onDelete: (task: TaskInput) => void
+  project?: ProjectSettings; manual?: boolean; onMove?: (id: string, before: string) => void
+  onDuplicate?: (task: TaskInput) => void; onCommit?: (task: TaskInput) => string | undefined
+  onDraftChange?: (key: string, dirty: boolean) => void
 }) {
   const scrollRegion = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    if (scrollRegion.current) scrollRegion.current.scrollLeft = 0
-  }, [editingId])
+  const dragging = useRef<string | null>(null)
+  useEffect(() => { if (scrollRegion.current) scrollRegion.current.scrollLeft = 0 }, [editingId])
   const scheduled = new Map(result.ok ? result.tasks.map(task => [task.taskId, task]) : [])
   if (!tasks.length) return <div className="empty-state"><h3>Your project starts with one task</h3><p>Add your first task, enter its estimated hours, and see where it fits in your calendar.</p></div>
-  return <><p className="muted">Total hours is the full task duration. Start and finish hour numbers restart each working day; work continues across selected days until all hours are used.</p>
-    <p className="table-hint muted">Scroll the table horizontally to see all columns.</p><div ref={scrollRegion} className="table-scroll" tabIndex={0} role="region" aria-label="Task schedule table">
-    <table><caption className="sr-only">Task inputs and calculated schedule dates</caption><thead><tr>
-      <th scope="col">ID</th><th scope="col">Task</th><th scope="col">Total hours</th><th scope="col">Predecessors</th><th scope="col">Calculated start</th><th scope="col">Calculated finish</th><th scope="col">Actions</th>
-    </tr></thead><tbody>{tasks.map(task => {
+  function field(task: TaskInput, key: 'name' | 'description' | 'durationHours', type: 'text' | 'number' | 'multiline') {
+    return onCommit ? <InlineField label={`${task.taskId} ${key === 'durationHours' ? 'duration' : key}`} value={String(task[key])} type={type} disabled={blocked}
+      onDraftChange={dirty => onDraftChange?.(`${task.taskId}:${key}`, dirty)} onCommit={value => onCommit({ ...task, [key]: key === 'durationHours' ? Number(value) : value })} /> : task[key]
+  }
+  return <><p className="table-hint muted">Scroll the table horizontally to see all columns.</p>
+    <div ref={scrollRegion} className="table-scroll" tabIndex={0} role="region" aria-label="Task schedule table" onDragOver={event => {
+      if (!manual || blocked || !dragging.current) return
+      event.preventDefault()
+      const bounds = event.currentTarget.getBoundingClientRect()
+      if (event.clientY < bounds.top + 45) event.currentTarget.scrollTop -= 18
+      else if (event.clientY > bounds.bottom - 45) event.currentTarget.scrollTop += 18
+    }}>
+    <table><caption className="sr-only">Task inputs and calculated schedule dates. Select a field to edit; total hours is the full task duration.</caption><thead><tr>
+      {onMove && <th scope="col">Order</th>}<th scope="col">ID</th><th scope="col">Task / description</th><th scope="col">Total hours</th><th scope="col">Predecessors</th><th scope="col">Start</th><th scope="col">Calculated finish</th><th scope="col">Actions</th>
+    </tr></thead><tbody>{tasks.map((task, index) => {
       const dates = scheduled.get(task.taskId)
-      return <tr key={task.taskId} aria-label={`${task.taskId} ${task.name}`} aria-selected={selectedTaskId === task.taskId} className={`${editingId === task.taskId ? 'editing-row' : ''}${selectedTaskId === task.taskId ? ' selected-task-row' : ''}`}>
-        <th scope="row"><span className="task-id">{task.taskId}</span></th>
-        <td><button type="button" className="task-inspect" aria-label={`Select ${task.taskId} in chart`} onClick={() => onSelect?.(task.taskId)}>{task.name || 'Untitled task'}</button>{task.description && <small className="task-description">{task.description}</small>}
+      return <tr key={task.taskId} data-task-row={task.taskId} aria-label={`${task.taskId} ${task.name}`} aria-selected={selectedTaskId === task.taskId} className={`${editingId === task.taskId ? 'editing-row' : ''}${selectedTaskId === task.taskId ? ' selected-task-row' : ''}`}
+        onDragOver={event => { if (manual && !blocked && dragging.current) event.preventDefault() }}
+        onDrop={event => { event.preventDefault(); if (manual && !blocked && dragging.current) onMove?.(dragging.current, task.taskId); dragging.current = null }}>
+        {onMove && <td className="order-cell"><button type="button" className="quiet drag-handle" draggable={manual && !blocked} disabled={!manual || blocked} aria-label={`Drag ${task.taskId} to reorder`} title={manual ? 'Drag onto a row to place above it, or use Move up / Move down' : 'Choose Manual Order to rearrange tasks'}
+          onDragStart={event => { dragging.current = task.taskId; event.dataTransfer.setData('text/plain', task.taskId); event.dataTransfer.effectAllowed = 'move' }} onDragEnd={() => { dragging.current = null }}>⠿</button>
+          <div className="order-actions"><button type="button" className="quiet" disabled={!manual || blocked || index === 0} aria-label={`Move ${task.taskId} up`} onClick={() => onMove(task.taskId, tasks[index - 1].taskId)}>↑</button>
+          <button type="button" className="quiet" disabled={!manual || blocked || index === tasks.length - 1} aria-label={`Move ${task.taskId} down`} onClick={() => onMove(tasks[index + 1].taskId, task.taskId)}>↓</button></div></td>}
+        <th scope="row"><button type="button" className="task-id task-inspect" aria-label={`Select ${task.taskId} in chart`} onClick={() => onSelect?.(task.taskId)}>{task.taskId}</button></th>
+        <td className="task-text">{field(task, 'name', 'text')}<div className="task-description">{field(task, 'description', 'multiline')}</div>
           <small>{task.predecessorTaskIds.length ? 'Dependency start' : task.independentStartMode === 'MANUAL' ? 'Manual start' : 'Follows project start'}{editingId === task.taskId ? ' · Unsaved preview' : ''}</small></td>
-        <td>{Number.isFinite(task.durationHours) ? task.durationHours : '—'}</td>
-        <td>{task.predecessorTaskIds.length ? task.predecessorTaskIds.map(id => `${id} — ${tasks.find(entry => entry.taskId === id)?.name ?? id}`).join('; ') : 'None'}</td>
-        <td>{dates ? <><span>{dates.startDate}</span><small>hour {dates.startSlot.hour} that day</small></> : <span className="muted">Unavailable</span>}</td>
+        <td>{field(task, 'durationHours', 'number')}</td>
+        <td>{onCommit && project ? <InlineDependencies task={task} tasks={tasks} project={project} disabled={blocked} onCommit={onCommit} /> : task.predecessorTaskIds.length ? task.predecessorTaskIds.map(id => `${id} — ${tasks.find(entry => entry.taskId === id)?.name ?? id}`).join('; ') : 'None'}</td>
+        <td>{!task.predecessorTaskIds.length && onCommit && project ? <><InlineField label={`${task.taskId} independent start date`} type="date" disabled={blocked}
+          value={task.independentStartMode === 'MANUAL' ? task.requestedStartDate : project.projectStartDate} display={task.independentStartMode === 'MANUAL' ? `Requested: ${task.requestedStartDate}` : 'Change start date'} onDraftChange={dirty => onDraftChange?.(`${task.taskId}:date`, dirty)}
+          onCommit={value => onCommit({ ...task, independentStartMode: 'MANUAL', requestedStartDate: value })} />
+          {task.independentStartMode === 'MANUAL' && <ResetStart task={task} disabled={blocked} onCommit={onCommit} />}</> : null}
+          {dates ? <><span>{dates.startDate}</span><small>hour {dates.startSlot.hour} that day</small></> : <span className="muted">Unavailable</span>}</td>
         <td>{dates ? <><span>{dates.finishDate}</span><small>after hour {dates.finishBoundary.afterHour} that day</small></> : <span className="muted">Unavailable</span>}</td>
-        <td><div className="row-actions"><button type="button" className="quiet" disabled={blocked} onClick={() => onEdit(task)} aria-label={`Edit ${task.taskId}`}>Edit</button>
+        <td><div className="row-actions">{onDuplicate && <button type="button" className="quiet" disabled={blocked} onClick={() => onDuplicate(task)} aria-label={`Duplicate ${task.taskId}`}>Duplicate</button>}
+          <button type="button" className="quiet" disabled={blocked} onClick={() => onEdit(task)} aria-label={`Edit ${task.taskId}`} title="Open full task form">Edit form</button>
           <button type="button" className="danger-text" disabled={blocked} onClick={() => onDelete(task)} aria-label={`Delete ${task.taskId}`}>Delete</button></div></td>
       </tr>
-    })}</tbody></table>
-  </div></>
+    })}</tbody></table></div></>
+}
+
+function ResetStart({ task, disabled, onCommit }: { task: TaskInput; disabled: boolean; onCommit: (task: TaskInput) => string | undefined }) {
+  const [error, setError] = useState('')
+  return <><button className="quiet inline-reset" type="button" disabled={disabled} aria-label={`Reset ${task.taskId} to Project Start`} onClick={() => setError(onCommit({ taskId: task.taskId, name: task.name, description: task.description, durationHours: task.durationHours, predecessorTaskIds: task.predecessorTaskIds, independentStartMode: 'DEFAULT' }) ?? '')}>Reset to Project Start</button>{error && <span role="alert" className="field-error">{error}</span>}</>
+}
+
+function InlineDependencies({ task, tasks, project, disabled, onCommit }: { task: TaskInput; tasks: readonly TaskInput[]; project: ProjectSettings; disabled: boolean; onCommit: (task: TaskInput) => string | undefined }) {
+  const [error, setError] = useState('')
+  const [open, setOpen] = useState(false)
+  return <details open={open} className="dependency-picker inline-dependencies"><summary onClick={event => { event.preventDefault(); setOpen(value => !value) }}>{task.predecessorTaskIds.length ? `Predecessors (${task.predecessorTaskIds.length})` : 'None'}</summary>
+    {open && <fieldset disabled={disabled} aria-label={`${task.taskId} predecessors`}>{tasks.map(option => {
+      const checked = task.predecessorTaskIds.includes(option.taskId)
+      const problem = checked ? undefined : dependencyError(project, tasks, task, [...task.predecessorTaskIds, option.taskId])?.message
+      return <label key={option.taskId} className="dependency-option"><input type="checkbox" aria-label={`${task.taskId} predecessor ${option.taskId} — ${option.name}`} checked={checked} disabled={!!problem}
+        onChange={() => setError(onCommit({ ...task, predecessorTaskIds: checked ? task.predecessorTaskIds.filter(id => id !== option.taskId) : [...task.predecessorTaskIds, option.taskId] }) ?? '')} /><span>{option.taskId} — {option.name}{problem && <small>{problem}</small>}</span></label>
+    })}</fieldset>}{error && <p className="field-error" role="alert">{error}</p>}
+    {task.predecessorTaskIds.length > 0 && task.independentStartMode === 'MANUAL' && <><small>Retained independent date: {task.requestedStartDate}</small><ResetStart task={task} disabled={disabled} onCommit={onCommit} /></>}
+    <small>{task.predecessorTaskIds.map(id => `${id} — ${tasks.find(entry => entry.taskId === id)?.name ?? id}`).join('; ')}</small>
+  </details>
 }

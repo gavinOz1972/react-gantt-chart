@@ -84,6 +84,7 @@ test('A11 empty and invalid results remove all stale bars and connectors', () =>
 
 test('table and bar selection are linked without replacing the WP2 editor', () => {
   render(<App />)
+  fireEvent.click(screen.getByRole('tab', { name: 'Workspace' }))
   fireEvent.click(screen.getByRole('button', { name: 'Add task' }))
   fireEvent.change(screen.getByLabelText(/^Task name/), { target: { value: 'Research' } })
   fireEvent.click(screen.getByRole('button', { name: 'Save task' }))

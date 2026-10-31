@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { acceptsProjectFile, createProjectFile, MAX_PROJECT_BYTES, parseProject, serializeProject } from '../../persistence/projectFile'
 import type { ProjectData, ProjectFile } from '../../persistence/projectFile'
 import { deleteLocalProject, readLocalProjects, saveLocalProject } from '../../persistence/localProjects'
@@ -19,10 +20,11 @@ function readFile(file: File): Promise<string> {
 }
 type Pending = { kind: 'open'; file: ProjectFile; name: string | null } | { kind: 'new' } | { kind: 'overwrite'; file: ProjectFile; name: string } | { kind: 'delete'; name: string }
 
-export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, onSaved, onNew, onDeleted }: {
+export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, onSaved, onNew, onDeleted, saveTarget, onNameRequired }: {
   data: ProjectData; dirty: boolean; ready: boolean; currentSavedName: string | null
   onOpen: (file: ProjectFile, name: string | null) => void; onSaved: (file: ProjectFile, name: string) => void
   onNew: () => void; onDeleted: (name: string) => void
+  saveTarget?: HTMLElement | null; onNameRequired?: () => void
 }) {
   const [library, setLibrary] = useState(() => local(readLocalProjects))
   const [saveName, setSaveName] = useState<string | null>(null)
@@ -32,6 +34,7 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
   const [notice, setNotice] = useState('')
   const [busy, setBusy] = useState(false)
   const input = useRef<HTMLInputElement>(null)
+  const nameInput = useRef<HTMLInputElement>(null)
   const dirtyNow = useRef(dirty)
   useLayoutEffect(() => { dirtyNow.current = dirty }, [dirty])
   const name = saveName ?? currentSavedName ?? data.project.name
@@ -50,6 +53,7 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
       setNotice(`Saved “${target.trim()}” in this browser. Use Load project to reopen it.`)
       setIssue('')
     }
+    return result.ok
   }
   function requestSave() {
     setIssue(''); setNotice('')
@@ -60,6 +64,17 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
     if (!outcome(current) || !current.ok) return
     if (current.projects.some(entry => entry.name === name.trim())) setPending({ kind: 'overwrite', file: created.value, name: name.trim() })
     else save(created.value, name, false)
+  }
+  function quickSave() {
+    if (!currentSavedName) {
+      onNameRequired?.()
+      requestAnimationFrame(() => { nameInput.current?.focus(); nameInput.current?.select() })
+      return
+    }
+    setIssue(''); setNotice('')
+    const created = createProjectFile(data)
+    if (!created.ok) { setIssue(created.errors.map(error => error.message).join(' ')); onNameRequired?.(); return }
+    if (!save(created.value, currentSavedName, true)) onNameRequired?.()
   }
   function requestLoad() {
     setIssue(''); setNotice('')
@@ -116,13 +131,15 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
     }
   }
   const libraryError = library.ok ? '' : library.error.message
-  return <section className="panel storage-panel" aria-labelledby="storage-heading">
+  return <>{saveTarget && createPortal(<><span className={dirty ? 'unsaved-label' : 'preview-label'} role="status">{dirty ? 'Unsaved changes' : currentSavedName ? 'Saved locally' : 'New project'}</span>
+    <button type="button" disabled={!ready || busy} onClick={quickSave}>Save</button>{issue && <span className="field-error">Save needs attention in Files</span>}</>, saveTarget)}
+    <section className="panel storage-panel" aria-labelledby="storage-heading">
     <div className="section-heading"><div><span className="eyebrow">Local project files</span><h2 id="storage-heading">Save & reopen</h2></div>
-      <span className={dirty ? 'unsaved-label' : 'preview-label'}>{dirty ? 'Unsaved changes' : currentSavedName ? 'Saved locally' : 'New project'}</span></div>
+      </div>
     <p className="storage-current">Current project: <strong>{data.project.name || 'Untitled project'}</strong>{currentSavedName && <> · Browser copy: {currentSavedName}</>}</p>
     <p className="muted">Plans stay in this browser profile on this site. Save is explicit. Export JSON to move or back up a plan; no account or remote storage is used.</p>
-    <div className="storage-fields"><label>Saved plan name<input value={name} onChange={event => setSaveName(event.target.value)} /></label>
-      <div className="storage-actions"><button type="button" disabled={!ready || busy} onClick={requestSave}>Save project</button>
+    <div className="storage-fields"><label>Saved plan name<input ref={nameInput} value={name} onChange={event => setSaveName(event.target.value)} /></label>
+      <div className="storage-actions"><button type="button" disabled={!ready || busy} onClick={requestSave}>Save As</button>
         <button type="button" className="quiet" disabled={!ready || busy} onClick={exportFile}>Export JSON</button></div>
       <label>Saved plans<select aria-label="Saved plans" value={selectedName} onChange={event => setSelectedName(event.target.value)}><option value="">{projects.length ? 'Choose a saved plan' : 'No saved plans yet'}</option>
         {projects.map(entry => <option key={entry.name} value={entry.name}>{entry.name}</option>)}</select></label>
@@ -141,5 +158,5 @@ export function ProjectStorage({ data, dirty, ready, currentSavedName, onOpen, o
       <p>{pending.kind === 'open' || pending.kind === 'new' ? 'This will discard the open project’s unsaved changes and unfinished task/settings edits. Cancel to keep editing, or save/export first.'
         : pending.kind === 'overwrite' ? 'The existing named browser copy will be replaced with this plan. Other saved plans will be kept.' : 'Only this named browser copy will be deleted. The open project and other saved plans will be kept.'}</p>
     </ConfirmDialog>}
-  </section>
+  </section></>
 }

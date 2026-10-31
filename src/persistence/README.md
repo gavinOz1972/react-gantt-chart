@@ -27,7 +27,10 @@
       "requestedStartDate": "2026-11-05"
     }
   ],
-  "nextTaskNumber": 2
+  "nextTaskNumber": 2,
+  "manualOrder": ["T1"],
+  "sortMode": "manual",
+  "duplicateOrigins": {}
 }
 ```
 
@@ -40,8 +43,23 @@ IDs, and must exceed every existing numeric T ID. Imported nonnumeric stable IDs
 are preserved. Safe integer exhaustion blocks new IDs while keeping existing work
 editable/exportable.
 
+WP5 adds optional fields to the existing schema 1 reader. Missing manualOrder
+defaults to the file's existing task array order; missing sortMode defaults to
+manual; missing duplicateOrigins defaults to an empty map. Opening an older file
+does not rewrite its stored browser copy. A subsequent explicit Save/Save As or
+export includes the normalized metadata. The storage key and envelope version
+stay unchanged, and old task IDs, retained dates and ID counters are preserved.
+
+manualOrder must be an exact permutation of surviving task IDs. sortMode is one of
+manual/start/name/duration. duplicateOrigins maps each surviving copy ID to the
+original ID, which may already be deleted. Numeric origins must also be below
+nextTaskNumber; origins cannot equal their copy. Deleting a copy removes its own
+origin entry; deleting an original keeps references from surviving copies. Sorts
+never rewrite manualOrder or the source task array. Source task-array position is
+not task identity. Malformed metadata rejects the entire import/save atomically.
+
 Files never need derived schedule, critical analysis, chart positions, selection,
-view mode or zoom. Unknown extra fields, including embedded calculations, are
+Gantt/network mode or zoom. Unknown extra fields, including embedded calculations, are
 ignored and dropped. The reader reconstructs known source records, then asks WP1
 to validate dates, calendar, IDs, estimates, predecessors, cycles and approved
 earlier-date policies. App recalculates the schedule and critical path on opening.
@@ -61,7 +79,8 @@ provenance or reusable/unsafe ID counters are rejected before replacement.
 Source date/graph/value failures use WP1 machine-readable codes and actionable
 messages. File errors include INVALID_JSON, INVALID_FORMAT, UNSUPPORTED_VERSION,
 INVALID_STRUCTURE, INVALID_PROVENANCE, INVALID_ID_COUNTER, INVALID_FILE_TYPE and
-FILE_TOO_LARGE. Portable imports/exports have a 10 MiB limit.
+FILE_TOO_LARGE. WP5 also reports INVALID_MANUAL_ORDER, INVALID_SORT_MODE and
+INVALID_COPY_METADATA. Portable imports/exports have a 10 MiB limit.
 
 Imported content is treated only as data. It is never evaluated, executed or used
 as a URL. A failed parse or validation leaves open source state and browser saves
@@ -80,7 +99,9 @@ react-gantt-chart:projects:v1:
 ```
 
 Named saves are case-sensitive, trimmed, explicit and sorted for display. Saving
-under an existing name requires overwrite confirmation. Delete requires explicit
+with Save As under an existing name requires overwrite confirmation. Header Save
+explicitly updates the current known saved identity without a second naming step.
+For an unnamed/imported plan it routes to Files/Save As. Delete requires explicit
 confirmation and affects only that browser copy. Updates reread the current
 library and preserve other named records. Storage is per origin (including port)
 and browser profile. Reload starts a new in-memory plan; choose Saved plans/Load
@@ -95,9 +116,11 @@ Browser storage has no cross-tab merge or collaboration protocol.
 
 ## Editing and replacement safeguards
 
-Save task accepts a task draft; Save project persists the complete accepted source.
+Save task accepts a form draft; Save/Save As persists the complete accepted source.
 Saving/exporting is disabled until task edits are saved/cancelled and source fields
-are valid. Project settings commit on blur as before. A successful browser save
+are valid. Inline field drafts block save/export until committed or cancelled;
+they never replace valid scheduling data on failed validation. Project settings
+commit on blur as before. A successful browser save
 sets the clean baseline. Export downloads a file without updating a named browser
 copy or clearing the local dirty indicator. Imported projects are dirty until saved
 locally. Deleting the current named copy makes its still-open model unsaved again.
@@ -109,6 +132,6 @@ destructive replacement dialog. The asynchronous reader consults the current dir
 state. A beforeunload handler additionally requests the browser's standard warning
 while unsaved work exists; browser behavior varies.
 
-This first-release format does not preserve incomplete invalid drafts or UI layout
-state, perform migrations from future versions, encrypt local copies, or synchronize
+This format does not preserve incomplete invalid drafts, selected task/tab, chart
+mode or zoom, perform migrations from future versions, encrypt local copies, or synchronize
 multiple tabs. Keep exported backups when moving between browsers/computers.

@@ -202,3 +202,70 @@ footer { border-top: 1px solid #dce4ec; color: #65778a; padding-top: 18px; font-
 .unsaved-label { color: #88501b; background: #fff0da; padding: 6px 11px; font-size: .75rem; border-radius: 20px; }
 .storage-error { color: #972c25; background: #fff3ee; border: 1px solid #edc0b2; border-radius: 6px; padding: 12px; font-size: .85rem; line-height: 1.6; }
 @media (max-width: 650px) { .storage-fields { grid-template-columns: 1fr; } }
+
+/* WP5 workspace: persistent file identity, compact status and chart-first content. */
+main { max-width: 1600px; padding: 24px 28px; }
+.page-header { margin-bottom: 18px; }
+h1 { font-size: 1.7rem; margin: 4px 0; }
+.project-identity { font-size: .85rem; overflow-wrap: anywhere; }
+.persistent-save { display: flex; align-items: center; justify-content: end; flex-wrap: wrap; gap: 10px; }
+.workspace-tabs { display: flex; gap: 4px; border-bottom: 1px solid #b8c7d5; margin-bottom: 16px; }
+.workspace-tabs button { background: transparent; color: #526b80; border-radius: 6px 6px 0 0; border-bottom: 3px solid transparent; min-height: 48px; padding: 10px 22px; }
+.workspace-tabs button[aria-selected=true] { background: #fff; color: #154c69; border-bottom-color: #1e607f; }
+.workspace-tabs button:hover { background: #e5edf3; }
+.compact-summary { display: flex; align-items: center; gap: 24px; padding: 12px 18px; margin-bottom: 18px; }
+.compact-summary h2 { font-size: .8rem; }
+.compact-summary .section-heading { gap: 12px; }
+.compact-summary .summary-grid { flex: 1; display: flex; justify-content: space-between; gap: 18px; margin: 0; }
+.compact-summary .summary-grid > div { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 10px; }
+.compact-summary dt { margin: 0; font-size: .72rem; }
+.compact-summary dd { font-size: .85rem; }
+.compact-summary dd small { display: inline; margin-left: 6px; font-size: .65rem; }
+.next-step { margin: 0 0 20px; }
+.task-toolbar { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+.task-toolbar label { font-size: .75rem; gap: 4px; }
+.task-toolbar select { min-height: 40px; padding: 8px 10px; background: #fff; border: 1px solid #b8c7d5; border-radius: 6px; color: #1b3046; }
+.tasks-panel { margin-top: 20px; }
+.tasks-panel .table-scroll { max-height: 460px; overflow: auto; }
+.tasks-panel thead { position: sticky; top: 0; z-index: 2; }
+.tasks-panel td { min-width: 110px; }
+.tasks-panel .order-cell { min-width: 65px; width: 65px; }
+.tasks-panel .task-text { min-width: 220px; width: 25%; }
+.tasks-panel .row-actions { flex-direction: column; }
+.tasks-panel .row-actions button { justify-content: start; }
+.order-actions { display: flex; gap: 2px; }
+.order-cell button { padding: 2px 6px; min-height: 26px; font-size: .8rem; }
+.order-cell .drag-handle { cursor: grab; width: 100%; margin-bottom: 4px; }
+.order-cell .drag-handle:active { cursor: grabbing; }
+.inline-value { min-height: 30px; width: 100%; display: block; text-align: left; justify-content: start; padding: 4px 5px; color: #21465e; background: transparent; border: 1px dashed #c9d6e0; font-size: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
+.inline-value:hover:not(:disabled) { color: #164b64; background: #edf6fb; border-color: #7199b0; }
+.task-description { margin-top: 6px; }
+.task-description .inline-value { font-weight: 400; color: #526b80; }
+.inline-field input, .inline-field textarea { min-width: 90px; padding: 6px; font-size: .82rem; }
+.inline-field textarea { min-width: 210px; white-space: pre-wrap; }
+.inline-field .field-error { display: block; max-width: 250px; }
+.inline-help { line-height: 1.5; }
+.inline-dependencies { min-width: 170px; max-width: 260px; }
+.inline-dependencies summary { padding: 8px; font-size: .8rem; }
+.inline-dependencies fieldset { max-height: 220px; }
+.inline-dependencies label { white-space: normal; }
+.inline-dependencies > small { padding: 0 8px 8px; white-space: normal; }
+button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; white-space: normal; margin: 5px 0; }
+.gantt-panel .gantt-toolbar { margin-top: 10px; }
+.gantt-help, .critical-help, .gantt-convention { font-size: .75rem; line-height: 1.5; margin: 8px 0; }
+.gantt-scroll { max-height: 50vh; }
+.view-switch { margin-bottom: 10px; }
+@media (max-width: 1100px) {
+  .compact-summary { align-items: start; flex-direction: column; gap: 10px; }
+  .compact-summary .summary-grid { width: 100%; flex-wrap: wrap; }
+}
+@media (max-width: 650px) {
+  main { padding: 18px 12px; }
+  .page-header { align-items: start; }
+  h1 { font-size: 1.35rem; }
+  .persistent-save { max-width: 145px; }
+  .workspace-tabs button { padding: 10px 12px; font-size: .8rem; }
+  .compact-summary .summary-grid { gap: 10px 20px; }
+  .panel { padding: 16px; }
+  .section-heading { flex-wrap: wrap; }
+}

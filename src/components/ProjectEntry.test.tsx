@@ -2,6 +2,9 @@ import { fireEvent, render, screen, within } from '@testing-library/react'
 import { beforeAll, expect, test } from 'vitest'
 import App from '../App'
 
+function tab(name: string) { fireEvent.click(screen.getByRole('tab', { name })) }
+function weekday(name: string) { tab('Project Settings'); return screen.getByRole('checkbox', { name }) }
+
 beforeAll(() => {
   HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', '') }
   HTMLDialogElement.prototype.close = function () { this.removeAttribute('open') }
@@ -10,33 +13,34 @@ beforeAll(() => {
 function field(label: string, value: string) {
   fireEvent.change(screen.getByLabelText(new RegExp(`^${label}`)), { target: { value } })
 }
-function setting(label: string, value: string) {
+function setting(label: string, value: string) { tab('Project Settings');
   field(label, value)
   fireEvent.blur(screen.getByLabelText(new RegExp(`^${label}`)))
 }
 function calendar() {
   setting('Working hours per day', '2')
-  for (const day of ['Tuesday', 'Wednesday', 'Friday']) fireEvent.click(screen.getByRole('checkbox', { name: day }))
+  for (const day of ['Tuesday', 'Wednesday', 'Friday']) fireEvent.click(weekday(day))
 }
 function add(name: string, hours = '1') {
+  tab('Workspace')
   fireEvent.click(screen.getByRole('button', { name: 'Add task' }))
   field('Task name', name)
   field('Estimated duration', hours)
   fireEvent.click(screen.getByRole('button', { name: 'Save task' }))
 }
-function edit(id: string) { fireEvent.click(screen.getByRole('button', { name: `Edit ${id}` })) }
+function edit(id: string) { tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: `Edit ${id}` })) }
 function save() { fireEvent.click(screen.getByRole('button', { name: 'Save task' })) }
-function row(id: string, name: string) { return within(screen.getByRole('row', { name: `${id} ${name}` })) }
+function row(id: string, name: string) { tab('Workspace'); return within(screen.getByRole('row', { name: `${id} ${name}` })) }
 function predecessor(name: string) { return screen.getByLabelText(new RegExp(`^${name}`)) }
 
 test('A01/A02 calendar controls and first task produce WP1 rollover dates', () => {
   render(<App />)
-  expect(screen.getAllByRole('checkbox')).toHaveLength(7)
+  tab('Project Settings'); expect(screen.getAllByRole('checkbox')).toHaveLength(7)
   expect(screen.getByText('Your project starts with one task')).toBeInTheDocument()
   expect(screen.getByLabelText('Project start date')).toHaveAttribute('type', 'date')
   calendar()
-  expect(screen.getByRole('checkbox', { name: 'Monday' })).toBeChecked()
-  expect(screen.getByRole('checkbox', { name: 'Thursday' })).toBeChecked()
+  expect(weekday('Monday')).toBeChecked()
+  expect(weekday('Thursday')).toBeChecked()
   add('Research', '3')
   const first = row('T1', 'Research')
   expect(first.getByText('2026-11-02')).toBeInTheDocument()
@@ -47,7 +51,7 @@ test('A01/A02 calendar controls and first task produce WP1 rollover dates', () =
 test('Monday/Tuesday/Friday three-hour calendar finishes a five-hour T3 on Tuesday and reacts to switching Tuesday to Thursday', () => {
   render(<App />)
   setting('Working hours per day', '3')
-  for (const day of ['Wednesday', 'Thursday']) fireEvent.click(screen.getByRole('checkbox', { name: day }))
+  for (const day of ['Wednesday', 'Thursday']) fireEvent.click(weekday(day))
   add('First', '2')
   add('Second')
   edit('T2')
@@ -58,8 +62,8 @@ test('Monday/Tuesday/Friday three-hour calendar finishes a five-hour T3 on Tuesd
   expect(row('T3', 'Concurrent task').getByText('2026-11-03')).toBeInTheDocument()
   expect(row('T3', 'Concurrent task').getByText('after hour 2 that day')).toBeInTheDocument()
   expect(row('T3', 'Concurrent task').getByText('5')).toBeInTheDocument()
-  fireEvent.click(screen.getByRole('checkbox', { name: 'Tuesday' }))
-  fireEvent.click(screen.getByRole('checkbox', { name: 'Thursday' }))
+  fireEvent.click(weekday('Tuesday'))
+  fireEvent.click(weekday('Thursday'))
   expect(row('T3', 'Concurrent task').getByText('2026-11-05')).toBeInTheDocument()
   expect(row('T3', 'Concurrent task').queryByText('2026-11-03')).not.toBeInTheDocument()
 })
@@ -77,7 +81,7 @@ test('A03/A04 default following, manual retention, reset and rejected project ed
   setting('Project start date', '2026-11-16')
   expect(screen.getByRole('alert')).toHaveTextContent('manual requested start precedes')
   expect(row('T1', 'Research').getAllByText('Unavailable')).toHaveLength(2)
-  fireEvent.click(screen.getByRole('button', { name: 'Revert settings' }))
+  tab('Project Settings'); fireEvent.click(screen.getByRole('button', { name: 'Revert settings' }))
   expect(screen.getByLabelText('Project start date')).toHaveValue('2026-11-05')
   edit('T1')
   expect(screen.getByLabelText(/^Independent start date/)).toHaveValue('2026-11-12')
@@ -135,7 +139,7 @@ test('A08 self-reference and cycle choices are disabled with actionable explanat
   expect(predecessor('T1 — First')).toBeDisabled()
   expect(predecessor('T2 — Second')).toBeDisabled()
   expect(screen.getByText('A task cannot depend on itself.')).toBeInTheDocument()
-  expect(screen.getByText(/Remove a dependency to break this cycle/)).toBeInTheDocument()
+  expect(screen.getAllByText(/Remove a dependency to break this cycle/).length).toBeGreaterThan(0)
   fireEvent.click(screen.getByRole('button', { name: 'Cancel' }))
   expect(row('T2', 'Second').getByText('T1 — First')).toBeInTheDocument()
 })
@@ -160,12 +164,12 @@ test('A10 deletion discloses links, can be cancelled, and keeps dependent tasks'
   edit('T2')
   fireEvent.click(predecessor('T1 — First'))
   save()
-  fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
+  tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
   expect(screen.getByRole('dialog')).toHaveTextContent('T2 — Second: remove predecessor T1')
   expect(screen.getByRole('button', { name: 'Keep task' })).toHaveFocus()
   fireEvent.click(screen.getByRole('button', { name: 'Keep task' }))
   expect(screen.getByRole('row', { name: 'T1 First' })).toBeInTheDocument()
-  fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
+  tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
   fireEvent.click(screen.getByRole('button', { name: 'Delete task and remove links' }))
   expect(screen.queryByRole('row', { name: 'T1 First' })).not.toBeInTheDocument()
   expect(row('T2', 'Second').getByText('None')).toBeInTheDocument()
@@ -185,7 +189,7 @@ test('A11 target status changes without changing task dates; early target reject
   expect(screen.getByText('On time')).toBeInTheDocument()
   setting('Target end date', '2026-11-01')
   expect(screen.getByRole('alert')).toHaveTextContent('target end date precedes')
-  fireEvent.click(screen.getByRole('button', { name: 'Revert settings' }))
+  tab('Project Settings'); fireEvent.click(screen.getByRole('button', { name: 'Revert settings' }))
   expect(screen.getByLabelText('Target end date')).toHaveValue('2026-12-18')
 })
 
@@ -198,7 +202,7 @@ test('rejected deletion preserves tasks when removing a link would reactivate an
   fireEvent.click(predecessor('T1 — First'))
   save()
   setting('Project start date', '2026-11-09')
-  fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
+  tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
   fireEvent.click(screen.getByRole('button', { name: 'Delete task and remove links' }))
   expect(within(screen.getByRole('dialog')).getByRole('alert')).toHaveTextContent('Task kept. T2: The manual requested start precedes')
   fireEvent.click(screen.getByRole('button', { name: 'Keep task' }))
@@ -207,7 +211,7 @@ test('rejected deletion preserves tasks when removing a link would reactivate an
   edit('T2')
   fireEvent.click(screen.getByRole('button', { name: 'Reset to Project Start' }))
   save()
-  fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
+  tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Delete T1' }))
   fireEvent.click(screen.getByRole('button', { name: 'Delete task and remove links' }))
   expect(screen.queryByRole('row', { name: 'T1 First' })).not.toBeInTheDocument()
   expect(screen.getByRole('row', { name: 'T2 Second' })).toBeInTheDocument()
@@ -239,13 +243,13 @@ test('A12 repeated edits retain focus, descriptions and stable IDs; dependency r
 test('empty calendar and capacity errors retain recoverable settings and hide stale dates', () => {
   render(<App />)
   add('First')
-  for (const day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']) fireEvent.click(screen.getByRole('checkbox', { name: day }))
+  for (const day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']) fireEvent.click(weekday(day))
   expect(screen.getByRole('alert')).toHaveTextContent('Select at least one unique weekday')
   expect(row('T1', 'First').getAllByText('Unavailable')).toHaveLength(2)
-  fireEvent.click(screen.getByRole('checkbox', { name: 'Monday' }))
+  fireEvent.click(weekday('Monday'))
   expect(screen.queryByRole('alert')).not.toBeInTheDocument()
   setting('Working hours per day', '')
   expect(screen.getByRole('alert')).toHaveTextContent('workingHoursPerDay')
-  fireEvent.click(screen.getByRole('button', { name: 'Revert settings' }))
+  tab('Project Settings'); fireEvent.click(screen.getByRole('button', { name: 'Revert settings' }))
   expect(screen.getByLabelText(/^Working hours per day/)).toHaveValue(4)
 })

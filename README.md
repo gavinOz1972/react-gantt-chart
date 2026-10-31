@@ -5,7 +5,9 @@ pure scheduling engine. WP2 adds project calendar settings, task entry, predeces
 selection, and live schedule dates. WP3 adds expanded-calendar and compressed
 working-time Gantt views with dependency connectors. WP4 adds working-hour slack,
 critical-path highlighting, a dependency network, named browser saves, and JSON
-export/import. Resource levelling, costs, progress and probabilistic PERT are outside
+export/import. WP5 adds persistent manual order, temporary sorts, duplication,
+inline editing and Files / Project Settings / Workspace navigation.
+Resource levelling, costs, progress and probabilistic PERT are outside
 this release.
 
 ## Prerequisites and setup
@@ -48,16 +50,29 @@ on port 5173. Stop other servers on the test port first.
 Run `npm.cmd run dev` in PowerShell and open the Local URL it prints. If a dev
 server is already running, the page should update automatically; otherwise refresh.
 
-1. Enter the project name, start, target, weekdays, and daily working hours.
+1. Start in Files: create a new project or load/import an existing one. New project
+   takes you to Project Settings; loading/importing opens Workspace.
+2. In Project Settings, enter the project name, start, target, weekdays, and daily working hours.
    Text/date/number settings apply when you leave the field; weekdays apply
    immediately. Invalid drafts stay editable. Revert settings restores the last
    accepted project settings.
-2. Choose Add task. Enter a name, description, whole-hour estimate and independent
+3. In Workspace, choose Add task. Enter a name, description, whole-hour estimate and independent
    start date, or select predecessors from the checkbox dropdown.
-3. Inspect the live schedule preview, then Save task or Cancel. A dependent start
+4. Inspect the live schedule preview, then Save task or Cancel. A dependent start
    is read-only. Removing all predecessors restores its retained independent date.
    Reset to Project Start restores automatic following.
-4. Edit a task to change inputs. Delete requests confirmation and discloses affected
+5. Select an existing task's name, description, duration or independent date to edit
+   inline. Enter, Tab or blur commits; Escape cancels. Descriptions use Enter for a
+   newline and Ctrl+Enter to commit. Invalid inline drafts keep the committed
+   schedule intact. Predecessor checkboxes commit immediately after validation.
+   Edit form remains available for the full preview form.
+6. Drag a task handle onto another row to place it above that row, or use the up/down
+   buttons in Manual Order. Start Date, Task Name and Duration are display sorts;
+   returning to Manual Order restores your arrangement. Gantt follows the same order.
+   Duplicate copies incoming dependencies/settings with a new ID, immediately after
+   its original in Manual Order, while keeping the current sort. Outgoing links stay
+   attached to their original task.
+7. Delete requests confirmation and discloses affected
    predecessor links; other tasks are kept. IDs are never renumbered or reused
    after a saved task is deleted.
 
@@ -66,17 +81,21 @@ end date. It never changes the schedule. Starts show the first occupied hour;
 finishes show the exclusive boundary after the final occupied hour. Hour numbers
 restart on each working day; Total hours is the full estimate across all days.
 
-The interface labels unsaved previews and suppresses calculated dates for invalid
-input. Saved inputs remain recoverable with Cancel or Revert settings. Project
-settings are disabled while a task is being edited to keep the two drafts separate.
-Unsaved edits live in this tab. Use Save project or Export JSON before leaving.
+The Add/full form labels unsaved previews and suppresses dates for invalid preview
+input. Inline edits instead preserve the valid committed schedule until successful
+commit. Cancel/Escape or Revert settings recovers accepted inputs. Project settings
+are disabled while a task draft is open. Tab switching preserves task drafts, sort,
+selection and chart controls. Unsaved edits live in this browser tab; use Save or
+Export JSON before leaving.
 
 ## Save, reopen and move a plan
 
-The Save & reopen panel shows the current project and whether it has unsaved changes.
-Enter a Saved plan name and choose Save project. Multiple named plans can coexist;
-overwriting an existing name requires confirmation. Save task only accepts that
-task's edits; Save project writes the whole plan to this browser's local storage.
+Files contains the Save & reopen controls. Enter a Saved plan name and choose
+Save As. Multiple named plans can coexist; Save As over an existing name requires
+confirmation. The compact upper-right Save button and dirty/saved indicator are
+visible from every tab. Save updates the known browser copy directly; an unnamed
+project opens Files and focuses the name step. Save task only accepts that task's
+draft; Save/Save As writes the whole plan to this browser's local storage.
 
 After a reload, choose a plan in Saved plans and click Load project. There is no
 automatic save or automatic project reopening. Storage belongs to this browser
@@ -90,15 +109,16 @@ over unsaved project or unfinished task/settings edits raises a cancellable warn
 Deleting a named save requires confirmation and leaves the open plan intact.
 
 Finish or cancel task drafts before saving/exporting. Imported plans are not
-automatically saved locally: choose Save project to create a browser copy. Export
+automatically saved locally: choose Save As to create a browser copy. Export
 does not update a named browser save or clear the local unsaved-changes indicator.
-Files contain source fields and the next stable task-ID counter, not trusted derived
+Files contain source fields, the next stable task-ID counter, manual order, sort
+preference and copy origins, not trusted derived
 dates or critical-path results; all calculations are rebuilt on load. See the
 [version 1 file format and storage contract](src/persistence/README.md).
 
 ## Using the Gantt chart
 
-The Gantt chart below the task table follows the same live schedule and unsaved
+The Gantt chart leads Workspace, above the task table, and follows the same live schedule and unsaved
 previews. Expanded is the default: every calendar date stays on the axis, solid
 segments show occupied working slots, and diagonal hatching shows elapsed
 nonworking dates within a task's continuous span. Compressed omits nonworking
@@ -113,7 +133,7 @@ not part of that task. In Compressed, the bar covers three adjacent slots.
 
 Use Hour, Day or Week scale and the timeline's horizontal scrollbar. Labels stay
 fixed at the left and headers at the top. Click or focus a bar, its task label,
-or its name in the WP2 table to select the same stable task. Its source duration,
+or its ID in the task table to select the same stable task. Its source duration,
 calculated boundaries and predecessors appear below the chart. Dependency lines
 have arrowheads and can be inspected by hover or keyboard focus. Go to selected
 task brings an offscreen selection into view. Bars are not draggable.
@@ -151,6 +171,8 @@ view using single duration estimates, not three-point probabilistic PERT.
 - `src/styles/`: simple CSS; `src/test/`: component test setup.
 - `src/components/projectEntry.ts`: conversion boundary for editable strings and
   typed WP1 inputs; no scheduling arithmetic.
+- `src/taskManagement.ts`: pure display order/sort projection and independent copy
+  construction; never schedules tasks or changes dependencies on other records.
 - `src/timeline/`: pure coordinate projection from the WP1 schedule, without React.
 - `src/components/gantt/`: windowed SVG chart, headers, legend and inspection.
 - `src/domain/criticalPath.ts` and `workingTime.ts`: pure backward-pass analysis
@@ -196,4 +218,9 @@ performance evidence and the expanded/compressed owner-review screenshots.
 
 See [WP4 verification and handoff](docs/WP4-HANDOFF.md) and the
 [owner test guide](docs/WP4-OWNER-GUIDE.md) for the first-release features and review
-artifacts. Implementation is ready for review; owner acceptance is pending.
+artifacts.
+
+See [WP5 verification and handoff](docs/WP5-HANDOFF.md) and the
+[WP5 owner test guide](docs/WP5-OWNER-GUIDE.md) for task management, the three-tab
+workspace, migration details and before/after screenshots. WP5 is ready for owner
+testing; it has not been marked owner-accepted.

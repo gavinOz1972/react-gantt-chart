@@ -41,6 +41,7 @@ test('live changes replace critical classifications and invalid data hides all s
 
 test('A09 switching Gantt/network preserves shared task selection and Gantt mode', () => {
   render(<App />)
+  fireEvent.click(screen.getByRole('tab', { name: 'Workspace' }))
   fireEvent.click(screen.getByRole('button', { name: 'Add task' }))
   fireEvent.change(screen.getByLabelText(/^Task name/), { target: { value: 'Research' } })
   fireEvent.click(screen.getByRole('button', { name: 'Save task' }))

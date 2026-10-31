@@ -3,6 +3,9 @@ import { afterEach, beforeAll, beforeEach, expect, test, vi } from 'vitest'
 import App from '../../App'
 import { LOCAL_PROJECTS_KEY, readLocalProjects } from '../../persistence/localProjects'
 
+function tab(name: string) { fireEvent.click(screen.getByRole('tab', { name })) }
+function weekday(name: string) { tab('Project Settings'); return screen.getByRole('checkbox', { name }) }
+
 beforeAll(() => {
   HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', '') }
   HTMLDialogElement.prototype.close = function () { this.removeAttribute('open') }
@@ -10,38 +13,39 @@ beforeAll(() => {
 beforeEach(() => localStorage.clear())
 afterEach(() => { localStorage.clear(); vi.restoreAllMocks() })
 function field(name: string, value: string) { fireEvent.change(screen.getByLabelText(new RegExp(`^${name}`)), { target: { value } }) }
-function setting(name: string, value: string) { field(name, value); fireEvent.blur(screen.getByLabelText(new RegExp(`^${name}`))) }
+function setting(name: string, value: string) { tab('Project Settings'); field(name, value); fireEvent.blur(screen.getByLabelText(new RegExp(`^${name}`))) }
 function add(name = 'Research', hours = '3') {
+  tab('Workspace')
   fireEvent.click(screen.getByRole('button', { name: 'Add task' }))
   field('Task name', name); field('Estimated duration', hours)
   fireEvent.click(screen.getByRole('button', { name: 'Save task' }))
 }
-function save(name = 'Semester A') { field('Saved plan name', name); fireEvent.click(screen.getByRole('button', { name: 'Save project' })) }
-function load(name = 'Semester A') { field('Saved plans', name); fireEvent.click(screen.getByRole('button', { name: 'Load project' })) }
+function save(name = 'Semester A') { tab('Files'); field('Saved plan name', name); fireEvent.click(screen.getByRole('button', { name: 'Save As' })) }
+function load(name = 'Semester A') { tab('Files'); field('Saved plans', name); fireEvent.click(screen.getByRole('button', { name: 'Load project' })) }
 
 test('A10 named save/new/load preserves custom calendar, manual date, descriptions and stable ID counter', () => {
   render(<App />)
   setting('Working hours per day', '3')
-  for (const day of ['Tuesday', 'Wednesday']) fireEvent.click(screen.getByRole('checkbox', { name: day }))
+  for (const day of ['Tuesday', 'Wednesday']) fireEvent.click(weekday(day))
   add()
-  fireEvent.click(screen.getByRole('button', { name: 'Edit T1' }))
+  tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Edit T1' }))
   field('Description', 'Keep my research notes'); field('Independent start date', '2026-11-05')
   fireEvent.click(screen.getByRole('button', { name: 'Save task' }))
   add('Draft', '1')
-  fireEvent.click(screen.getByRole('button', { name: 'Edit T2' }))
+  tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Edit T2' }))
   fireEvent.click(screen.getByLabelText(/^T1 — Research/))
   fireEvent.click(screen.getByRole('button', { name: 'Save task' }))
   save()
   expect(screen.getByText('Saved locally', { exact: true })).toBeInTheDocument()
-  fireEvent.click(screen.getByRole('button', { name: 'New project' }))
+  tab('Files'); fireEvent.click(screen.getByRole('button', { name: 'New project' }))
   expect(screen.getByText('Your project starts with one task')).toBeInTheDocument()
   load()
-  expect(screen.getByRole('row', { name: 'T1 Research' })).toHaveTextContent('Keep my research notes')
+  tab('Workspace'); expect(screen.getByRole('row', { name: 'T1 Research' })).toHaveTextContent('Keep my research notes')
   expect(screen.getByRole('row', { name: 'T2 Draft' })).toHaveTextContent('T1 — Research')
   expect(screen.getByLabelText(/^Working hours per day/)).toHaveValue(3)
-  expect(screen.getByRole('checkbox', { name: 'Thursday' })).toBeChecked()
-  expect(screen.getByRole('checkbox', { name: 'Tuesday' })).not.toBeChecked()
-  fireEvent.click(screen.getByRole('button', { name: 'Edit T1' }))
+  expect(weekday('Thursday')).toBeChecked()
+  expect(weekday('Tuesday')).not.toBeChecked()
+  tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Edit T1' }))
   expect(screen.getByLabelText(/^Independent start date/)).toHaveValue('2026-11-05')
   fireEvent.click(screen.getByRole('button', { name: 'Cancel' }))
   add('Third')
@@ -50,7 +54,7 @@ test('A10 named save/new/load preserves custom calendar, manual date, descriptio
 
 test('A13 loading over invalid pending task edits warns and cancellation preserves the draft', () => {
   render(<App />); add(); save()
-  fireEvent.click(screen.getByRole('button', { name: 'Edit T1' }))
+  tab('Workspace'); fireEvent.click(screen.getByRole('button', { name: 'Edit T1' }))
   field('Estimated duration', '0')
   load()
   expect(screen.getByRole('dialog')).toHaveTextContent('Replace unsaved work?')
@@ -59,7 +63,7 @@ test('A13 loading over invalid pending task edits warns and cancellation preserv
   load()
   fireEvent.click(screen.getByRole('button', { name: 'Replace current project' }))
   expect(screen.queryByLabelText(/^Estimated duration/)).not.toBeInTheDocument()
-  expect(screen.getByRole('row', { name: 'T1 Research' })).toHaveTextContent('3')
+  tab('Workspace'); expect(screen.getByRole('row', { name: 'T1 Research' })).toHaveTextContent('3')
   expect(screen.queryByText(/Timeline unavailable/)).not.toBeInTheDocument()
 })
 
@@ -67,10 +71,10 @@ test('overwrite requires confirmation and Cancel leaves the saved file unchanged
   render(<App />); add(); save()
   const before = localStorage.getItem(LOCAL_PROJECTS_KEY)
   setting('Project name', 'Changed semester')
-  fireEvent.click(screen.getByRole('button', { name: 'Save project' }))
+  tab('Files'); fireEvent.click(screen.getByRole('button', { name: 'Save As' }))
   fireEvent.click(screen.getByRole('button', { name: 'Cancel' }))
   expect(localStorage.getItem(LOCAL_PROJECTS_KEY)).toBe(before)
-  fireEvent.click(screen.getByRole('button', { name: 'Save project' }))
+  tab('Files'); fireEvent.click(screen.getByRole('button', { name: 'Save As' }))
   fireEvent.click(screen.getByRole('button', { name: 'Overwrite saved plan' }))
   const library = readLocalProjects(localStorage)
   expect(library.ok).toBe(true)
@@ -79,10 +83,10 @@ test('overwrite requires confirmation and Cancel leaves the saved file unchanged
 
 test('deleting a named browser copy confirms and leaves the open project intact and unsaved', () => {
   render(<App />); add(); save()
-  fireEvent.click(screen.getByRole('button', { name: 'Delete saved plan' }))
+  tab('Files'); fireEvent.click(screen.getByRole('button', { name: 'Delete saved plan' }))
   expect(screen.getByRole('dialog')).toHaveTextContent('open project and other saved plans will be kept')
   fireEvent.click(screen.getByRole('button', { name: 'Delete saved copy' }))
-  expect(screen.getByRole('row', { name: 'T1 Research' })).toBeInTheDocument()
+  tab('Workspace'); expect(screen.getByRole('row', { name: 'T1 Research' })).toBeInTheDocument()
   expect(screen.getByText('Unsaved changes', { exact: true })).toBeInTheDocument()
   expect(readLocalProjects(localStorage)).toEqual({ ok: true, projects: [] })
 })
@@ -95,7 +99,7 @@ test.each([
   const before = localStorage.getItem(LOCAL_PROJECTS_KEY)
   fireEvent.change(screen.getByLabelText('Import project JSON'), { target: { files: [new File([text], 'plan.json', { type: 'application/json' })] } })
   await waitFor(() => expect(screen.getByRole('alert')).toHaveTextContent(message))
-  expect(screen.getByRole('row', { name: 'T1 Research' })).toBeInTheDocument()
+  tab('Workspace'); expect(screen.getByRole('row', { name: 'T1 Research' })).toBeInTheDocument()
   expect(localStorage.getItem(LOCAL_PROJECTS_KEY)).toBe(before)
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 })
