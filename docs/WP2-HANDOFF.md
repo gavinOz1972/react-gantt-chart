@@ -131,3 +131,12 @@ The table now labels the estimate Total hours and each boundary as an hour that
 day, with a note that hour numbers restart daily. No scheduling code changed.
 npm.cmd run check passed after the clarification: lint, typecheck, 84 tests in
 five files, and production build. Browser interactions are unchanged.
+
+The owner subsequently described the calendar as M,T,F with three-hour work
+periods; Tuesday versus Thursday remains to be clarified. Added engine, React,
+and Chromium regression scenarios verify Monday/Tuesday/Friday finishes the
+five-hour T3 on 2026-11-03 after hour 2, whereas Monday/Thursday/Friday finishes
+it on 2026-11-05 after hour 2. Switching the corresponding checkboxes updates
+the date immediately. No scheduling or calendar-mapping defect was reproduced.
+npm.cmd run check passes with 87 tests; the targeted Chromium regression also
+passes using npm.cmd run test:e2e -- --grep "five-hour T3".

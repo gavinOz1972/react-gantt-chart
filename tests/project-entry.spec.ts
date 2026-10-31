@@ -8,6 +8,32 @@ async function add(page: Page, name: string, hours = '1') {
   await page.getByRole('button', { name: 'Save task' }).click()
 }
 
+test('five-hour T3 follows Monday Tuesday Friday calendar with three hours per day', async ({ page }) => {
+  await page.goto('/')
+  await page.getByLabel(/^Working hours per day/).fill('3')
+  await page.getByLabel(/^Working hours per day/).blur()
+  for (const day of ['Wednesday', 'Thursday']) await page.getByRole('checkbox', { name: day, exact: true }).uncheck()
+  await expect(page.getByRole('checkbox', { name: 'Monday', exact: true })).toBeChecked()
+  await expect(page.getByRole('checkbox', { name: 'Tuesday', exact: true })).toBeChecked()
+  await expect(page.getByRole('checkbox', { name: 'Friday', exact: true })).toBeChecked()
+  await add(page, 'First task', '2')
+  await add(page, 'Second task')
+  await page.getByRole('button', { name: 'Edit T2', exact: true }).click()
+  await page.getByText('Predecessors (0 selected)', { exact: true }).click()
+  await page.getByRole('checkbox', { name: 'T1 — First task', exact: true }).check()
+  await page.getByRole('button', { name: 'Save task' }).click()
+  await add(page, 'Concurrent task', '5')
+  const third = page.getByRole('row', { name: 'T3 Concurrent task', exact: true })
+  await expect(third).toContainText('2026-11-02')
+  await expect(third).toContainText('2026-11-03')
+  await expect(third).toContainText('after hour 2 that day')
+  await expect(third).not.toContainText('2026-11-05')
+  await page.getByRole('checkbox', { name: 'Tuesday', exact: true }).uncheck()
+  await page.getByRole('checkbox', { name: 'Thursday', exact: true }).check()
+  await expect(third).toContainText('2026-11-05')
+  await expect(third).not.toContainText('2026-11-03')
+})
+
 test('desktop task workflow, dependencies, recalculation and confirmed deletion', async ({ page }, info) => {
   await page.setViewportSize({ width: 1440, height: 1100 })
   await page.goto('/')

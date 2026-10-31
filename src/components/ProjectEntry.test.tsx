@@ -44,6 +44,26 @@ test('A01/A02 calendar controls and first task produce WP1 rollover dates', () =
   expect(first.getByText('after hour 1 that day')).toBeInTheDocument()
 })
 
+test('Monday/Tuesday/Friday three-hour calendar finishes a five-hour T3 on Tuesday and reacts to switching Tuesday to Thursday', () => {
+  render(<App />)
+  setting('Working hours per day', '3')
+  for (const day of ['Wednesday', 'Thursday']) fireEvent.click(screen.getByRole('checkbox', { name: day }))
+  add('First', '2')
+  add('Second')
+  edit('T2')
+  fireEvent.click(predecessor('T1 — First'))
+  save()
+  add('Concurrent task', '5')
+  expect(row('T3', 'Concurrent task').getByText('2026-11-02')).toBeInTheDocument()
+  expect(row('T3', 'Concurrent task').getByText('2026-11-03')).toBeInTheDocument()
+  expect(row('T3', 'Concurrent task').getByText('after hour 2 that day')).toBeInTheDocument()
+  expect(row('T3', 'Concurrent task').getByText('5')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('checkbox', { name: 'Tuesday' }))
+  fireEvent.click(screen.getByRole('checkbox', { name: 'Thursday' }))
+  expect(row('T3', 'Concurrent task').getByText('2026-11-05')).toBeInTheDocument()
+  expect(row('T3', 'Concurrent task').queryByText('2026-11-03')).not.toBeInTheDocument()
+})
+
 test('A03/A04 default following, manual retention, reset and rejected project edits', () => {
   render(<App />)
   add('Research')

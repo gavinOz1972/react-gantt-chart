@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, test } from 'vitest'
 import { calculateSchedule } from '../index'
-import type { ProjectSettings, SchedulePolicies, ScheduleResult, TaskInput } from '../index'
+import type { ProjectSettings, SchedulePolicies, ScheduleResult, TaskInput, Weekday } from '../index'
 
 const project: ProjectSettings = {
   projectId: 'P1', name: 'Semester project', projectStartDate: '2026-11-02',
@@ -28,11 +28,15 @@ function failure(result: ScheduleResult, code: string, field?: string) {
 const find = (result: ScheduleResult, id: string) => success(result).tasks.find(task => task.taskId === id)!
 
 describe('WP1 acceptance scenarios', () => {
-  test('five-hour concurrent task occupies three hours Monday and two hours Thursday', () => {
-    const result = calculateSchedule({ ...project, workingHoursPerDay: 3 }, [task('T1', 2), task('T2', 1, ['T1']), task('T3', 5)])
+  test.each([
+    { days: [1, 4], finish: '2026-11-05' },
+    { days: [1, 2, 5], finish: '2026-11-03' },
+    { days: [1, 4, 5], finish: '2026-11-05' },
+  ])('five-hour concurrent task uses three hours Monday and two on $finish for weekdays $days', ({ days, finish }) => {
+    const result = calculateSchedule({ ...project, workingWeekdays: days as Weekday[], workingHoursPerDay: 3 }, [task('T1', 2), task('T2', 1, ['T1']), task('T3', 5)])
     expect(find(result, 'T3').startSlot).toEqual({ date: '2026-11-02', hour: 1 })
-    expect(find(result, 'T3').finishBoundary).toEqual({ date: '2026-11-05', afterHour: 2 })
-    expect(success(result).projectCompletion).toEqual({ date: '2026-11-05', afterHour: 2 })
+    expect(find(result, 'T3').finishBoundary).toEqual({ date: finish, afterHour: 2 })
+    expect(success(result).projectCompletion).toEqual({ date: finish, afterHour: 2 })
   })
   test('A01 hour rollover', () => {
     const result = calculateSchedule(project, [task('T1', 3)])
