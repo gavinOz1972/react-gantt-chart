@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { calculateSchedule } from './domain'
 import type { TaskInput } from './domain'
 import { EntryErrors } from './components/EntryErrors'
@@ -6,6 +6,7 @@ import { ProjectSettingsForm } from './components/ProjectSettingsForm'
 import { TaskEditor } from './components/TaskEditor'
 import { TaskTable } from './components/TaskTable'
 import { DeleteTaskDialog } from './components/DeleteTaskDialog'
+import { GanttChart } from './components/gantt/GanttChart'
 import { dependencyError, initialProject, newTask, projectFromDraft, projectToDraft, removeTaskAndLinks, replaceTask, taskFromDraft, taskToDraft } from './components/projectEntry'
 import type { ProjectDraft, TaskDraft } from './components/projectEntry'
 
@@ -19,6 +20,7 @@ function App() {
   const [deleting, setDeleting] = useState<TaskInput | null>(null)
   const [deleteError, setDeleteError] = useState('')
   const [notice, setNotice] = useState('')
+  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null)
   const addButton = useRef<HTMLButtonElement>(null)
   const restoreEditorFocus = useRef(false)
   useEffect(() => {
@@ -28,9 +30,9 @@ function App() {
     }
   }, [editor, deleting])
 
-  const proposedProject = projectFromDraft(project.projectId, projectDraft)
-  const proposedTasks = editor ? replaceTask(tasks, taskFromDraft(editor)) : tasks
-  const result = calculateSchedule(proposedProject, proposedTasks)
+  const proposedProject = useMemo(() => projectFromDraft(project.projectId, projectDraft), [project.projectId, projectDraft])
+  const proposedTasks = useMemo(() => editor ? replaceTask(tasks, taskFromDraft(editor)) : tasks, [editor, tasks])
+  const result = useMemo(() => calculateSchedule(proposedProject, proposedTasks), [proposedProject, proposedTasks])
   const errors = result.ok ? [] : result.errors
   const projectDirty = JSON.stringify(projectDraft) !== JSON.stringify(projectToDraft(project))
   const isNew = !!editor && !tasks.some(task => task.taskId === editor.taskId)
@@ -96,6 +98,7 @@ function App() {
       return
     }
     setTasks(candidate)
+    if (selectedTaskId === deleting.taskId) setSelectedTaskId(null)
     restoreEditorFocus.current = true
     setNotice(`${deleting.taskId} deleted. Other tasks were kept and recalculated.`)
     setDeleting(null)
@@ -103,7 +106,7 @@ function App() {
 
   return <main>
     <header className="page-header"><div><span className="eyebrow">Project planner</span><h1>React Gantt Chart</h1>
-      <p>Set your working calendar, connect your tasks, and see your schedule take shape.</p></div><span className="phase-label">Project & task entry</span></header>
+      <p>Set your working calendar, connect your tasks, and see your schedule take shape.</p></div><span className="phase-label">Project, tasks & timeline</span></header>
     <p className="session-note">This project is kept in this tab only. Reloading or closing the page clears your entries.</p>
     <ProjectSettingsForm draft={projectDraft} errors={errors} disabled={!!editor} dirty={projectDirty} onChange={setProjectDraft}
       onCommit={commitProject} onRevert={() => { setProjectDraft(projectToDraft(project)); setNotice('Saved project settings restored.') }} />
@@ -124,13 +127,14 @@ function App() {
       <div className="section-heading"><div><span className="eyebrow">02 / Work</span><h2 id="tasks-heading">Tasks & schedule</h2></div>
         <button ref={addButton} type="button" disabled={!!editor || !result.ok} onClick={() => startEditing(newTask(`T${nextId}`))}>Add task</button></div>
       {editor && <p className="muted">The table previews your task changes. Save or cancel before editing another task.</p>}
-      <TaskTable tasks={proposedTasks} result={result} editingId={editor?.taskId} blocked={!!editor || !result.ok}
+      <TaskTable tasks={proposedTasks} result={result} editingId={editor?.taskId} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} blocked={!!editor || !result.ok}
         onEdit={startEditing} onDelete={task => { setDeleting(task); setDeleteError('') }} />
     </section>
+    <GanttChart project={proposedProject} tasks={proposedTasks} result={result} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} previewing={previewing} />
     <p className="save-notice" role="status">{notice}</p>
     {deleting && <DeleteTaskDialog task={deleting} affected={tasks.filter(task => task.predecessorTaskIds.includes(deleting.taskId))} error={deleteError}
       onConfirm={confirmDelete} onCancel={() => setDeleting(null)} />}
-    <footer>Project and task entry · Graphical Gantt view comes next.</footer>
+    <footer>Project, task entry & Gantt timeline · Changes stay in this tab.</footer>
   </main>
 }
 

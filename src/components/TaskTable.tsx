@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react'
 import type { ScheduleResult, TaskInput } from '../domain'
 
-export function TaskTable({ tasks, result, editingId, blocked, onEdit, onDelete }: {
+export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, onEdit, onDelete, onSelect }: {
   tasks: readonly TaskInput[]; result: ScheduleResult; editingId?: string; blocked: boolean
+  selectedTaskId?: string | null; onSelect?: (id: string) => void
   onEdit: (task: TaskInput) => void; onDelete: (task: TaskInput) => void
 }) {
   const scrollRegion = useRef<HTMLDivElement>(null)
@@ -17,9 +18,9 @@ export function TaskTable({ tasks, result, editingId, blocked, onEdit, onDelete 
       <th scope="col">ID</th><th scope="col">Task</th><th scope="col">Total hours</th><th scope="col">Predecessors</th><th scope="col">Calculated start</th><th scope="col">Calculated finish</th><th scope="col">Actions</th>
     </tr></thead><tbody>{tasks.map(task => {
       const dates = scheduled.get(task.taskId)
-      return <tr key={task.taskId} aria-label={`${task.taskId} ${task.name}`} className={editingId === task.taskId ? 'editing-row' : undefined}>
+      return <tr key={task.taskId} aria-label={`${task.taskId} ${task.name}`} aria-selected={selectedTaskId === task.taskId} className={`${editingId === task.taskId ? 'editing-row' : ''}${selectedTaskId === task.taskId ? ' selected-task-row' : ''}`}>
         <th scope="row"><span className="task-id">{task.taskId}</span></th>
-        <td><strong>{task.name || 'Untitled task'}</strong>{task.description && <small className="task-description">{task.description}</small>}
+        <td><button type="button" className="task-inspect" aria-label={`Select ${task.taskId} in chart`} onClick={() => onSelect?.(task.taskId)}>{task.name || 'Untitled task'}</button>{task.description && <small className="task-description">{task.description}</small>}
           <small>{task.predecessorTaskIds.length ? 'Dependency start' : task.independentStartMode === 'MANUAL' ? 'Manual start' : 'Follows project start'}{editingId === task.taskId ? ' · Unsaved preview' : ''}</small></td>
         <td>{Number.isFinite(task.durationHours) ? task.durationHours : '—'}</td>
         <td>{task.predecessorTaskIds.length ? task.predecessorTaskIds.map(id => `${id} — ${tasks.find(entry => entry.taskId === id)?.name ?? id}`).join('; ') : 'None'}</td>

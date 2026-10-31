@@ -2,8 +2,9 @@
 
 WP0 provides a tested React and TypeScript development environment. WP1 adds a
 pure scheduling engine. WP2 adds project calendar settings, task entry, predecessor
-selection, and live schedule dates. Graphical Gantt rendering and persistence
-belong to later work packages.
+selection, and live schedule dates. WP3 adds expanded-calendar and compressed
+working-time Gantt views with dependency connectors. Persistence, critical path,
+and the network view remain deferred.
 
 ## Prerequisites and setup
 
@@ -31,11 +32,11 @@ Open this folder in VS Code with `code .` or File > Open Folder.
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | ESLint including the domain import boundary |
 | `npm run typecheck` | TypeScript project checks |
-| `npm test` | Scheduling tests, entry boundary tests, and React interaction tests |
+| `npm test` | Scheduling, entry, timeline projection, and React interaction tests |
 | `npm run test:watch` | Watch unit/component tests |
 | `npm run check` | Lint, types, unit tests, and build |
 | `npx playwright install chromium` | Install the browser for the smoke test |
-| `npm run test:e2e` | Chromium entry workflows and smoke test; starts its own dev server |
+| `npm run test:e2e` | Chromium entry/chart workflows and smoke test; starts its own dev server |
 
 Browser tests reserve 127.0.0.1:4173, separate from the normal development server
 on port 5173. Stop other servers on the test port first.
@@ -68,6 +69,32 @@ input. Saved inputs remain recoverable with Cancel or Revert settings. Project
 settings are disabled while a task is being edited to keep the two drafts separate.
 All entries live in memory in this tab; reloading or closing clears them.
 
+## Using the Gantt chart
+
+The Gantt chart below the task table follows the same live schedule and unsaved
+previews. Expanded is the default: every calendar date stays on the axis, solid
+segments show occupied working slots, and diagonal hatching shows elapsed
+nonworking dates within a task's continuous span. Compressed omits nonworking
+dates; the same task is a solid bar whose length is its working-slot duration.
+
+Each selected day is divided into equal numbered slots using workingHoursPerDay.
+These are ordinal work hours, not wall-clock times; the app has no workday start
+time or overnight-hour model. Only the exact start-to-finish interval is drawn.
+For Monday/Thursday at two hours/day, a three-hour bar contains a full Monday,
+hatched Tuesday/Wednesday, and half of Thursday. The remaining Thursday hour is
+not part of that task. In Compressed, the bar covers three adjacent slots.
+
+Use Hour, Day or Week scale and the timeline's horizontal scrollbar. Labels stay
+fixed at the left and headers at the top. Click or focus a bar, its task label,
+or its name in the WP2 table to select the same stable task. Its source duration,
+calculated boundaries and predecessors appear below the chart. Dependency lines
+have arrowheads and can be inspected by hover or keyboard focus. Go to selected
+task brings an offscreen selection into view. Bars are not draggable.
+
+Changing modes or zoom changes display only. Invalid input removes bars and
+connectors until corrected. See [timeline projection conventions](src/timeline/README.md)
+for the coordinate model and rendering limits.
+
 ## ENGINE and VIEW separation
 
 - `src/domain/`: ENGINE pure TypeScript calculations, explicit inputs/outputs,
@@ -78,7 +105,9 @@ All entries live in memory in this tab; reloading or closing clears them.
 - `src/styles/`: simple CSS; `src/test/`: component test setup.
 - `src/components/projectEntry.ts`: conversion boundary for editable strings and
   typed WP1 inputs; no scheduling arithmetic.
-- `tests/`: browser smoke test and project/task entry workflows.
+- `src/timeline/`: pure coordinate projection from the WP1 schedule, without React.
+- `src/components/gantt/`: windowed SVG chart, headers, legend and inspection.
+- `tests/`: browser smoke test, entry and Gantt workflows.
 
 The VIEW consumes ENGINE results. Keep scheduling rules in the ENGINE.
 The [engine API documentation](src/domain/README.md) describes WP1 contracts,
@@ -110,3 +139,6 @@ acceptance matrix and deferred work.
 
 See [WP2 verification and handoff](docs/WP2-HANDOFF.md) for interface behavior,
 acceptance coverage, browser verification, and WP3 integration points.
+
+See [WP3 verification and handoff](docs/WP3-HANDOFF.md) for chart acceptance coverage,
+performance evidence and the expanded/compressed owner-review screenshots.
