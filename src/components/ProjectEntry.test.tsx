@@ -41,7 +41,7 @@ test('A01/A02 calendar controls and first task produce WP1 rollover dates', () =
   const first = row('T1', 'Research')
   expect(first.getByText('2026-11-02')).toBeInTheDocument()
   expect(first.getByText('2026-11-05')).toBeInTheDocument()
-  expect(first.getByText('after hour 1')).toBeInTheDocument()
+  expect(first.getByText('after hour 1 that day')).toBeInTheDocument()
 })
 
 test('A03/A04 default following, manual retention, reset and rejected project edits', () => {
@@ -100,7 +100,7 @@ test('A07 multiple predecessors and duration changes update downstream dates bef
   edit('T1')
   field('Estimated duration', '9')
   expect(row('T3', 'Join').getAllByText('2026-11-16')).toHaveLength(2)
-  expect(row('T3', 'Join').getByText('hour 2')).toBeInTheDocument()
+  expect(row('T3', 'Join').getByText('hour 2 that day')).toBeInTheDocument()
   save()
 })
 

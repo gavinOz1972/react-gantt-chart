@@ -118,3 +118,16 @@ stable IDs, and DEFAULT/MANUAL retention. Do not derive scheduling dates in the 
 
 The work is committed locally for review on wp2-project-task-entry. It is not
 merged into main or pushed. Use git log -1 on that branch for the review commit.
+
+## Follow-up on duration display
+
+A reported five-hour T3 showed start 2026-11-02 hour 1 and finish 2026-11-05 after
+hour 2. A regression test reproduces those exact boundaries with Monday/Thursday
+and three hours/day: three hours Monday plus two Thursday. The supplied screenshots
+did not include project settings, so that calendar remains an inferred reproducer,
+not a verified reading of the owner's current in-memory settings.
+
+The table now labels the estimate Total hours and each boundary as an hour that
+day, with a note that hour numbers restart daily. No scheduling code changed.
+npm.cmd run check passed after the clarification: lint, typecheck, 84 tests in
+five files, and production build. Browser interactions are unchanged.

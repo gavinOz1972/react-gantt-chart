@@ -60,7 +60,8 @@ server is already running, the page should update automatically; otherwise refre
 
 Target status compares the last occupied working date to the inclusive target
 end date. It never changes the schedule. Starts show the first occupied hour;
-finishes show the exclusive boundary after the final occupied hour.
+finishes show the exclusive boundary after the final occupied hour. Hour numbers
+restart on each working day; Total hours is the full estimate across all days.
 
 The interface labels unsaved previews and suppresses calculated dates for invalid
 input. Saved inputs remain recoverable with Cancel or Revert settings. Project
