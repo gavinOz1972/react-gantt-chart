@@ -188,7 +188,8 @@ keyboard behavior and responsive review evidence. Its remaining-effort model is 
 
 ## Task status and completion
 
-1. Use **Status** in Tasks & Schedule or **Task Details → Status & completion**.
+1. Use **Status** in Tasks & Schedule, the selected task summary below the Gantt,
+   or **Task Details → Status & completion**. All three use the same confirmation rules.
    Only Not Started, In Progress, Blocked and Complete exist. Legacy tasks start
    Not Started without invented history. Hours, dates and zero remaining effort
    never change status automatically.

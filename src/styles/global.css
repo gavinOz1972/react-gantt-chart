@@ -350,7 +350,7 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .task-status-control { display: block; width: 100%; min-width: 120px; min-height: 34px; border: 1px solid #b8c7d5; border-radius: 6px; background: #fff; color: #1b3046; padding: 6px; font: inherit; }
 .task-status-control:disabled { opacity: .5; }
 .task-table-with-status .task-finish-cell { white-space: nowrap; min-width: 120px; }
-.task-status-badge { border: 1px solid #9ab2c4; background: #eaf1f7; color: #28465f; border-radius: 20px; padding: 5px 10px; font-size: .75rem; }
+.selected-chart-status { width: 140px; gap: 6px; font-size: .75rem; color: #52657b; font-weight: 400; }
 .task-status-panel { border-top: 1px solid #dce4ec; margin-top: 22px; padding-top: 22px; }
 .task-status-panel p, .task-status-panel li, .completion-guidance p { overflow-wrap: anywhere; white-space: pre-wrap; }
 .task-status-summary { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin: 16px 0; }

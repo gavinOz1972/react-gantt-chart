@@ -65,7 +65,8 @@ references are retained; baseline records and other task decisions stay intact.
 
 Task Details exposes status, blocked reason, latest completion date, checklist
 CRUD/check controls and expandable read-only history. Task-table status is compact;
-the chart has only a small selection badge. Criteria/project-definition drafts
+the selected chart summary has the same compact status control and transition
+confirmation rules. Criteria/project-definition drafts
 survive tab/task navigation and join the existing unsaved/replace safeguards.
 Definition of Done is guidance, not generated or automatically enforced criteria.
 

@@ -89,7 +89,7 @@ before replacing the open plan or overwriting a saved copy. Known data is deeply
 copied and frozen; event IDs, snapshots and dates round-trip independently of
 display order. See [the progress contract](../src/progress/README.md).
 
-## Verification
+## Initial WP6.3 verification
 
 | Check | Final result |
 | --- | --- |
@@ -141,6 +141,22 @@ baseline snapshot code, work aggregation/validation, task-order algorithms and
 package/lock files are unchanged.
 
 ## Screenshots
+
+Owner follow-up: the status shown in the selected Gantt task summary is now an
+editable Status dropdown, alongside Remaining Effort. It reuses TaskStatusControl
+and the same transition handler as the table and Task Details. Blocked requires a
+reason, Complete requires acknowledgement/criteria confirmation, and reopening
+requires a reason. All three controls synchronize; scheduling, baseline, work
+records and format 4 are unchanged. The follow-up commit is reported in its
+completion message.
+
+Follow-up verification: 341 tests, lint, typecheck and build passed; the complete
+browser suite passed 78 workflows in 39.8 seconds with eight workers. The added
+workflow checks chart-initiated transitions, cancellation/focus return, completion
+and reopening safeguards, and unchanged baseline/work data. Localhost:5173 was
+verified serving the editable chart control.
+
+- [Editable status in the chart summary](review/wp6-3-editable-chart-status.png)
 
 - [Completion confirmation with project guidance](review/wp6-3-completion.png)
 - [Desktop status table](review/wp6-3-table-1440.png)

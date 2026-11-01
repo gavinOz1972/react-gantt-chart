@@ -322,7 +322,7 @@ function App() {
       showInspection={false} analysis={analysis} highlightCritical={highlightCritical} onHighlightChange={setHighlightCritical}>
       {selectedCurrentTask && selectedEffort && <section className="selected-effort-quick" aria-label="Selected chart task">
         <strong>{selectedCurrentTask.taskId} — {selectedCurrentTask.name}</strong>
-        <span className="task-status-badge">{progressForTask(taskProgress, selectedCurrentTask.taskId).status}</span>
+        <label className="selected-chart-status">Status<TaskStatusControl taskId={selectedCurrentTask.taskId} value={progressForTask(taskProgress, selectedCurrentTask.taskId).status} context="chart" disabled={statusBlocked} onRequest={(target, trigger) => requestStatus(selectedCurrentTask, target, trigger)} /></label>
         <div className="selected-remaining"><span>Remaining Effort</span>{remainingField(selectedCurrentTask, 'chart')}</div>
         <dl><div><dt>Actual effort</dt><dd>{formatEffort(selectedEffort.actualHours)} h</dd></div>
           <div><dt>Effort at completion</dt><dd>{selectedEffort.forecastHours === null ? 'Not available' : `${formatEffort(selectedEffort.forecastHours)} h`}</dd></div>
