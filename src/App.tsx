@@ -24,6 +24,13 @@ import { dependencyError, initialProject, newTask, projectFromDraft, projectToDr
 import type { ProjectDraft, TaskDraft } from './components/projectEntry'
 import { displayTasks, duplicateTask, insertCopy, moveBefore } from './taskManagement'
 import type { DuplicateOrigins, SortMode } from './taskManagement'
+import { decodeProgress, duplicateProgress, emptyProgress, progressForTask, removeTaskProgress, replaceCriteria, transitionTask } from './progress/taskProgress'
+import type { CompletionCriterion, ProgressTracking, TaskStatus, TransitionRequest } from './progress/taskProgress'
+import { TaskStatusControl } from './components/progress/TaskStatusControl'
+import { TaskStatusPanel } from './components/progress/TaskStatusPanel'
+import { DefinitionOfDone } from './components/progress/DefinitionOfDone'
+import { StatusTransitionDialog } from './components/progress/StatusTransitionDialog'
+import { localDate } from './components/progress/localDate'
 
 const tabs = ['Files', 'Project Settings', 'Workspace'] as const
 type Tab = typeof tabs[number]
@@ -41,6 +48,11 @@ function App() {
   const [workTracking, setWorkTracking] = useState<WorkTracking>(emptyWorkTracking)
   const [workDraft, setWorkDraft] = useState(false)
   const [quickRemaining, setQuickRemaining] = useState<RemainingEffortDraft | null>(null)
+  const [taskProgress, setTaskProgress] = useState<ProgressTracking>(emptyProgress)
+  const [criteriaDraft, setCriteriaDraft] = useState(false)
+  const [definitionDraft, setDefinitionDraft] = useState(false)
+  const [statusPrompt, setStatusPrompt] = useState<{ taskId: string; target: TaskStatus } | null>(null)
+  const statusTrigger = useRef<HTMLElement | null>(null)
   const [inlineDrafts, setInlineDrafts] = useState<ReadonlySet<string>>(new Set())
   const [tab, setTab] = useState<Tab>('Files')
   const [saveTarget, setSaveTarget] = useState<HTMLDivElement | null>(null)
@@ -77,10 +89,12 @@ function App() {
   const completion = result.ok ? result.projectCompletion : null
   const previewing = !!editor || projectDirty
   const idLimitReached = nextId >= Number.MAX_SAFE_INTEGER - 1
-  const unsaved = previewing || inlineDrafts.size > 0 || workDraft || !!quickRemaining || projectFingerprint({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking }) !== savedFingerprint
+  const progressDraft = criteriaDraft || definitionDraft || !!statusPrompt
+  const statusBlocked = !!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft || !result.ok || projectDirty
+  const unsaved = previewing || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft || projectFingerprint({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking, taskProgress }) !== savedFingerprint
   const baselineProblems = [
     ...(!tasks.length ? ['Add and save at least one task.'] : []),
-    ...(previewing || inlineDrafts.size > 0 || workDraft || quickRemaining ? ['Finish or cancel task edits and effort edits; commit or revert project settings.'] : []),
+    ...(previewing || inlineDrafts.size > 0 || workDraft || quickRemaining || progressDraft ? ['Finish or cancel task edits, effort edits and status/criteria edits; commit or revert project settings.'] : []),
     ...errors.map(error => `${error.taskId ?? 'Project'}: ${error.message}`),
   ]
   function freezePlan() {
@@ -100,6 +114,29 @@ function App() {
     setWorkTracking(checked.value)
     setNotice('Work/effort records updated. Save or Export JSON to keep them.')
   }
+  function commitProgress(value: ProgressTracking): string | undefined {
+    const checked = decodeProgress(value, tasks.map(task => task.taskId))
+    if (!checked.ok) return checked.errors.map(error => error.message).join(' ')
+    setTaskProgress(checked.value)
+  }
+  function commitCriteria(taskId: string, items: readonly CompletionCriterion[]): string | undefined {
+    const checked = replaceCriteria(taskProgress, taskId, items, tasks.map(task => task.taskId))
+    if (!checked.ok) return checked.errors.map(error => error.message).join(' ')
+    setTaskProgress(checked.value)
+  }
+  function applyStatus(taskId: string, request: TransitionRequest): string | undefined {
+    const checked = transitionTask(taskProgress, taskId, request, tasks.map(task => task.taskId))
+    if (!checked.ok) return checked.errors.map(error => error.message).join(' ')
+    setTaskProgress(checked.value); setNotice(`${taskId}: ${request.target}. Save or Export JSON to keep this decision.`)
+  }
+  function requestStatus(task: TaskInput, target: TaskStatus, trigger: HTMLElement) {
+    if (statusBlocked || target === progressForTask(taskProgress, task.taskId).status) return
+    statusTrigger.current = trigger
+    if (target === 'Complete' || target === 'Blocked' || progressForTask(taskProgress, task.taskId).status === 'Complete') { setStatusPrompt({ taskId: task.taskId, target }); return }
+    const problem = applyStatus(task.taskId, { target, eventId: `E-${crypto.randomUUID()}`, date: localDate(), recordedAt: new Date().toISOString() })
+    if (problem) setNotice(problem)
+  }
+  function closeStatusPrompt() { setStatusPrompt(null); requestAnimationFrame(() => statusTrigger.current?.isConnected && statusTrigger.current.focus()) }
   function remainingValue(taskId: string) { return Object.hasOwn(workTracking.remainingHours, taskId) ? workTracking.remainingHours[taskId] : null }
   function commitQuickRemaining(): string | undefined {
     if (!quickRemaining) return
@@ -114,7 +151,7 @@ function App() {
     const fieldKey = `${source}:${task.taskId}`
     const active = quickRemaining?.fieldKey === fieldKey
     return <RemainingEffortField key={fieldKey} label={`${source === 'chart' ? 'Selected ' : ''}${task.taskId} remaining effort`} value={remainingValue(task.taskId)} draft={active ? quickRemaining : undefined}
-      disabled={!!editor || inlineDrafts.size > 0 || workDraft || !result.ok || projectDirty || (!!quickRemaining && !active)}
+      disabled={!!editor || inlineDrafts.size > 0 || workDraft || progressDraft || !result.ok || projectDirty || (!!quickRemaining && !active)}
       onBegin={() => setQuickRemaining({ taskId: task.taskId, fieldKey, text: remainingValue(task.taskId) === null ? '' : String(remainingValue(task.taskId)), error: '' })}
       onChange={text => setQuickRemaining(previous => previous && { ...previous, text, error: '' })} onCommit={commitQuickRemaining} onCancel={() => setQuickRemaining(null)} />
   }
@@ -130,6 +167,9 @@ function App() {
     const candidate = [...tasks, copy]
     const checked = calculateSchedule(project, candidate)
     if (!checked.ok) { setNotice(`Copy not created: ${checked.errors.map(error => error.message).join(' ')}`); return }
+    const copiedProgress = duplicateProgress(taskProgress, task.taskId, copy.taskId, progressForTask(taskProgress, task.taskId).criteria.map(() => `C-${crypto.randomUUID()}`), candidate.map(task => task.taskId))
+    if (!copiedProgress.ok) { setNotice(copiedProgress.errors.map(error => error.message).join(' ')); return }
+    setTaskProgress(copiedProgress.value)
     setTasks(candidate); setNextId(nextId + 1); setManualOrder(insertCopy(manualOrder, task.taskId, copy.taskId))
     setDuplicateOrigins(previous => ({ ...previous, [copy.taskId]: task.taskId })); setSelectedTaskId(copy.taskId)
     setNotice(`${copy.taskId} created immediately after ${task.taskId} in Manual Order. Current sort kept.`)
@@ -142,7 +182,8 @@ function App() {
   }, [unsaved])
 
   function openProject(file: ProjectFile, name: string | null) {
-    setBaseline(file.baseline); setLegacySource(file.schemaVersion < 3 ? file : undefined)
+    setBaseline(file.baseline); setLegacySource(file.schemaVersion < 4 ? file : undefined)
+    setTaskProgress(file.taskProgress ?? emptyProgress()); setCriteriaDraft(false); setDefinitionDraft(false); setStatusPrompt(null)
     setWorkTracking(file.workTracking ?? emptyWorkTracking()); setWorkDraft(false)
     setQuickRemaining(null)
     setProject(file.project); setProjectDraft(projectToDraft(file.project)); setTasks(file.tasks); setNextId(file.nextTaskNumber)
@@ -153,12 +194,14 @@ function App() {
     setNotice(name ? `Opened “${name}”. Schedule and critical path recalculated.` : 'JSON imported. Schedule and critical path recalculated; save a browser copy if needed.')
   }
   function savedProject(file: ProjectFile, name: string) {
+    setTaskProgress(file.taskProgress ?? emptyProgress())
     setBaseline(file.baseline); setLegacySource(undefined)
     setWorkTracking(file.workTracking ?? emptyWorkTracking())
     setProject(file.project); setProjectDraft(projectToDraft(file.project)); setTasks(file.tasks)
     setCurrentSavedName(name); setSavedFingerprint(projectFingerprint(file))
   }
   function freshProject() {
+    setTaskProgress(emptyProgress()); setCriteriaDraft(false); setDefinitionDraft(false); setStatusPrompt(null)
     setBaseline(undefined); setLegacySource(undefined)
     setWorkTracking(emptyWorkTracking()); setWorkDraft(false)
     setQuickRemaining(null)
@@ -229,6 +272,7 @@ function App() {
     }
     setTasks(candidate)
     setWorkTracking(previous => removeTaskWork(previous, deleting.taskId))
+    setTaskProgress(previous => removeTaskProgress(previous, deleting.taskId))
     setManualOrder(previous => previous.filter(id => id !== deleting.taskId))
     setDuplicateOrigins(previous => Object.fromEntries(Object.entries(previous).filter(([id]) => id !== deleting.taskId)))
     if (selectedTaskId === deleting.taskId) setSelectedTaskId(null)
@@ -260,13 +304,14 @@ function App() {
       </dl>
     </section>
     <div role="tabpanel" id="panel-0" aria-labelledby="tab-0" hidden={tab !== 'Files'}>
-    <ProjectStorage key={documentEpoch} data={{ project: proposedProject, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking }} legacySource={legacySource} dirty={unsaved} ready={result.ok && !editor && inlineDrafts.size === 0 && !workDraft && !quickRemaining} currentSavedName={currentSavedName}
+    <ProjectStorage key={documentEpoch} data={{ project: proposedProject, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking, taskProgress }} legacySource={legacySource} dirty={unsaved} ready={result.ok && !editor && inlineDrafts.size === 0 && !workDraft && !quickRemaining && !progressDraft} currentSavedName={currentSavedName}
       saveTarget={saveTarget} onNameRequired={() => setTab('Files')} onOpen={openProject} onSaved={savedProject} onNew={freshProject} onDeleted={name => { if (currentSavedName === name) { setCurrentSavedName(null); setSavedFingerprint('') } }} />
     <button type="button" className="next-step" onClick={() => setTab('Project Settings')}>Next: Project Settings →</button></div>
     <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" hidden={tab !== 'Project Settings'}>
-    <ProjectSettingsForm draft={projectDraft} errors={errors} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining} dirty={projectDirty} onChange={setProjectDraft}
+    <ProjectSettingsForm draft={projectDraft} errors={errors} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft} dirty={projectDirty} onChange={setProjectDraft}
       onCommit={commitProject} onRevert={() => { setProjectDraft(projectToDraft(project)); setNotice('Saved project settings restored.') }} />
-    <BaselinePanel key={documentEpoch} baseline={baseline} problems={baselineProblems} onEstablish={freezePlan} />
+    <BaselinePanel key={`baseline-${documentEpoch}`} baseline={baseline} problems={baselineProblems} onEstablish={freezePlan} />
+    <DefinitionOfDone key={`definition-${documentEpoch}`} value={taskProgress.definitionOfDone} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || criteriaDraft || !!statusPrompt || projectDirty} onCommit={text => commitProgress({ ...taskProgress, definitionOfDone: text })} onDraftChange={setDefinitionDraft} />
     <button type="button" className="next-step" onClick={() => setTab('Workspace')}>Next: Workspace →</button></div>
     <EntryErrors errors={errors} />
     <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden={tab !== 'Workspace'}>
@@ -277,6 +322,7 @@ function App() {
       showInspection={false} analysis={analysis} highlightCritical={highlightCritical} onHighlightChange={setHighlightCritical}>
       {selectedCurrentTask && selectedEffort && <section className="selected-effort-quick" aria-label="Selected chart task">
         <strong>{selectedCurrentTask.taskId} — {selectedCurrentTask.name}</strong>
+        <span className="task-status-badge">{progressForTask(taskProgress, selectedCurrentTask.taskId).status}</span>
         <div className="selected-remaining"><span>Remaining Effort</span>{remainingField(selectedCurrentTask, 'chart')}</div>
         <dl><div><dt>Actual effort</dt><dd>{formatEffort(selectedEffort.actualHours)} h</dd></div>
           <div><dt>Effort at completion</dt><dd>{selectedEffort.forecastHours === null ? 'Not available' : `${formatEffort(selectedEffort.forecastHours)} h`}</dd></div>
@@ -288,8 +334,8 @@ function App() {
     <div hidden={chartView !== 'network'}><NetworkView key={documentEpoch} active={chartView === 'network' && tab === 'Workspace'} showInspection={false} tasks={proposedTasks} result={result} analysis={analysis} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} /></div>
     <section className="panel tasks-panel" aria-labelledby="tasks-heading">
       <div className="section-heading"><div><span className="eyebrow">02 / Tasks & Schedule</span><h2 id="tasks-heading">Tasks & schedule</h2></div>
-        <div className="task-toolbar"><label>Task order<select value={sortMode} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining} onChange={event => setSortMode(event.target.value as SortMode)}><option value="manual">Manual Order</option><option value="start">Start Date</option><option value="name">Task Name</option><option value="duration">Duration</option></select></label>
-        <button ref={addButton} type="button" disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || !result.ok || idLimitReached} onClick={() => startEditing(newTask(`T${nextId}`))}>Add task</button></div></div>
+        <div className="task-toolbar"><label>Task order<select value={sortMode} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft} onChange={event => setSortMode(event.target.value as SortMode)}><option value="manual">Manual Order</option><option value="start">Start Date</option><option value="name">Task Name</option><option value="duration">Duration</option></select></label>
+        <button ref={addButton} type="button" disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft || !result.ok || idLimitReached} onClick={() => startEditing(newTask(`T${nextId}`))}>Add task</button></div></div>
     {editor && <TaskEditor key={editor.taskId} draft={editor} isNew={isNew} tasks={tasks} projectStartDate={project.projectStartDate}
       scheduled={result.ok ? result.tasks.find(task => task.taskId === editor.taskId) : undefined} errors={errors}
       optionError={predecessorProblem} onChange={changeEditor} onPredecessors={commitEditorPredecessors} onSave={saveTask} onCancel={() => closeEditor('Task changes discarded. Saved schedule restored.')} />}
@@ -297,19 +343,24 @@ function App() {
       {idLimitReached && <p className="field-error">No safe numeric task IDs remain in this plan. Existing tasks can still be edited and saved; start a new plan to add tasks.</p>}
       {editor && <p className="muted">The table previews your task changes. Save or cancel before editing another task.</p>}
       <TaskTable tasks={displayed} result={result} project={project} manual={sortMode === 'manual'} onMove={(id, before) => setManualOrder(previous => moveBefore(previous, id, before))} onDuplicate={copyTask} onCommit={commitInline} onDraftChange={inlineDraftChanged}
-        editingId={editor?.taskId} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} blocked={!!editor || !result.ok || inlineDrafts.size > 0 || workDraft || !!quickRemaining} renderRemaining={task => remainingField(task, 'table')}
+        editingId={editor?.taskId} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} blocked={!!editor || !result.ok || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft} renderRemaining={task => remainingField(task, 'table')}
+        renderStatus={task => <TaskStatusControl taskId={task.taskId} value={progressForTask(taskProgress, task.taskId).status} disabled={statusBlocked} onRequest={(target, trigger) => requestStatus(task, target, trigger)} />}
         onEdit={startEditing} onDelete={task => { setDeleting(task); setDeleteError('') }} />
     </section>
     <section className="panel task-details-panel" aria-labelledby="task-details-heading">
       <div className="section-heading"><div><span className="eyebrow">03 / Task Details</span><h2 id="task-details-heading">Task details</h2></div></div>
       {selectedTask && selectedSchedule ? <TaskInspection task={selectedTask} scheduled={selectedSchedule} analysis={analysis.ok ? analysis.tasks.find(task => task.taskId === selectedTaskId) : undefined} />
         : <p className="muted">{selectedTaskId && !result.ok ? 'Task dates are unavailable until the preview is valid.' : 'Select a bar, network node or task row to inspect its dates, duration, predecessors and slack.'}</p>}
-      <TaskWorkPanel key={documentEpoch} task={selectedCurrentTask} tracking={workTracking} baseline={baseline} disabled={!!editor || inlineDrafts.size > 0 || !result.ok || projectDirty || !!quickRemaining}
+      <TaskStatusPanel key={`status-${documentEpoch}`} task={selectedCurrentTask} tracking={taskProgress} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || definitionDraft || !!statusPrompt || !result.ok || projectDirty} statusDisabled={statusBlocked}
+        onRequest={requestStatus} onCriteria={commitCriteria} onDraftChange={setCriteriaDraft} onSelect={setSelectedTaskId} />
+      <TaskWorkPanel key={`work-${documentEpoch}`} task={selectedCurrentTask} tracking={workTracking} baseline={baseline} disabled={!!editor || inlineDrafts.size > 0 || !result.ok || projectDirty || !!quickRemaining || progressDraft}
         onChange={commitWork} onDraftChange={setWorkDraft} onSelect={setSelectedTaskId} />
     </section>
     </div>
     <p className="save-notice" role="status">{notice}</p>
-    {deleting && <DeleteTaskDialog task={deleting} affected={tasks.filter(task => task.predecessorTaskIds.includes(deleting.taskId))} error={deleteError} workEntryCount={workTracking.entries.filter(entry => entry.taskId === deleting.taskId).length} hasRemainingEstimate={Object.hasOwn(workTracking.remainingHours, deleting.taskId) && workTracking.remainingHours[deleting.taskId] !== null}
+    {statusPrompt && <StatusTransitionDialog key={`${statusPrompt.taskId}:${statusPrompt.target}`} task={tasks.find(task => task.taskId === statusPrompt.taskId)!} current={progressForTask(taskProgress, statusPrompt.taskId)} target={statusPrompt.target} definitionOfDone={taskProgress.definitionOfDone}
+      onCommit={request => { const problem = applyStatus(statusPrompt.taskId, request); if (!problem) closeStatusPrompt(); return problem }} onCancel={closeStatusPrompt} />}
+    {deleting && <DeleteTaskDialog task={deleting} affected={tasks.filter(task => task.predecessorTaskIds.includes(deleting.taskId))} error={deleteError} workEntryCount={workTracking.entries.filter(entry => entry.taskId === deleting.taskId).length} hasRemainingEstimate={Object.hasOwn(workTracking.remainingHours, deleting.taskId) && workTracking.remainingHours[deleting.taskId] !== null} statusEventCount={taskProgress.events.filter(event => event.taskId === deleting.taskId).length} criterionCount={progressForTask(taskProgress, deleting.taskId).criteria.length}
       onConfirm={confirmDelete} onCancel={() => setDeleting(null)} />}
     <footer>Project, task entry, Gantt & Network / Critical Path · Local saves and portable JSON.</footer>
   </main>

@@ -109,7 +109,7 @@ test('A05/A06/A07 table, chart and Task Details synchronize effort comparisons w
   const file = await exported(page)
   expect(file.tasks).toEqual(fixture.tasks); expect(file.project).toEqual(fixture.project)
   expect(file.baseline).toEqual(fixture.baseline); expect(file.workTracking!.entries).toEqual(fixture.workTracking.entries)
-  expect(file.schemaVersion).toBe(3)
+  expect(file.schemaVersion).toBe(4)
 })
 
 test('A08 remaining values keep permanent task identity through sorting, manual drag and changing chart selection', async ({ page }) => {

@@ -5,7 +5,7 @@ import { dependencyError } from './projectEntry'
 import { InlineField } from './InlineField'
 import { DependencyPicker } from './DependencyPicker'
 
-export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, onEdit, onDelete, onSelect, project, manual = false, onMove, onDuplicate, onCommit, onDraftChange, renderRemaining }: {
+export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, onEdit, onDelete, onSelect, project, manual = false, onMove, onDuplicate, onCommit, onDraftChange, renderRemaining, renderStatus }: {
   tasks: readonly TaskInput[]; result: ScheduleResult; editingId?: string; blocked: boolean
   selectedTaskId?: string | null; onSelect?: (id: string) => void
   onEdit: (task: TaskInput) => void; onDelete: (task: TaskInput) => void
@@ -13,6 +13,7 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
   onDuplicate?: (task: TaskInput) => void; onCommit?: (task: TaskInput) => string | undefined
   onDraftChange?: (key: string, dirty: boolean) => void
   renderRemaining?: (task: TaskInput) => ReactNode
+  renderStatus?: (task: TaskInput) => ReactNode
 }) {
   const scrollRegion = useRef<HTMLDivElement>(null)
   const dragging = useRef<string | null>(null)
@@ -31,8 +32,8 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
       if (event.clientY < bounds.top + 45) event.currentTarget.scrollTop -= 18
       else if (event.clientY > bounds.bottom - 45) event.currentTarget.scrollTop += 18
     }}>
-    <table className={renderRemaining ? 'task-table-with-effort' : undefined}><caption className="sr-only">Task inputs and calculated schedule dates. Select a field to edit; total hours is the full task duration.</caption><thead><tr>
-      {onMove && <th scope="col">Order</th>}<th scope="col">ID</th><th scope="col">Task / description</th><th scope="col">Total hours</th>{renderRemaining && <th scope="col">Remaining Effort</th>}<th scope="col">Predecessors</th><th scope="col">Start</th><th scope="col">Calculated finish</th><th scope="col">Actions</th>
+    <table className={`${renderRemaining ? 'task-table-with-effort' : ''} ${renderStatus ? 'task-table-with-status' : ''}`}><caption className="sr-only">Task inputs and calculated schedule dates. Select a field to edit; total hours is the full task duration.</caption><thead><tr>
+      {onMove && <th scope="col">Order</th>}<th scope="col">ID</th><th scope="col">Task / description</th>{renderStatus && <th scope="col">Status</th>}<th scope="col">Total hours</th>{renderRemaining && <th scope="col">Remaining Effort</th>}<th scope="col">Predecessors</th><th scope="col">Start</th><th scope="col">Calculated finish</th><th scope="col">Actions</th>
     </tr></thead><tbody>{tasks.map((task, index) => {
       const dates = scheduled.get(task.taskId)
       return <tr key={task.taskId} data-task-row={task.taskId} aria-label={`${task.taskId} ${task.name}`} aria-selected={selectedTaskId === task.taskId} className={`${editingId === task.taskId ? 'editing-row' : ''}${selectedTaskId === task.taskId ? ' selected-task-row' : ''}`}
@@ -46,6 +47,7 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
         <th scope="row"><button type="button" className="task-id task-inspect" aria-label={`Select ${task.taskId} in chart`} onClick={() => onSelect?.(task.taskId)}>{task.taskId}</button></th>
         <td className="task-text">{field(task, 'name', 'text')}<div className="task-description">{field(task, 'description', 'multiline')}</div>
           <small>{task.predecessorTaskIds.length ? 'Dependency start' : task.independentStartMode === 'MANUAL' ? 'Manual start' : 'Follows project start'}{editingId === task.taskId ? ' · Unsaved preview' : ''}</small></td>
+        {renderStatus && <td className="task-status-cell">{renderStatus(task)}</td>}
         <td>{field(task, 'durationHours', 'number')}</td>
         {renderRemaining && <td className="remaining-effort-cell">{renderRemaining(task)}</td>}
         <td>{onCommit && project ? <div className="inline-dependencies"><DependencyPicker taskId={task.taskId} tasks={tasks} selected={task.predecessorTaskIds} disabled={blocked} compact
@@ -59,7 +61,7 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
           onCommit={value => onCommit({ ...task, independentStartMode: 'MANUAL', requestedStartDate: value })} />
           {task.independentStartMode === 'MANUAL' && <ResetStart task={task} disabled={blocked} onCommit={onCommit} />}</> : null}
           {dates ? <><span>{dates.startDate}</span><small>hour {dates.startSlot.hour} that day</small></> : <span className="muted">Unavailable</span>}</td>
-        <td>{dates ? <><span>{dates.finishDate}</span><small>after hour {dates.finishBoundary.afterHour} that day</small></> : <span className="muted">Unavailable</span>}</td>
+        <td className="task-finish-cell">{dates ? <><span>{dates.finishDate}</span><small>after hour {dates.finishBoundary.afterHour} that day</small></> : <span className="muted">Unavailable</span>}</td>
         <td><div className="row-actions">{onDuplicate && <button type="button" className="quiet" disabled={blocked} onClick={() => onDuplicate(task)} aria-label={`Duplicate ${task.taskId}`}>Duplicate</button>}
           <button type="button" className="quiet" disabled={blocked} onClick={() => onEdit(task)} aria-label={`Edit ${task.taskId}`} title="Open full task form">Edit form</button>
           <button type="button" className="danger-text" disabled={blocked} onClick={() => onDelete(task)} aria-label={`Delete ${task.taskId}`}>Delete</button></div></td>

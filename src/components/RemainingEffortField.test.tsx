@@ -33,7 +33,7 @@ test('table quick entry distinguishes unknown/zero, synchronizes selected chart/
   fireEvent.click(screen.getByRole('button', { name: 'Save As' }))
   const saved = readLocalProjects(localStorage)
   if (!saved.ok) throw new Error('Save failed')
-  expect(saved.projects[0].plan.schemaVersion).toBe(3)
+  expect(saved.projects[0].plan.schemaVersion).toBe(4)
   expect(saved.projects[0].plan.workTracking!.remainingHours.T1).toBe(0)
   fireEvent.click(screen.getByRole('tab', { name: 'Workspace' }))
   edit('')

@@ -13,7 +13,9 @@ WP6.1 protects that release and adds an explicit original baseline of the approv
 plan, separate from the editable Current Plan, with versioned file compatibility.
 WP6.2 adds dated work sessions, derived actual hours, nullable remaining effort
 and a baseline effort comparison. WP6.2.1 adds Remaining Effort quick entry beside
-tasks and in the selected Gantt task summary. Resource levelling, costs, task statuses,
+tasks and in the selected Gantt task summary. WP6.3 adds explicit task statuses,
+completion criteria, blocked reasons, project Definition of Done and completion/
+reopening history. Resource levelling, costs,
 schedule forecasting and probabilistic PERT are outside this release.
 
 ## Prerequisites and setup
@@ -109,14 +111,14 @@ slots. **View Baseline** opens read-only details. Current Plan edits and deletio
 never change those records. Save or Export JSON after establishing it; creating a
 baseline does not automatically save.
 
-WP5 format 1 and WP6.1 format 2 files still open with no invented work records or
-remaining estimates. Opening does not migrate saved copies. Files offers
-**Export WP5 backup** or **Export WP6.1 backup** for the original loaded plan,
-even if current edits are unfinished. New saves/exports use project format 3;
+WP5 format 1, WP6.1 format 2 and WP6.2 format 3 files still open with safe defaults
+for missing tracking fields. Opening does not migrate saved copies. Files offers
+**Export WP5 backup**, **Export WP6.1 backup** or **Export WP6.2 backup** for the original loaded plan,
+even if current edits are unfinished. New saves/exports use project format 4;
 upgrading an existing older named save requires confirmation and offers a
 backup download. Save As under a new name also preserves the original copy.
-Earlier releases cannot safely preserve format 3 work records. Baselines and
-work records round-trip in local Save/Load and JSON Export/Import; malformed data
+Earlier releases cannot safely preserve format 4 status/history records. Baselines,
+work and status records round-trip in local Save/Load and JSON Export/Import; malformed data
 rejects the whole import before changing your open plan.
 
 See the [WP6.1 handoff and owner checks](docs/WP6-1-HANDOFF.md) for release protection,
@@ -182,7 +184,36 @@ Contributor names are project-local text; work records can be corrected and are
 not a verified identity or immutable audit history. See the
 [WP6.2 handoff and A01–A14 owner checks](docs/WP6-2-HANDOFF.md).
 The [WP6.2.1 quick-entry handoff](docs/WP6-2-1-HANDOFF.md) covers fast editing,
-keyboard behavior and responsive review evidence. Project format remains 3.
+keyboard behavior and responsive review evidence. Its remaining-effort model is unchanged.
+
+## Task status and completion
+
+1. Use **Status** in Tasks & Schedule or **Task Details → Status & completion**.
+   Only Not Started, In Progress, Blocked and Complete exist. Legacy tasks start
+   Not Started without invented history. Hours, dates and zero remaining effort
+   never change status automatically.
+2. Choosing Blocked asks for a short reason. Cancel keeps the old status. Leaving
+   Blocked removes the active reason while preserving it in transition history.
+3. Add/edit/delete/check completion criteria in Task Details. Optional project
+   **Definition of Done** in Project Settings appears as completion guidance.
+4. Choose **Mark Complete** or select Complete in either dropdown. The same
+   confirmation requires an effective date, all criteria checked and a deliberate
+   acknowledgement. With no criteria, an additional warning/acknowledgement is
+   required. An optional note/evidence reference is plain text.
+5. Reopening requires confirmation and a reason. Prior completion snapshots stay
+   read-only; revise the current checklist after reopening, then confirm a later
+   completion to create a distinct event. The latest completion date and expandable
+   transition history appear in Task Details. Reopen before editing a completed
+   checklist.
+6. Task copies start Not Started with new, unchecked criterion IDs and no work or
+   status history. Confirmed task deletion warns about associated criteria and
+   history removal; export a backup first if those records must be retained.
+   The approved baseline remains unchanged throughout.
+
+Save or Export JSON after changes. Unsubmitted criteria/definition/transition
+drafts use the existing unsaved-change safeguards. History records decisions;
+it does not verify identity or provide a tamper-proof audit. See the
+[WP6.3 handoff and A01–A15 owner checks](docs/WP6-3-HANDOFF.md).
 
 ## Using the Gantt chart
 

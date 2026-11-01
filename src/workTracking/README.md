@@ -7,7 +7,7 @@ changing a remaining estimate cannot move planned dates or affect critical paths
 ## Typed contract and validation
 
 `WorkTracking` has `schemaVersion: 1`, an `entries` array and a `remainingHours` map
-keyed by permanent current-task ID. It is an optional section in project format 3.
+keyed by permanent current-task ID. It is an optional section in project formats 3/4.
 Each readonly `WorkEntry` has:
 
 | Field | Rule |
@@ -59,7 +59,8 @@ completion status. Zero remaining never marks a task Complete.
 WP6.2.1 exposes the same nullable estimate through the task table's Remaining
 Effort column and a compact selected-task summary below the Gantt. Both reuse
 `parseEffort(text, true)` and the existing validated project work state; the work
-contract and project format 3 do not change. Task Details retains its existing
+contract does not change. WP6.3 adds separate status records in project format 4;
+it does not change effort semantics. Task Details retains its existing
 explicit estimate form and work-log workflow. All three reflect accepted changes
 immediately, with actual totals and baseline comparisons recalculated as before.
 

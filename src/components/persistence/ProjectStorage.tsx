@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { acceptsProjectFile, createProjectFile, MAX_PROJECT_BYTES, PROJECT_SCHEMA_VERSION, parseProject, serializeProject } from '../../persistence/projectFile'
+import { acceptsProjectFile, createProjectFile, MAX_PROJECT_BYTES, PROJECT_SCHEMA_VERSION, projectVersionLabel, parseProject, serializeProject } from '../../persistence/projectFile'
 import type { ProjectData, ProjectFile } from '../../persistence/projectFile'
 import { deleteLocalProject, readLocalProjects, saveLocalProject } from '../../persistence/localProjects'
 import type { LibraryResult } from '../../persistence/localProjects'
@@ -18,7 +18,7 @@ function readFile(file: File): Promise<string> {
     reader.readAsText(file)
   })
 }
-type Pending = { kind: 'open'; file: ProjectFile; name: string | null } | { kind: 'new' } | { kind: 'overwrite'; file: ProjectFile; name: string; migrating?: 1 | 2 } | { kind: 'delete'; name: string }
+type Pending = { kind: 'open'; file: ProjectFile; name: string | null } | { kind: 'new' } | { kind: 'overwrite'; file: ProjectFile; name: string; migrating?: 1 | 2 | 3 } | { kind: 'delete'; name: string }
 
 export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedName, onOpen, onSaved, onNew, onDeleted, saveTarget, onNameRequired }: {
   data: ProjectData; dirty: boolean; ready: boolean; currentSavedName: string | null
@@ -64,7 +64,7 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
     const current = local(readLocalProjects)
     if (!outcome(current) || !current.ok) return
     const existing = current.projects.find(entry => entry.name === name.trim())
-    if (existing) setPending({ kind: 'overwrite', file: created.value, name: name.trim(), migrating: existing.plan.schemaVersion < PROJECT_SCHEMA_VERSION ? existing.plan.schemaVersion as 1 | 2 : undefined })
+    if (existing) setPending({ kind: 'overwrite', file: created.value, name: name.trim(), migrating: existing.plan.schemaVersion < PROJECT_SCHEMA_VERSION ? existing.plan.schemaVersion as 1 | 2 | 3 : undefined })
     else save(created.value, name, false)
   }
   function quickSave() {
@@ -80,7 +80,7 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
     if (!outcome(current) || !current.ok) { onNameRequired?.(); return }
     const existing = current.projects.find(entry => entry.name === currentSavedName)
     if (existing && existing.plan.schemaVersion < PROJECT_SCHEMA_VERSION) {
-      setPending({ kind: 'overwrite', file: created.value, name: currentSavedName, migrating: existing.plan.schemaVersion as 1 | 2 })
+      setPending({ kind: 'overwrite', file: created.value, name: currentSavedName, migrating: existing.plan.schemaVersion as 1 | 2 | 3 })
       return
     }
     if (!save(created.value, currentSavedName, true)) onNameRequired?.()
@@ -108,7 +108,7 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
     finally { setBusy(false); if (input.current) input.current.value = '' }
   }
   function download(file: ProjectFile, backup = false) {
-    const versionLabel = file.schemaVersion === 1 ? 'WP5' : 'WP6.1'
+    const versionLabel = projectVersionLabel(file.schemaVersion)
     const blob = new Blob([serializeProject(file)], { type: 'application/json' })
     if (blob.size > MAX_PROJECT_BYTES) { setIssue('This project exceeds the 10 MiB portable-file limit. Reduce long descriptions or split the plan.'); return }
     try {
@@ -118,7 +118,7 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
       anchor.download = `react-gantt-${file.project.name.replace(/[^\p{L}\p{N}._ -]/gu, '_').slice(0, 80) || 'project'}${backup ? `-${versionLabel}-backup` : ''}.json`
       document.body.append(anchor); anchor.click(); anchor.remove()
       setTimeout(() => URL.revokeObjectURL(url), 0)
-      setNotice(backup ? `${versionLabel} backup download started. It contains the original format ${file.schemaVersion} plan, before your current edits.` : 'JSON download started. Current Plan inputs, the original baseline if established, work entries and remaining effort are included. Current dates and critical paths are recalculated when imported.')
+      setNotice(backup ? `${versionLabel} backup download started. It contains the original format ${file.schemaVersion} plan, before your current edits.` : 'JSON download started. Current Plan inputs, the original baseline if established, work entries, remaining effort, task statuses and completion history are included. Current dates and critical paths are recalculated when imported.')
     } catch { setIssue('The download could not be started. Try another browser or save this plan locally.') }
   }
   function exportFile() {
@@ -151,8 +151,8 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
       </div>
     <p className="storage-current">Current project: <strong>{data.project.name || 'Untitled project'}</strong>{currentSavedName && <> · Browser copy: {currentSavedName}</>}</p>
     <p className="muted">Plans stay in this browser profile on this site. Save is explicit. Export JSON to move or back up a plan; no account or remote storage is used.</p>
-    {legacySource && <div className="compatibility-notice"><p>This {legacySource.schemaVersion === 1 ? 'WP5' : 'WP6.1'} plan is still in format {legacySource.schemaVersion}. Opening it has not changed its saved copy. Save or Export JSON writes format {PROJECT_SCHEMA_VERSION}, which older releases cannot safely preserve. Download a compatible backup before upgrading, or use Save As with a new name.</p>
-      <button type="button" className="quiet" onClick={() => download(legacySource, true)}>Export {legacySource.schemaVersion === 1 ? 'WP5' : 'WP6.1'} backup</button></div>}
+    {legacySource && <div className="compatibility-notice"><p>This {projectVersionLabel(legacySource.schemaVersion)} plan is still in format {legacySource.schemaVersion}. Opening it has not changed its saved copy. Save or Export JSON writes format {PROJECT_SCHEMA_VERSION}, which older releases cannot safely preserve. Download a compatible backup before upgrading, or use Save As with a new name.</p>
+      <button type="button" className="quiet" onClick={() => download(legacySource, true)}>Export {projectVersionLabel(legacySource.schemaVersion)} backup</button></div>}
     <div className="storage-fields"><label>Saved plan name<input ref={nameInput} value={name} onChange={event => setSaveName(event.target.value)} /></label>
       <div className="storage-actions"><button type="button" disabled={!ready || busy} onClick={requestSave}>Save As</button>
         <button type="button" className="quiet" disabled={!ready || busy} onClick={exportFile}>Export JSON</button></div>
@@ -165,19 +165,19 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
       <input ref={input} type="file" accept=".json,application/json" hidden aria-label="Import project JSON" onChange={event => { const file = event.target.files?.[0]; if (file) void importFile(file) }} />
       <button type="button" className="quiet" disabled={busy} onClick={() => dirtyNow.current ? setPending({ kind: 'new' }) : onNew()}>New project</button>
       {busy && <span role="status">Reading and validating file…</span>}</div>
-    {!ready && <p className="muted">Finish or cancel task and effort edits and correct invalid settings before saving or exporting. Load/import can replace unfinished work only after confirmation.</p>}
+    {!ready && <p className="muted">Finish or cancel task, effort and status/criteria edits and correct invalid settings before saving or exporting. Load/import can replace unfinished work only after confirmation.</p>}
     {(issue || libraryError) && <p className="storage-error" role="alert">{issue || libraryError}</p>}
     <p className="save-notice" role="status">{notice}</p>
     {pending && <ConfirmDialog title={pending.kind === 'open' || pending.kind === 'new' ? 'Replace unsaved work?' : pending.kind === 'overwrite' ? `Overwrite saved plan “${pending.name}”?` : `Delete saved plan “${pending.name}”?`}
       confirmLabel={pending.kind === 'open' ? 'Replace current project' : pending.kind === 'new' ? 'Start new project' : pending.kind === 'overwrite' ? 'Overwrite saved plan' : 'Delete saved copy'} onConfirm={confirm} onCancel={() => setPending(null)}>
-      <p>{pending.kind === 'open' || pending.kind === 'new' ? 'This will discard the open project’s unsaved changes and unfinished task, settings or effort drafts. Cancel to keep editing, or save/export first.'
+      <p>{pending.kind === 'open' || pending.kind === 'new' ? 'This will discard the open project’s unsaved changes and unfinished task, settings, effort or status/criteria drafts. Cancel to keep editing, or save/export first.'
         : pending.kind === 'overwrite' ? 'The existing named browser copy will be replaced with this plan. Other saved plans will be kept.' : 'Only this named browser copy will be deleted. The open project and other saved plans will be kept.'}</p>
       {pending.kind === 'overwrite' && pending.migrating && <><p>This upgrades the saved plan from format {pending.migrating} to format {PROJECT_SCHEMA_VERSION}. Earlier releases cannot open it. Cancel to export a compatible backup first, or save under a new name.</p>
         <button type="button" className="quiet" onClick={() => {
           const current = local(readLocalProjects)
           if (current.ok) { const original = current.projects.find(entry => entry.name === pending.name); if (original) download(original.plan, true) }
           else setIssue(current.error.message)
-        }}>Export saved {pending.migrating === 1 ? 'WP5' : 'WP6.1'} backup</button></>}
+        }}>Export saved {projectVersionLabel(pending.migrating)} backup</button></>}
     </ConfirmDialog>}
   </section></>
 }

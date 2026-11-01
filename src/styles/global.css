@@ -345,3 +345,28 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .selected-effort-quick dt { color: #52657b; margin-bottom: 6px; font-size: .75rem; }
 .selected-effort-quick dd { font-size: .9rem; }
 .quick-remaining-pending { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; font-size: .85rem; }
+.tasks-panel .task-table-with-status { min-width: 1620px; }
+.tasks-panel .task-status-cell { min-width: 140px; width: 140px; white-space: normal; }
+.task-status-control { display: block; width: 100%; min-width: 120px; min-height: 34px; border: 1px solid #b8c7d5; border-radius: 6px; background: #fff; color: #1b3046; padding: 6px; font: inherit; }
+.task-status-control:disabled { opacity: .5; }
+.task-table-with-status .task-finish-cell { white-space: nowrap; min-width: 120px; }
+.task-status-badge { border: 1px solid #9ab2c4; background: #eaf1f7; color: #28465f; border-radius: 20px; padding: 5px 10px; font-size: .75rem; }
+.task-status-panel { border-top: 1px solid #dce4ec; margin-top: 22px; padding-top: 22px; }
+.task-status-panel p, .task-status-panel li, .completion-guidance p { overflow-wrap: anywhere; white-space: pre-wrap; }
+.task-status-summary { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin: 16px 0; }
+.task-status-summary > strong { max-width: 350px; overflow-wrap: anywhere; }
+.active-blocked-reason { background: #fff7e9; color: #785016; border-left: 3px solid #b78631; padding: 12px; }
+.task-criteria-list { padding: 0; list-style: none; }
+.task-criteria-list > li { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 12px 0; border-bottom: 1px solid #dce4ec; }
+.task-criteria-list label, .completion-checklist label, .status-ack { flex-direction: row; align-items: start; gap: 10px; font-weight: 400; }
+.task-criteria-list label { flex: 1; min-width: min(240px, 100%); }
+.task-criteria-list label input, .completion-checklist input, .status-ack input { flex-shrink: 0; }
+.criterion-form, .completion-guidance { padding: 16px; background: #f3f7fa; border: 1px solid #dce4ec; border-radius: 8px; margin: 16px 0; }
+.status-history { margin-top: 22px; border-top: 1px solid #dce4ec; padding-top: 16px; }
+.status-history summary { cursor: pointer; font-weight: 600; }
+.status-history > ol { padding-left: 22px; }
+.status-history > ol > li { padding: 12px 0; border-bottom: 1px solid #dce4ec; }
+.status-history small { display: block; margin-top: 6px; color: #52657b; overflow-wrap: anywhere; }
+.completion-checklist { margin: 16px 0; }
+.completion-checklist legend { font-weight: 600; margin-bottom: 10px; }
+.completion-checklist label, .status-ack { padding: 8px 0; }
