@@ -19,7 +19,7 @@ export function ProjectSettingsForm({ draft, errors, disabled, dirty, onChange, 
     <div className="section-heading"><div><span className="eyebrow">01 / Calendar</span><h2 id="project-settings-heading">Project settings</h2></div>
       {dirty && <button type="button" className="quiet" disabled={disabled} onClick={onRevert}>Revert settings</button>}</div>
     <p className="muted">Settings apply when you leave a field. Weekday changes apply immediately.</p>
-    {disabled && <p className="muted">Save or cancel your task changes to edit project settings.</p>}
+    {disabled && <p className="muted">Finish or cancel task and effort edits to change project settings.</p>}
     <fieldset disabled={disabled} className="settings-fields">
       <legend className="sr-only">Project calendar settings</legend>
       <label className="wide">Project name<input value={draft.name} onChange={event => onChange({ ...draft, name: event.target.value })}

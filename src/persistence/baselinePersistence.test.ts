@@ -39,7 +39,7 @@ test('A07 local save/load preserves both layers exactly and baseline creation pa
   expect(projectFingerprint(loaded.projects[0].plan)).toBe(projectFingerprint(file()))
 })
 
-test('A08 legacy read is nondestructive, fabricates no baseline, and only explicit creation writes format 2', () => {
+test('A08 legacy read is nondestructive, fabricates no baseline, and only explicit creation writes the current format', () => {
   const local = storage()
   const legacy = { ...file(false), schemaVersion: 1 }
   const { manualOrder: _order, sortMode: _sort, duplicateOrigins: _origins, ...oldest } = legacy
@@ -58,7 +58,7 @@ test('A08 legacy read is nondestructive, fabricates no baseline, and only explic
   expect(deleteLocalProject(local, 'Other', true).ok).toBe(true)
   expect(JSON.parse(local.values.get(LOCAL_PROJECTS_KEY)!).projects[0].plan).toEqual({ ...oldest, customLegacyField: 'Keep untouched' })
   const migrated = createProjectFile(read.projects[0].plan, establishedAt)
-  expect(migrated.ok && migrated.value.schemaVersion).toBe(2)
+  expect(migrated.ok && migrated.value.schemaVersion).toBe(3)
   expect(migrated.ok && migrated.value.baseline).toBeUndefined()
   expect(read.projects[0].plan.schemaVersion).toBe(1)
 })

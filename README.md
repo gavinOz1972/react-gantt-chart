@@ -11,8 +11,9 @@ owner follow-up refines workspace hierarchy and stages dependency selections.
 WP5.2 adapts weekly header labels and adds network zoom, pan and Fit to View.
 WP6.1 protects that release and adds an explicit original baseline of the approved
 plan, separate from the editable Current Plan, with versioned file compatibility.
-Resource levelling, costs, actual-work tracking and probabilistic PERT are outside
-this release.
+WP6.2 adds dated work sessions, derived actual hours, nullable remaining effort
+and a baseline effort comparison. Resource levelling, costs, task statuses,
+schedule forecasting and probabilistic PERT are outside this release.
 
 ## Prerequisites and setup
 
@@ -105,17 +106,17 @@ keeps the project calendar, every task and permanent ID, descriptions, effort,
 predecessors, retained independent starts, original manual order and calculated
 slots. **View Baseline** opens read-only details. Current Plan edits and deletions
 never change those records. Save or Export JSON after establishing it; creating a
-baseline does not automatically save. No actual work, statuses or forecasts are
-recorded in this slice.
+baseline does not automatically save.
 
-WP5 format 1 files still open with no invented baseline. Opening does not migrate
-saved copies. Files offers **Export WP5 backup** for the original loaded plan,
-even if current edits are unfinished. New saves/exports use project format 2;
-upgrading an existing format 1 named save requires confirmation and offers a
+WP5 format 1 and WP6.1 format 2 files still open with no invented work records or
+remaining estimates. Opening does not migrate saved copies. Files offers
+**Export WP5 backup** or **Export WP6.1 backup** for the original loaded plan,
+even if current edits are unfinished. New saves/exports use project format 3;
+upgrading an existing older named save requires confirmation and offers a
 backup download. Save As under a new name also preserves the original copy.
-Earlier application releases cannot read format 2. Baselines round-trip in local
-Save/Load and JSON Export/Import; malformed snapshots reject the whole import
-before changing your open plan.
+Earlier releases cannot safely preserve format 3 work records. Baselines and
+work records round-trip in local Save/Load and JSON Export/Import; malformed data
+rejects the whole import before changing your open plan.
 
 See the [WP6.1 handoff and owner checks](docs/WP6-1-HANDOFF.md) for release protection,
 compatibility and review evidence.
@@ -138,13 +139,41 @@ opening it; invalid files leave the open plan unchanged. Loading/importing/new
 over unsaved project or unfinished task/settings edits raises a cancellable warning.
 Deleting a named save requires confirmation and leaves the open plan intact.
 
-Finish or cancel task drafts before saving/exporting. Imported plans are not
+Finish or cancel task and effort drafts before saving/exporting. Imported plans are not
 automatically saved locally: choose Save As to create a browser copy. Export
 does not update a named browser save or clear the local unsaved-changes indicator.
 Files contain source fields, the next stable task-ID counter, manual order, sort
-preference and copy origins, not trusted derived
-dates or critical-path results; all calculations are rebuilt on load. See the
-[version 1 file format and storage contract](src/persistence/README.md).
+preference, copy origins, optional baseline, work entries and remaining estimates.
+Current schedule and critical-path calculations are rebuilt on load; frozen
+baseline outputs are validated separately. See the
+[versioned file format and storage contract](src/persistence/README.md).
+
+## Recording actual work and remaining effort
+
+1. Select a saved task in Workspace and scroll to **Task details → Work & effort**.
+   Choose **Add work entry**. Enter a contributor, work date, positive hours with
+   up to two decimal places, and a short description; choose **Save work entry**.
+   Historical dates are allowed. Future dates warn but are kept as entered.
+2. Sessions appear oldest work date first. **Edit entry** keeps its permanent entry
+   ID; **Delete entry** requires confirmation. Actual effort is derived from the
+   sessions, using decimal-safe hundredths. It is never edited directly.
+3. Enter **Remaining effort (hours)** and choose **Save remaining estimate**. Blank
+   means unknown; zero explicitly estimates none remain and does not mark the
+   task Complete. Cancel estimate or Escape restores the accepted estimate.
+4. Known remaining effort gives estimated **Effort at completion = actual + remaining**.
+   **Effort variance** compares that total to the matching original baseline task:
+   positive is over estimate and negative is under. A task with no matching
+   baseline shows **No baseline** and no variance. Unknown remaining effort shows
+   no estimated total or variance. These person-hours never move scheduled dates.
+5. Save the project or Export JSON to keep the records. Unsubmitted work/estimate
+   drafts survive task and tab switches; use **Resume edits for T…** to return.
+   Finish/cancel drafts before project Save/Export. Duplicating a task starts with
+   no work history and unknown remaining effort. Task deletion explicitly warns
+   if it removes logs or an estimate; the original baseline remains intact.
+
+Contributor names are project-local text; work records can be corrected and are
+not a verified identity or immutable audit history. See the
+[WP6.2 handoff and A01–A14 owner checks](docs/WP6-2-HANDOFF.md).
 
 ## Using the Gantt chart
 

@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react'
 import type { TaskInput } from '../domain'
 
-export function DeleteTaskDialog({ task, affected, error, onConfirm, onCancel }: {
+export function DeleteTaskDialog({ task, affected, error, workEntryCount = 0, hasRemainingEstimate = false, onConfirm, onCancel }: {
   task: TaskInput; affected: readonly TaskInput[]; error: string; onConfirm: () => void; onCancel: () => void
+  workEntryCount?: number; hasRemainingEstimate?: boolean
 }) {
   const dialog = useRef<HTMLDialogElement>(null)
   const cancel = useRef<HTMLButtonElement>(null)
@@ -15,6 +16,7 @@ export function DeleteTaskDialog({ task, affected, error, onConfirm, onCancel }:
   return <dialog ref={dialog} aria-labelledby="delete-task-heading" onCancel={event => { event.preventDefault(); onCancel() }}>
     <h2 id="delete-task-heading">Delete {task.taskId} — {task.name}?</h2>
     <p>This removes the task from this project.</p>
+    {(workEntryCount > 0 || hasRemainingEstimate) && <p className="work-deletion-warning"><strong>This also removes {workEntryCount} work {workEntryCount === 1 ? 'entry' : 'entries'}{hasRemainingEstimate ? ' and its remaining-effort estimate' : ''} for {task.taskId}.</strong> Export JSON first if you need to keep this work history. Other tasks’ work and any original baseline remain unchanged.</p>}
     {affected.length ? <><p>The following predecessor links will also be removed. These tasks will be kept and recalculated:</p>
       <ul>{affected.map(entry => <li key={entry.taskId}>{entry.taskId} — {entry.name}: remove predecessor {task.taskId}</li>)}</ul></> : <p>No other task depends on it.</p>}
     {error && <p role="alert" className="field-error">{error}</p>}

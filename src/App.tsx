@@ -12,6 +12,9 @@ import { NetworkView } from './components/network/NetworkView'
 import { BaselinePanel } from './components/BaselinePanel'
 import { establishBaseline } from './baseline/baseline'
 import type { Baseline } from './baseline/baseline'
+import { TaskWorkPanel } from './components/TaskWorkPanel'
+import { decodeWorkTracking, emptyWorkTracking, removeTaskWork } from './workTracking/workTracking'
+import type { WorkTracking } from './workTracking/workTracking'
 import { ProjectStorage } from './components/persistence/ProjectStorage'
 import { projectFingerprint } from './persistence/projectFile'
 import type { ProjectFile } from './persistence/projectFile'
@@ -33,6 +36,8 @@ function App() {
   const [duplicateOrigins, setDuplicateOrigins] = useState<DuplicateOrigins>({})
   const [baseline, setBaseline] = useState<Baseline>()
   const [legacySource, setLegacySource] = useState<ProjectFile>()
+  const [workTracking, setWorkTracking] = useState<WorkTracking>(emptyWorkTracking)
+  const [workDraft, setWorkDraft] = useState(false)
   const [inlineDrafts, setInlineDrafts] = useState<ReadonlySet<string>>(new Set())
   const [tab, setTab] = useState<Tab>('Files')
   const [saveTarget, setSaveTarget] = useState<HTMLDivElement | null>(null)
@@ -67,10 +72,10 @@ function App() {
   const completion = result.ok ? result.projectCompletion : null
   const previewing = !!editor || projectDirty
   const idLimitReached = nextId >= Number.MAX_SAFE_INTEGER - 1
-  const unsaved = previewing || inlineDrafts.size > 0 || projectFingerprint({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline }) !== savedFingerprint
+  const unsaved = previewing || inlineDrafts.size > 0 || workDraft || projectFingerprint({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking }) !== savedFingerprint
   const baselineProblems = [
     ...(!tasks.length ? ['Add and save at least one task.'] : []),
-    ...(previewing || inlineDrafts.size > 0 ? ['Finish or cancel task edits and commit or revert project settings.'] : []),
+    ...(previewing || inlineDrafts.size > 0 || workDraft ? ['Finish or cancel task edits and effort edits; commit or revert project settings.'] : []),
     ...errors.map(error => `${error.taskId ?? 'Project'}: ${error.message}`),
   ]
   function freezePlan() {
@@ -83,6 +88,12 @@ function App() {
   const displayed = useMemo(() => displayTasks(proposedTasks, isNew && editor ? [...manualOrder, editor.taskId] : manualOrder, sortMode, result), [proposedTasks, isNew, editor, manualOrder, sortMode, result])
   function inlineDraftChanged(key: string, dirty: boolean) {
     setInlineDrafts(previous => { const next = new Set(previous); if (dirty) next.add(key); else next.delete(key); return next })
+  }
+  function commitWork(value: WorkTracking): string | undefined {
+    const checked = decodeWorkTracking(value, tasks.map(task => task.taskId))
+    if (!checked.ok) return checked.errors.map(error => error.message).join(' ')
+    setWorkTracking(checked.value)
+    setNotice('Work/effort records updated. Save or Export JSON to keep them.')
   }
   function commitInline(task: TaskInput): string | undefined {
     const candidate = replaceTask(tasks, task)
@@ -108,7 +119,8 @@ function App() {
   }, [unsaved])
 
   function openProject(file: ProjectFile, name: string | null) {
-    setBaseline(file.baseline); setLegacySource(file.schemaVersion === 1 ? file : undefined)
+    setBaseline(file.baseline); setLegacySource(file.schemaVersion < 3 ? file : undefined)
+    setWorkTracking(file.workTracking ?? emptyWorkTracking()); setWorkDraft(false)
     setProject(file.project); setProjectDraft(projectToDraft(file.project)); setTasks(file.tasks); setNextId(file.nextTaskNumber)
     setManualOrder(file.manualOrder); setSortMode(file.sortMode); setDuplicateOrigins(file.duplicateOrigins); setInlineDrafts(new Set()); setTab('Workspace')
     setEditor(null); setDeleting(null); setDeleteError(''); setSelectedTaskId(null)
@@ -118,11 +130,13 @@ function App() {
   }
   function savedProject(file: ProjectFile, name: string) {
     setBaseline(file.baseline); setLegacySource(undefined)
+    setWorkTracking(file.workTracking ?? emptyWorkTracking())
     setProject(file.project); setProjectDraft(projectToDraft(file.project)); setTasks(file.tasks)
     setCurrentSavedName(name); setSavedFingerprint(projectFingerprint(file))
   }
   function freshProject() {
     setBaseline(undefined); setLegacySource(undefined)
+    setWorkTracking(emptyWorkTracking()); setWorkDraft(false)
     const fresh = { ...initialProject, projectId: `P-${crypto.randomUUID()}` }
     setProject(fresh); setProjectDraft(projectToDraft(fresh)); setTasks([]); setNextId(1); setEditor(null); setSelectedTaskId(null)
     setManualOrder([]); setSortMode('manual'); setDuplicateOrigins({}); setInlineDrafts(new Set()); setTab('Project Settings')
@@ -189,6 +203,7 @@ function App() {
       return
     }
     setTasks(candidate)
+    setWorkTracking(previous => removeTaskWork(previous, deleting.taskId))
     setManualOrder(previous => previous.filter(id => id !== deleting.taskId))
     setDuplicateOrigins(previous => Object.fromEntries(Object.entries(previous).filter(([id]) => id !== deleting.taskId)))
     if (selectedTaskId === deleting.taskId) setSelectedTaskId(null)
@@ -220,11 +235,11 @@ function App() {
       </dl>
     </section>
     <div role="tabpanel" id="panel-0" aria-labelledby="tab-0" hidden={tab !== 'Files'}>
-    <ProjectStorage key={documentEpoch} data={{ project: proposedProject, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline }} legacySource={legacySource} dirty={unsaved} ready={result.ok && !editor && inlineDrafts.size === 0} currentSavedName={currentSavedName}
+    <ProjectStorage key={documentEpoch} data={{ project: proposedProject, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking }} legacySource={legacySource} dirty={unsaved} ready={result.ok && !editor && inlineDrafts.size === 0 && !workDraft} currentSavedName={currentSavedName}
       saveTarget={saveTarget} onNameRequired={() => setTab('Files')} onOpen={openProject} onSaved={savedProject} onNew={freshProject} onDeleted={name => { if (currentSavedName === name) { setCurrentSavedName(null); setSavedFingerprint('') } }} />
     <button type="button" className="next-step" onClick={() => setTab('Project Settings')}>Next: Project Settings →</button></div>
     <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" hidden={tab !== 'Project Settings'}>
-    <ProjectSettingsForm draft={projectDraft} errors={errors} disabled={!!editor || inlineDrafts.size > 0} dirty={projectDirty} onChange={setProjectDraft}
+    <ProjectSettingsForm draft={projectDraft} errors={errors} disabled={!!editor || inlineDrafts.size > 0 || workDraft} dirty={projectDirty} onChange={setProjectDraft}
       onCommit={commitProject} onRevert={() => { setProjectDraft(projectToDraft(project)); setNotice('Saved project settings restored.') }} />
     <BaselinePanel key={documentEpoch} baseline={baseline} problems={baselineProblems} onEstablish={freezePlan} />
     <button type="button" className="next-step" onClick={() => setTab('Workspace')}>Next: Workspace →</button></div>
@@ -238,8 +253,8 @@ function App() {
     <div hidden={chartView !== 'network'}><NetworkView key={documentEpoch} active={chartView === 'network' && tab === 'Workspace'} showInspection={false} tasks={proposedTasks} result={result} analysis={analysis} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} /></div>
     <section className="panel tasks-panel" aria-labelledby="tasks-heading">
       <div className="section-heading"><div><span className="eyebrow">02 / Tasks & Schedule</span><h2 id="tasks-heading">Tasks & schedule</h2></div>
-        <div className="task-toolbar"><label>Task order<select value={sortMode} disabled={!!editor || inlineDrafts.size > 0} onChange={event => setSortMode(event.target.value as SortMode)}><option value="manual">Manual Order</option><option value="start">Start Date</option><option value="name">Task Name</option><option value="duration">Duration</option></select></label>
-        <button ref={addButton} type="button" disabled={!!editor || inlineDrafts.size > 0 || !result.ok || idLimitReached} onClick={() => startEditing(newTask(`T${nextId}`))}>Add task</button></div></div>
+        <div className="task-toolbar"><label>Task order<select value={sortMode} disabled={!!editor || inlineDrafts.size > 0 || workDraft} onChange={event => setSortMode(event.target.value as SortMode)}><option value="manual">Manual Order</option><option value="start">Start Date</option><option value="name">Task Name</option><option value="duration">Duration</option></select></label>
+        <button ref={addButton} type="button" disabled={!!editor || inlineDrafts.size > 0 || workDraft || !result.ok || idLimitReached} onClick={() => startEditing(newTask(`T${nextId}`))}>Add task</button></div></div>
     {editor && <TaskEditor key={editor.taskId} draft={editor} isNew={isNew} tasks={tasks} projectStartDate={project.projectStartDate}
       scheduled={result.ok ? result.tasks.find(task => task.taskId === editor.taskId) : undefined} errors={errors}
       optionError={predecessorProblem} onChange={changeEditor} onPredecessors={commitEditorPredecessors} onSave={saveTask} onCancel={() => closeEditor('Task changes discarded. Saved schedule restored.')} />}
@@ -247,17 +262,19 @@ function App() {
       {idLimitReached && <p className="field-error">No safe numeric task IDs remain in this plan. Existing tasks can still be edited and saved; start a new plan to add tasks.</p>}
       {editor && <p className="muted">The table previews your task changes. Save or cancel before editing another task.</p>}
       <TaskTable tasks={displayed} result={result} project={project} manual={sortMode === 'manual'} onMove={(id, before) => setManualOrder(previous => moveBefore(previous, id, before))} onDuplicate={copyTask} onCommit={commitInline} onDraftChange={inlineDraftChanged}
-        editingId={editor?.taskId} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} blocked={!!editor || !result.ok || inlineDrafts.size > 0}
+        editingId={editor?.taskId} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} blocked={!!editor || !result.ok || inlineDrafts.size > 0 || workDraft}
         onEdit={startEditing} onDelete={task => { setDeleting(task); setDeleteError('') }} />
     </section>
     <section className="panel task-details-panel" aria-labelledby="task-details-heading">
       <div className="section-heading"><div><span className="eyebrow">03 / Task Details</span><h2 id="task-details-heading">Task details</h2></div></div>
       {selectedTask && selectedSchedule ? <TaskInspection task={selectedTask} scheduled={selectedSchedule} analysis={analysis.ok ? analysis.tasks.find(task => task.taskId === selectedTaskId) : undefined} />
         : <p className="muted">{selectedTaskId && !result.ok ? 'Task dates are unavailable until the preview is valid.' : 'Select a bar, network node or task row to inspect its dates, duration, predecessors and slack.'}</p>}
+      <TaskWorkPanel key={documentEpoch} task={tasks.find(task => task.taskId === selectedTaskId)} tracking={workTracking} baseline={baseline} disabled={!!editor || inlineDrafts.size > 0 || !result.ok || projectDirty}
+        onChange={commitWork} onDraftChange={setWorkDraft} onSelect={setSelectedTaskId} />
     </section>
     </div>
     <p className="save-notice" role="status">{notice}</p>
-    {deleting && <DeleteTaskDialog task={deleting} affected={tasks.filter(task => task.predecessorTaskIds.includes(deleting.taskId))} error={deleteError}
+    {deleting && <DeleteTaskDialog task={deleting} affected={tasks.filter(task => task.predecessorTaskIds.includes(deleting.taskId))} error={deleteError} workEntryCount={workTracking.entries.filter(entry => entry.taskId === deleting.taskId).length} hasRemainingEstimate={Object.hasOwn(workTracking.remainingHours, deleting.taskId) && workTracking.remainingHours[deleting.taskId] !== null}
       onConfirm={confirmDelete} onCancel={() => setDeleting(null)} />}
     <footer>Project, task entry, Gantt & Network / Critical Path · Local saves and portable JSON.</footer>
   </main>

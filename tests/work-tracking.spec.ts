@@ -1,0 +1,278 @@
+import { readFile } from 'node:fs/promises'
+import { createHash } from 'node:crypto'
+import { expect, test } from '@playwright/test'
+import type { Page } from '@playwright/test'
+import type { ProjectFile } from '../src/persistence/projectFile'
+import { workBaseline, workData, workEntry, workRecords, workTimestamp } from '../src/test/workFixture'
+import { openPlan } from './wp5-2-fixtures'
+
+const fixture = { ...workData, format: 'react-gantt-chart', schemaVersion: 2, createdBy: 'React Gantt Chart', savedAt: workTimestamp, baseline: workBaseline() }
+const key = 'react-gantt-chart:projects:v1'
+const tab = (page: Page, name: string) => page.getByRole('tab', { name, exact: true }).click()
+const panel = (page: Page) => page.getByRole('region', { name: 'Work & effort', exact: true })
+const summary = (page: Page, field: string) => panel(page).locator(`[data-effort="${field}"]`)
+async function select(page: Page, id = 'T2') { await tab(page, 'Workspace'); await page.getByRole('button', { name: `Select ${id} in chart`, exact: true }).click() }
+async function open(page: Page) { await openPlan(page, fixture); await select(page) }
+async function download(page: Page, button = 'Export JSON'): Promise<ProjectFile> {
+  const pending = page.waitForEvent('download')
+  await page.getByRole('button', { name: button, exact: true }).click()
+  const file = await pending
+  return JSON.parse(await readFile((await file.path())!, 'utf8'))
+}
+async function exported(page: Page) { await tab(page, 'Files'); return download(page) }
+async function fillEntry(page: Page, hours = '2.25', workDate = '2026-10-28', contributor = 'Alex Student', description = 'Reviewed sources and wrote notes') {
+  await panel(page).getByLabel('Contributor', { exact: true }).fill(contributor)
+  await panel(page).getByLabel('Work date', { exact: true }).fill(workDate)
+  await panel(page).getByLabel('Work hours', { exact: true }).fill(hours)
+  await panel(page).getByLabel('Work performed', { exact: true }).fill(description)
+}
+async function add(page: Page, hours = '2.25', workDate = '2026-10-28', contributor = 'Alex Student', description = 'Reviewed sources and wrote notes') {
+  await panel(page).getByRole('button', { name: 'Add work entry', exact: true }).click()
+  await fillEntry(page, hours, workDate, contributor, description)
+  await panel(page).getByRole('button', { name: 'Save work entry', exact: true }).click()
+  await expect(panel(page).getByLabel('Work hours', { exact: true })).toHaveCount(0)
+}
+async function remaining(page: Page, value: string) {
+  await panel(page).getByLabel('Remaining effort (hours)', { exact: true }).fill(value)
+  await panel(page).getByRole('button', { name: 'Save remaining estimate', exact: true }).click()
+}
+async function save(page: Page, name = 'Work round trip') {
+  await tab(page, 'Files'); await page.getByLabel('Saved plan name', { exact: true }).fill(name)
+  await page.getByRole('button', { name: 'Save As', exact: true }).click()
+  await expect(page.getByText('Saved locally', { exact: true })).toBeVisible()
+}
+
+test('A01/A02/A03/A05/A08/A13 actual sessions and effort estimates leave baseline, dates, CPM and Gantt pixels unchanged', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 }); await open(page)
+  await expect(summary(page, 'actual')).toHaveText('0 h')
+  await expect(summary(page, 'remaining')).toHaveText('Unknown')
+  await expect(panel(page).getByLabel('Remaining effort (hours)', { exact: true })).toHaveValue('')
+  await expect(summary(page, 'forecast')).toHaveText('Not available')
+  await expect(summary(page, 'variance')).toHaveText('Not available')
+  await page.getByRole('checkbox', { name: 'Highlight Critical Path', exact: true }).check()
+  const chart = page.getByRole('region', { name: 'Gantt chart', exact: true })
+  const beforeChart = createHash('sha256').update(await chart.locator('.gantt-surface').screenshot()).digest('hex')
+  const beforeGeometry = await page.locator('.gantt-bar').evaluateAll(elements => elements.map(element => [element.getAttribute('aria-label'), element.getAttribute('data-start'), element.getAttribute('data-end'), element.getAttribute('data-critical')]))
+  await add(page, '3.50', '2026-10-29', 'Taylor Student', 'Drafted the initial outline')
+  await add(page)
+  await expect(summary(page, 'actual')).toHaveText('5.75 h')
+  const dates = await panel(page).locator('.work-log time').allTextContents()
+  expect(dates).toEqual(['2026-10-28', '2026-10-29'])
+  await remaining(page, '5')
+  await expect(summary(page, 'forecast')).toHaveText('10.75 h')
+  await expect(summary(page, 'variance')).toHaveText('+2.75 h')
+  await expect(panel(page)).toContainText('not a predicted finish date')
+  expect(createHash('sha256').update(await chart.locator('.gantt-surface').screenshot()).digest('hex')).toBe(beforeChart)
+  expect(await page.locator('.gantt-bar').evaluateAll(elements => elements.map(element => [element.getAttribute('aria-label'), element.getAttribute('data-start'), element.getAttribute('data-end'), element.getAttribute('data-critical')]))).toEqual(beforeGeometry)
+  await remaining(page, '0')
+  await expect(summary(page, 'forecast')).toHaveText('5.75 h')
+  await expect(summary(page, 'variance')).toHaveText('-2.25 h')
+  const file = await exported(page)
+  expect(file.tasks).toEqual(fixture.tasks)
+  expect(file.project).toEqual(fixture.project)
+  expect(JSON.stringify(file.baseline)).toBe(JSON.stringify(fixture.baseline))
+  expect(file.tasks[0]).not.toHaveProperty('status')
+  expect(file.workTracking!.remainingHours.T2).toBe(0)
+})
+
+test('A04/A14 entry validation retains drafts, future dates warn without changing them, and keyboard Cancel restores focus', async ({ page }) => {
+  await open(page)
+  await panel(page).getByRole('button', { name: 'Add work entry', exact: true }).click()
+  await expect(panel(page).getByLabel('Contributor', { exact: true })).toBeFocused()
+  await expect(panel(page).getByLabel('Work date', { exact: true })).toHaveAttribute('type', 'date')
+  await fillEntry(page, '0', '2026-10-28', '  Alex  ', 'Keep these valid notes')
+  for (const hours of ['0', '-1', 'nonnumeric', 'NaN', '1.001']) {
+    await panel(page).getByLabel('Work hours', { exact: true }).fill(hours)
+    await panel(page).getByRole('button', { name: 'Save work entry', exact: true }).click()
+    await expect(panel(page).getByRole('alert')).toContainText('two decimal places')
+    await expect(panel(page).getByLabel('Work hours', { exact: true })).toHaveValue(hours)
+    await expect(panel(page).getByLabel('Work performed', { exact: true })).toHaveValue('Keep these valid notes')
+  }
+  await fillEntry(page, '1', '', 'Alex', 'Kept notes')
+  await panel(page).getByRole('button', { name: 'Save work entry', exact: true }).click()
+  await expect(panel(page).getByRole('alert')).toContainText('valid work date')
+  await fillEntry(page, '1', '2026-10-28', ' ', 'Kept notes')
+  await panel(page).getByRole('button', { name: 'Save work entry', exact: true }).click()
+  await expect(panel(page).getByRole('alert')).toContainText('contributor name')
+  await fillEntry(page, '1', '2026-10-28', 'Alex', ' ')
+  await panel(page).getByRole('button', { name: 'Save work entry', exact: true }).click()
+  await expect(panel(page).getByRole('alert')).toContainText('Describe the work')
+  await panel(page).getByLabel('Work performed', { exact: true }).press('Escape')
+  await expect(panel(page).getByRole('button', { name: 'Add work entry', exact: true })).toBeFocused()
+  await expect(summary(page, 'actual')).toHaveText('0 h')
+  await panel(page).getByRole('button', { name: 'Add work entry', exact: true }).click()
+  await fillEntry(page, '0.25', '2099-01-01', '  Alex  ', '  Wrote future-dated notes  ')
+  await expect(panel(page).getByRole('status').filter({ hasText: 'This work date is in the future' })).toBeVisible()
+  await panel(page).getByLabel('Work hours', { exact: true }).press('Enter')
+  await expect(summary(page, 'actual')).toHaveText('0.25 h')
+  const entry = (await exported(page)).workTracking!.entries[0]
+  expect(entry.workDate).toBe('2099-01-01'); expect(entry.contributor).toBe('Alex'); expect(entry.description).toBe('Wrote future-dated notes')
+})
+
+test('A06 corrections keep stable IDs and creation metadata; delete cancel is safe and confirmed removal recalculates effort', async ({ page }) => {
+  await open(page); await add(page); await add(page, '3.50', '2026-10-29')
+  await remaining(page, '5')
+  const before = await exported(page)
+  const original = before.workTracking!.entries[0]
+  await select(page)
+  await panel(page).getByRole('button', { name: `Edit work entry ${original.entryId}`, exact: true }).click()
+  await fillEntry(page, '1.5', '2026-10-27', 'Alex Corrected', 'Corrected the work notes')
+  await panel(page).getByRole('button', { name: 'Save work entry', exact: true }).click()
+  await expect(summary(page, 'actual')).toHaveText('5 h')
+  await expect(summary(page, 'forecast')).toHaveText('10 h')
+  await expect(panel(page).getByRole('button', { name: `Edit work entry ${original.entryId}`, exact: true })).toBeFocused()
+  const corrected = (await exported(page)).workTracking!.entries.find(entry => entry.entryId === original.entryId)!
+  expect(corrected.createdAt).toBe(original.createdAt)
+  expect(corrected.updatedAt >= original.updatedAt).toBe(true)
+  expect(corrected.contributor).toBe('Alex Corrected')
+  expect(corrected.workDate).toBe('2026-10-27')
+  await select(page)
+  await panel(page).getByRole('button', { name: `Delete work entry ${original.entryId}`, exact: true }).click()
+  await expect(page.getByRole('dialog').getByRole('button', { name: 'Cancel', exact: true })).toBeFocused()
+  await page.keyboard.press('Escape')
+  await expect(summary(page, 'actual')).toHaveText('5 h')
+  await panel(page).getByRole('button', { name: `Delete work entry ${original.entryId}`, exact: true }).click()
+  await page.getByRole('dialog').getByRole('button', { name: 'Delete work entry', exact: true }).click()
+  await expect(summary(page, 'actual')).toHaveText('3.5 h')
+  await expect(summary(page, 'forecast')).toHaveText('8.5 h')
+  await expect(summary(page, 'variance')).toHaveText('+0.5 h')
+  expect((await exported(page)).workTracking!.entries.map(entry => entry.entryId)).toEqual([before.workTracking!.entries[1].entryId])
+})
+
+test('A07/A11/A12 task copies have no effort history; reorder/sort preserve associations and task deletion explicitly warns about logs', async ({ page }) => {
+  await open(page); await add(page); await remaining(page, '5')
+  const original = await exported(page)
+  await select(page)
+  await page.getByRole('button', { name: 'Duplicate T2', exact: true }).click()
+  await expect(summary(page, 'actual')).toHaveText('0 h')
+  await expect(summary(page, 'remaining')).toHaveText('Unknown')
+  await expect(summary(page, 'baseline')).toHaveText('No baseline')
+  await add(page, '1.25', '2026-10-29', 'Jamie', 'Prepared the copied task')
+  await remaining(page, '2')
+  await expect(summary(page, 'forecast')).toHaveText('3.25 h')
+  await expect(summary(page, 'variance')).toHaveText('Not available')
+  await page.getByRole('button', { name: 'Move T20 up', exact: true }).click()
+  await page.getByRole('combobox', { name: 'Task order', exact: true }).selectOption('name')
+  const sorted = await exported(page)
+  expect(sorted.workTracking!.entries.find(entry => entry.entryId === original.workTracking!.entries[0].entryId)).toEqual(original.workTracking!.entries[0])
+  expect(sorted.workTracking!.entries.find(entry => entry.taskId === 'T20')!.hours).toBe(1.25)
+  await select(page)
+  await page.getByRole('button', { name: 'Delete T2', exact: true }).click()
+  await expect(page.getByRole('dialog')).toContainText('also removes 1 work entry and its remaining-effort estimate for T2')
+  await page.getByRole('button', { name: 'Keep task', exact: true }).click()
+  await expect(summary(page, 'actual')).toHaveText('2.25 h')
+  await page.getByRole('button', { name: 'Delete T2', exact: true }).click()
+  await page.getByRole('button', { name: 'Delete task and remove links', exact: true }).click()
+  const after = await exported(page)
+  expect(after.workTracking!.entries.every(entry => entry.taskId !== 'T2')).toBe(true)
+  expect(after.workTracking!.remainingHours).not.toHaveProperty('T2')
+  expect(after.workTracking!.remainingHours.T20).toBe(2)
+  expect(after.baseline).toEqual(original.baseline)
+  expect(after.baseline!.tasks.some(task => task.taskId === 'T2')).toBe(true)
+})
+
+test('A09 saved and JSON round trips preserve entries and distinguish blank remaining from zero', async ({ page }) => {
+  await open(page); await add(page); await add(page, '3.50', '2026-10-29'); await remaining(page, '0')
+  await save(page)
+  const original = await exported(page)
+  await page.reload()
+  await page.getByLabel('Saved plans', { exact: true }).selectOption('Work round trip')
+  await page.getByRole('button', { name: 'Load project', exact: true }).click()
+  await select(page)
+  await expect(summary(page, 'actual')).toHaveText('5.75 h')
+  await expect(panel(page).getByLabel('Remaining effort (hours)', { exact: true })).toHaveValue('0')
+  await select(page, 'T9')
+  await expect(panel(page).getByLabel('Remaining effort (hours)', { exact: true })).toHaveValue('')
+  const loaded = await exported(page)
+  expect(loaded.workTracking).toEqual(original.workTracking)
+  expect(loaded.baseline).toEqual(original.baseline)
+  await page.getByLabel('Import project JSON', { exact: true }).setInputFiles({ name: 'work-roundtrip.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(original)) })
+  await expect(page.getByRole('tab', { name: 'Workspace', exact: true })).toHaveAttribute('aria-selected', 'true')
+  expect((await exported(page)).workTracking).toEqual(original.workTracking)
+})
+
+test('A10 WP6.1 opens without logs and provides original-format backup before explicit migration', async ({ page }) => {
+  await page.goto('/')
+  const library = JSON.stringify({ schemaVersion: 1, projects: [{ name: 'WP6.1 original', savedAt: workTimestamp, plan: fixture }] })
+  await page.evaluate(({ key, library }) => localStorage.setItem(key, library), { key, library })
+  await page.reload()
+  await page.getByLabel('Saved plans', { exact: true }).selectOption('WP6.1 original')
+  await page.getByRole('button', { name: 'Load project', exact: true }).click()
+  await select(page)
+  await expect(summary(page, 'actual')).toHaveText('0 h')
+  await expect(summary(page, 'remaining')).toHaveText('Unknown')
+  expect(await page.evaluate(key => localStorage.getItem(key), key)).toBe(library)
+  await tab(page, 'Files')
+  const backup = await download(page, 'Export WP6.1 backup')
+  expect(backup.schemaVersion).toBe(2); expect(backup.baseline).toEqual(fixture.baseline)
+  expect(backup).not.toHaveProperty('workTracking')
+  await page.getByRole('button', { name: 'Save', exact: true }).click()
+  await expect(page.getByRole('dialog')).toContainText('from format 2 to format 3')
+  expect(await download(page, 'Export saved WP6.1 backup')).toEqual(backup)
+  await page.getByRole('dialog').getByRole('button', { name: 'Cancel', exact: true }).click()
+  expect(await page.evaluate(key => localStorage.getItem(key), key)).toBe(library)
+  await page.getByRole('button', { name: 'Save', exact: true }).click()
+  await page.getByRole('button', { name: 'Overwrite saved plan', exact: true }).click()
+  const migrated = await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).projects[0].plan, key)
+  expect(migrated.schemaVersion).toBe(3)
+  expect(migrated.workTracking.entries).toEqual([])
+  expect(migrated.workTracking.remainingHours).toEqual({})
+  expect(migrated.baseline).toEqual(fixture.baseline)
+})
+
+test('A11 malformed, duplicate and orphaned imported work data keep both the current plan and saved library intact', async ({ page }) => {
+  await open(page); await add(page); await save(page, 'Safe work')
+  const original = await exported(page)
+  const saved = await page.evaluate(key => localStorage.getItem(key), key)
+  for (const workTracking of [
+    { ...workRecords(), entries: [workEntry(), workEntry()] },
+    { ...workRecords(), entries: [workEntry('W-ORPHAN', 1, '2026-10-28', 'missing')] },
+    { ...workRecords(), remainingHours: { T2: -1 } },
+    { ...workRecords(), schemaVersion: 99 },
+  ]) {
+    await page.getByLabel('Import project JSON', { exact: true }).setInputFiles({ name: 'bad-work.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({ ...original, workTracking })) })
+    await expect(page.getByRole('alert')).toContainText(/WORK|REMAINING/)
+    await expect(page.getByRole('dialog')).toHaveCount(0)
+    expect(await page.evaluate(key => localStorage.getItem(key), key)).toBe(saved)
+    expect((await exported(page)).workTracking).toEqual(original.workTracking)
+  }
+})
+
+test('A04/A14 unsubmitted entry/estimate drafts survive task and tab switches and preserve replacement warnings', async ({ page }) => {
+  await open(page)
+  await panel(page).getByRole('button', { name: 'Add work entry', exact: true }).click()
+  await fillEntry(page, '2.25', '2026-10-28', 'Draft Contributor', 'Do not lose my draft')
+  await expect(page.getByRole('button', { name: 'Save', exact: true })).toBeDisabled()
+  await select(page, 'T9')
+  await panel(page).getByRole('button', { name: 'Resume edits for T2', exact: true }).click()
+  await expect(panel(page).getByLabel('Contributor', { exact: true })).toHaveValue('Draft Contributor')
+  await tab(page, 'Files'); await page.getByRole('button', { name: 'New project', exact: true }).click()
+  await expect(page.getByRole('dialog')).toContainText('Replace unsaved work?')
+  await page.getByRole('dialog').getByRole('button', { name: 'Cancel', exact: true }).click()
+  await tab(page, 'Workspace')
+  await expect(panel(page).getByLabel('Work performed', { exact: true })).toHaveValue('Do not lose my draft')
+  await panel(page).getByRole('button', { name: 'Cancel work entry', exact: true }).click()
+  await panel(page).getByLabel('Remaining effort (hours)', { exact: true }).fill('-1')
+  await panel(page).getByRole('button', { name: 'Save remaining estimate', exact: true }).click()
+  await expect(panel(page).getByRole('alert')).toContainText('zero or a positive number')
+  await expect(panel(page).getByLabel('Remaining effort (hours)', { exact: true })).toHaveValue('-1')
+  await panel(page).getByLabel('Remaining effort (hours)', { exact: true }).press('Escape')
+  await expect(panel(page).getByLabel('Remaining effort (hours)', { exact: true })).toHaveValue('')
+  await expect(summary(page, 'remaining')).toHaveText('Unknown')
+})
+
+test('A14 desktop and narrow evidence keep work context below the chart with accessible controls and no page overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 }); await open(page)
+  await add(page); await add(page, '3.50', '2026-10-29', 'Taylor Student', 'Drafted the outline'); await remaining(page, '5')
+  await panel(page).screenshot({ path: 'docs/review/wp6-2-work-desktop.png' })
+  await panel(page).getByRole('button', { name: 'Add work entry', exact: true }).click()
+  await fillEntry(page, '0.25', '2099-01-01')
+  await panel(page).screenshot({ path: 'docs/review/wp6-2-entry-form.png' })
+  await panel(page).getByRole('button', { name: 'Cancel work entry', exact: true }).click()
+  await page.setViewportSize({ width: 600, height: 900 })
+  await panel(page).screenshot({ path: 'docs/review/wp6-2-work-narrow.png' })
+  expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false)
+  const positions = await page.locator('.gantt-panel,.tasks-panel,.task-details-panel').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().top + scrollY))
+  expect(positions).toHaveLength(3)
+  expect(positions[0]).toBeLessThan(positions[1]); expect(positions[1]).toBeLessThan(positions[2])
+})

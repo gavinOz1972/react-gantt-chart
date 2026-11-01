@@ -11,7 +11,7 @@ The readonly `Baseline` contract contains:
 
 | Field | Content |
 | --- | --- |
-| schemaVersion | 1 (independent of project file version 2) |
+| schemaVersion | 1 (independent of project file versions 2/3) |
 | baselineId, establishedAt | Nonempty ID and strict ISO UTC timestamp |
 | project | Identity/name, start/target, working weekdays/hours |
 | tasks | Permanent IDs, names/descriptions, hours, predecessor IDs, DEFAULT/MANUAL provenance and retained requested dates |
@@ -46,5 +46,6 @@ state and loads only the baseline present in that file. No autosnapshot, baselin
 edit/delete/replace or multiple versions are provided.
 
 This is an integrity-checked local planning snapshot, not a digital signature or
-authenticated approval audit. Re-baselining policies, work entries, actual effort,
-statuses, completion history, forecasts, variance and progress visuals are deferred.
+authenticated approval audit. WP6.2 work entries, remaining effort and effort
+comparisons live outside this frozen contract. Re-baselining policies, statuses,
+completion history, schedule forecasting and progress visuals remain deferred.

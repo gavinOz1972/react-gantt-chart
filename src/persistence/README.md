@@ -1,41 +1,81 @@
-# Versioned local project files (WP6.1)
+# Versioned local project files (WP6.2)
 
-## Format 2 and explicit migration
+## Format 3 and explicit migration
 
-The reader accepts project schemaVersion 1 (WP4–WP5.2) and 2 (WP6.1). Every new
-Save/Save As and normal Export JSON writes version 2, with an optional `baseline`
-section. A baseline uses its own schemaVersion 1. A version 1 project carrying a
-baseline is rejected rather than silently losing it. Missing baseline in either
-supported format means no baseline; loading and saving do not establish one.
+The reader accepts project schemaVersion 1 (WP4–WP5.2), 2 (WP6.1), and 3 (WP6.2).
+Every new Save/Save As and normal Export JSON writes version 3, with optional
+`baseline` and `workTracking` sections. Both sections have their own schemaVersion
+1. The baseline contract is unchanged. A format 1 project carrying a baseline,
+or a format 1/2 project carrying workTracking, is rejected rather than silently
+losing it. Missing baseline means no baseline; missing workTracking means empty
+logs and unknown remaining effort. Opening does not fabricate either section.
 
-Loading is read-only: it preserves schemaVersion 1 in memory and does not write
-localStorage. Files offers Export WP5 backup of the original loaded inputs, even
-while invalid current drafts are open. This compatible backup normalizes known
-WP5 order/sort defaults, retains the original savedAt and omits current edits and
-any subsequently established baseline. Normal Export JSON downloads format 2
-without changing any saved copy. It does not mark local edits saved.
+Loading is read-only: it preserves the loaded format version in memory and does
+not write localStorage. Files offers Export WP5 backup or Export WP6.1 backup of
+the original loaded inputs, even while invalid current drafts are open. This
+compatible backup normalizes known defaults, retains original savedAt and any
+original baseline, and omits subsequent edits/work/newly established baselines.
+Normal Export JSON downloads format 3 without changing any saved copy. It does
+not mark local edits saved.
 
-Saving over a format 1 named record requires migration confirmation, including
-header Save. The dialog also offers Export saved WP5 backup of the record being
+Saving over a format 1/2 named record requires migration confirmation, including
+header Save. The dialog also offers an original-format backup of the record being
 replaced. Cancel keeps that record untouched; Save As with a different name keeps
-the old copy. Subsequent header Save to a format 2 record keeps the existing
+the old copy. Subsequent header Save to a format 3 record keeps the existing
 explicit Save workflow. There is no automatic rewrite on first open. Saving or
 deleting another named plan preserves the original JSON objects of untouched
 records, including their legacy optional/unknown fields.
 
 The browser library key/envelope remain v1; each plan has its own version. Earlier
-application releases cannot read v2 plans (including a library containing them).
-Keep exported WP5 backups to use with the protected pre-progress release.
+pre-WP6 applications cannot read new plans (including a library containing them).
+WP6.1 does not preserve workTracking and must use the format 2 backup instead.
+The WP6.2 version bump prevents opening new files there. Keep exported WP5 backups
+to use with the protected pre-progress release.
 
 See [the baseline contract](../baseline/README.md) for frozen fields, validation
 and the separation of Current Plan and Baseline Plan.
+
+## Work tracking section
+
+```json
+"workTracking": {
+  "schemaVersion": 1,
+  "entries": [{
+    "entryId": "W-example",
+    "taskId": "T1",
+    "workDate": "2026-10-28",
+    "contributor": "Alex Student",
+    "hours": 2.25,
+    "description": "Reviewed sources and wrote notes",
+    "createdAt": "2026-10-31T21:00:00.000Z",
+    "updatedAt": "2026-10-31T21:00:00.000Z"
+  }],
+  "remainingHours": { "T1": 5, "T2": null, "T3": 0 }
+}
+```
+
+The map keys and entry task IDs must reference surviving Current Plan tasks;
+baseline-only deleted IDs cannot own current work records. Duplicate entry IDs,
+unsupported versions, malformed values or orphaned references reject the whole
+file before replacement. Missing map key and null both mean unknown; zero is an
+explicit estimate. No derived actual total, forecast total or variance is stored.
+The reader reconstructs known work fields and validates decimal precision, text,
+dates and metadata. The full contract is in [work tracking](../workTracking/README.md).
+
+Save/Load and JSON round trips preserve entry IDs, timestamps, work dates, user
+text and estimates, independently of baseline and current scheduling. Task copies
+receive no work data. Confirmed task deletion removes only that task's current
+work records/estimate; the UI discloses this before confirmation. Manual order and
+sort changes do not rewrite work associations. Work records and current estimates
+participate in the dirty fingerprint; entry/map order and absent versus null
+unknown estimates do not create false dirty changes.
 
 ## Source-only schema
 
 ```json
 {
   "format": "react-gantt-chart",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "createdBy": "React Gantt Chart",
   "savedAt": "2026-10-31T05:00:00.000Z",
   "project": {
@@ -77,7 +117,7 @@ WP5 adds optional fields to the existing schema 1 reader. Missing manualOrder
 defaults to the file's existing task array order; missing sortMode defaults to
 manual; missing duplicateOrigins defaults to an empty map. Opening an older file
 does not rewrite its stored browser copy. A subsequent explicit Save/Save As or
-export includes the normalized metadata in format 2. The storage key and envelope version
+export includes the normalized metadata in format 3. The storage key and envelope version
 stay unchanged, and old task IDs, retained dates and ID counters are preserved.
 
 manualOrder must be an exact permutation of surviving task IDs. sortMode is one of
@@ -97,12 +137,12 @@ earlier-date policies. App recalculates the schedule and critical path on openin
 
 ## APIs and validation
 
-- createProjectFile(ProjectData, savedAt?) returns a validated version 2 file.
+- createProjectFile(ProjectData, savedAt?) returns a validated version 3 file.
 - serializeProject produces readable JSON with a final newline.
 - parseProject handles unknown JSON text and returns a predictable success/errors
   union; decodeProject validates an already parsed unknown object.
 - projectFingerprint compares canonical source fields, independent of object-key
-  ordering, weekday order and predecessor order, plus the optional baseline, for
+  ordering, weekday order and predecessor order, plus baseline and work data, for
   unsaved-change tracking. The explicit snapshot therefore marks the plan dirty.
 - acceptsProjectFile checks .json extension or JSON MIME type and file size.
 
@@ -149,7 +189,7 @@ Browser storage has no cross-tab merge or collaboration protocol.
 ## Editing and replacement safeguards
 
 Save task accepts a form draft; Save/Save As persists the complete accepted source.
-Saving/exporting is disabled until task edits are saved/cancelled and source fields
+Saving/exporting is disabled until task and effort drafts are saved/cancelled and source fields
 are valid. Inline field drafts block save/export until committed or cancelled;
 they never replace valid scheduling data on failed validation. Project settings
 commit on blur as before. A successful browser save
@@ -157,8 +197,8 @@ sets the clean baseline. Export downloads a file without updating a named browse
 copy or clearing the local dirty indicator. Imported projects are dirty until saved
 locally. Deleting the current named copy makes its still-open model unsaved again.
 
-Load/import/New project warn before replacing changed source or unfinished task/
-settings drafts. Cancelling preserves those drafts, including invalid values.
+Load/import/New project warn before replacing changed source or unfinished task,
+settings or effort drafts. Cancelling preserves those drafts, including invalid values.
 Valid imports are decoded before asking to replace; bad files do not raise a
 destructive replacement dialog. The asynchronous reader consults the current dirty
 state. A beforeunload handler additionally requests the browser's standard warning

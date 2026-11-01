@@ -303,3 +303,27 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .baseline-table { width: 100%; min-width: 880px; table-layout: auto; }
 .baseline-table th, .baseline-table td { vertical-align: top; overflow-wrap: anywhere; }
 .baseline-table small { display: block; font-weight: 400; margin-top: 6px; }
+.work-panel { border-top: 1px solid #dce4ec; margin-top: 22px; padding-top: 22px; }
+.work-panel p, .work-panel dd, .work-log strong { overflow-wrap: anywhere; }
+.work-panel h4 { margin: 20px 0 10px; }
+.work-panel .section-heading p { margin-bottom: 0; }
+.effort-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 16px; padding: 16px; margin: 16px 0; border-radius: 8px; background: #f2f6f9; }
+.effort-summary dt { color: #52657b; margin-bottom: 8px; }
+.effort-summary dd { color: #1b3046; font-size: 1.05rem; }
+.remaining-form { padding: 16px; border: 1px solid #dce4ec; border-radius: 8px; }
+.remaining-form label { max-width: 340px; }
+.remaining-form .form-actions { margin-top: 12px; }
+.remaining-form p:last-child { margin-bottom: 0; }
+.work-entry-form { background: #f7fafc; border: 1px solid #9bb8cb; padding: 18px; border-radius: 8px; margin-top: 18px; }
+.work-entry-form h4 { margin-top: 0; }
+.work-fields { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 14px; }
+.work-fields small { color: #52657b; font-weight: 400; }
+.work-warning, .work-deletion-warning { color: #785016; background: #fff7e9; padding: 10px 12px; border-radius: 6px; font-size: .85rem; }
+.work-log { padding: 0; list-style: none; }
+.work-log li { padding: 14px 0; border-bottom: 1px solid #dce4ec; }
+.work-log p { white-space: pre-wrap; font-size: .85rem; margin-bottom: 0; }
+.work-log-heading { display: flex; align-items: start; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: .85rem; }
+.work-log-actions, .work-pending { display: flex; gap: 8px; flex-wrap: wrap; }
+.work-pending { align-items: center; margin: 10px 0; }
+.work-pending p { margin: 0; }
+@media (max-width: 650px) { .work-fields { grid-template-columns: 1fr; } }
