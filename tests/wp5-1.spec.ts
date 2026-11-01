@@ -38,10 +38,10 @@ test('A01–A03 hierarchy, shared details and full editor remain below timeline;
   const before = await page.evaluate(() => scrollY)
   await bar(page, 'T1').click()
   expect(await page.evaluate(() => scrollY)).toBe(before)
-  await expect(details(page).getByLabel('Selected task details')).toContainText('T1 — Research')
-  await expect(gantt.getByLabel('Selected task details')).toHaveCount(0)
+  await expect(details(page).getByLabel('Selected task details', { exact: true })).toContainText('T1 — Research')
+  await expect(gantt.getByLabel('Selected task details', { exact: true })).toHaveCount(0)
   await page.getByRole('row', { name: 'T2 Implementation', exact: true }).getByText('after hour 2 that day', { exact: true }).click()
-  await expect(details(page).getByLabel('Selected task details')).toContainText('T2 — Implementation')
+  await expect(details(page).getByLabel('Selected task details', { exact: true })).toContainText('T2 — Implementation')
   await expect(details(page)).toContainText('Total slack')
   await page.getByRole('button', { name: 'Compressed', exact: true }).click()
   await page.getByRole('combobox', { name: 'Scale', exact: true }).selectOption('day')
@@ -54,7 +54,7 @@ test('A01–A03 hierarchy, shared details and full editor remain below timeline;
   await page.getByRole('button', { name: 'Cancel', exact: true }).click()
   await page.getByRole('button', { name: 'Network / Critical Path', exact: true }).click()
   await expect(page.getByRole('region', { name: 'Network / Critical Path', exact: true }).getByText('01 / Timeline', { exact: true })).toBeVisible()
-  await expect(details(page).getByLabel('Selected task details')).toContainText('T2 — Implementation')
+  await expect(details(page).getByLabel('Selected task details', { exact: true })).toContainText('T2 — Implementation')
 })
 
 test('A04/A05 staged multi-select commits on Done or real keyboard Space/Enter, with focus returned to its trigger', async ({ page }) => {

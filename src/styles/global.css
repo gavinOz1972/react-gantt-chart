@@ -370,3 +370,5 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .completion-checklist { margin: 16px 0; }
 .completion-checklist legend { font-weight: 600; margin-bottom: 10px; }
 .completion-checklist label, .status-ack { padding: 8px 0; }
+.close-selected-task { margin-left: auto; flex-shrink: 0; gap: 6px; align-self: start; }
+.close-selected-task > span { font-size: 1.2rem; line-height: 1; }

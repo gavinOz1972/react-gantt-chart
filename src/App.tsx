@@ -53,6 +53,7 @@ function App() {
   const [definitionDraft, setDefinitionDraft] = useState(false)
   const [statusPrompt, setStatusPrompt] = useState<{ taskId: string; target: TaskStatus } | null>(null)
   const statusTrigger = useRef<HTMLElement | null>(null)
+  const ganttContainer = useRef<HTMLDivElement>(null)
   const [inlineDrafts, setInlineDrafts] = useState<ReadonlySet<string>>(new Set())
   const [tab, setTab] = useState<Tab>('Files')
   const [saveTarget, setSaveTarget] = useState<HTMLDivElement | null>(null)
@@ -137,6 +138,13 @@ function App() {
     if (problem) setNotice(problem)
   }
   function closeStatusPrompt() { setStatusPrompt(null); requestAnimationFrame(() => statusTrigger.current?.isConnected && statusTrigger.current.focus()) }
+  function dismissChartSelection() {
+    if (quickRemaining?.fieldKey.startsWith('chart:')) { setQuickRemaining(null); return }
+    const active = document.activeElement as HTMLElement | null
+    const keepTableEditFocus = !!active?.closest('.tasks-panel') && active.matches('input,textarea')
+    setSelectedTaskId(null)
+    if (!keepTableEditFocus) requestAnimationFrame(() => ganttContainer.current?.querySelector<HTMLButtonElement>('[data-dismiss-focus]')?.focus())
+  }
   function remainingValue(taskId: string) { return Object.hasOwn(workTracking.remainingHours, taskId) ? workTracking.remainingHours[taskId] : null }
   function commitQuickRemaining(): string | undefined {
     if (!quickRemaining) return
@@ -318,15 +326,17 @@ function App() {
     {result.ok && !analysis.ok && <div className="error-summary" role="alert">Critical-path analysis unavailable: {analysis.errors.map(error => error.message).join(' ')}</div>}
     <div className="view-switch" role="group" aria-label="Project visualization"><button type="button" aria-pressed={chartView === 'gantt'} onClick={() => setChartView('gantt')}>Gantt</button>
       <button type="button" aria-pressed={chartView === 'network'} onClick={() => setChartView('network')}>Network / Critical Path</button></div>
-    <div hidden={chartView !== 'gantt'}><GanttChart project={proposedProject} tasks={displayed} result={result} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} previewing={previewing}
+    <div ref={ganttContainer} hidden={chartView !== 'gantt'}><GanttChart project={proposedProject} tasks={displayed} result={result} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} onDismissSelection={dismissChartSelection} previewing={previewing}
       showInspection={false} analysis={analysis} highlightCritical={highlightCritical} onHighlightChange={setHighlightCritical}>
-      {selectedCurrentTask && selectedEffort && <section className="selected-effort-quick" aria-label="Selected chart task">
+      {selectedCurrentTask && selectedEffort && <section className="selected-effort-quick" aria-label="Selected chart task" tabIndex={0}>
         <strong>{selectedCurrentTask.taskId} — {selectedCurrentTask.name}</strong>
         <label className="selected-chart-status">Status<TaskStatusControl taskId={selectedCurrentTask.taskId} value={progressForTask(taskProgress, selectedCurrentTask.taskId).status} context="chart" disabled={statusBlocked} onRequest={(target, trigger) => requestStatus(selectedCurrentTask, target, trigger)} /></label>
         <div className="selected-remaining"><span>Remaining Effort</span>{remainingField(selectedCurrentTask, 'chart')}</div>
         <dl><div><dt>Actual effort</dt><dd>{formatEffort(selectedEffort.actualHours)} h</dd></div>
           <div><dt>Effort at completion</dt><dd>{selectedEffort.forecastHours === null ? 'Not available' : `${formatEffort(selectedEffort.forecastHours)} h`}</dd></div>
           <div><dt>Effort variance</dt><dd>{selectedEffort.varianceHours === null ? 'Not available' : `${selectedEffort.varianceHours > 0 ? '+' : ''}${formatEffort(selectedEffort.varianceHours)} h`}</dd></div></dl>
+        <button type="button" className="quiet close-selected-task" aria-label="Close selected task details" disabled={!!quickRemaining?.fieldKey.startsWith('chart:')} title={quickRemaining?.fieldKey.startsWith('chart:') ? 'Save or cancel the remaining-effort edit before closing.' : 'Dismiss selection; task data is kept.'}
+          onPointerDown={event => event.preventDefault()} onClick={dismissChartSelection}><span aria-hidden="true">×</span> Close</button>
       </section>}
       {quickRemaining?.fieldKey.startsWith('chart:') && selectedTaskId !== quickRemaining.taskId && <div className="quick-remaining-pending" role="status">Unsubmitted Remaining Effort edit for {quickRemaining.taskId}.
         <button type="button" className="quiet" onClick={() => setSelectedTaskId(quickRemaining.taskId)}>Resume remaining edit for {quickRemaining.taskId}</button><button type="button" className="quiet" onClick={() => setQuickRemaining(null)}>Cancel remaining edit</button></div>}

@@ -91,7 +91,7 @@ test('background dragging pans without changing selection; node gestures do not 
   await page.getByRole('button', { name: 'Select T7 in chart', exact: true }).click()
   await network(page).getByRole('button', { name: 'Go to selected node', exact: true }).click()
   await expect(node(page, 'T7')).toBeInViewport(); await node(page, 'T7').click()
-  await expect(page.getByLabel('Selected task details')).toContainText('T7')
+  await expect(page.getByLabel('Selected task details', { exact: true })).toContainText('T7')
   await expect(node(page, 'T7')).toHaveAttribute('aria-pressed', 'true')
 })
 

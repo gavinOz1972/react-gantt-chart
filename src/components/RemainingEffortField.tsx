@@ -32,7 +32,9 @@ export function RemainingEffortField({ label, value, draft, disabled, onBegin, o
     const direction = backwards ? Node.DOCUMENT_POSITION_PRECEDING : Node.DOCUMENT_POSITION_FOLLOWING
     return candidates.find(element => !container.contains(element) && !!(container.compareDocumentPosition(element) & direction))
   }
-  return <div ref={root} className="remaining-quick-field">
+  return <div ref={root} className="remaining-quick-field" onKeyDown={event => {
+    if (draft && event.key === 'Escape' && !event.defaultPrevented) { event.preventDefault(); event.stopPropagation(); finish(true, true) }
+  }}>
     <button ref={trigger} type="button" className="inline-value remaining-quick-value" hidden={editing} disabled={disabled} aria-label={`Edit ${label}`} aria-description={value === null ? 'Current remaining effort is unknown.' : `Current remaining effort is ${formatEffort(value)} hours.`} title="Edit remaining effort; blank means unknown" onClick={onBegin}>
       <span>{value === null ? <><span aria-hidden="true">—</span><span className="sr-only">Unknown</span></> : `${formatEffort(value)} h`}</span><span className="remaining-edit-label">Edit</span>
     </button>

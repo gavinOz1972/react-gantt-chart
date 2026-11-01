@@ -6,12 +6,13 @@ import { connectorPath, createTimelineAxis, HEADER_HEIGHT, LABEL_WIDTH, pixelsPe
 import type { TimelineMode, TimelineZoom } from '../../timeline/projection'
 import { TimelineHeader } from './TimelineHeader'
 
-export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children }: {
+export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, onDismissSelection, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children }: {
   project: ProjectSettings; tasks: readonly TaskInput[]; result: ScheduleResult; selectedTaskId: string | null
   previewing: boolean; onSelect: (id: string) => void
   analysis?: CriticalPathResult; highlightCritical?: boolean; onHighlightChange?: (enabled: boolean) => void
   showInspection?: boolean
   children?: ReactNode
+  onDismissSelection?: () => void
 }) {
   const [mode, setMode] = useState<TimelineMode>('expanded')
   const [zoom, setZoom] = useState<TimelineZoom>('hour')
@@ -70,7 +71,10 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
     setViewport(value => ({ ...value, left: element.scrollLeft, top: element.scrollTop }))
   }
 
-  return <section className="panel gantt-panel" aria-labelledby="gantt-heading">
+  return <section className="panel gantt-panel" aria-labelledby="gantt-heading" onKeyDown={event => {
+    if (event.key !== 'Escape' || event.defaultPrevented || !selectedTaskId || (event.target as Element).closest('input,textarea,select,dialog')) return
+    event.preventDefault(); onDismissSelection?.()
+  }}>
     <div className="section-heading"><div><span className="eyebrow">01 / Timeline</span><h2 id="gantt-heading">Gantt chart</h2></div>
       <span className="preview-label">{previewing ? 'Unsaved preview' : 'Live schedule'}</span></div>
     <div className="gantt-toolbar">
@@ -81,7 +85,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
       <label className="gantt-zoom">Scale<select value={zoom} onChange={event => { setZoom(event.target.value as TimelineZoom); resetScroll() }}>
         <option value="hour">Hour</option><option value="day">Day</option><option value="week">Week</option>
       </select></label>
-      <button className="quiet" type="button" onClick={resetScroll}>Go to start</button>
+      <button className="quiet" type="button" data-dismiss-focus onClick={resetScroll}>Go to start</button>
       <button className="quiet" type="button" disabled={!selected || !geometry} onClick={goToSelected}>Go to selected task</button>
       {analysis && tasks.length > 0 && <label className="critical-toggle"><input type="checkbox" checked={highlightCritical} disabled={!analysis.ok} onChange={event => onHighlightChange?.(event.target.checked)} />Highlight Critical Path</label>}
     </div>
