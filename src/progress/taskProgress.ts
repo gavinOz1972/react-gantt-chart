@@ -10,6 +10,7 @@ export interface StatusEvent {
   readonly date: string; readonly recordedAt: string; readonly reason?: string; readonly note?: string
   readonly criteriaSnapshot?: readonly CompletionCriterion[]; readonly completionAcknowledged?: true
   readonly noCriteriaAcknowledged?: true; readonly definitionOfDone?: string
+  readonly committedFinishDateAtCompletion?: string
 }
 export interface ProgressTracking {
   readonly schemaVersion: 1; readonly definitionOfDone: string
@@ -21,6 +22,7 @@ export interface TransitionRequest {
   target: TaskStatus; eventId: string; date: string; recordedAt: string; reason?: string; note?: string
   completionAcknowledged?: boolean; noCriteriaAcknowledged?: boolean; reopenAcknowledged?: boolean
   criteria?: readonly CompletionCriterion[]
+  committedFinishDateAtCompletion?: string
 }
 export const emptyProgress = (): ProgressTracking => ({ schemaVersion: 1, definitionOfDone: '', tasks: {}, events: [] })
 export const progressForTask = (tracking: ProgressTracking, id: string): TaskProgress => Object.hasOwn(tracking.tasks, id) ? tracking.tasks[id] : { status: 'Not Started', criteria: [] }
@@ -76,6 +78,7 @@ export function decodeProgress(value: unknown, taskIds: readonly string[]): Prog
     if (requiredReason ? !text(entry.reason, 3, 500) : entry.reason !== undefined && !text(entry.reason, 3, 500)) return fail('INVALID_TRANSITION_REASON', 'Blocking or reopening requires a 3–500 character reason.')
     if (entry.note !== undefined && !text(entry.note, 0, 1000)) return fail('INVALID_COMPLETION_NOTE', 'Event notes must be plain text up to 1,000 characters.')
     let snapshot: CompletionCriterion[] | undefined
+    if (entry.committedFinishDateAtCompletion !== undefined && (entry.toStatus !== 'Complete' || !validDate(entry.committedFinishDateAtCompletion))) return fail('INVALID_COMPLETION_FINISH', 'Only completion events may retain a valid committed finish date.')
     if (entry.toStatus === 'Complete') {
       const decoded = criteria(entry.criteriaSnapshot); if (!decoded.ok) return fail('INVALID_COMPLETION_SNAPSHOT', decoded.errors[0].message)
       snapshot = decoded.value
@@ -86,7 +89,7 @@ export function decodeProgress(value: unknown, taskIds: readonly string[]): Prog
     } else if (entry.criteriaSnapshot !== undefined || entry.completionAcknowledged !== undefined || entry.noCriteriaAcknowledged !== undefined || entry.definitionOfDone !== undefined) return fail('INVALID_STATUS_EVENT', 'Only a completion event may contain criterion snapshots or completion acknowledgements.')
     const event: StatusEvent = { eventId: entry.eventId, taskId: entry.taskId, fromStatus: entry.fromStatus, toStatus: entry.toStatus, date: entry.date, recordedAt: entry.recordedAt,
       ...(entry.reason !== undefined ? { reason: String(entry.reason).trim() } : {}), ...(entry.note !== undefined ? { note: String(entry.note).trim() } : {}),
-      ...(snapshot ? { criteriaSnapshot: snapshot, completionAcknowledged: true as const, ...(snapshot.length ? {} : { noCriteriaAcknowledged: true as const }), definitionOfDone: String(entry.definitionOfDone).trim() } : {}) }
+      ...(snapshot ? { criteriaSnapshot: snapshot, completionAcknowledged: true as const, ...(snapshot.length ? {} : { noCriteriaAcknowledged: true as const }), definitionOfDone: String(entry.definitionOfDone).trim(), ...(entry.committedFinishDateAtCompletion !== undefined ? { committedFinishDateAtCompletion: String(entry.committedFinishDateAtCompletion) } : {}) } : {}) }
     events.push(event)
     replay.set(entry.taskId, { status: entry.toStatus, ...(entry.toStatus === 'Blocked' ? { blockedReason: event.reason } : {}), recordedAt: entry.recordedAt, completion: snapshot ?? previous?.completion })
   }
@@ -113,7 +116,7 @@ export function transitionTask(tracking: ProgressTracking, taskId: string, reque
   }
   const event: StatusEvent = { eventId: request.eventId, taskId, fromStatus: current.status, toStatus: request.target, date: request.date, recordedAt: request.recordedAt,
     ...(request.reason?.trim() ? { reason: request.reason.trim() } : {}), ...(request.note?.trim() ? { note: request.note.trim() } : {}),
-    ...(request.target === 'Complete' ? { criteriaSnapshot: checked.map(item => ({ ...item })), completionAcknowledged: true, ...(!checked.length ? { noCriteriaAcknowledged: true as const } : {}), definitionOfDone: tracking.definitionOfDone } : {}) }
+    ...(request.target === 'Complete' ? { criteriaSnapshot: checked.map(item => ({ ...item })), completionAcknowledged: true, ...(!checked.length ? { noCriteriaAcknowledged: true as const } : {}), definitionOfDone: tracking.definitionOfDone, ...(request.committedFinishDateAtCompletion !== undefined ? { committedFinishDateAtCompletion: request.committedFinishDateAtCompletion } : {}) } : {}) }
   const next: TaskProgress = { status: request.target, criteria: checked.map(item => ({ ...item })), ...(request.target === 'Blocked' ? { blockedReason: request.reason?.trim() } : {}) }
   return decodeProgress({ ...tracking, tasks: { ...tracking.tasks, [taskId]: next }, events: [...tracking.events, event] }, taskIds)
 }
@@ -133,5 +136,5 @@ export function removeTaskProgress(tracking: ProgressTracking, taskId: string): 
 }
 export function progressFingerprint(tracking: ProgressTracking = emptyProgress()): unknown {
   return [tracking.definitionOfDone, Object.entries(tracking.tasks).filter(([, task]) => task.status !== 'Not Started' || task.criteria.length > 0).sort(([a], [b]) => a.localeCompare(b)).map(([id, task]) => [id, task.status, task.blockedReason ?? null, task.criteria.map(item => [item.criterionId, item.text, item.checked])]),
-    tracking.events.map(event => [event.eventId, event.taskId, event.fromStatus, event.toStatus, event.date, event.recordedAt, event.reason ?? null, event.note ?? null, event.criteriaSnapshot ?? null, event.completionAcknowledged ?? null, event.noCriteriaAcknowledged ?? null, event.definitionOfDone ?? null])]
+    tracking.events.map(event => [event.eventId, event.taskId, event.fromStatus, event.toStatus, event.date, event.recordedAt, event.reason ?? null, event.note ?? null, event.criteriaSnapshot ?? null, event.completionAcknowledged ?? null, event.noCriteriaAcknowledged ?? null, event.definitionOfDone ?? null, event.committedFinishDateAtCompletion ?? null])]
 }

@@ -144,7 +144,7 @@ test('local save/reload and real JSON download/import preserve sources, retained
   const download = await downloadPromise
   const json = await readFile((await download.path())!, 'utf8')
   const exported = JSON.parse(json)
-  expect(exported.schemaVersion).toBe(4)
+  expect(exported.schemaVersion).toBe(5)
   expect(exported).not.toHaveProperty('baseline')
   expect(exported.tasks[2].requestedStartDate).toBe('2026-11-12')
   expect(exported).not.toHaveProperty('schedule')

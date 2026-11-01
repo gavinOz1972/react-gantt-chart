@@ -27,7 +27,7 @@ function storage() {
 
 test('A12 local and JSON round trips retain status, DoD, criteria, history IDs/snapshots, blocked reason, work and baseline', () => {
   const original = file()
-  expect(original.schemaVersion).toBe(4)
+  expect(original.schemaVersion).toBe(5)
   expect(parseProject(serializeProject(original))).toEqual({ ok: true, value: original })
   const local = storage()
   expect(saveLocalProject(local, 'Status plan', original).ok).toBe(true)

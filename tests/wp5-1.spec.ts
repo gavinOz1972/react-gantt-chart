@@ -77,6 +77,9 @@ test('A04/A05 staged multi-select commits on Done or real keyboard Space/Enter, 
 })
 
 test('A06/A09 outside pointer commits without activating Delete or another task action', async ({ page }) => {
+  // Keep the disabled Delete target outside the portal and in view. A forced
+  // click skips hit testing, so a scrolled/covered coordinate can hit the picker.
+  await page.setViewportSize({ width: 2000, height: 1800 })
   await open(page)
   await trigger(page, 'T2').click(); await choice(page, 'T2', 'T1').check()
   await page.getByRole('button', { name: 'Delete T3', exact: true }).click({ force: true })

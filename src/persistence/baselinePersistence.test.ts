@@ -58,7 +58,7 @@ test('A08 legacy read is nondestructive, fabricates no baseline, and only explic
   expect(deleteLocalProject(local, 'Other', true).ok).toBe(true)
   expect(JSON.parse(local.values.get(LOCAL_PROJECTS_KEY)!).projects[0].plan).toEqual({ ...oldest, customLegacyField: 'Keep untouched' })
   const migrated = createProjectFile(read.projects[0].plan, establishedAt)
-  expect(migrated.ok && migrated.value.schemaVersion).toBe(4)
+  expect(migrated.ok && migrated.value.schemaVersion).toBe(5)
   expect(migrated.ok && migrated.value.baseline).toBeUndefined()
   expect(read.projects[0].plan.schemaVersion).toBe(1)
 })

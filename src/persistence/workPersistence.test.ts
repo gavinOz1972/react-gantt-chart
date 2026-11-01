@@ -17,7 +17,7 @@ function storage() {
 
 test('A09 JSON and named Save/Load preserve logs/IDs, metadata, baseline and explicit zero versus unknown', () => {
   const original = file()
-  expect(original.schemaVersion).toBe(4)
+  expect(original.schemaVersion).toBe(5)
   const parsed = parseProject(serializeProject(original))
   expect(parsed).toEqual({ ok: true, value: original })
   const local = storage()

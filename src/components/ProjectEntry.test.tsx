@@ -39,7 +39,7 @@ function togglePredecessor(name: string) { fireEvent.click(predecessor(name)); f
 
 test('A01/A02 calendar controls and first task produce WP1 rollover dates', () => {
   render(<App />)
-  tab('Project Settings'); expect(screen.getAllByRole('checkbox')).toHaveLength(7)
+  tab('Project Settings'); expect(within(screen.getByRole('group', { name: 'Working weekdays' })).getAllByRole('checkbox')).toHaveLength(7)
   expect(screen.getByText('Your project starts with one task')).toBeInTheDocument()
   expect(screen.getByLabelText('Project start date')).toHaveAttribute('type', 'date')
   calendar()

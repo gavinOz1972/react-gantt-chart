@@ -31,6 +31,10 @@ import { TaskStatusPanel } from './components/progress/TaskStatusPanel'
 import { DefinitionOfDone } from './components/progress/DefinitionOfDone'
 import { StatusTransitionDialog } from './components/progress/StatusTransitionDialog'
 import { localDate } from './components/progress/localDate'
+import { forecastSchedule } from './forecast/forecast'
+import type { ForecastSettings } from './forecast/settings'
+import { ForecastSettingsForm } from './components/forecast/ForecastSettingsForm'
+import { ForecastSummary, TaskForecastSummary } from './components/forecast/ForecastSummary'
 
 const tabs = ['Files', 'Project Settings', 'Workspace'] as const
 type Tab = typeof tabs[number]
@@ -49,6 +53,8 @@ function App() {
   const [workDraft, setWorkDraft] = useState(false)
   const [quickRemaining, setQuickRemaining] = useState<RemainingEffortDraft | null>(null)
   const [taskProgress, setTaskProgress] = useState<ProgressTracking>(emptyProgress)
+  const [forecastSettings, setForecastSettings] = useState<ForecastSettings>()
+  const [forecastDraft, setForecastDraft] = useState(false)
   const [criteriaDraft, setCriteriaDraft] = useState(false)
   const [definitionDraft, setDefinitionDraft] = useState(false)
   const [statusPrompt, setStatusPrompt] = useState<{ taskId: string; target: TaskStatus } | null>(null)
@@ -80,6 +86,10 @@ function App() {
   const proposedTasks = useMemo(() => editor ? replaceTask(tasks, taskFromDraft(editor)) : tasks, [editor, tasks])
   const result = useMemo(() => calculateSchedule(proposedProject, proposedTasks), [proposedProject, proposedTasks])
   const analysis = useMemo(() => analyzeCriticalPath(proposedProject, proposedTasks, result), [proposedProject, proposedTasks, result])
+  const committedResult = useMemo(() => calculateSchedule(project, tasks), [project, tasks])
+  const today = localDate()
+  const forecast = useMemo(() => forecastSchedule({ project, tasks, manualOrder, remainingHours: workTracking.remainingHours, progress: taskProgress, baseline, settings: forecastSettings, today }), [project, tasks, manualOrder, workTracking.remainingHours, taskProgress, baseline, forecastSettings, today])
+  const selectedForecast = forecast.tasks.find(task => task.taskId === selectedTaskId)
   const errors = result.ok ? [] : result.errors
   const projectDirty = JSON.stringify(projectDraft) !== JSON.stringify(projectToDraft(project))
   const isNew = !!editor && !tasks.some(task => task.taskId === editor.taskId)
@@ -90,9 +100,9 @@ function App() {
   const completion = result.ok ? result.projectCompletion : null
   const previewing = !!editor || projectDirty
   const idLimitReached = nextId >= Number.MAX_SAFE_INTEGER - 1
-  const progressDraft = criteriaDraft || definitionDraft || !!statusPrompt
+  const progressDraft = criteriaDraft || definitionDraft || !!statusPrompt || forecastDraft
   const statusBlocked = !!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft || !result.ok || projectDirty
-  const unsaved = previewing || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft || projectFingerprint({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking, taskProgress }) !== savedFingerprint
+  const unsaved = previewing || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft || projectFingerprint({ project, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking, taskProgress, forecastSettings }) !== savedFingerprint
   const baselineProblems = [
     ...(!tasks.length ? ['Add and save at least one task.'] : []),
     ...(previewing || inlineDrafts.size > 0 || workDraft || quickRemaining || progressDraft ? ['Finish or cancel task edits, effort edits and status/criteria edits; commit or revert project settings.'] : []),
@@ -126,7 +136,8 @@ function App() {
     setTaskProgress(checked.value)
   }
   function applyStatus(taskId: string, request: TransitionRequest): string | undefined {
-    const checked = transitionTask(taskProgress, taskId, request, tasks.map(task => task.taskId))
+    const committedFinish = committedResult.ok ? committedResult.tasks.find(task => task.taskId === taskId)?.finishDate : undefined
+    const checked = transitionTask(taskProgress, taskId, { ...request, ...(request.target === 'Complete' && committedFinish ? { committedFinishDateAtCompletion: committedFinish } : {}) }, tasks.map(task => task.taskId))
     if (!checked.ok) return checked.errors.map(error => error.message).join(' ')
     setTaskProgress(checked.value); setNotice(`${taskId}: ${request.target}. Save or Export JSON to keep this decision.`)
   }
@@ -190,7 +201,8 @@ function App() {
   }, [unsaved])
 
   function openProject(file: ProjectFile, name: string | null) {
-    setBaseline(file.baseline); setLegacySource(file.schemaVersion < 4 ? file : undefined)
+    setBaseline(file.baseline); setLegacySource(file.schemaVersion < 5 ? file : undefined)
+    setForecastSettings(file.forecastSettings); setForecastDraft(false)
     setTaskProgress(file.taskProgress ?? emptyProgress()); setCriteriaDraft(false); setDefinitionDraft(false); setStatusPrompt(null)
     setWorkTracking(file.workTracking ?? emptyWorkTracking()); setWorkDraft(false)
     setQuickRemaining(null)
@@ -202,6 +214,7 @@ function App() {
     setNotice(name ? `Opened “${name}”. Schedule and critical path recalculated.` : 'JSON imported. Schedule and critical path recalculated; save a browser copy if needed.')
   }
   function savedProject(file: ProjectFile, name: string) {
+    setForecastSettings(file.forecastSettings)
     setTaskProgress(file.taskProgress ?? emptyProgress())
     setBaseline(file.baseline); setLegacySource(undefined)
     setWorkTracking(file.workTracking ?? emptyWorkTracking())
@@ -209,6 +222,7 @@ function App() {
     setCurrentSavedName(name); setSavedFingerprint(projectFingerprint(file))
   }
   function freshProject() {
+    setForecastSettings(undefined); setForecastDraft(false)
     setTaskProgress(emptyProgress()); setCriteriaDraft(false); setDefinitionDraft(false); setStatusPrompt(null)
     setBaseline(undefined); setLegacySource(undefined)
     setWorkTracking(emptyWorkTracking()); setWorkDraft(false)
@@ -312,14 +326,15 @@ function App() {
       </dl>
     </section>
     <div role="tabpanel" id="panel-0" aria-labelledby="tab-0" hidden={tab !== 'Files'}>
-    <ProjectStorage key={documentEpoch} data={{ project: proposedProject, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking, taskProgress }} legacySource={legacySource} dirty={unsaved} ready={result.ok && !editor && inlineDrafts.size === 0 && !workDraft && !quickRemaining && !progressDraft} currentSavedName={currentSavedName}
+    <ProjectStorage key={documentEpoch} data={{ project: proposedProject, tasks, nextTaskNumber: nextId, manualOrder, sortMode, duplicateOrigins, baseline, workTracking, taskProgress, forecastSettings }} legacySource={legacySource} dirty={unsaved} ready={result.ok && !editor && inlineDrafts.size === 0 && !workDraft && !quickRemaining && !progressDraft} currentSavedName={currentSavedName}
       saveTarget={saveTarget} onNameRequired={() => setTab('Files')} onOpen={openProject} onSaved={savedProject} onNew={freshProject} onDeleted={name => { if (currentSavedName === name) { setCurrentSavedName(null); setSavedFingerprint('') } }} />
     <button type="button" className="next-step" onClick={() => setTab('Project Settings')}>Next: Project Settings →</button></div>
     <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" hidden={tab !== 'Project Settings'}>
     <ProjectSettingsForm draft={projectDraft} errors={errors} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft} dirty={projectDirty} onChange={setProjectDraft}
       onCommit={commitProject} onRevert={() => { setProjectDraft(projectToDraft(project)); setNotice('Saved project settings restored.') }} />
     <BaselinePanel key={`baseline-${documentEpoch}`} baseline={baseline} problems={baselineProblems} onEstablish={freezePlan} />
-    <DefinitionOfDone key={`definition-${documentEpoch}`} value={taskProgress.definitionOfDone} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || criteriaDraft || !!statusPrompt || projectDirty} onCommit={text => commitProgress({ ...taskProgress, definitionOfDone: text })} onDraftChange={setDefinitionDraft} />
+    <ForecastSettingsForm key={`forecast-${documentEpoch}`} value={forecastSettings} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || criteriaDraft || definitionDraft || !!statusPrompt || projectDirty} onChange={setForecastSettings} onDraftChange={setForecastDraft} />
+    <DefinitionOfDone key={`definition-${documentEpoch}`} value={taskProgress.definitionOfDone} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || criteriaDraft || !!statusPrompt || forecastDraft || projectDirty} onCommit={text => commitProgress({ ...taskProgress, definitionOfDone: text })} onDraftChange={setDefinitionDraft} />
     <button type="button" className="next-step" onClick={() => setTab('Workspace')}>Next: Workspace →</button></div>
     <EntryErrors errors={errors} />
     <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden={tab !== 'Workspace'}>
@@ -335,6 +350,7 @@ function App() {
         <dl><div><dt>Actual effort</dt><dd>{formatEffort(selectedEffort.actualHours)} h</dd></div>
           <div><dt>Effort at completion</dt><dd>{selectedEffort.forecastHours === null ? 'Not available' : `${formatEffort(selectedEffort.forecastHours)} h`}</dd></div>
           <div><dt>Effort variance</dt><dd>{selectedEffort.varianceHours === null ? 'Not available' : `${selectedEffort.varianceHours > 0 ? '+' : ''}${formatEffort(selectedEffort.varianceHours)} h`}</dd></div></dl>
+        {selectedForecast && !forecastDraft && <TaskForecastSummary task={selectedForecast} />}
         <button type="button" className="quiet close-selected-task" aria-label="Close selected task details" disabled={!!quickRemaining?.fieldKey.startsWith('chart:')} title={quickRemaining?.fieldKey.startsWith('chart:') ? 'Save or cancel the remaining-effort edit before closing.' : 'Dismiss selection; task data is kept.'}
           onPointerDown={event => event.preventDefault()} onClick={dismissChartSelection}><span aria-hidden="true">×</span> Close</button>
       </section>}
@@ -342,6 +358,7 @@ function App() {
         <button type="button" className="quiet" onClick={() => setSelectedTaskId(quickRemaining.taskId)}>Resume remaining edit for {quickRemaining.taskId}</button><button type="button" className="quiet" onClick={() => setQuickRemaining(null)}>Cancel remaining edit</button></div>}
     </GanttChart></div>
     <div hidden={chartView !== 'network'}><NetworkView key={documentEpoch} active={chartView === 'network' && tab === 'Workspace'} showInspection={false} tasks={proposedTasks} result={result} analysis={analysis} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} /></div>
+    <ForecastSummary forecast={forecast} invalidDraft={forecastDraft} />
     <section className="panel tasks-panel" aria-labelledby="tasks-heading">
       <div className="section-heading"><div><span className="eyebrow">02 / Tasks & Schedule</span><h2 id="tasks-heading">Tasks & schedule</h2></div>
         <div className="task-toolbar"><label>Task order<select value={sortMode} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || progressDraft} onChange={event => setSortMode(event.target.value as SortMode)}><option value="manual">Manual Order</option><option value="start">Start Date</option><option value="name">Task Name</option><option value="duration">Duration</option></select></label>
@@ -361,7 +378,8 @@ function App() {
       <div className="section-heading"><div><span className="eyebrow">03 / Task Details</span><h2 id="task-details-heading">Task details</h2></div></div>
       {selectedTask && selectedSchedule ? <TaskInspection task={selectedTask} scheduled={selectedSchedule} analysis={analysis.ok ? analysis.tasks.find(task => task.taskId === selectedTaskId) : undefined} />
         : <p className="muted">{selectedTaskId && !result.ok ? 'Task dates are unavailable until the preview is valid.' : 'Select a bar, network node or task row to inspect its dates, duration, predecessors and slack.'}</p>}
-      <TaskStatusPanel key={`status-${documentEpoch}`} task={selectedCurrentTask} tracking={taskProgress} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || definitionDraft || !!statusPrompt || !result.ok || projectDirty} statusDisabled={statusBlocked}
+      {selectedForecast && !forecastDraft && <TaskForecastSummary task={selectedForecast} />}
+      <TaskStatusPanel key={`status-${documentEpoch}`} task={selectedCurrentTask} tracking={taskProgress} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || definitionDraft || !!statusPrompt || forecastDraft || !result.ok || projectDirty} statusDisabled={statusBlocked}
         onRequest={requestStatus} onCriteria={commitCriteria} onDraftChange={setCriteriaDraft} onSelect={setSelectedTaskId} />
       <TaskWorkPanel key={`work-${documentEpoch}`} task={selectedCurrentTask} tracking={workTracking} baseline={baseline} disabled={!!editor || inlineDrafts.size > 0 || !result.ok || projectDirty || !!quickRemaining || progressDraft}
         onChange={commitWork} onDraftChange={setWorkDraft} onSelect={setSelectedTaskId} />

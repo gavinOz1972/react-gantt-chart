@@ -18,7 +18,7 @@ function readFile(file: File): Promise<string> {
     reader.readAsText(file)
   })
 }
-type Pending = { kind: 'open'; file: ProjectFile; name: string | null } | { kind: 'new' } | { kind: 'overwrite'; file: ProjectFile; name: string; migrating?: 1 | 2 | 3 } | { kind: 'delete'; name: string }
+type Pending = { kind: 'open'; file: ProjectFile; name: string | null } | { kind: 'new' } | { kind: 'overwrite'; file: ProjectFile; name: string; migrating?: 1 | 2 | 3 | 4 } | { kind: 'delete'; name: string }
 
 export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedName, onOpen, onSaved, onNew, onDeleted, saveTarget, onNameRequired }: {
   data: ProjectData; dirty: boolean; ready: boolean; currentSavedName: string | null
@@ -64,7 +64,7 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
     const current = local(readLocalProjects)
     if (!outcome(current) || !current.ok) return
     const existing = current.projects.find(entry => entry.name === name.trim())
-    if (existing) setPending({ kind: 'overwrite', file: created.value, name: name.trim(), migrating: existing.plan.schemaVersion < PROJECT_SCHEMA_VERSION ? existing.plan.schemaVersion as 1 | 2 | 3 : undefined })
+    if (existing) setPending({ kind: 'overwrite', file: created.value, name: name.trim(), migrating: existing.plan.schemaVersion < PROJECT_SCHEMA_VERSION ? existing.plan.schemaVersion as 1 | 2 | 3 | 4 : undefined })
     else save(created.value, name, false)
   }
   function quickSave() {
@@ -80,7 +80,7 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
     if (!outcome(current) || !current.ok) { onNameRequired?.(); return }
     const existing = current.projects.find(entry => entry.name === currentSavedName)
     if (existing && existing.plan.schemaVersion < PROJECT_SCHEMA_VERSION) {
-      setPending({ kind: 'overwrite', file: created.value, name: currentSavedName, migrating: existing.plan.schemaVersion as 1 | 2 | 3 })
+      setPending({ kind: 'overwrite', file: created.value, name: currentSavedName, migrating: existing.plan.schemaVersion as 1 | 2 | 3 | 4 })
       return
     }
     if (!save(created.value, currentSavedName, true)) onNameRequired?.()

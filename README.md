@@ -15,8 +15,10 @@ WP6.2 adds dated work sessions, derived actual hours, nullable remaining effort
 and a baseline effort comparison. WP6.2.1 adds Remaining Effort quick entry beside
 tasks and in the selected Gantt task summary. WP6.3 adds explicit task statuses,
 completion criteria, blocked reasons, project Definition of Done and completion/
-reopening history. Resource levelling, costs,
-schedule forecasting and probabilistic PERT are outside this release.
+reopening history. WP6.3.1 adds safe dismissal of the selected Gantt summary.
+WP6.4 adds effort-based forecasting from declared team capacity and remaining
+effort, with independent committed/baseline comparisons. Resource levelling,
+costs, per-person calendars and probabilistic PERT are outside this release.
 
 ## Prerequisites and setup
 
@@ -111,13 +113,13 @@ slots. **View Baseline** opens read-only details. Current Plan edits and deletio
 never change those records. Save or Export JSON after establishing it; creating a
 baseline does not automatically save.
 
-WP5 format 1, WP6.1 format 2 and WP6.2 format 3 files still open with safe defaults
+WP5 format 1, WP6.1 format 2, WP6.2 format 3 and WP6.3 format 4 files still open with safe defaults
 for missing tracking fields. Opening does not migrate saved copies. Files offers
-**Export WP5 backup**, **Export WP6.1 backup** or **Export WP6.2 backup** for the original loaded plan,
-even if current edits are unfinished. New saves/exports use project format 4;
+**Export WP5 backup**, **Export WP6.1 backup**, **Export WP6.2 backup** or **Export WP6.3 backup** for the original loaded plan,
+even if current edits are unfinished. New saves/exports use project format 5;
 upgrading an existing older named save requires confirmation and offers a
 backup download. Save As under a new name also preserves the original copy.
-Earlier releases cannot safely preserve format 4 status/history records. Baselines,
+Earlier releases cannot safely preserve format 5 forecast assumptions and completion timing context. Baselines,
 work and status records round-trip in local Save/Load and JSON Export/Import; malformed data
 rejects the whole import before changing your open plan.
 
@@ -215,6 +217,27 @@ Save or Export JSON after changes. Unsubmitted criteria/definition/transition
 drafts use the existing unsaved-change safeguards. History records decisions;
 it does not verify identity or provide a tamper-proof audit. See the
 [WP6.3 handoff and A01–A15 owner checks](docs/WP6-3-HANDOFF.md).
+
+## Effort-based forecasting (WP6.4)
+
+In Project Settings, enable Forecast assumptions and enter class/homework hours
+**per student per week**, team size, and an As-of date (default today locally).
+The Workspace forecast uses one shared capacity pool, evenly spread over seven
+calendar days, to project explicit Remaining Effort through dependencies.
+Change an estimate in the task table or selected Gantt summary to update it live.
+Close dismisses that summary; passive Escape also works after nested edits close.
+
+Unknown estimates or blocked dependencies make the forecast Partial, without a
+definitive project finish. Zero capacity makes dates Unavailable. Late means an
+unfinished task's committed finish has passed As-of; At Risk means a projected
+overrun before that commitment has passed. Effort variance is a separate measure.
+New completion events retain the commitment at completion; legacy completions
+without that context have unknown historical timing.
+
+Forecasting leaves baseline records, actual logs and committed Gantt geometry
+intact. It is an approximate planning heuristic, without per-person availability
+or concurrency guarantees. See the [combined handoff and owner script](docs/WP6-4-HANDOFF.md)
+and [calculation rules](src/forecast/README.md).
 
 ## Using the Gantt chart
 

@@ -1,7 +1,12 @@
 # Task status, completion criteria and decisions (WP6.3)
 
 This model is independent of WP1 schedule inputs, baseline snapshots and WP6.2
-person-hours. Its optional `taskProgress` section belongs to project format 4:
+person-hours. Its optional `taskProgress` section belongs to project format 4 or later:
+
+WP6.4 saves new files in format 5 and optionally adds the committed finish date
+at completion to each new completion event. This immutable historical comparison
+context is validated as a date and displayed in history. Legacy events without
+it keep their original attestation and show unknown historical schedule timing.
 
 ```text
 {

@@ -250,12 +250,12 @@ test('A01/A12 format 3 has no invented events and its original backup is availab
   expect(backup.schemaVersion).toBe(3); expect(backup).not.toHaveProperty('taskProgress')
   expect(backup.workTracking).toEqual(fixture.workTracking)
   await page.getByRole('button', { name: 'Save', exact: true }).click()
-  await expect(modal(page)).toContainText('from format 3 to format 4')
+  await expect(modal(page)).toContainText('from format 3 to format 5')
   await modal(page).getByRole('button', { name: 'Cancel', exact: true }).click()
   expect(await page.evaluate(key => localStorage.getItem(key), libraryKey)).toBe(raw)
   await page.getByRole('button', { name: 'Save', exact: true }).click(); await page.getByRole('button', { name: 'Overwrite saved plan', exact: true }).click()
   const updated = await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).projects[0].plan, libraryKey)
-  expect(updated.schemaVersion).toBe(4); expect(updated.taskProgress.events).toEqual([])
+  expect(updated.schemaVersion).toBe(5); expect(updated.taskProgress.events).toEqual([])
 })
 
 test('unfinished criteria and project definition drafts retain text, block saving and survive task/tab changes', async ({ page }) => {

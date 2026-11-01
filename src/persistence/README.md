@@ -1,9 +1,22 @@
-# Versioned local project files (WP6.3)
+# Versioned local project files (WP6.4)
 
-## Format 4 and explicit migration
+## Forecast assumptions and completion context
 
-The reader accepts project schemaVersion 1 (WP4–WP5.2), 2 (WP6.1), 3 (WP6.2/6.2.1), and 4 (WP6.3).
-Every new Save/Save As and normal Export JSON writes version 4, with optional
+Project format 5 optionally adds `forecastSettings` (schemaVersion 1, enabled,
+classHoursPerStudent, homeworkHoursPerStudent, teamSize, optional asOfDate).
+Legacy versions 1–4 load with forecasting unset, never invented capacity.
+Only assumptions are saved; computed forecasts rederive on load. New completion
+events can retain a valid `committedFinishDateAtCompletion`; old completions without
+it show unknown historical timing. Neither field enters the original baseline.
+Malformed settings/context reject the whole import/save before changing the open
+project or saved record. Original-format backups include WP6.3 format 4, and
+overwriting a version 1–4 save requires explicit migration confirmation.
+See [forecast calculations and limits](../forecast/README.md).
+
+## Format 5 and explicit migration
+
+The reader accepts project schemaVersion 1 (WP4–WP5.2), 2 (WP6.1), 3 (WP6.2/6.2.1), 4 (WP6.3), and 5 (WP6.4).
+Every new Save/Save As and normal Export JSON writes version 5, with optional
 `baseline`, `workTracking` and `taskProgress` sections. All three have their own schemaVersion
 1. The baseline contract is unchanged. A format 1 project carrying a baseline,
 a format 1/2 project carrying workTracking, or a format 1/2/3 project carrying taskProgress, is rejected rather than silently
@@ -15,13 +28,13 @@ not write localStorage. Files offers Export WP5 backup, Export WP6.1 backup or E
 the original loaded inputs, even while invalid current drafts are open. This
 compatible backup normalizes known defaults, retains original savedAt and any
 original baseline, and omits subsequent edits/work/newly established baselines.
-Normal Export JSON downloads format 4 without changing any saved copy. It does
+Normal Export JSON downloads format 5 without changing any saved copy. It does
 not mark local edits saved.
 
-Saving over a format 1/2/3 named record requires migration confirmation, including
+Saving over a format 1/2/3/4 named record requires migration confirmation, including
 header Save. The dialog also offers an original-format backup of the record being
 replaced. Cancel keeps that record untouched; Save As with a different name keeps
-the old copy. Subsequent header Save to a format 4 record keeps the existing
+the old copy. Subsequent header Save to a format 5 record keeps the existing
 explicit Save workflow. There is no automatic rewrite on first open. Saving or
 deleting another named plan preserves the original JSON objects of untouched
 records, including their legacy optional/unknown fields.
@@ -47,7 +60,7 @@ criteria snapshot plus project guidance. Completion dates are derived from event
 
 Missing progress in formats 1/2/3 or 4 means Not Started with no criteria/history
 and blank project guidance. Legacy readers cannot preserve these records, so
-normal writes use format 4 and migration offers original-format backups. The
+normal writes use format 5 and migration offers original-format backups. The
 reader rejects older-format files carrying progress, invalid statuses, duplicate
 event/criterion IDs, orphaned task references, broken transition chains, mismatched
 current state, missing reasons or malformed/unacknowledged completion snapshots.
@@ -141,7 +154,7 @@ WP5 adds optional fields to the existing schema 1 reader. Missing manualOrder
 defaults to the file's existing task array order; missing sortMode defaults to
 manual; missing duplicateOrigins defaults to an empty map. Opening an older file
 does not rewrite its stored browser copy. A subsequent explicit Save/Save As or
-export includes the normalized metadata in format 4. The storage key and envelope version
+export includes the normalized metadata in format 5. The storage key and envelope version
 stay unchanged, and old task IDs, retained dates and ID counters are preserved.
 
 manualOrder must be an exact permutation of surviving task IDs. sortMode is one of

@@ -372,3 +372,17 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .completion-checklist label, .status-ack { padding: 8px 0; }
 .close-selected-task { margin-left: auto; flex-shrink: 0; gap: 6px; align-self: start; }
 .close-selected-task > span { font-size: 1.2rem; line-height: 1; }
+.forecast-summary { margin-block: 16px; }
+.forecast-summary .summary-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.forecast-summary dt, .forecast-summary dd small { color: #52657b; }
+.forecast-summary dt { margin-bottom: 6px; }
+.forecast-summary dd { font-size: 1rem; }
+.forecast-summary .summary-grid { gap: 14px 20px; margin-block: 14px; }
+.checkbox-label { flex-direction: row; align-items: center; }
+.forecast-warning { color: #83421d; font-weight: 600; }
+.task-forecast { flex-basis: 100%; min-width: 0; }
+.task-forecast dl { display: flex; flex-wrap: wrap; gap: 12px 28px; margin: 8px 0; }
+.task-forecast dt, .task-forecast small { color: var(--muted, #526681); font-size: .8rem; }
+.task-forecast dd { margin: 3px 0 0; font-weight: 600; }
+.selected-effort-quick { position: relative; padding-right: 95px; }
+.selected-effort-quick .close-selected-task { position: absolute; right: 0; top: 12px; }
