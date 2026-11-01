@@ -1,9 +1,20 @@
 import type { Forecast, TaskForecast } from '../../forecast/forecast'
+import { indicatorPresentation } from '../../progress/healthPresentation'
+import type { ProjectHealth } from '../../progress/healthPresentation'
+import { HealthBadge } from '../progress/HealthBadge'
 const hours = (n: number | null) => n === null ? 'Unavailable' : `${new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 }).format(n)} person-hours`
 const dateVariance = (a: string | null, b: string | null) => a && b ? (a > b ? 'Later' : a < b ? 'Earlier' : 'Same date') : 'Unavailable'
-export function ForecastSummary({ forecast, invalidDraft }: { forecast: Forecast; invalidDraft: boolean }) {
+export function ForecastSummary({ forecast, invalidDraft, health, target }: { forecast: Forecast; invalidDraft: boolean; health: ProjectHealth; target: string }) {
   return <section className="panel forecast-summary" aria-labelledby="forecast-heading">
-    <div className="section-heading"><h2 id="forecast-heading">Effort-based forecast</h2><span className="status-label">{invalidDraft ? 'Unavailable' : forecast.state}</span></div>
+    <div className="section-heading"><h2 id="forecast-heading">Project health</h2><HealthBadge {...health} /></div>
+    <p className="health-outcome" role="status" aria-live="polite">{health.label}: {health.explanation}</p>
+    <div className="health-context"><span>As-of <strong>{forecast.asOfDate}</strong></span><span title="Complete means forecast inputs are complete; it does not change task work status.">Forecast: <strong>{health.forecastState}</strong></span>{health.availability !== 'Projection available' && !health.completed && <span>{health.availability}</span>}</div>
+    <dl className="health-metrics">
+      <div><dt>{health.completed ? 'Recorded completion' : 'Projected completion'}</dt><dd>{health.completed ? health.completionDate ?? 'Unavailable' : invalidDraft ? 'Unavailable' : health.availability === 'Indeterminate' ? 'Indeterminate' : forecast.forecastFinish ?? 'Unavailable'}<small>Target {target}</small></dd></div>
+      <div><dt>Known remaining / target capacity{health.forecastState === 'Partial' ? ' (partial)' : ''}</dt><dd>{hours(health.knownRemaining)} / {forecast.state === 'Disabled' || invalidDraft ? 'Unavailable' : hours(forecast.capacityThroughTarget)}</dd></div>
+      <div><dt>Currently Blocked</dt><dd>{health.blocked}</dd></div><div><dt>Currently Late</dt><dd>{health.late}</dd></div>
+    </dl>
+    <details className="health-details"><summary>Forecast details and comparisons</summary>
     {invalidDraft ? <p role="status">Correct or revert invalid forecast entries in Project Settings.</p> : <>
       <p className="muted">{forecast.message}</p>
       {forecast.state !== 'Disabled' && <>
@@ -26,11 +37,12 @@ export function ForecastSummary({ forecast, invalidDraft }: { forecast: Forecast
         <small className="muted">Uniform seven-day shared capacity; approximate priority heuristic. Actual logs are historical evidence. Gantt bars show the committed schedule.</small>
       </>}
     </>}
+    </details>
   </section>
 }
 export function TaskForecastSummary({ task }: { task: TaskForecast }) {
   return <div className="task-forecast" aria-label={`${task.taskId} forecast comparison`}>
-    <dl><div><dt>Baseline finish</dt><dd>{task.baselineFinish ?? 'Not established'}</dd></div><div><dt>Committed finish</dt><dd>{task.committedFinish}</dd></div><div><dt>Forecast finish</dt><dd>{task.forecastFinish ?? 'Unavailable'}</dd></div><div><dt>Schedule indicator</dt><dd>{task.indicator}</dd></div></dl>
+    <dl><div><dt>Baseline finish</dt><dd>{task.baselineFinish ?? 'Not established'}</dd></div><div><dt>Committed finish</dt><dd>{task.committedFinish}</dd></div><div><dt>Forecast finish</dt><dd>{task.forecastFinish ?? 'Unavailable'}</dd></div><div><dt>Schedule indicator</dt><dd><HealthBadge {...indicatorPresentation(task.indicator)} explanation={task.explanation} /></dd></div></dl>
     <small>{task.explanation} {task.forecastFinish ? task.reason : ''} Schedule dates are separate from effort variance.</small>
   </div>
 }

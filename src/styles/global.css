@@ -386,3 +386,32 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .task-forecast dd { margin: 3px 0 0; font-weight: 600; }
 .selected-effort-quick { position: relative; padding-right: 95px; }
 .selected-effort-quick .close-selected-task { position: absolute; right: 0; top: 12px; }
+.health-badge { display: inline-flex; gap: 5px; align-items: center; padding: 3px 7px; border: 1px solid currentColor; border-radius: 5px; font-size: .72rem; font-weight: 600; line-height: 1.35; white-space: nowrap; }
+.health-badge svg { flex-shrink: 0; }
+.health-good, .health-complete { color: #176147; background: #eef8f1; }
+.health-warning { color: #805000; background: #fff6df; }
+.health-late { color: #9c2e26; background: #fff0ec; }
+.health-uncertain { color: #526170; background: #f2f5f7; }
+.health-icon-only { padding: 1px; border: 0; background: transparent; }
+.task-health, .blocked-health { display: inline-flex; gap: 5px; align-items: center; }
+.blocked-health { color: #72511a; font-size: .72rem; }
+.gantt-row-identity { display: flex; flex-direction: column; gap: 3px; align-items: center; flex-shrink: 0; }
+.gantt-row-identity .task-health { gap: 3px; }
+.gantt-row-identity .task-id { margin: 0; }
+.health-context { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .75rem; color: #52657b; }
+.health-outcome { font-size: .82rem; margin: 6px 0 10px; }
+.health-metrics { display: grid; grid-template-columns: 1fr 1.7fr .6fr .6fr; gap: 12px 20px; margin: 14px 0; }
+.health-metrics dt, .health-metrics small { color: #52657b; margin-bottom: 5px; }
+.health-metrics dd { font-size: .95rem; }
+.health-details { border-top: 1px solid #dce4ec; padding-top: 10px; font-size: .8rem; }
+.health-details summary { cursor: pointer; font-weight: 600; color: #28465f; }
+.overlay-toggle { flex-direction: row; align-items: center; font-size: .75rem; gap: 5px; min-height: 32px; }
+.overlay-help { margin: 8px 0; }
+.overlay-help:empty { display: none; }
+.overlay-legend { margin: 8px 0; }
+.gantt-legend .legend-baseline { height: 5px; border: 2px solid #64717e; border-radius: 0; }
+.gantt-legend .legend-forecast { height: 7px; border: 0; border-bottom: 2px dashed #704496; border-right: 3px solid #704496; border-radius: 0; }
+.baseline-overlay { stroke: #64717e; }
+.forecast-overlay { stroke: #704496; }
+.baseline-overlay:focus, .forecast-overlay:focus { outline: 2px solid #2689bb; outline-offset: 1px; }
+@media (max-width: 780px) { .health-metrics { grid-template-columns: 1fr 1fr; } }

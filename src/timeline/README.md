@@ -40,6 +40,23 @@ within that range. All dates remain strict date-only strings and ordinals.
 
 ## Projection API
 
+WP6.5 adds `overlays.ts`, a read-only adapter over these coordinates. It neither
+extends the axis nor changes bar geometry. Original baseline start/finish are
+mapped using their **original** daily-hour proportions, even if the current
+calendar differs. Guides match permanent IDs, not current row positions.
+Forecast endpoints use the existing WP6.4 exclusive `finishPosition` fraction
+on `forecastFinish`. An integer position marks the end of the last occupied day;
+zero remains the start boundary. Recorded completion dates without a fractional
+position are explicitly date-only, drawn at day end.
+
+In compressed mode nonworking dates have no width. An endpoint on such a date
+uses a crossed boundary marker with its real date in the accessible label/title;
+it is not relabelled as the next working date. Points outside the committed axis
+or viewport use labelled edge chevrons. The original range and scroll mapping
+stay fixed when toggles change. SVG baseline guides occupy the bottom of each
+52px row; forecast lines/endpoints occupy the top, leaving the original bar,
+working/nonworking hatch and dependency connector positions intact.
+
 - createTimelineAxis(project, scheduledTasks, mode): calendar/working coordinate
   mapping, inverse visible-position lookup, and axis extent.
 - projectTimeline(axis, taskInputs, scheduledTasks): task rows in input-list order,

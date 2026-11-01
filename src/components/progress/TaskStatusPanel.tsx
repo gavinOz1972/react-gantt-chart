@@ -3,13 +3,16 @@ import type { TaskInput } from '../../domain'
 import { latestCompletion, progressForTask } from '../../progress/taskProgress'
 import type { CompletionCriterion, ProgressTracking, TaskStatus } from '../../progress/taskProgress'
 import { TaskStatusControl } from './TaskStatusControl'
+import type { TaskHealth } from '../../progress/healthPresentation'
+import { TaskHealthBadge } from './HealthBadge'
 
 interface CriterionDraft { criterionId?: string; text: string; error?: string }
-export function TaskStatusPanel({ task, tracking, disabled, statusDisabled, onRequest, onCriteria, onDraftChange, onSelect }: {
+export function TaskStatusPanel({ task, tracking, disabled, statusDisabled, onRequest, onCriteria, onDraftChange, onSelect, health }: {
   task?: TaskInput; tracking: ProgressTracking; disabled: boolean; statusDisabled: boolean
   onRequest: (task: TaskInput, target: TaskStatus, trigger: HTMLElement) => void
   onCriteria: (taskId: string, criteria: readonly CompletionCriterion[]) => string | undefined
   onDraftChange: (dirty: boolean) => void; onSelect: (id: string) => void
+  health?: TaskHealth
 }) {
   const [drafts, setDrafts] = useState<Record<string, CriterionDraft>>({})
   const [notice, setNotice] = useState('')
@@ -33,7 +36,7 @@ export function TaskStatusPanel({ task, tracking, disabled, statusDisabled, onRe
     <h3 id="task-status-heading">Status & completion</h3>
     {Object.keys(drafts).filter(id => id !== task?.taskId).map(id => <button type="button" className="quiet" key={id} onClick={() => onSelect(id)}>Resume criterion edit for {id}</button>)}
     {!task || !current ? <p className="muted">Select a saved task to manage status and completion criteria.</p> : <>
-      <div className="task-status-summary"><strong>{task.taskId} — {task.name}</strong><label>Status<TaskStatusControl taskId={task.taskId} value={current.status} context="details" disabled={statusDisabled} onRequest={(target, trigger) => onRequest(task, target, trigger)} /></label>
+      <div className="task-status-summary"><strong>{task.taskId} — {task.name}</strong>{health && <TaskHealthBadge health={health} />}<label>Status<TaskStatusControl taskId={task.taskId} value={current.status} context="details" disabled={statusDisabled} onRequest={(target, trigger) => onRequest(task, target, trigger)} /></label>
         {current.status !== 'Complete' ? <button type="button" disabled={statusDisabled} onClick={event => onRequest(task, 'Complete', event.currentTarget)}>Mark Complete</button>
           : <button type="button" className="quiet" disabled={statusDisabled} onClick={event => onRequest(task, 'In Progress', event.currentTarget)}>Reopen task</button>}</div>
       {current.blockedReason && <p className="active-blocked-reason"><strong>Blocked reason:</strong> {current.blockedReason}</p>}

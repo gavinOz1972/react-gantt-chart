@@ -5,14 +5,22 @@ import { TaskInspection } from '../TaskInspection'
 import { connectorPath, createTimelineAxis, HEADER_HEIGHT, LABEL_WIDTH, pixelsPerUnit, projectTimeline, ROW_HEIGHT, taskSegments, timelineWindow, visibleDays, visibleHourTicks } from '../../timeline/projection'
 import type { TimelineMode, TimelineZoom } from '../../timeline/projection'
 import { TimelineHeader } from './TimelineHeader'
+import type { Baseline } from '../../baseline/baseline'
+import type { Forecast } from '../../forecast/forecast'
+import type { TaskHealth } from '../../progress/healthPresentation'
+import { TaskHealthBadge } from '../progress/HealthBadge'
+import { ProgressOverlays } from './ProgressOverlays'
+import { comparisonDescription } from '../../timeline/overlays'
 
-export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, onDismissSelection, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children }: {
+export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, onDismissSelection, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children, baseline, forecast, health, showBaseline = false, showForecast = false, onBaselineChange, onForecastChange, invalidForecast = false }: {
   project: ProjectSettings; tasks: readonly TaskInput[]; result: ScheduleResult; selectedTaskId: string | null
   previewing: boolean; onSelect: (id: string) => void
   analysis?: CriticalPathResult; highlightCritical?: boolean; onHighlightChange?: (enabled: boolean) => void
   showInspection?: boolean
   children?: ReactNode
   onDismissSelection?: () => void
+  baseline?: Baseline; forecast?: Forecast; health?: ReadonlyMap<string, TaskHealth>
+  showBaseline?: boolean; showForecast?: boolean; onBaselineChange?: (value: boolean) => void; onForecastChange?: (value: boolean) => void; invalidForecast?: boolean
 }) {
   const [mode, setMode] = useState<TimelineMode>('expanded')
   const [zoom, setZoom] = useState<TimelineZoom>('hour')
@@ -56,6 +64,9 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   const selectedSchedule = result.ok ? result.tasks.find(task => task.taskId === selectedTaskId) : undefined
   const analyzed = new Map(analysis?.ok ? analysis.tasks.map(task => [task.taskId, task]) : [])
   const criticalLinks = new Set(analysis?.ok ? analysis.relationships.filter(link => link.critical).map(link => link.key) : [])
+  const baselineById = new Map(baseline?.schedule.tasks.map(task => [task.taskId, task]) ?? [])
+  const forecastById = new Map(!invalidForecast ? forecast?.tasks.map(task => [task.taskId, task]) ?? [] : [])
+  const canShowForecast = !!forecast && forecast.state !== 'Disabled' && !invalidForecast
 
   function resetScroll() {
     if (scroll.current) scroll.current.scrollLeft = 0
@@ -88,9 +99,13 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
       <button className="quiet" type="button" data-dismiss-focus onClick={resetScroll}>Go to start</button>
       <button className="quiet" type="button" disabled={!selected || !geometry} onClick={goToSelected}>Go to selected task</button>
       {analysis && tasks.length > 0 && <label className="critical-toggle"><input type="checkbox" checked={highlightCritical} disabled={!analysis.ok} onChange={event => onHighlightChange?.(event.target.checked)} />Highlight Critical Path</label>}
+      <label className="overlay-toggle"><input type="checkbox" checked={showBaseline && !!baseline} disabled={!baseline} aria-describedby="overlay-help" onChange={event => onBaselineChange?.(event.target.checked)} />Show Baseline</label>
+      <label className="overlay-toggle"><input type="checkbox" checked={showForecast && canShowForecast} disabled={!canShowForecast} aria-describedby="overlay-help" onChange={event => onForecastChange?.(event.target.checked)} />Show Forecast</label>
     </div>
     <p className="gantt-help" id="gantt-help">Expanded keeps every calendar day, with hatched nonworking gaps. Compressed joins working slots and omits nonworking dates. Neither view changes the schedule.</p>
     <div className="gantt-legend" aria-label="Chart legend"><span><i className="legend-work" />Occupied working time</span><span><i className="legend-gap" />Nonworking elapsed time</span><span><i className="legend-link" />Finish-to-start dependency</span></div>
+    <p id="overlay-help" className="muted overlay-help">{!baseline && 'Establish a baseline in Project Settings to show original dates. '}{!canShowForecast && 'Enable valid forecast assumptions to show projections. '}{(showBaseline || showForecast) && 'Overlays are read-only. Edge chevrons mean dates outside the visible range; a crossed forecast marker means a nonworking date omitted in Compressed view. Committed bars and range stay fixed.'}{showForecast && previewing && ' Forecasts use the accepted plan; task/calendar edits remain previews until saved.'}</p>
+    {(showBaseline || showForecast) && <div className="gantt-legend overlay-legend" aria-label="Overlay legend"><span><i className="legend-work" />Committed plan</span>{showBaseline && <span><i className="legend-baseline" />Baseline: originally approved plan</span>}{showForecast && <span><i className="legend-forecast" />Forecast: dashed line / diamond F</span>}<span>Unavailable or indeterminate forecasts have no endpoint.</span></div>}
     {analysis?.ok && tasks.length > 0 && <p className="critical-help">{analysis.tasks.filter(task => task.critical).length} critical tasks. Zero slack means no working-slot delay is possible without moving calculated completion. The target date is not the critical-path deadline.{highlightCritical && <span className="critical-badge">Critical work · bold outline and label; hatching still means nonworking time</span>}</p>}
     <p className="muted gantt-convention">Each selected day is divided into {project.workingHoursPerDay} numbered working slots, not wall-clock hours. {mode === 'compressed' ? 'Date jumps in the header show omitted nonworking days.' : 'Hatching is elapsed time, not performed effort.'} Click or focus a bar to inspect a task.</p>
     {!result.ok ? <p className="gantt-state" role="status">Timeline unavailable. Correct the entries above to show the current schedule.</p>
@@ -104,8 +119,8 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
                 <div className="gantt-header-window" style={{ left: viewport.left + LABEL_WIDTH, width: view.width }}><TimelineHeader axis={axis} days={days} zoom={zoom} x={view.x} width={view.width} left={view.left} right={view.right} scale={scale} /></div>
               </div>
               {rows.map(row => <div key={row.taskId} className={`gantt-row${selectedTaskId === row.taskId ? ' selected' : ''}`} style={{ top: HEADER_HEIGHT + row.index * ROW_HEIGHT, height: ROW_HEIGHT }}>
-                <button type="button" className="gantt-row-label" style={{ width: LABEL_WIDTH, height: ROW_HEIGHT }} aria-label={`Inspect ${row.taskId} ${row.task.name}`} aria-pressed={selectedTaskId === row.taskId} onClick={() => onSelect(row.taskId)}>
-                  <span className="task-id">{row.taskId}</span><span className="gantt-row-name">{row.task.name}<small>{row.task.durationHours} working hours{highlightCritical && analyzed.get(row.taskId)?.critical && <b className="critical-word"> · Critical</b>}</small></span>
+                <button type="button" className="gantt-row-label" style={{ width: LABEL_WIDTH, height: ROW_HEIGHT }} aria-label={`Inspect ${row.taskId} ${row.task.name}`} aria-description={`${health?.get(row.taskId) ? `Schedule ${health.get(row.taskId)!.label}; work status ${health.get(row.taskId)!.workStatus}. ` : ''}${comparisonDescription(row.scheduled, baselineById.get(row.taskId), forecastById.get(row.taskId), !!baseline)}`} aria-pressed={selectedTaskId === row.taskId} onClick={() => onSelect(row.taskId)}>
+                  <span className="gantt-row-identity"><span className="task-id">{row.taskId}</span>{health?.get(row.taskId) && <TaskHealthBadge health={health.get(row.taskId)!} compact />}</span><span className="gantt-row-name" title={row.task.name}>{row.task.name}<small>{row.task.durationHours} working hours{highlightCritical && analyzed.get(row.taskId)?.critical && <b className="critical-word"> · Critical</b>}</small></span>
                 </button>
               </div>)}
               <svg className="gantt-drawing" width={view.width} height={bodyHeight} style={{ left: viewport.left + LABEL_WIDTH, top: HEADER_HEIGHT + firstRow * ROW_HEIGHT }} aria-label="Task bars and dependencies">
@@ -120,12 +135,13 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
                   const selected = selectedTaskId === row.taskId
                   const critical = highlightCritical && !!analyzed.get(row.taskId)?.critical
                   const label = `${row.taskId} ${row.task.name}: ${row.task.durationHours} working hours; starts ${row.scheduled.startDate} hour ${row.scheduled.startSlot.hour}; finishes ${row.scheduled.finishDate} after hour ${row.scheduled.finishBoundary.afterHour}`
+                  const comparison = comparisonDescription(row.scheduled, baselineById.get(row.taskId), forecastById.get(row.taskId), !!baseline)
                   return <g key={row.taskId}>
                     <line x1={0} x2={view.width} y1={y + ROW_HEIGHT} y2={y + ROW_HEIGHT} stroke="#e1e8ef" />
                     {selected && <rect x={0} y={y} width={view.width} height={ROW_HEIGHT} fill="#24779b0d" />}
-                    {right > left && <g className={`gantt-bar${selected ? ' is-selected' : ''}${critical ? ' is-critical' : ''}`} role="button" tabIndex={0} aria-label={`${label}${critical ? '; critical, zero slack' : ''}`} aria-pressed={selected} data-task-id={row.taskId} data-start={row.start} data-end={row.end} data-critical={critical}
+                    {right > left && <g className={`gantt-bar${selected ? ' is-selected' : ''}${critical ? ' is-critical' : ''}`} role="button" tabIndex={0} aria-label={`${label}${critical ? '; critical, zero slack' : ''}`} aria-description={comparison} aria-pressed={selected} data-task-id={row.taskId} data-start={row.start} data-end={row.end} data-critical={critical}
                       onClick={() => onSelect(row.taskId)} onFocus={() => onSelect(row.taskId)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onSelect(row.taskId) } }}>
-                      <title>{label}</title>
+                      <title>{label}. {comparison}</title>
                       <rect className="gantt-bar-outline" x={left} y={y + 14} width={right - left} height={24} rx={3} fill={mode === 'expanded' ? `url(#${patternId})` : critical ? '#aa3d32' : '#24779b'} />
                       {mode === 'expanded' && taskSegments(axis, row, days).filter(segment => segment.kind === 'working').map(segment => {
                         const x = Math.max(-1, view.x(segment.start))
@@ -133,6 +149,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
                       })}
                       <rect className="gantt-bar-hit" x={left} y={y + 8} width={Math.max(8, right - left)} height={36} fill="transparent" />
                     </g>}
+                    <ProgressOverlays axis={axis} row={row} baseline={baselineById.get(row.taskId)} baselineHours={baseline?.project.workingHoursPerDay ?? project.workingHoursPerDay} forecast={forecastById.get(row.taskId)} showBaseline={showBaseline && !!baseline} showForecast={showForecast && canShowForecast} x={view.x} width={view.width} y={y} />
                   </g>
                 })}
                 {geometry.links.map(link => {

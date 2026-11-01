@@ -17,7 +17,9 @@ tasks and in the selected Gantt task summary. WP6.3 adds explicit task statuses,
 completion criteria, blocked reasons, project Definition of Done and completion/
 reopening history. WP6.3.1 adds safe dismissal of the selected Gantt summary.
 WP6.4 adds effort-based forecasting from declared team capacity and remaining
-effort, with independent committed/baseline comparisons. Resource levelling,
+effort, with independent committed/baseline comparisons. WP6.5 adds compact
+project health, task health badges and optional baseline/forecast Gantt overlays.
+Resource levelling,
 costs, per-person calendars and probabilistic PERT are outside this release.
 
 ## Prerequisites and setup
@@ -238,6 +240,28 @@ Forecasting leaves baseline records, actual logs and committed Gantt geometry
 intact. It is an approximate planning heuristic, without per-person availability
 or concurrency guarantees. See the [combined handoff and owner script](docs/WP6-4-HANDOFF.md)
 and [calculation rules](src/forecast/README.md).
+
+## Progress visualization (WP6.5)
+
+Workspace keeps the Gantt first. **Project health** below it shows an overall
+schedule outcome, As-of, forecast completeness, projected completion versus target,
+known effort versus target capacity, and Blocked/Late counts. Expand **Forecast
+details and comparisons** for the full numeric breakdown. Partial, disabled or
+indeterminate projections never receive an unqualified On Track verdict.
+
+Use **Show Baseline** and **Show Forecast** beside the Gantt controls. Baseline
+is a thin grey outline below each matching committed bar. Forecast is a purple
+dashed line and diamond labelled F above it, including earlier endpoints. These
+do not move the committed bars. Hover/focus guides or task labels for original,
+committed and forecast dates. Edge chevrons explicitly mark dates outside the
+visible range; a crossed forecast marker means its nonworking date is omitted in
+Compressed view. Unknown/blocked tasks have no fabricated forecast endpoint.
+
+Both overlays start off on new/load/import and are UI-only. Tab navigation,
+selection, Save and Close preserve toggles; opening another plan resets them.
+Task health icons beside IDs use shapes and accessible labels; work status remains
+separate. New since baseline tasks have no original guide, and deleted baseline
+tasks remain in View Baseline. See [WP6.5 owner checks](docs/WP6-5-HANDOFF.md).
 
 ## Using the Gantt chart
 

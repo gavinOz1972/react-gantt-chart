@@ -7,7 +7,7 @@ import { openPlan } from './wp5-2-fixtures'
 
 const fixture = { ...workData, schemaVersion: 4, format: 'react-gantt-chart', createdBy: 'React Gantt Chart', savedAt: workTimestamp, baseline: workBaseline(), workTracking: workRecords() }
 const tab = (page: Page, name: string) => page.getByRole('tab', { name, exact: true }).click()
-const summary = (page: Page) => page.getByRole('region', { name: 'Effort-based forecast', exact: true })
+const summary = (page: Page) => page.getByRole('region', { name: 'Project health', exact: true })
 const chart = (page: Page) => page.getByRole('region', { name: 'Selected chart task', exact: true })
 const comparison = (page: Page) => chart(page).getByLabel('T2 forecast comparison', { exact: true })
 async function configure(page: Page) {
@@ -37,10 +37,10 @@ test('A01/A04/A12/A13 live quick entry, capacity, target and dependency projecti
   await configure(page)
   await expect(summary(page)).toContainText('32 person-hours'); await expect(summary(page)).toContainText('Unknown remaining (1): T9')
   await expect(summary(page)).toContainText('Partial')
-  await remaining(page, 'T9', '2'); await expect(summary(page)).toContainText('Available')
+  await remaining(page, 'T9', '2'); await expect(summary(page)).toContainText('Forecast: Complete')
   await expect(summary(page)).toContainText('2026-11-03')
   await page.locator('.gantt-bar[data-task-id="T2"]').click()
-  await expect(comparison(page)).toContainText('On Schedule')
+  await expect(comparison(page)).toContainText('On Track')
   await remaining(page, 'T2', '100', 'chart')
   await expect(comparison(page)).toContainText('At Risk'); await expect(summary(page)).toContainText('102 person-hours')
   expect(await geometry(page)).toEqual(before)
@@ -73,7 +73,7 @@ test('A08/A10/A11 statuses and completion history keep date evidence after curre
   await page.getByRole('button', { name: 'Set Blocked', exact: true }).click()
   await expect(summary(page)).toContainText('Indeterminate tasks, including downstream dependencies: T2, T9')
   await expect(comparison(page)).toContainText('Uncertain')
-  await control.selectOption('In Progress'); await expect(summary(page)).toContainText('Available')
+  await control.selectOption('In Progress'); await expect(summary(page)).toContainText('Forecast: Complete')
   await tab(page, 'Project Settings'); await page.getByLabel('Forecast As-of date', { exact: true }).fill('2026-11-09'); await tab(page, 'Workspace')
   await expect(comparison(page)).toContainText('Late')
   await control.selectOption('Complete'); const dialog = page.getByRole('dialog')

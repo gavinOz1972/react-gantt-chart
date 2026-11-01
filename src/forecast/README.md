@@ -1,5 +1,14 @@
 # Effort-based schedule forecast (WP6.4)
 
+WP6.5 adds a separate presentation selector (`progress/healthPresentation.ts`),
+compact health overview, and optional Gantt baseline/forecast layers. It consumes
+this engine's outputs without changing any forecasting formula or saved schema.
+Its UI calls the engine's On Schedule assessment **On Track**. Project health
+compares projected completion to the current target; task health still compares
+against that task's commitment. An individual task may therefore be At Risk
+while the project still fits its target. Completed projects use recorded effective
+completion evidence and show a completed outcome, rather than active risk.
+
 `forecastSchedule` is pure and separate from WP1. Its input has no actual-work
 logs: historical hours cannot grant future capacity. It consumes current accepted
 plan inputs, explicit remaining estimates, status/history, manual order, optional

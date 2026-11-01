@@ -7,7 +7,7 @@ import { LOCAL_PROJECTS_KEY } from '../src/persistence/localProjects'
 
 const settings = { schemaVersion: 1, enabled: true, classHoursPerStudent: 4, homeworkHoursPerStudent: 2, teamSize: 4, asOfDate: '2026-11-02' }
 const tab = (page: Page, name: string) => page.getByRole('tab', { name, exact: true }).click()
-const summary = (page: Page) => page.getByRole('region', { name: 'Effort-based forecast', exact: true })
+const summary = (page: Page) => page.getByRole('region', { name: 'Project health', exact: true })
 async function downloaded(page: Page, button: string | RegExp): Promise<ProjectFile> {
   const pending = page.waitForEvent('download')
   await page.getByRole('button', { name: button, exact: typeof button === 'string' }).click()
