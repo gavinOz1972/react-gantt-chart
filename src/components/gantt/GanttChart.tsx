@@ -1,15 +1,17 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 import type { CriticalPathResult, ProjectSettings, ScheduleResult, TaskInput } from '../../domain'
 import { TaskInspection } from '../TaskInspection'
 import { connectorPath, createTimelineAxis, HEADER_HEIGHT, LABEL_WIDTH, pixelsPerUnit, projectTimeline, ROW_HEIGHT, taskSegments, timelineWindow, visibleDays, visibleHourTicks } from '../../timeline/projection'
 import type { TimelineMode, TimelineZoom } from '../../timeline/projection'
 import { TimelineHeader } from './TimelineHeader'
 
-export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, analysis, highlightCritical = false, onHighlightChange, showInspection = true }: {
+export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children }: {
   project: ProjectSettings; tasks: readonly TaskInput[]; result: ScheduleResult; selectedTaskId: string | null
   previewing: boolean; onSelect: (id: string) => void
   analysis?: CriticalPathResult; highlightCritical?: boolean; onHighlightChange?: (enabled: boolean) => void
   showInspection?: boolean
+  children?: ReactNode
 }) {
   const [mode, setMode] = useState<TimelineMode>('expanded')
   const [zoom, setZoom] = useState<TimelineZoom>('hour')
@@ -144,6 +146,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
             </div>
           </div>}
     <div className="gantt-link-inspection" role="status">{geometry?.links.some(link => `Dependency ${link.predecessorId} to ${link.successorId}` === inspectedLink) ? inspectedLink : ''}</div>
+    {children}
     {showInspection && selected && selectedSchedule && <TaskInspection task={selected} scheduled={selectedSchedule} analysis={analyzed.get(selected.taskId)} />}
   </section>
 }

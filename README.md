@@ -12,7 +12,8 @@ WP5.2 adapts weekly header labels and adds network zoom, pan and Fit to View.
 WP6.1 protects that release and adds an explicit original baseline of the approved
 plan, separate from the editable Current Plan, with versioned file compatibility.
 WP6.2 adds dated work sessions, derived actual hours, nullable remaining effort
-and a baseline effort comparison. Resource levelling, costs, task statuses,
+and a baseline effort comparison. WP6.2.1 adds Remaining Effort quick entry beside
+tasks and in the selected Gantt task summary. Resource levelling, costs, task statuses,
 schedule forecasting and probabilistic PERT are outside this release.
 
 ## Prerequisites and setup
@@ -157,15 +158,21 @@ baseline outputs are validated separately. See the
 2. Sessions appear oldest work date first. **Edit entry** keeps its permanent entry
    ID; **Delete entry** requires confirmation. Actual effort is derived from the
    sessions, using decimal-safe hundredths. It is never edited directly.
-3. Enter **Remaining effort (hours)** and choose **Save remaining estimate**. Blank
+3. For a quick estimate, use **Remaining Effort → Edit** in the task table or the
+   selected task summary below the Gantt. Enter or Tab saves; Shift+Tab saves and
+   moves backward; Escape cancels. Valid changed values also commit on blur.
+   Pointer users can choose Save or Cancel. Blank means Unknown; explicit zero
+   displays **0 h**. Invalid drafts stay accessible without replacing the estimate.
+   The table, chart summary and Task Details all use the same value.
+4. Task Details also retains **Remaining effort (hours)** and **Save remaining estimate**. Blank
    means unknown; zero explicitly estimates none remain and does not mark the
    task Complete. Cancel estimate or Escape restores the accepted estimate.
-4. Known remaining effort gives estimated **Effort at completion = actual + remaining**.
+5. Known remaining effort gives estimated **Effort at completion = actual + remaining**.
    **Effort variance** compares that total to the matching original baseline task:
    positive is over estimate and negative is under. A task with no matching
    baseline shows **No baseline** and no variance. Unknown remaining effort shows
    no estimated total or variance. These person-hours never move scheduled dates.
-5. Save the project or Export JSON to keep the records. Unsubmitted work/estimate
+6. Save the project or Export JSON to keep the records. Unsubmitted work/estimate
    drafts survive task and tab switches; use **Resume edits for T…** to return.
    Finish/cancel drafts before project Save/Export. Duplicating a task starts with
    no work history and unknown remaining effort. Task deletion explicitly warns
@@ -174,6 +181,8 @@ baseline outputs are validated separately. See the
 Contributor names are project-local text; work records can be corrected and are
 not a verified identity or immutable audit history. See the
 [WP6.2 handoff and A01–A14 owner checks](docs/WP6-2-HANDOFF.md).
+The [WP6.2.1 quick-entry handoff](docs/WP6-2-1-HANDOFF.md) covers fast editing,
+keyboard behavior and responsive review evidence. Project format remains 3.
 
 ## Using the Gantt chart
 

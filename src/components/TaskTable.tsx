@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 import type { ProjectSettings, ScheduleResult, TaskInput } from '../domain'
 import { dependencyError } from './projectEntry'
 import { InlineField } from './InlineField'
 import { DependencyPicker } from './DependencyPicker'
 
-export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, onEdit, onDelete, onSelect, project, manual = false, onMove, onDuplicate, onCommit, onDraftChange }: {
+export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, onEdit, onDelete, onSelect, project, manual = false, onMove, onDuplicate, onCommit, onDraftChange, renderRemaining }: {
   tasks: readonly TaskInput[]; result: ScheduleResult; editingId?: string; blocked: boolean
   selectedTaskId?: string | null; onSelect?: (id: string) => void
   onEdit: (task: TaskInput) => void; onDelete: (task: TaskInput) => void
   project?: ProjectSettings; manual?: boolean; onMove?: (id: string, before: string) => void
   onDuplicate?: (task: TaskInput) => void; onCommit?: (task: TaskInput) => string | undefined
   onDraftChange?: (key: string, dirty: boolean) => void
+  renderRemaining?: (task: TaskInput) => ReactNode
 }) {
   const scrollRegion = useRef<HTMLDivElement>(null)
   const dragging = useRef<string | null>(null)
@@ -29,8 +31,8 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
       if (event.clientY < bounds.top + 45) event.currentTarget.scrollTop -= 18
       else if (event.clientY > bounds.bottom - 45) event.currentTarget.scrollTop += 18
     }}>
-    <table><caption className="sr-only">Task inputs and calculated schedule dates. Select a field to edit; total hours is the full task duration.</caption><thead><tr>
-      {onMove && <th scope="col">Order</th>}<th scope="col">ID</th><th scope="col">Task / description</th><th scope="col">Total hours</th><th scope="col">Predecessors</th><th scope="col">Start</th><th scope="col">Calculated finish</th><th scope="col">Actions</th>
+    <table className={renderRemaining ? 'task-table-with-effort' : undefined}><caption className="sr-only">Task inputs and calculated schedule dates. Select a field to edit; total hours is the full task duration.</caption><thead><tr>
+      {onMove && <th scope="col">Order</th>}<th scope="col">ID</th><th scope="col">Task / description</th><th scope="col">Total hours</th>{renderRemaining && <th scope="col">Remaining Effort</th>}<th scope="col">Predecessors</th><th scope="col">Start</th><th scope="col">Calculated finish</th><th scope="col">Actions</th>
     </tr></thead><tbody>{tasks.map((task, index) => {
       const dates = scheduled.get(task.taskId)
       return <tr key={task.taskId} data-task-row={task.taskId} aria-label={`${task.taskId} ${task.name}`} aria-selected={selectedTaskId === task.taskId} className={`${editingId === task.taskId ? 'editing-row' : ''}${selectedTaskId === task.taskId ? ' selected-task-row' : ''}`}
@@ -45,6 +47,7 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
         <td className="task-text">{field(task, 'name', 'text')}<div className="task-description">{field(task, 'description', 'multiline')}</div>
           <small>{task.predecessorTaskIds.length ? 'Dependency start' : task.independentStartMode === 'MANUAL' ? 'Manual start' : 'Follows project start'}{editingId === task.taskId ? ' · Unsaved preview' : ''}</small></td>
         <td>{field(task, 'durationHours', 'number')}</td>
+        {renderRemaining && <td className="remaining-effort-cell">{renderRemaining(task)}</td>}
         <td>{onCommit && project ? <div className="inline-dependencies"><DependencyPicker taskId={task.taskId} tasks={tasks} selected={task.predecessorTaskIds} disabled={blocked} compact
           optionError={predecessors => dependencyError(project, tasks, task, predecessors)?.message} onDraftChange={dirty => onDraftChange?.(`${task.taskId}:predecessors`, dirty)}
           onCommit={predecessorTaskIds => onCommit({ ...task, predecessorTaskIds })} />

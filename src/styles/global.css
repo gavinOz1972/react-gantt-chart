@@ -327,3 +327,21 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .work-pending { align-items: center; margin: 10px 0; }
 .work-pending p { margin: 0; }
 @media (max-width: 650px) { .work-fields { grid-template-columns: 1fr; } }
+.tasks-panel .task-table-with-effort { min-width: 1450px; }
+.tasks-panel .remaining-effort-cell { width: 160px; min-width: 160px; white-space: normal; }
+.task-table-with-effort td:nth-child(7), .task-table-with-effort td:nth-child(8) { white-space: nowrap; min-width: 120px; }
+.remaining-quick-field { position: relative; min-width: 130px; max-width: 200px; }
+.remaining-quick-value { display: flex; align-items: center; justify-content: space-between; gap: 12px; white-space: nowrap; }
+.remaining-edit-label { font-size: .7rem; color: #52657b; font-weight: 400; }
+.remaining-quick-input { display: flex; gap: 6px; align-items: center; }
+.remaining-quick-input input { min-width: 0; width: 110px; min-height: 34px; padding: 6px; font-size: .85rem; }
+.remaining-quick-actions { display: flex; gap: 4px; margin-top: 6px; }
+.remaining-quick-actions button { min-height: 28px; padding: 4px 8px; font-size: .75rem; }
+.remaining-quick-field small { display: block; white-space: normal; margin-top: 6px; line-height: 1.5; }
+.selected-effort-quick { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; border-top: 1px solid #dce4ec; margin-top: 12px; padding-top: 12px; font-size: .85rem; }
+.selected-effort-quick > strong { max-width: 260px; overflow-wrap: anywhere; }
+.selected-remaining > span { display: block; font-size: .75rem; color: #52657b; margin-bottom: 6px; }
+.selected-effort-quick dl { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 0; }
+.selected-effort-quick dt { color: #52657b; margin-bottom: 6px; font-size: .75rem; }
+.selected-effort-quick dd { font-size: .9rem; }
+.quick-remaining-pending { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; font-size: .85rem; }

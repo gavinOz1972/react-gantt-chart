@@ -56,6 +56,23 @@ completion status. Zero remaining never marks a task Complete.
 
 ## Interface and lifecycle
 
+WP6.2.1 exposes the same nullable estimate through the task table's Remaining
+Effort column and a compact selected-task summary below the Gantt. Both reuse
+`parseEffort(text, true)` and the existing validated project work state; the work
+contract and project format 3 do not change. Task Details retains its existing
+explicit estimate form and work-log workflow. All three reflect accepted changes
+immediately, with actual totals and baseline comparisons recalculated as before.
+
+Quick entry selects the existing numeric text. Enter saves and returns focus;
+Tab/Shift+Tab saves and moves to the next/previous available control outside the
+editor; Escape or pointer Cancel restores the estimate. Pointer Save is also
+provided. Valid changed values commit on external blur. Invalid input remains a
+draft with an accessible error and never changes the prior estimate. Unchanged
+values close without writing. Clearing deliberately writes unknown/null, never
+zero. Drafts block project Save and conflicting edits; invalid selected-chart
+drafts can be resumed after selecting another task. Quick-entry UI state uses
+permanent task IDs and is not serialized.
+
 Selected Task Details contains the summary, explicit remaining-estimate form,
 Add/Edit work-entry form and chronological log. Entries sort oldest work date
 first, then creation timestamp and ID for ties. Form validation leaves drafts in
