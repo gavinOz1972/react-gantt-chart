@@ -3,9 +3,11 @@
 WP6.5 adds a separate presentation selector (`progress/healthPresentation.ts`),
 compact health overview, and optional Gantt baseline/forecast layers. It consumes
 this engine's outputs without changing any forecasting formula or saved schema.
-Its UI calls the engine's On Schedule assessment **On Track**. Project health
+WP6.5.1 presents the engine's task At Risk assessment as **Forecast Slip**.
+An earlier On Schedule forecast is **Ahead of Plan**; the same date is **On Track**.
+The accepted engine indicators and calculations are unchanged. Project health
 compares projected completion to the current target; task health still compares
-against that task's commitment. An individual task may therefore be At Risk
+against that task's commitment. An individual task may therefore have Forecast Slip
 while the project still fits its target. Completed projects use recorded effective
 completion evidence and show a completed outcome, rather than active risk.
 

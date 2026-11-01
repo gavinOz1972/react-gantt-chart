@@ -94,6 +94,7 @@ function App() {
   const today = localDate()
   const forecast = useMemo(() => forecastSchedule({ project, tasks, manualOrder, remainingHours: workTracking.remainingHours, progress: taskProgress, baseline, settings: forecastSettings, today }), [project, tasks, manualOrder, workTracking.remainingHours, taskProgress, baseline, forecastSettings, today])
   const selectedForecast = forecast.tasks.find(task => task.taskId === selectedTaskId)
+  const forecastAnnotationsVisible = showForecast && forecast.state !== 'Disabled' && !forecastDraft
   const health = useMemo(() => healthPresentation(project, tasks, committedResult, forecast, taskProgress, forecastDraft, workTracking.remainingHours), [project, tasks, committedResult, forecast, taskProgress, forecastDraft, workTracking.remainingHours])
   const newSinceBaseline = !!baseline && !!selectedTaskId && !baseline.tasks.some(task => task.taskId === selectedTaskId)
   const errors = result.ok ? [] : result.errors
@@ -351,17 +352,17 @@ function App() {
       <button type="button" aria-pressed={chartView === 'network'} onClick={() => setChartView('network')}>Network / Critical Path</button></div>
     <div ref={ganttContainer} hidden={chartView !== 'gantt'}><GanttChart project={proposedProject} tasks={displayed} result={result} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} onDismissSelection={dismissChartSelection} previewing={previewing}
       showInspection={false} analysis={analysis} highlightCritical={highlightCritical} onHighlightChange={setHighlightCritical}
-      baseline={baseline} forecast={forecast} invalidForecast={forecastDraft} health={health.tasks} showBaseline={showBaseline} showForecast={showForecast} onBaselineChange={setShowBaseline} onForecastChange={setShowForecast}>
+      baseline={baseline} forecast={forecast} invalidForecast={forecastDraft} health={health.tasks} showBaseline={showBaseline} showForecast={showForecast} onBaselineChange={setShowBaseline} onForecastChange={setShowForecast} remainingHours={workTracking.remainingHours}>
       {selectedCurrentTask && selectedEffort && <section className="selected-effort-quick" aria-label="Selected chart task" tabIndex={0}>
         <strong>{selectedCurrentTask.taskId} — {selectedCurrentTask.name}</strong>
-        {health.tasks.get(selectedCurrentTask.taskId) && <TaskHealthBadge health={health.tasks.get(selectedCurrentTask.taskId)!} />}
+        {health.tasks.get(selectedCurrentTask.taskId) && <TaskHealthBadge health={health.tasks.get(selectedCurrentTask.taskId)!} showForecast={forecastAnnotationsVisible} />}
         {newSinceBaseline && <span className="muted">New since baseline</span>}
         <label className="selected-chart-status">Status<TaskStatusControl taskId={selectedCurrentTask.taskId} value={progressForTask(taskProgress, selectedCurrentTask.taskId).status} context="chart" disabled={statusBlocked} onRequest={(target, trigger) => requestStatus(selectedCurrentTask, target, trigger)} /></label>
         <div className="selected-remaining"><span>Remaining Effort</span>{remainingField(selectedCurrentTask, 'chart')}</div>
         <dl><div><dt>Actual effort</dt><dd>{formatEffort(selectedEffort.actualHours)} h</dd></div>
           <div><dt>Effort at completion</dt><dd>{selectedEffort.forecastHours === null ? 'Not available' : `${formatEffort(selectedEffort.forecastHours)} h`}</dd></div>
           <div><dt>Effort variance</dt><dd>{selectedEffort.varianceHours === null ? 'Not available' : `${selectedEffort.varianceHours > 0 ? '+' : ''}${formatEffort(selectedEffort.varianceHours)} h`}</dd></div></dl>
-        {selectedForecast && !forecastDraft && <TaskForecastSummary task={selectedForecast} />}
+        {selectedForecast && !forecastDraft && <TaskForecastSummary task={selectedForecast} showForecastBadge={forecastAnnotationsVisible} />}
         <button type="button" className="quiet close-selected-task" aria-label="Close selected task details" disabled={!!quickRemaining?.fieldKey.startsWith('chart:')} title={quickRemaining?.fieldKey.startsWith('chart:') ? 'Save or cancel the remaining-effort edit before closing.' : 'Dismiss selection; task data is kept.'}
           onPointerDown={event => event.preventDefault()} onClick={dismissChartSelection}><span aria-hidden="true">×</span> Close</button>
       </section>}

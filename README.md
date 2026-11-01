@@ -231,8 +231,10 @@ Close dismisses that summary; passive Escape also works after nested edits close
 
 Unknown estimates or blocked dependencies make the forecast Partial, without a
 definitive project finish. Zero capacity makes dates Unavailable. Late means an
-unfinished task's committed finish has passed As-of; At Risk means a projected
-overrun before that commitment has passed. Effort variance is a separate measure.
+unfinished task's committed finish has passed As-of. Task **Forecast Slip** means
+a valid forecast is later than that task's commitment; **Ahead of Plan** means
+an earlier forecast date. Project **At Risk** compares projected project completion
+against the project target. Effort variance is a separate measure.
 New completion events retain the commitment at completion; legacy completions
 without that context have unknown historical timing.
 
@@ -251,7 +253,7 @@ indeterminate projections never receive an unqualified On Track verdict.
 
 Use **Show Baseline** and **Show Forecast** beside the Gantt controls. Baseline
 is a thin grey outline below each matching committed bar. Forecast is a purple
-dashed line and diamond labelled F above it, including earlier endpoints. These
+dashed line and diamond labelled **FF (Forecast Finish)** above it, including earlier endpoints. These
 do not move the committed bars. Hover/focus guides or task labels for original,
 committed and forecast dates. Edge chevrons explicitly mark dates outside the
 visible range; a crossed forecast marker means its nonworking date is omitted in
@@ -262,6 +264,15 @@ selection, Save and Close preserve toggles; opening another plan resets them.
 Task health icons beside IDs use shapes and accessible labels; work status remains
 separate. New since baseline tasks have no original guide, and deleted baseline
 tasks remain in View Baseline. See [WP6.5 owner checks](docs/WP6-5-HANDOFF.md).
+
+WP6.5.1 makes **Show Forecast** govern predictive Gantt row badges, chart tooltip
+comparisons and selected-summary badges as well as purple overlays. Turning it
+off keeps observed Blocked/Late and completion evidence, the project-health summary,
+and detailed selected-task forecast dates available. It does not disable the
+forecast model in Project Settings. Marker hover/focus text gives committed and
+forecast finish dates, calendar-day variance, and known remaining person-hours.
+Dashed length represents a difference between dates, not effort hours or working
+slots. See [WP6.5.1 owner checks](docs/WP6-5-1-HANDOFF.md).
 
 ## Using the Gantt chart
 

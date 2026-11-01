@@ -1,14 +1,20 @@
 import type { ProjectSettings, ScheduleResult, TaskInput } from '../domain'
-import type { Forecast, Indicator } from '../forecast/forecast'
+import type { Forecast, Indicator, TaskForecast } from '../forecast/forecast'
 import { latestCompletion, progressForTask } from './taskProgress'
 import type { ProgressTracking, TaskStatus } from './taskProgress'
 
 export type HealthTone = 'good' | 'warning' | 'late' | 'uncertain' | 'complete'
 export interface TaskHealth { label: string; tone: HealthTone; explanation: string; workStatus: TaskStatus }
 export interface ProjectHealth { label: string; tone: HealthTone; explanation: string; forecastState: string; availability: string; blocked: number; late: number; completed: boolean; completionDate: string | null; knownRemaining: number }
-export function indicatorPresentation(indicator: Indicator): Pick<TaskHealth, 'label' | 'tone'> {
-  return { label: indicator === 'On Schedule' ? 'On Track' : indicator,
+export function indicatorPresentation(indicator: Indicator, forecast?: Pick<TaskForecast, 'forecastFinish' | 'committedFinish'>): Pick<TaskHealth, 'label' | 'tone'> {
+  return { label: indicator === 'At Risk' ? 'Forecast Slip' : indicator === 'On Schedule' ? forecast?.forecastFinish && forecast.forecastFinish < forecast.committedFinish ? 'Ahead of Plan' : 'On Track' : indicator,
     tone: indicator === 'On Schedule' || indicator === 'Completed on time' ? 'good' : indicator === 'At Risk' ? 'warning' : indicator === 'Late' || indicator === 'Completed Late' ? 'late' : 'uncertain' }
+}
+/** Observed lateness/completion and work status are independent of forecast visibility. */
+export const isObservedHealth = (health: Pick<TaskHealth, 'label' | 'workStatus'>) => health.label === 'Late' || health.workStatus === 'Complete'
+export function taskHealthDescription(health: TaskHealth, showForecast = true) {
+  if (!showForecast && health.label === 'Late') return `Schedule Late; work status ${health.workStatus}. The committed finish has passed while this task remains unfinished.`
+  return `${showForecast || isObservedHealth(health) ? `Schedule ${health.label}; ` : ''}work status ${health.workStatus}.${showForecast || isObservedHealth(health) ? ` ${health.explanation}` : ''}`
 }
 /** Read-only labels/counts over accepted WP6.4 outputs; no capacity allocation or replanning. */
 export function healthPresentation(project: ProjectSettings, tasks: readonly TaskInput[], schedule: ScheduleResult, forecast: Forecast, progress: ProgressTracking, invalidDraft = false, remainingHours: Readonly<Record<string, number | null>> = {}) {
@@ -19,12 +25,12 @@ export function healthPresentation(project: ProjectSettings, tasks: readonly Tas
     const workStatus = progressForTask(progress, task.taskId).status
     const output = forecastById.get(task.taskId)
     let health: TaskHealth
-    if (output && !invalidDraft) health = { ...indicatorPresentation(output.indicator), explanation: output.explanation, workStatus }
+    if (output && !invalidDraft) health = { ...indicatorPresentation(output.indicator, output), explanation: output.explanation, workStatus }
     else if (workStatus === 'Complete') {
       const completion = latestCompletion(progress, task.taskId)
       const indicator: Indicator = !completion?.committedFinishDateAtCompletion ? 'Completion timing unavailable' : completion.date > completion.committedFinishDateAtCompletion ? 'Completed Late' : 'Completed on time'
       health = { ...indicatorPresentation(indicator), workStatus, explanation: completion?.committedFinishDateAtCompletion ? `Completed ${completion.date}; committed finish at completion ${completion.committedFinishDateAtCompletion}.` : 'Complete; historical committed-finish context was not recorded.' }
-    } else if (!invalidDraft && committed.has(task.taskId) && forecast.asOfDate > committed.get(task.taskId)!) health = { label: 'Late', tone: 'late', workStatus, explanation: `Unfinished as of ${forecast.asOfDate}, after committed finish ${committed.get(task.taskId)}.` }
+    } else if (committed.has(task.taskId) && forecast.asOfDate > committed.get(task.taskId)!) health = { label: 'Late', tone: 'late', workStatus, explanation: `Unfinished as of ${forecast.asOfDate}, after committed finish ${committed.get(task.taskId)}.` }
     else health = { label: 'Uncertain', tone: 'uncertain', workStatus, explanation: invalidDraft ? 'Correct invalid forecast settings.' : workStatus === 'Blocked' ? 'Blocked restart is unknown; no forecast endpoint.' : 'Forecast unavailable; enable forecasting and supply valid capacity and remaining effort.' }
     taskHealth.set(task.taskId, health)
   }

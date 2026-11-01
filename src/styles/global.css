@@ -415,3 +415,5 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .forecast-overlay { stroke: #704496; }
 .baseline-overlay:focus, .forecast-overlay:focus { outline: 2px solid #2689bb; outline-offset: 1px; }
 @media (max-width: 780px) { .health-metrics { grid-template-columns: 1fr 1fr; } }
+.forecast-toggle-help { max-width: 300px; align-self: center; font-size: .72rem; }
+.forecast-toggle-help:empty { display: none; }

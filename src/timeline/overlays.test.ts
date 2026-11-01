@@ -3,7 +3,7 @@ import { expect, test } from 'vitest'
 import { calculateSchedule, dateToOrdinal } from '../domain'
 import { workData } from '../test/workFixture'
 import { createTimelineAxis } from './projection'
-import { clipOverlayPoint, forecastPoint, overlayPoint } from './overlays'
+import { clipOverlayPoint, comparisonDescription, forecastFinishDescription, forecastPoint, overlayPoint } from './overlays'
 import type { TaskForecast } from '../forecast/forecast'
 
 const schedule = calculateSchedule(workData.project, workData.tasks)
@@ -39,4 +39,20 @@ test('exclusive whole-day completion uses last occupied date; tiny fractions are
   expect(forecastPoint(axis, task('2026-11-02', 1))!.unit).toBe(1)
   expect(forecastPoint(axis, task('2026-11-02', 1e-12))!.unit).toBe(1e-12)
   expect(forecastPoint(axis, task('2026-11-02', null))!.unit).toBe(1)
+})
+test.each([['2026-11-04', '2 calendar days earlier'], ['2026-11-06', 'same calendar date'], ['2026-11-10', '4 calendar days later']])('finish-marker description uses calendar variance for %s and keeps effort separate', (date, variance) => {
+  const current = { ...schedule.tasks[0], finishDate: '2026-11-06' }
+  const description = forecastFinishDescription(current, task(date, 1), 12)
+  expect(description).toContain('FF (Forecast Finish)')
+  expect(description).toContain('Committed finish 2026-11-06')
+  expect(description).toContain(`Forecast finish ${date}`)
+  expect(description).toContain(variance)
+  expect(description).toContain('Known remaining effort: 12 person-hours')
+  expect(description).toContain('not effort hours or scheduled working slots')
+})
+test('chart descriptions omit forecast comparisons when hidden, while baseline/commitment stay available', () => {
+  const description = comparisonDescription(schedule.tasks[0], schedule.tasks[0], task('2026-11-10', 1), true, false)
+  expect(description).toContain('Baseline:'); expect(description).toContain('committed finish')
+  expect(description).not.toContain('forecast'); expect(description).not.toContain('2026-11-10')
+  expect(forecastFinishDescription(schedule.tasks[0], task(null, null))).toBe('Forecast Finish unavailable.')
 })

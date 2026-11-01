@@ -174,7 +174,8 @@ test('A02/A13/A15 ID associations survive sort, duplicate, Close and explicit sa
   await page.getByRole('checkbox', { name: 'Show Baseline', exact: true }).check()
   await expect(overlay(page, 'baseline', 'T20')).toHaveCount(0)
   await expect(selected(page)).toContainText('New since baseline')
-  await expect(page.getByRole('button', { name: /^Inspect T20 / })).toHaveAttribute('aria-description', /Schedule Uncertain/)
+  await expect(page.getByRole('button', { name: /^Inspect T20 / })).toHaveAttribute('aria-description', /work status Not Started/)
+  await expect(page.getByRole('button', { name: /^Inspect T20 / })).not.toHaveAttribute('aria-description', /Schedule Uncertain|forecast finish/)
 })
 
 test('A07/A14 long labels and 25 virtual rows stay scrollable and keyboard accessible at desktop/narrow widths', async ({ page }) => {
@@ -198,6 +199,9 @@ test('A07/A14 long labels and 25 virtual rows stay scrollable and keyboard acces
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     expect(await page.locator('.gantt-row-label').count()).toBeLessThan(20)
     await page.screenshot({ path: `docs/review/wp6-5-long-${width}.png`, fullPage: true })
+    await page.getByRole('checkbox', { name: 'Show Forecast', exact: true }).uncheck()
+    await expect(chart(page).locator('.gantt-row-label .health-badge')).toHaveCount(0)
+    await expect(page.locator('[data-overlay="forecast"]')).toHaveCount(0)
   }
 })
 

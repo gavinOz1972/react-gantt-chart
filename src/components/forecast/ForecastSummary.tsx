@@ -40,9 +40,10 @@ export function ForecastSummary({ forecast, invalidDraft, health, target }: { fo
     </details>
   </section>
 }
-export function TaskForecastSummary({ task }: { task: TaskForecast }) {
+export function TaskForecastSummary({ task, showForecastBadge = true }: { task: TaskForecast; showForecastBadge?: boolean }) {
+  const actual = task.indicator === 'Late' || task.indicator.startsWith('Completed') || task.indicator === 'Completion timing unavailable'
   return <div className="task-forecast" aria-label={`${task.taskId} forecast comparison`}>
-    <dl><div><dt>Baseline finish</dt><dd>{task.baselineFinish ?? 'Not established'}</dd></div><div><dt>Committed finish</dt><dd>{task.committedFinish}</dd></div><div><dt>Forecast finish</dt><dd>{task.forecastFinish ?? 'Unavailable'}</dd></div><div><dt>Schedule indicator</dt><dd><HealthBadge {...indicatorPresentation(task.indicator)} explanation={task.explanation} /></dd></div></dl>
+    <dl><div><dt>Baseline finish</dt><dd>{task.baselineFinish ?? 'Not established'}</dd></div><div><dt>Committed finish</dt><dd>{task.committedFinish}</dd></div><div><dt>Forecast finish</dt><dd>{task.forecastFinish ?? 'Unavailable'}</dd></div>{(showForecastBadge || actual) && <div><dt>Schedule indicator</dt><dd><HealthBadge {...indicatorPresentation(task.indicator, task)} explanation={task.explanation} /></dd></div>}</dl>
     <small>{task.explanation} {task.forecastFinish ? task.reason : ''} Schedule dates are separate from effort variance.</small>
   </div>
 }

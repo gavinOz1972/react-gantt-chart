@@ -40,6 +40,14 @@ within that range. All dates remain strict date-only strings and ordinals.
 
 ## Projection API
 
+WP6.5.1 labels forecast endpoints **FF (Forecast Finish)**, including when they
+fall to the left of a committed bar. Marker descriptions compare the two exact
+finish dates using calendar-day earlier/later variance and report known remaining
+person-hours separately. Dashed length is not an effort-hour or scheduled-slot
+measurement. Show Forecast gates predictive row badges, chart-only comparisons
+and overlays together; observed Blocked/Late and historical completion stay visible.
+The project overview and selected-task detailed dates remain available when hidden.
+
 WP6.5 adds `overlays.ts`, a read-only adapter over these coordinates. It neither
 extends the axis nor changes bar geometry. Original baseline start/finish are
 mapped using their **original** daily-hour proportions, even if the current

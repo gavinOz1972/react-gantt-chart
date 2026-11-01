@@ -1,4 +1,5 @@
 import type { HealthTone, TaskHealth } from '../../progress/healthPresentation'
+import { isObservedHealth, taskHealthDescription } from '../../progress/healthPresentation'
 
 export function HealthBadge({ label, tone, explanation, compact = false }: { label: string; tone: HealthTone; explanation?: string; compact?: boolean }) {
   return <span className={`health-badge health-${tone}${compact ? ' health-icon-only' : ''}`} aria-label={label} title={explanation ? `${label}: ${explanation}` : label}>
@@ -7,9 +8,11 @@ export function HealthBadge({ label, tone, explanation, compact = false }: { lab
     </svg><span className={compact ? 'sr-only' : ''}>{label}</span>
   </span>
 }
-export function TaskHealthBadge({ health, compact = false }: { health: TaskHealth; compact?: boolean }) {
-  return <span className="task-health" title={`Schedule: ${health.label}. Work status: ${health.workStatus}. ${health.explanation}`}>
-    <HealthBadge {...health} compact={compact} />
+export function TaskHealthBadge({ health, compact = false, showForecast = true }: { health: TaskHealth; compact?: boolean; showForecast?: boolean }) {
+  const showSchedule = showForecast || isObservedHealth(health)
+  if (!showSchedule && health.workStatus !== 'Blocked') return null
+  return <span className="task-health" title={taskHealthDescription(health, showForecast)}>
+    {showSchedule && <HealthBadge {...health} explanation={!showForecast && health.label === 'Late' ? 'The committed finish has passed while this task remains unfinished.' : health.explanation} compact={compact} />}
     {health.workStatus === 'Blocked' && <span className="blocked-health" aria-label="Work status: Blocked" title="Work status: Blocked"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1v10M9 1v10" stroke="currentColor" strokeWidth="3" /></svg>{!compact && <span>Blocked</span>}</span>}
   </span>
 }
