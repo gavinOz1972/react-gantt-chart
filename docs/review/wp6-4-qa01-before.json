@@ -1,0 +1,57 @@
+{
+  "sourceCommit": "f1004c9",
+  "scenario": "Class 4, homework 2, team 4; change homework to 5; header Save from Project Settings",
+  "observations": [
+    {
+      "version": 4,
+      "errors": [],
+      "diagnostic": {
+        "ticks": 8,
+        "writes": 0,
+        "writeMs": 0,
+        "stringifies": 0,
+        "stringifyMs": 0,
+        "mutations": 9,
+        "modalStack": "Error: showModal caller\n    at HTMLDialogElement.showModal (eval at evaluate (:370:30), <anonymous>:41:39)\n    at http://127.0.0.1:4173/src/components/ConfirmDialog.tsx:12:11\n    at Object.react_stack_bottom_frame (http://127.0.0.1:4173/node_modules/.vite/deps/react-dom_client.js?v=5d96b6e9:14175:13)\n    at runWithFiberInDEV (http://127.0.0.1:4173/node_modules/.vite/deps/react-dom_client.js?v=5d96b6e9:941:66)\n    at commitHookEffectListMount (http://127.0.0.1:4173/node_modules/.vite/deps/react-dom_client.js?v=5d96b6e9:6898:153)\n    at commitHookPassiveMountEffects (http://127.0.0.1:4173/node_modules/.vite/deps/react-dom_client.js?v=5d96b6e9:6933:55)\n    at reconnectPassiveEffects (http://127.0.0.1:4173/node_modules/.vite/deps/react-dom_client.js?v=5d96b6e9:8398:6)\n    at doubleInvokeEffectsOnFiber (http://127.0.0.1:4173/node_modules/.vite/deps/react-dom_client.js?v=5d96b6e9:9696:181)\n    at runWithFiberInDEV (http://127.0.0.1:4173/node_modules/.vite/deps/react-dom_client.js?v=5d96b6e9:941:66)\n    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://127.0.0.1:4173/node_modules/.vite/deps/react-dom_client.js?v=5d96b6e9:9689:71)",
+        "longTasks": [],
+        "activeTab": "Project Settings",
+        "dialogs": [
+          {
+            "open": true,
+            "modal": true,
+            "hiddenAncestor": "panel-0",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "visibility": "visible",
+            "display": "block",
+            "text": "Overwrite saved plan “QA01 plan”?The existing named browser copy will be replaced with this plan. Other saved plans will be kept.This upgrades the saved plan from format 4 to format 5. Earlier releases cannot open it. Cancel to export a compatible backup first, or save under a new name.Export saved WP6.3 backupCancelOverwrite saved plan"
+          }
+        ]
+      }
+    },
+    {
+      "version": 5,
+      "errors": [],
+      "diagnostic": {
+        "ticks": 8,
+        "writes": 1,
+        "writeMs": 0,
+        "stringifies": 46,
+        "stringifyMs": 0.3999999761581421,
+        "mutations": 60,
+        "modalStack": "",
+        "longTasks": [],
+        "activeTab": "Project Settings",
+        "dialogs": []
+      }
+    }
+  ]
+}

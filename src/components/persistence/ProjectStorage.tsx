@@ -168,7 +168,9 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
     {!ready && <p className="muted">Finish or cancel task, effort and status/criteria edits and correct invalid settings before saving or exporting. Load/import can replace unfinished work only after confirmation.</p>}
     {(issue || libraryError) && <p className="storage-error" role="alert">{issue || libraryError}</p>}
     <p className="save-notice" role="status">{notice}</p>
-    {pending && <ConfirmDialog title={pending.kind === 'open' || pending.kind === 'new' ? 'Replace unsaved work?' : pending.kind === 'overwrite' ? `Overwrite saved plan “${pending.name}”?` : `Delete saved plan “${pending.name}”?`}
+    {/* Header Save can open this while Files is hidden. Native modal dialogs
+        must be outside that hidden ancestor or they make the page inert unseen. */}
+    {pending && createPortal(<ConfirmDialog title={pending.kind === 'open' || pending.kind === 'new' ? 'Replace unsaved work?' : pending.kind === 'overwrite' ? `Overwrite saved plan “${pending.name}”?` : `Delete saved plan “${pending.name}”?`}
       confirmLabel={pending.kind === 'open' ? 'Replace current project' : pending.kind === 'new' ? 'Start new project' : pending.kind === 'overwrite' ? 'Overwrite saved plan' : 'Delete saved copy'} onConfirm={confirm} onCancel={() => setPending(null)}>
       <p>{pending.kind === 'open' || pending.kind === 'new' ? 'This will discard the open project’s unsaved changes and unfinished task, settings, effort or status/criteria drafts. Cancel to keep editing, or save/export first.'
         : pending.kind === 'overwrite' ? 'The existing named browser copy will be replaced with this plan. Other saved plans will be kept.' : 'Only this named browser copy will be deleted. The open project and other saved plans will be kept.'}</p>
@@ -178,6 +180,6 @@ export function ProjectStorage({ data, legacySource, dirty, ready, currentSavedN
           if (current.ok) { const original = current.projects.find(entry => entry.name === pending.name); if (original) download(original.plan, true) }
           else setIssue(current.error.message)
         }}>Export saved {projectVersionLabel(pending.migrating)} backup</button></>}
-    </ConfirmDialog>}
+    </ConfirmDialog>, document.body)}
   </section></>
 }
