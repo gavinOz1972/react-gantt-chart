@@ -36,6 +36,10 @@ for (const version of [1, 2, 3, 4, 5]) test(`QA01 capacity change then header Sa
   await page.getByLabel('Class hours per student per week', { exact: true }).fill('4')
   await page.getByLabel('Homework hours per student per week', { exact: true }).fill('2')
   await page.getByLabel('Team size', { exact: true }).fill('4')
+  // The automatic-today input already displays Nov 2 when run on Nov 2.
+  // Filling the unchanged DOM value emits no change, so explicitly change
+  // away and back before asserting a persisted fixed scenario date.
+  await page.getByLabel('Forecast As-of date', { exact: true }).fill('2026-11-01')
   await page.getByLabel('Forecast As-of date', { exact: true }).fill('2026-11-02')
   await expect(page.locator('.forecast-summary')).toContainText('24 person-hours')
   await expect(page.locator('.forecast-summary')).toContainText('2026-11-04')

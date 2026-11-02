@@ -1,0 +1,37 @@
+{
+  "baselineHash": "ce4aa88144899c07455521a20d15d3706414ac8a5b33a0f26ba309ddf60e8112",
+  "actualHours": 2.25,
+  "events": [
+    {
+      "eventId": "E-86a2a5a3-0a4a-4fb1-81e3-98e030fdbcd3",
+      "taskId": "T1",
+      "fromStatus": "Not Started",
+      "toStatus": "Complete",
+      "date": "2026-11-02",
+      "recordedAt": "2026-11-02T15:40:43.351Z",
+      "criteriaSnapshot": [
+        {
+          "criterionId": "C-1aed7044-039e-4a3d-b08a-8f17e9100526",
+          "text": "A teammate reviewed and approved the charter",
+          "checked": true
+        }
+      ],
+      "completionAcknowledged": true,
+      "definitionOfDone": "",
+      "committedFinishDateAtCompletion": "2026-11-02"
+    },
+    {
+      "eventId": "E-bcb3efe6-c555-4167-8871-0318aa1d8614",
+      "taskId": "T1",
+      "fromStatus": "Complete",
+      "toStatus": "In Progress",
+      "date": "2026-11-02",
+      "recordedAt": "2026-11-02T15:40:44.268Z",
+      "reason": "Mentor requested one additional charter check"
+    }
+  ],
+  "originalTaskIdsRetained": true,
+  "copiedLogs": 0,
+  "copiedHistory": 0,
+  "jsonLocalRoundTrip": true
+}

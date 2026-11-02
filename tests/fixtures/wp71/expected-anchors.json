@@ -1,0 +1,1210 @@
+{
+  "30": {
+    "totalHours": 181,
+    "taskCount": 30,
+    "committedCompletion": {
+      "date": "2026-12-15",
+      "afterHour": 3
+    },
+    "forecastCompletion": "2026-12-18",
+    "weeklyCapacity": 32,
+    "targetDays": 110,
+    "targetCapacity": 502.85714285714283,
+    "criticalTaskIds": [
+      "T1",
+      "T10",
+      "T11",
+      "T13",
+      "T14",
+      "T18",
+      "T2",
+      "T22",
+      "T23",
+      "T26",
+      "T27",
+      "T28",
+      "T29",
+      "T3",
+      "T30",
+      "T7",
+      "T9"
+    ],
+    "schedule": [
+      {
+        "taskId": "T1",
+        "predecessorTaskIds": [],
+        "startSlot": {
+          "date": "2026-11-02",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-02",
+          "afterHour": 4
+        },
+        "startDate": "2026-11-02",
+        "finishDate": "2026-11-02"
+      },
+      {
+        "taskId": "T10",
+        "predecessorTaskIds": [
+          "T8",
+          "T9"
+        ],
+        "startSlot": {
+          "date": "2026-11-12",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-11-16",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-12",
+        "finishDate": "2026-11-16"
+      },
+      {
+        "taskId": "T11",
+        "predecessorTaskIds": [
+          "T9"
+        ],
+        "startSlot": {
+          "date": "2026-11-12",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-11-16",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-12",
+        "finishDate": "2026-11-16"
+      },
+      {
+        "taskId": "T12",
+        "predecessorTaskIds": [],
+        "startSlot": {
+          "date": "2026-11-13",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-13",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-13",
+        "finishDate": "2026-11-13"
+      },
+      {
+        "taskId": "T13",
+        "predecessorTaskIds": [
+          "T10",
+          "T11"
+        ],
+        "startSlot": {
+          "date": "2026-11-16",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-11-19",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-16",
+        "finishDate": "2026-11-19"
+      },
+      {
+        "taskId": "T14",
+        "predecessorTaskIds": [
+          "T13"
+        ],
+        "startSlot": {
+          "date": "2026-11-19",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-23",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-19",
+        "finishDate": "2026-11-23"
+      },
+      {
+        "taskId": "T15",
+        "predecessorTaskIds": [
+          "T13",
+          "T6"
+        ],
+        "startSlot": {
+          "date": "2026-11-19",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-23",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-19",
+        "finishDate": "2026-11-23"
+      },
+      {
+        "taskId": "T16",
+        "predecessorTaskIds": [
+          "T5",
+          "T6"
+        ],
+        "startSlot": {
+          "date": "2026-11-10",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-11-12",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-10",
+        "finishDate": "2026-11-12"
+      },
+      {
+        "taskId": "T17",
+        "predecessorTaskIds": [
+          "T16"
+        ],
+        "startSlot": {
+          "date": "2026-11-12",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-13",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-12",
+        "finishDate": "2026-11-13"
+      },
+      {
+        "taskId": "T18",
+        "predecessorTaskIds": [
+          "T14",
+          "T17"
+        ],
+        "startSlot": {
+          "date": "2026-11-23",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-27",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-23",
+        "finishDate": "2026-11-27"
+      },
+      {
+        "taskId": "T19",
+        "predecessorTaskIds": [
+          "T13"
+        ],
+        "startSlot": {
+          "date": "2026-11-19",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-23",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-19",
+        "finishDate": "2026-11-23"
+      },
+      {
+        "taskId": "T2",
+        "predecessorTaskIds": [
+          "T1"
+        ],
+        "startSlot": {
+          "date": "2026-11-03",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-05",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-03",
+        "finishDate": "2026-11-05"
+      },
+      {
+        "taskId": "T20",
+        "predecessorTaskIds": [
+          "T19"
+        ],
+        "startSlot": {
+          "date": "2026-11-23",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-27",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-23",
+        "finishDate": "2026-11-27"
+      },
+      {
+        "taskId": "T21",
+        "predecessorTaskIds": [
+          "T14",
+          "T19"
+        ],
+        "startSlot": {
+          "date": "2026-11-23",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-26",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-23",
+        "finishDate": "2026-11-26"
+      },
+      {
+        "taskId": "T22",
+        "predecessorTaskIds": [
+          "T18",
+          "T20",
+          "T21"
+        ],
+        "startSlot": {
+          "date": "2026-11-27",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-03",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-27",
+        "finishDate": "2026-12-03"
+      },
+      {
+        "taskId": "T23",
+        "predecessorTaskIds": [
+          "T22"
+        ],
+        "startSlot": {
+          "date": "2026-12-03",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-12-04",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-03",
+        "finishDate": "2026-12-04"
+      },
+      {
+        "taskId": "T24",
+        "predecessorTaskIds": [
+          "T18",
+          "T20"
+        ],
+        "startSlot": {
+          "date": "2026-11-27",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-01",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-27",
+        "finishDate": "2026-12-01"
+      },
+      {
+        "taskId": "T25",
+        "predecessorTaskIds": [],
+        "startSlot": {
+          "date": "2026-11-19",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-19",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-19",
+        "finishDate": "2026-11-19"
+      },
+      {
+        "taskId": "T26",
+        "predecessorTaskIds": [
+          "T15",
+          "T23"
+        ],
+        "startSlot": {
+          "date": "2026-12-04",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-07",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-04",
+        "finishDate": "2026-12-07"
+      },
+      {
+        "taskId": "T27",
+        "predecessorTaskIds": [
+          "T24",
+          "T26"
+        ],
+        "startSlot": {
+          "date": "2026-12-07",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-08",
+          "afterHour": 4
+        },
+        "startDate": "2026-12-07",
+        "finishDate": "2026-12-08"
+      },
+      {
+        "taskId": "T28",
+        "predecessorTaskIds": [
+          "T12",
+          "T25",
+          "T27"
+        ],
+        "startSlot": {
+          "date": "2026-12-10",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-12-10",
+          "afterHour": 4
+        },
+        "startDate": "2026-12-10",
+        "finishDate": "2026-12-10"
+      },
+      {
+        "taskId": "T29",
+        "predecessorTaskIds": [
+          "T28"
+        ],
+        "startSlot": {
+          "date": "2026-12-11",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-12-14",
+          "afterHour": 4
+        },
+        "startDate": "2026-12-11",
+        "finishDate": "2026-12-14"
+      },
+      {
+        "taskId": "T3",
+        "predecessorTaskIds": [
+          "T2"
+        ],
+        "startSlot": {
+          "date": "2026-11-05",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-11-06",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-05",
+        "finishDate": "2026-11-06"
+      },
+      {
+        "taskId": "T30",
+        "predecessorTaskIds": [
+          "T29"
+        ],
+        "startSlot": {
+          "date": "2026-12-15",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-12-15",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-15",
+        "finishDate": "2026-12-15"
+      },
+      {
+        "taskId": "T4",
+        "predecessorTaskIds": [
+          "T2"
+        ],
+        "startSlot": {
+          "date": "2026-11-05",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-11-06",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-05",
+        "finishDate": "2026-11-06"
+      },
+      {
+        "taskId": "T5",
+        "predecessorTaskIds": [],
+        "startSlot": {
+          "date": "2026-11-05",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-05",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-05",
+        "finishDate": "2026-11-05"
+      },
+      {
+        "taskId": "T6",
+        "predecessorTaskIds": [
+          "T3",
+          "T4"
+        ],
+        "startSlot": {
+          "date": "2026-11-06",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-11-10",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-06",
+        "finishDate": "2026-11-10"
+      },
+      {
+        "taskId": "T7",
+        "predecessorTaskIds": [
+          "T3"
+        ],
+        "startSlot": {
+          "date": "2026-11-06",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-11-09",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-06",
+        "finishDate": "2026-11-09"
+      },
+      {
+        "taskId": "T8",
+        "predecessorTaskIds": [
+          "T7"
+        ],
+        "startSlot": {
+          "date": "2026-11-09",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-10",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-09",
+        "finishDate": "2026-11-10"
+      },
+      {
+        "taskId": "T9",
+        "predecessorTaskIds": [
+          "T7"
+        ],
+        "startSlot": {
+          "date": "2026-11-09",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-12",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-09",
+        "finishDate": "2026-11-12"
+      }
+    ]
+  },
+  "40": {
+    "totalHours": 226,
+    "taskCount": 40,
+    "committedCompletion": {
+      "date": "2027-01-04",
+      "afterHour": 4
+    },
+    "forecastCompletion": "2026-12-28",
+    "weeklyCapacity": 32,
+    "targetDays": 110,
+    "targetCapacity": 502.85714285714283,
+    "criticalTaskIds": [
+      "T1",
+      "T10",
+      "T11",
+      "T13",
+      "T14",
+      "T18",
+      "T2",
+      "T22",
+      "T23",
+      "T26",
+      "T27",
+      "T28",
+      "T29",
+      "T3",
+      "T30",
+      "T31",
+      "T32",
+      "T33",
+      "T34",
+      "T35",
+      "T36",
+      "T37",
+      "T38",
+      "T39",
+      "T40",
+      "T7",
+      "T9"
+    ],
+    "schedule": [
+      {
+        "taskId": "T1",
+        "predecessorTaskIds": [],
+        "startSlot": {
+          "date": "2026-11-02",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-02",
+          "afterHour": 4
+        },
+        "startDate": "2026-11-02",
+        "finishDate": "2026-11-02"
+      },
+      {
+        "taskId": "T10",
+        "predecessorTaskIds": [
+          "T8",
+          "T9"
+        ],
+        "startSlot": {
+          "date": "2026-11-12",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-11-16",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-12",
+        "finishDate": "2026-11-16"
+      },
+      {
+        "taskId": "T11",
+        "predecessorTaskIds": [
+          "T9"
+        ],
+        "startSlot": {
+          "date": "2026-11-12",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-11-16",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-12",
+        "finishDate": "2026-11-16"
+      },
+      {
+        "taskId": "T12",
+        "predecessorTaskIds": [],
+        "startSlot": {
+          "date": "2026-11-13",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-13",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-13",
+        "finishDate": "2026-11-13"
+      },
+      {
+        "taskId": "T13",
+        "predecessorTaskIds": [
+          "T10",
+          "T11"
+        ],
+        "startSlot": {
+          "date": "2026-11-16",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-11-19",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-16",
+        "finishDate": "2026-11-19"
+      },
+      {
+        "taskId": "T14",
+        "predecessorTaskIds": [
+          "T13"
+        ],
+        "startSlot": {
+          "date": "2026-11-19",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-23",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-19",
+        "finishDate": "2026-11-23"
+      },
+      {
+        "taskId": "T15",
+        "predecessorTaskIds": [
+          "T13",
+          "T6"
+        ],
+        "startSlot": {
+          "date": "2026-11-19",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-23",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-19",
+        "finishDate": "2026-11-23"
+      },
+      {
+        "taskId": "T16",
+        "predecessorTaskIds": [
+          "T5",
+          "T6"
+        ],
+        "startSlot": {
+          "date": "2026-11-10",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-11-12",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-10",
+        "finishDate": "2026-11-12"
+      },
+      {
+        "taskId": "T17",
+        "predecessorTaskIds": [
+          "T16"
+        ],
+        "startSlot": {
+          "date": "2026-11-12",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-13",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-12",
+        "finishDate": "2026-11-13"
+      },
+      {
+        "taskId": "T18",
+        "predecessorTaskIds": [
+          "T14",
+          "T17"
+        ],
+        "startSlot": {
+          "date": "2026-11-23",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-27",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-23",
+        "finishDate": "2026-11-27"
+      },
+      {
+        "taskId": "T19",
+        "predecessorTaskIds": [
+          "T13"
+        ],
+        "startSlot": {
+          "date": "2026-11-19",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-23",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-19",
+        "finishDate": "2026-11-23"
+      },
+      {
+        "taskId": "T2",
+        "predecessorTaskIds": [
+          "T1"
+        ],
+        "startSlot": {
+          "date": "2026-11-03",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-05",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-03",
+        "finishDate": "2026-11-05"
+      },
+      {
+        "taskId": "T20",
+        "predecessorTaskIds": [
+          "T19"
+        ],
+        "startSlot": {
+          "date": "2026-11-23",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-27",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-23",
+        "finishDate": "2026-11-27"
+      },
+      {
+        "taskId": "T21",
+        "predecessorTaskIds": [
+          "T14",
+          "T19"
+        ],
+        "startSlot": {
+          "date": "2026-11-23",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-26",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-23",
+        "finishDate": "2026-11-26"
+      },
+      {
+        "taskId": "T22",
+        "predecessorTaskIds": [
+          "T18",
+          "T20",
+          "T21"
+        ],
+        "startSlot": {
+          "date": "2026-11-27",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-03",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-27",
+        "finishDate": "2026-12-03"
+      },
+      {
+        "taskId": "T23",
+        "predecessorTaskIds": [
+          "T22"
+        ],
+        "startSlot": {
+          "date": "2026-12-03",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-12-04",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-03",
+        "finishDate": "2026-12-04"
+      },
+      {
+        "taskId": "T24",
+        "predecessorTaskIds": [
+          "T18",
+          "T20"
+        ],
+        "startSlot": {
+          "date": "2026-11-27",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-01",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-27",
+        "finishDate": "2026-12-01"
+      },
+      {
+        "taskId": "T25",
+        "predecessorTaskIds": [],
+        "startSlot": {
+          "date": "2026-11-19",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-19",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-19",
+        "finishDate": "2026-11-19"
+      },
+      {
+        "taskId": "T26",
+        "predecessorTaskIds": [
+          "T15",
+          "T23"
+        ],
+        "startSlot": {
+          "date": "2026-12-04",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-07",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-04",
+        "finishDate": "2026-12-07"
+      },
+      {
+        "taskId": "T27",
+        "predecessorTaskIds": [
+          "T24",
+          "T26"
+        ],
+        "startSlot": {
+          "date": "2026-12-07",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-08",
+          "afterHour": 4
+        },
+        "startDate": "2026-12-07",
+        "finishDate": "2026-12-08"
+      },
+      {
+        "taskId": "T28",
+        "predecessorTaskIds": [
+          "T12",
+          "T25",
+          "T27"
+        ],
+        "startSlot": {
+          "date": "2026-12-10",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-12-10",
+          "afterHour": 4
+        },
+        "startDate": "2026-12-10",
+        "finishDate": "2026-12-10"
+      },
+      {
+        "taskId": "T29",
+        "predecessorTaskIds": [
+          "T28"
+        ],
+        "startSlot": {
+          "date": "2026-12-11",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-12-14",
+          "afterHour": 4
+        },
+        "startDate": "2026-12-11",
+        "finishDate": "2026-12-14"
+      },
+      {
+        "taskId": "T3",
+        "predecessorTaskIds": [
+          "T2"
+        ],
+        "startSlot": {
+          "date": "2026-11-05",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-11-06",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-05",
+        "finishDate": "2026-11-06"
+      },
+      {
+        "taskId": "T30",
+        "predecessorTaskIds": [
+          "T29"
+        ],
+        "startSlot": {
+          "date": "2026-12-15",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-12-15",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-15",
+        "finishDate": "2026-12-15"
+      },
+      {
+        "taskId": "T31",
+        "predecessorTaskIds": [
+          "T30"
+        ],
+        "startSlot": {
+          "date": "2026-12-15",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-17",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-15",
+        "finishDate": "2026-12-17"
+      },
+      {
+        "taskId": "T32",
+        "predecessorTaskIds": [
+          "T31"
+        ],
+        "startSlot": {
+          "date": "2026-12-17",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-21",
+          "afterHour": 1
+        },
+        "startDate": "2026-12-17",
+        "finishDate": "2026-12-21"
+      },
+      {
+        "taskId": "T33",
+        "predecessorTaskIds": [
+          "T32"
+        ],
+        "startSlot": {
+          "date": "2026-12-21",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-12-21",
+          "afterHour": 4
+        },
+        "startDate": "2026-12-21",
+        "finishDate": "2026-12-21"
+      },
+      {
+        "taskId": "T34",
+        "predecessorTaskIds": [
+          "T33"
+        ],
+        "startSlot": {
+          "date": "2026-12-22",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-12-24",
+          "afterHour": 4
+        },
+        "startDate": "2026-12-22",
+        "finishDate": "2026-12-24"
+      },
+      {
+        "taskId": "T35",
+        "predecessorTaskIds": [
+          "T34"
+        ],
+        "startSlot": {
+          "date": "2026-12-25",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-12-25",
+          "afterHour": 2
+        },
+        "startDate": "2026-12-25",
+        "finishDate": "2026-12-25"
+      },
+      {
+        "taskId": "T36",
+        "predecessorTaskIds": [
+          "T35"
+        ],
+        "startSlot": {
+          "date": "2026-12-25",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-12-28",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-25",
+        "finishDate": "2026-12-28"
+      },
+      {
+        "taskId": "T37",
+        "predecessorTaskIds": [
+          "T36"
+        ],
+        "startSlot": {
+          "date": "2026-12-28",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-12-29",
+          "afterHour": 3
+        },
+        "startDate": "2026-12-28",
+        "finishDate": "2026-12-29"
+      },
+      {
+        "taskId": "T38",
+        "predecessorTaskIds": [
+          "T37"
+        ],
+        "startSlot": {
+          "date": "2026-12-29",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2027-01-01",
+          "afterHour": 1
+        },
+        "startDate": "2026-12-29",
+        "finishDate": "2027-01-01"
+      },
+      {
+        "taskId": "T39",
+        "predecessorTaskIds": [
+          "T38"
+        ],
+        "startSlot": {
+          "date": "2027-01-01",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2027-01-01",
+          "afterHour": 4
+        },
+        "startDate": "2027-01-01",
+        "finishDate": "2027-01-01"
+      },
+      {
+        "taskId": "T4",
+        "predecessorTaskIds": [
+          "T2"
+        ],
+        "startSlot": {
+          "date": "2026-11-05",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-11-06",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-05",
+        "finishDate": "2026-11-06"
+      },
+      {
+        "taskId": "T40",
+        "predecessorTaskIds": [
+          "T39"
+        ],
+        "startSlot": {
+          "date": "2027-01-04",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2027-01-04",
+          "afterHour": 4
+        },
+        "startDate": "2027-01-04",
+        "finishDate": "2027-01-04"
+      },
+      {
+        "taskId": "T5",
+        "predecessorTaskIds": [],
+        "startSlot": {
+          "date": "2026-11-05",
+          "hour": 1
+        },
+        "finishBoundary": {
+          "date": "2026-11-05",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-05",
+        "finishDate": "2026-11-05"
+      },
+      {
+        "taskId": "T6",
+        "predecessorTaskIds": [
+          "T3",
+          "T4"
+        ],
+        "startSlot": {
+          "date": "2026-11-06",
+          "hour": 3
+        },
+        "finishBoundary": {
+          "date": "2026-11-10",
+          "afterHour": 2
+        },
+        "startDate": "2026-11-06",
+        "finishDate": "2026-11-10"
+      },
+      {
+        "taskId": "T7",
+        "predecessorTaskIds": [
+          "T3"
+        ],
+        "startSlot": {
+          "date": "2026-11-06",
+          "hour": 2
+        },
+        "finishBoundary": {
+          "date": "2026-11-09",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-06",
+        "finishDate": "2026-11-09"
+      },
+      {
+        "taskId": "T8",
+        "predecessorTaskIds": [
+          "T7"
+        ],
+        "startSlot": {
+          "date": "2026-11-09",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-10",
+          "afterHour": 3
+        },
+        "startDate": "2026-11-09",
+        "finishDate": "2026-11-10"
+      },
+      {
+        "taskId": "T9",
+        "predecessorTaskIds": [
+          "T7"
+        ],
+        "startSlot": {
+          "date": "2026-11-09",
+          "hour": 4
+        },
+        "finishBoundary": {
+          "date": "2026-11-12",
+          "afterHour": 1
+        },
+        "startDate": "2026-11-09",
+        "finishDate": "2026-11-12"
+      }
+    ]
+  }
+}

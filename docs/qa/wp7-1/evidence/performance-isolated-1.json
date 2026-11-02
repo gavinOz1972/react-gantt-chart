@@ -1,0 +1,38 @@
+{
+  "recordedAtUTC": "2026-11-02T15:28:37.745Z",
+  "node": "v24.19.0",
+  "browser": "156.0.8078.4",
+  "scenarioTimezone": "America/Regina",
+  "taskCount": 40,
+  "workerMode": "isolated",
+  "repeat": 1,
+  "method": "Automation wall-clock start through action, visible-result assertion and two animation frames; includes Playwright actionability/scroll overhead. Observational, not a physical-laptop benchmark.",
+  "interactionsMs": {
+    "remainingEnterToPaint": 172.29999995231628,
+    "weekScaleToPaint": 113.30000007152557,
+    "compressedModeToPaint": 145.79999995231628,
+    "scrollToPaint": 114.5,
+    "saveToSavedPaint": 225.39999997615814
+  },
+  "ticks": 50,
+  "longTasks": [
+    105
+  ],
+  "storageWriteMs": [
+    0.09999990463256836
+  ],
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+  "logicalProcessors": 32,
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "horizontalPageOverflow": false,
+  "cdpDeltas": {
+    "LayoutCount": 68,
+    "RecalcStyleCount": 80,
+    "ScriptDuration": 0.244485,
+    "TaskDuration": 0.91748
+  },
+  "errors": []
+}

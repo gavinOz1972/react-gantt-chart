@@ -1,0 +1,11 @@
+{
+  "baselineHash": "ce4aa88144899c07455521a20d15d3706414ac8a5b33a0f26ba309ddf60e8112",
+  "totalRemaining": 181,
+  "defaultForecast": "2026-12-18",
+  "capacityPerWeek": 32,
+  "targetDays": 110,
+  "targetCapacity": 502.85714285714283,
+  "reducedCapacityForecast": "2027-01-27",
+  "blockedUnblocked": true,
+  "taskCount": 30
+}

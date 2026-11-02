@@ -1,0 +1,1663 @@
+{
+  "project": {
+    "projectId": "QA-WP71-STUDENT",
+    "name": "WP7.1 DISPOSABLE - Campus Study Planner",
+    "projectStartDate": "2026-11-02",
+    "targetEndDate": "2027-02-26",
+    "workingWeekdays": [
+      1,
+      2,
+      4,
+      5
+    ],
+    "workingHoursPerDay": 4
+  },
+  "tasks": [
+    {
+      "taskId": "T1",
+      "name": "Agree project charter and team responsibilities",
+      "description": "QA disposable student project: Agree project charter and team responsibilities. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T2",
+      "name": "Interview students about study-planning problems",
+      "description": "QA disposable student project: Interview students about study-planning problems. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 6,
+      "predecessorTaskIds": [
+        "T1"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T3",
+      "name": "Define measurable acceptance criteria",
+      "description": "QA disposable student project: Define measurable acceptance criteria. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 3,
+      "predecessorTaskIds": [
+        "T2"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T4",
+      "name": "Write personas and accessibility needs",
+      "description": "QA disposable student project: Write personas and accessibility needs. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T2"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T5",
+      "name": "Obtain permission for anonymous feedback",
+      "description": "QA disposable student project: Obtain permission for anonymous feedback. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 2,
+      "predecessorTaskIds": [],
+      "independentStartMode": "MANUAL",
+      "requestedStartDate": "2026-11-05"
+    },
+    {
+      "taskId": "T6",
+      "name": "Sketch navigation and task-entry wireframes",
+      "description": "QA disposable student project: Sketch navigation and task-entry wireframes. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 8,
+      "predecessorTaskIds": [
+        "T3",
+        "T4"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T7",
+      "name": "Choose application architecture and boundaries",
+      "description": "QA disposable student project: Choose application architecture and boundaries. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 6,
+      "predecessorTaskIds": [
+        "T3"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T8",
+      "name": "Set up repository and automated checks",
+      "description": "QA disposable student project: Set up repository and automated checks. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T7"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T9",
+      "name": "Design durable task IDs and project schema",
+      "description": "QA disposable student project: Design durable task IDs and project schema. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 6,
+      "predecessorTaskIds": [
+        "T7"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T10",
+      "name": "Implement sign-in prototype for the demonstration",
+      "description": "QA disposable student project: Implement sign-in prototype for the demonstration. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 8,
+      "predecessorTaskIds": [
+        "T8",
+        "T9"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T11",
+      "name": "Implement working-calendar service",
+      "description": "QA disposable student project: Implement working-calendar service. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 8,
+      "predecessorTaskIds": [
+        "T9"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T12",
+      "name": "Meet mentor to validate project assumptions",
+      "description": "QA disposable student project: Meet mentor to validate project assumptions. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 2,
+      "predecessorTaskIds": [],
+      "independentStartMode": "MANUAL",
+      "requestedStartDate": "2026-11-13"
+    },
+    {
+      "taskId": "T13",
+      "name": "Implement task create edit and delete workflow",
+      "description": "QA disposable student project: Implement task create edit and delete workflow. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 10,
+      "predecessorTaskIds": [
+        "T10",
+        "T11"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T14",
+      "name": "Implement dependency selection and validation",
+      "description": "QA disposable student project: Implement dependency selection and validation. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 8,
+      "predecessorTaskIds": [
+        "T13"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T15",
+      "name": "Review keyboard and screen-reader accessibility",
+      "description": "QA disposable student project: Review keyboard and screen-reader accessibility. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 6,
+      "predecessorTaskIds": [
+        "T6",
+        "T13"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T16",
+      "name": "Run anonymous feedback sessions",
+      "description": "QA disposable student project: Run anonymous feedback sessions. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 5,
+      "predecessorTaskIds": [
+        "T5",
+        "T6"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T17",
+      "name": "Revise mockups from feedback evidence",
+      "description": "QA disposable student project: Revise mockups from feedback evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T16"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T18",
+      "name": "Render Gantt bars headers and dependencies",
+      "description": "QA disposable student project: Render Gantt bars headers and dependencies. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 12,
+      "predecessorTaskIds": [
+        "T14",
+        "T17"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T19",
+      "name": "Build dated contributor work-log entry",
+      "description": "QA disposable student project: Build dated contributor work-log entry. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 8,
+      "predecessorTaskIds": [
+        "T13"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T20",
+      "name": "Add remaining-effort capacity forecast",
+      "description": "QA disposable student project: Add remaining-effort capacity forecast. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 10,
+      "predecessorTaskIds": [
+        "T19"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T21",
+      "name": "Prepare integration test fixtures",
+      "description": "QA disposable student project: Prepare integration test fixtures. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 6,
+      "predecessorTaskIds": [
+        "T14",
+        "T19"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T22",
+      "name": "Run integrated scheduling and persistence checks",
+      "description": "QA disposable student project: Run integrated scheduling and persistence checks. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 10,
+      "predecessorTaskIds": [
+        "T18",
+        "T20",
+        "T21"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T23",
+      "name": "Verify invalid-input and failure recovery",
+      "description": "QA disposable student project: Verify invalid-input and failure recovery. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 6,
+      "predecessorTaskIds": [
+        "T22"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T24",
+      "name": "Measure responsiveness with long dependencies",
+      "description": "QA disposable student project: Measure responsiveness with long dependencies. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 8,
+      "predecessorTaskIds": [
+        "T18",
+        "T20"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T25",
+      "name": "Rehearse stakeholder presentation",
+      "description": "QA disposable student project: Rehearse stakeholder presentation. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 3,
+      "predecessorTaskIds": [],
+      "independentStartMode": "MANUAL",
+      "requestedStartDate": "2026-11-18"
+    },
+    {
+      "taskId": "T26",
+      "name": "Check observable task-completion evidence",
+      "description": "QA disposable student project: Check observable task-completion evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T15",
+        "T23"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T27",
+      "name": "Write student runbook and known limitations",
+      "description": "QA disposable student project: Write student runbook and known limitations. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 5,
+      "predecessorTaskIds": [
+        "T24",
+        "T26"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T28",
+      "name": "Deliver pilot demo and capture decisions",
+      "description": "QA disposable student project: Deliver pilot demo and capture decisions. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T12",
+        "T25",
+        "T27"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T29",
+      "name": "Resolve accepted pilot review items",
+      "description": "QA disposable student project: Resolve accepted pilot review items. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 8,
+      "predecessorTaskIds": [
+        "T28"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T30",
+      "name": "Hand over project evidence and backups",
+      "description": "QA disposable student project: Hand over project evidence and backups. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 3,
+      "predecessorTaskIds": [
+        "T29"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T31",
+      "name": "Extended review 1: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 1: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T30"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T32",
+      "name": "Extended review 2: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 2: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 6,
+      "predecessorTaskIds": [
+        "T31"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T33",
+      "name": "Extended review 3: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 3: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 3,
+      "predecessorTaskIds": [
+        "T32"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T34",
+      "name": "Extended review 4: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 4: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 8,
+      "predecessorTaskIds": [
+        "T33"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T35",
+      "name": "Extended review 5: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 5: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 2,
+      "predecessorTaskIds": [
+        "T34"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T36",
+      "name": "Extended review 6: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 6: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 5,
+      "predecessorTaskIds": [
+        "T35"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T37",
+      "name": "Extended review 7: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 7: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T36"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T38",
+      "name": "Extended review 8: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 8: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 6,
+      "predecessorTaskIds": [
+        "T37"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T39",
+      "name": "Extended review 9: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 9: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 3,
+      "predecessorTaskIds": [
+        "T38"
+      ],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T40",
+      "name": "Extended review 10: verify a long dependency chain and retain detailed student handover evidence",
+      "description": "QA disposable student project: Extended review 10: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T39"
+      ],
+      "independentStartMode": "DEFAULT"
+    }
+  ],
+  "nextTaskNumber": 41,
+  "manualOrder": [
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6",
+    "T7",
+    "T8",
+    "T9",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T24",
+    "T25",
+    "T26",
+    "T27",
+    "T28",
+    "T29",
+    "T30",
+    "T31",
+    "T32",
+    "T33",
+    "T34",
+    "T35",
+    "T36",
+    "T37",
+    "T38",
+    "T39",
+    "T40"
+  ],
+  "sortMode": "manual",
+  "duplicateOrigins": {},
+  "format": "react-gantt-chart",
+  "schemaVersion": 5,
+  "createdBy": "React Gantt Chart",
+  "savedAt": "2026-11-02T12:00:00.000Z",
+  "baseline": {
+    "project": {
+      "projectId": "QA-WP71-STUDENT",
+      "name": "WP7.1 DISPOSABLE - Campus Study Planner",
+      "projectStartDate": "2026-11-02",
+      "targetEndDate": "2027-02-26",
+      "workingWeekdays": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "workingHoursPerDay": 4
+    },
+    "tasks": [
+      {
+        "taskId": "T1",
+        "name": "Agree project charter and team responsibilities",
+        "description": "QA disposable student project: Agree project charter and team responsibilities. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T2",
+        "name": "Interview students about study-planning problems",
+        "description": "QA disposable student project: Interview students about study-planning problems. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 6,
+        "predecessorTaskIds": [
+          "T1"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T3",
+        "name": "Define measurable acceptance criteria",
+        "description": "QA disposable student project: Define measurable acceptance criteria. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 3,
+        "predecessorTaskIds": [
+          "T2"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T4",
+        "name": "Write personas and accessibility needs",
+        "description": "QA disposable student project: Write personas and accessibility needs. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T2"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T5",
+        "name": "Obtain permission for anonymous feedback",
+        "description": "QA disposable student project: Obtain permission for anonymous feedback. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 2,
+        "predecessorTaskIds": [],
+        "independentStartMode": "MANUAL",
+        "requestedStartDate": "2026-11-05"
+      },
+      {
+        "taskId": "T6",
+        "name": "Sketch navigation and task-entry wireframes",
+        "description": "QA disposable student project: Sketch navigation and task-entry wireframes. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 8,
+        "predecessorTaskIds": [
+          "T3",
+          "T4"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T7",
+        "name": "Choose application architecture and boundaries",
+        "description": "QA disposable student project: Choose application architecture and boundaries. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 6,
+        "predecessorTaskIds": [
+          "T3"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T8",
+        "name": "Set up repository and automated checks",
+        "description": "QA disposable student project: Set up repository and automated checks. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T7"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T9",
+        "name": "Design durable task IDs and project schema",
+        "description": "QA disposable student project: Design durable task IDs and project schema. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 6,
+        "predecessorTaskIds": [
+          "T7"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T10",
+        "name": "Implement sign-in prototype for the demonstration",
+        "description": "QA disposable student project: Implement sign-in prototype for the demonstration. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 8,
+        "predecessorTaskIds": [
+          "T8",
+          "T9"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T11",
+        "name": "Implement working-calendar service",
+        "description": "QA disposable student project: Implement working-calendar service. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 8,
+        "predecessorTaskIds": [
+          "T9"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T12",
+        "name": "Meet mentor to validate project assumptions",
+        "description": "QA disposable student project: Meet mentor to validate project assumptions. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 2,
+        "predecessorTaskIds": [],
+        "independentStartMode": "MANUAL",
+        "requestedStartDate": "2026-11-13"
+      },
+      {
+        "taskId": "T13",
+        "name": "Implement task create edit and delete workflow",
+        "description": "QA disposable student project: Implement task create edit and delete workflow. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 10,
+        "predecessorTaskIds": [
+          "T10",
+          "T11"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T14",
+        "name": "Implement dependency selection and validation",
+        "description": "QA disposable student project: Implement dependency selection and validation. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 8,
+        "predecessorTaskIds": [
+          "T13"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T15",
+        "name": "Review keyboard and screen-reader accessibility",
+        "description": "QA disposable student project: Review keyboard and screen-reader accessibility. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 6,
+        "predecessorTaskIds": [
+          "T6",
+          "T13"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T16",
+        "name": "Run anonymous feedback sessions",
+        "description": "QA disposable student project: Run anonymous feedback sessions. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 5,
+        "predecessorTaskIds": [
+          "T5",
+          "T6"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T17",
+        "name": "Revise mockups from feedback evidence",
+        "description": "QA disposable student project: Revise mockups from feedback evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T16"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T18",
+        "name": "Render Gantt bars headers and dependencies",
+        "description": "QA disposable student project: Render Gantt bars headers and dependencies. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 12,
+        "predecessorTaskIds": [
+          "T14",
+          "T17"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T19",
+        "name": "Build dated contributor work-log entry",
+        "description": "QA disposable student project: Build dated contributor work-log entry. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 8,
+        "predecessorTaskIds": [
+          "T13"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T20",
+        "name": "Add remaining-effort capacity forecast",
+        "description": "QA disposable student project: Add remaining-effort capacity forecast. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 10,
+        "predecessorTaskIds": [
+          "T19"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T21",
+        "name": "Prepare integration test fixtures",
+        "description": "QA disposable student project: Prepare integration test fixtures. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 6,
+        "predecessorTaskIds": [
+          "T14",
+          "T19"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T22",
+        "name": "Run integrated scheduling and persistence checks",
+        "description": "QA disposable student project: Run integrated scheduling and persistence checks. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 10,
+        "predecessorTaskIds": [
+          "T18",
+          "T20",
+          "T21"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T23",
+        "name": "Verify invalid-input and failure recovery",
+        "description": "QA disposable student project: Verify invalid-input and failure recovery. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 6,
+        "predecessorTaskIds": [
+          "T22"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T24",
+        "name": "Measure responsiveness with long dependencies",
+        "description": "QA disposable student project: Measure responsiveness with long dependencies. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 8,
+        "predecessorTaskIds": [
+          "T18",
+          "T20"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T25",
+        "name": "Rehearse stakeholder presentation",
+        "description": "QA disposable student project: Rehearse stakeholder presentation. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 3,
+        "predecessorTaskIds": [],
+        "independentStartMode": "MANUAL",
+        "requestedStartDate": "2026-11-18"
+      },
+      {
+        "taskId": "T26",
+        "name": "Check observable task-completion evidence",
+        "description": "QA disposable student project: Check observable task-completion evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T15",
+          "T23"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T27",
+        "name": "Write student runbook and known limitations",
+        "description": "QA disposable student project: Write student runbook and known limitations. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 5,
+        "predecessorTaskIds": [
+          "T24",
+          "T26"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T28",
+        "name": "Deliver pilot demo and capture decisions",
+        "description": "QA disposable student project: Deliver pilot demo and capture decisions. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T12",
+          "T25",
+          "T27"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T29",
+        "name": "Resolve accepted pilot review items",
+        "description": "QA disposable student project: Resolve accepted pilot review items. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 8,
+        "predecessorTaskIds": [
+          "T28"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T30",
+        "name": "Hand over project evidence and backups",
+        "description": "QA disposable student project: Hand over project evidence and backups. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 3,
+        "predecessorTaskIds": [
+          "T29"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T31",
+        "name": "Extended review 1: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 1: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T30"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T32",
+        "name": "Extended review 2: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 2: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 6,
+        "predecessorTaskIds": [
+          "T31"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T33",
+        "name": "Extended review 3: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 3: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 3,
+        "predecessorTaskIds": [
+          "T32"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T34",
+        "name": "Extended review 4: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 4: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 8,
+        "predecessorTaskIds": [
+          "T33"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T35",
+        "name": "Extended review 5: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 5: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 2,
+        "predecessorTaskIds": [
+          "T34"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T36",
+        "name": "Extended review 6: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 6: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 5,
+        "predecessorTaskIds": [
+          "T35"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T37",
+        "name": "Extended review 7: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 7: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T36"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T38",
+        "name": "Extended review 8: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 8: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 6,
+        "predecessorTaskIds": [
+          "T37"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T39",
+        "name": "Extended review 9: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 9: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 3,
+        "predecessorTaskIds": [
+          "T38"
+        ],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T40",
+        "name": "Extended review 10: verify a long dependency chain and retain detailed student handover evidence",
+        "description": "QA disposable student project: Extended review 10: verify a long dependency chain and retain detailed student handover evidence. Record observable evidence and reviewer notes before completing this task.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T39"
+        ],
+        "independentStartMode": "DEFAULT"
+      }
+    ],
+    "nextTaskNumber": 41,
+    "manualOrder": [
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7",
+      "T8",
+      "T9",
+      "T10",
+      "T11",
+      "T12",
+      "T13",
+      "T14",
+      "T15",
+      "T16",
+      "T17",
+      "T18",
+      "T19",
+      "T20",
+      "T21",
+      "T22",
+      "T23",
+      "T24",
+      "T25",
+      "T26",
+      "T27",
+      "T28",
+      "T29",
+      "T30",
+      "T31",
+      "T32",
+      "T33",
+      "T34",
+      "T35",
+      "T36",
+      "T37",
+      "T38",
+      "T39",
+      "T40"
+    ],
+    "sortMode": "manual",
+    "duplicateOrigins": {},
+    "schemaVersion": 1,
+    "baselineId": "QA-WP71-BASELINE-40",
+    "establishedAt": "2026-11-02T12:00:00.000Z",
+    "schedule": {
+      "tasks": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T10",
+          "predecessorTaskIds": [
+            "T8",
+            "T9"
+          ],
+          "startSlot": {
+            "date": "2026-11-12",
+            "hour": 2
+          },
+          "finishBoundary": {
+            "date": "2026-11-16",
+            "afterHour": 1
+          },
+          "startDate": "2026-11-12",
+          "finishDate": "2026-11-16"
+        },
+        {
+          "taskId": "T11",
+          "predecessorTaskIds": [
+            "T9"
+          ],
+          "startSlot": {
+            "date": "2026-11-12",
+            "hour": 2
+          },
+          "finishBoundary": {
+            "date": "2026-11-16",
+            "afterHour": 1
+          },
+          "startDate": "2026-11-12",
+          "finishDate": "2026-11-16"
+        },
+        {
+          "taskId": "T12",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-13",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-13",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-13",
+          "finishDate": "2026-11-13"
+        },
+        {
+          "taskId": "T13",
+          "predecessorTaskIds": [
+            "T10",
+            "T11"
+          ],
+          "startSlot": {
+            "date": "2026-11-16",
+            "hour": 2
+          },
+          "finishBoundary": {
+            "date": "2026-11-19",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-16",
+          "finishDate": "2026-11-19"
+        },
+        {
+          "taskId": "T14",
+          "predecessorTaskIds": [
+            "T13"
+          ],
+          "startSlot": {
+            "date": "2026-11-19",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-23",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-19",
+          "finishDate": "2026-11-23"
+        },
+        {
+          "taskId": "T15",
+          "predecessorTaskIds": [
+            "T13",
+            "T6"
+          ],
+          "startSlot": {
+            "date": "2026-11-19",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-23",
+            "afterHour": 1
+          },
+          "startDate": "2026-11-19",
+          "finishDate": "2026-11-23"
+        },
+        {
+          "taskId": "T16",
+          "predecessorTaskIds": [
+            "T5",
+            "T6"
+          ],
+          "startSlot": {
+            "date": "2026-11-10",
+            "hour": 3
+          },
+          "finishBoundary": {
+            "date": "2026-11-12",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-10",
+          "finishDate": "2026-11-12"
+        },
+        {
+          "taskId": "T17",
+          "predecessorTaskIds": [
+            "T16"
+          ],
+          "startSlot": {
+            "date": "2026-11-12",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-13",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-12",
+          "finishDate": "2026-11-13"
+        },
+        {
+          "taskId": "T18",
+          "predecessorTaskIds": [
+            "T14",
+            "T17"
+          ],
+          "startSlot": {
+            "date": "2026-11-23",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-27",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-23",
+          "finishDate": "2026-11-27"
+        },
+        {
+          "taskId": "T19",
+          "predecessorTaskIds": [
+            "T13"
+          ],
+          "startSlot": {
+            "date": "2026-11-19",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-23",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-19",
+          "finishDate": "2026-11-23"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T20",
+          "predecessorTaskIds": [
+            "T19"
+          ],
+          "startSlot": {
+            "date": "2026-11-23",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-27",
+            "afterHour": 1
+          },
+          "startDate": "2026-11-23",
+          "finishDate": "2026-11-27"
+        },
+        {
+          "taskId": "T21",
+          "predecessorTaskIds": [
+            "T14",
+            "T19"
+          ],
+          "startSlot": {
+            "date": "2026-11-23",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-26",
+            "afterHour": 1
+          },
+          "startDate": "2026-11-23",
+          "finishDate": "2026-11-26"
+        },
+        {
+          "taskId": "T22",
+          "predecessorTaskIds": [
+            "T18",
+            "T20",
+            "T21"
+          ],
+          "startSlot": {
+            "date": "2026-11-27",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-12-03",
+            "afterHour": 1
+          },
+          "startDate": "2026-11-27",
+          "finishDate": "2026-12-03"
+        },
+        {
+          "taskId": "T23",
+          "predecessorTaskIds": [
+            "T22"
+          ],
+          "startSlot": {
+            "date": "2026-12-03",
+            "hour": 2
+          },
+          "finishBoundary": {
+            "date": "2026-12-04",
+            "afterHour": 3
+          },
+          "startDate": "2026-12-03",
+          "finishDate": "2026-12-04"
+        },
+        {
+          "taskId": "T24",
+          "predecessorTaskIds": [
+            "T18",
+            "T20"
+          ],
+          "startSlot": {
+            "date": "2026-11-27",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-12-01",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-27",
+          "finishDate": "2026-12-01"
+        },
+        {
+          "taskId": "T25",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-19",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-19",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-19",
+          "finishDate": "2026-11-19"
+        },
+        {
+          "taskId": "T26",
+          "predecessorTaskIds": [
+            "T15",
+            "T23"
+          ],
+          "startSlot": {
+            "date": "2026-12-04",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-12-07",
+            "afterHour": 3
+          },
+          "startDate": "2026-12-04",
+          "finishDate": "2026-12-07"
+        },
+        {
+          "taskId": "T27",
+          "predecessorTaskIds": [
+            "T24",
+            "T26"
+          ],
+          "startSlot": {
+            "date": "2026-12-07",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-12-08",
+            "afterHour": 4
+          },
+          "startDate": "2026-12-07",
+          "finishDate": "2026-12-08"
+        },
+        {
+          "taskId": "T28",
+          "predecessorTaskIds": [
+            "T12",
+            "T25",
+            "T27"
+          ],
+          "startSlot": {
+            "date": "2026-12-10",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-12-10",
+            "afterHour": 4
+          },
+          "startDate": "2026-12-10",
+          "finishDate": "2026-12-10"
+        },
+        {
+          "taskId": "T29",
+          "predecessorTaskIds": [
+            "T28"
+          ],
+          "startSlot": {
+            "date": "2026-12-11",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-12-14",
+            "afterHour": 4
+          },
+          "startDate": "2026-12-11",
+          "finishDate": "2026-12-14"
+        },
+        {
+          "taskId": "T3",
+          "predecessorTaskIds": [
+            "T2"
+          ],
+          "startSlot": {
+            "date": "2026-11-05",
+            "hour": 3
+          },
+          "finishBoundary": {
+            "date": "2026-11-06",
+            "afterHour": 1
+          },
+          "startDate": "2026-11-05",
+          "finishDate": "2026-11-06"
+        },
+        {
+          "taskId": "T30",
+          "predecessorTaskIds": [
+            "T29"
+          ],
+          "startSlot": {
+            "date": "2026-12-15",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-12-15",
+            "afterHour": 3
+          },
+          "startDate": "2026-12-15",
+          "finishDate": "2026-12-15"
+        },
+        {
+          "taskId": "T31",
+          "predecessorTaskIds": [
+            "T30"
+          ],
+          "startSlot": {
+            "date": "2026-12-15",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-12-17",
+            "afterHour": 3
+          },
+          "startDate": "2026-12-15",
+          "finishDate": "2026-12-17"
+        },
+        {
+          "taskId": "T32",
+          "predecessorTaskIds": [
+            "T31"
+          ],
+          "startSlot": {
+            "date": "2026-12-17",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-12-21",
+            "afterHour": 1
+          },
+          "startDate": "2026-12-17",
+          "finishDate": "2026-12-21"
+        },
+        {
+          "taskId": "T33",
+          "predecessorTaskIds": [
+            "T32"
+          ],
+          "startSlot": {
+            "date": "2026-12-21",
+            "hour": 2
+          },
+          "finishBoundary": {
+            "date": "2026-12-21",
+            "afterHour": 4
+          },
+          "startDate": "2026-12-21",
+          "finishDate": "2026-12-21"
+        },
+        {
+          "taskId": "T34",
+          "predecessorTaskIds": [
+            "T33"
+          ],
+          "startSlot": {
+            "date": "2026-12-22",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-12-24",
+            "afterHour": 4
+          },
+          "startDate": "2026-12-22",
+          "finishDate": "2026-12-24"
+        },
+        {
+          "taskId": "T35",
+          "predecessorTaskIds": [
+            "T34"
+          ],
+          "startSlot": {
+            "date": "2026-12-25",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-12-25",
+            "afterHour": 2
+          },
+          "startDate": "2026-12-25",
+          "finishDate": "2026-12-25"
+        },
+        {
+          "taskId": "T36",
+          "predecessorTaskIds": [
+            "T35"
+          ],
+          "startSlot": {
+            "date": "2026-12-25",
+            "hour": 3
+          },
+          "finishBoundary": {
+            "date": "2026-12-28",
+            "afterHour": 3
+          },
+          "startDate": "2026-12-25",
+          "finishDate": "2026-12-28"
+        },
+        {
+          "taskId": "T37",
+          "predecessorTaskIds": [
+            "T36"
+          ],
+          "startSlot": {
+            "date": "2026-12-28",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-12-29",
+            "afterHour": 3
+          },
+          "startDate": "2026-12-28",
+          "finishDate": "2026-12-29"
+        },
+        {
+          "taskId": "T38",
+          "predecessorTaskIds": [
+            "T37"
+          ],
+          "startSlot": {
+            "date": "2026-12-29",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2027-01-01",
+            "afterHour": 1
+          },
+          "startDate": "2026-12-29",
+          "finishDate": "2027-01-01"
+        },
+        {
+          "taskId": "T39",
+          "predecessorTaskIds": [
+            "T38"
+          ],
+          "startSlot": {
+            "date": "2027-01-01",
+            "hour": 2
+          },
+          "finishBoundary": {
+            "date": "2027-01-01",
+            "afterHour": 4
+          },
+          "startDate": "2027-01-01",
+          "finishDate": "2027-01-01"
+        },
+        {
+          "taskId": "T4",
+          "predecessorTaskIds": [
+            "T2"
+          ],
+          "startSlot": {
+            "date": "2026-11-05",
+            "hour": 3
+          },
+          "finishBoundary": {
+            "date": "2026-11-06",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-05",
+          "finishDate": "2026-11-06"
+        },
+        {
+          "taskId": "T40",
+          "predecessorTaskIds": [
+            "T39"
+          ],
+          "startSlot": {
+            "date": "2027-01-04",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2027-01-04",
+            "afterHour": 4
+          },
+          "startDate": "2027-01-04",
+          "finishDate": "2027-01-04"
+        },
+        {
+          "taskId": "T5",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-05",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T6",
+          "predecessorTaskIds": [
+            "T3",
+            "T4"
+          ],
+          "startSlot": {
+            "date": "2026-11-06",
+            "hour": 3
+          },
+          "finishBoundary": {
+            "date": "2026-11-10",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-06",
+          "finishDate": "2026-11-10"
+        },
+        {
+          "taskId": "T7",
+          "predecessorTaskIds": [
+            "T3"
+          ],
+          "startSlot": {
+            "date": "2026-11-06",
+            "hour": 2
+          },
+          "finishBoundary": {
+            "date": "2026-11-09",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-06",
+          "finishDate": "2026-11-09"
+        },
+        {
+          "taskId": "T8",
+          "predecessorTaskIds": [
+            "T7"
+          ],
+          "startSlot": {
+            "date": "2026-11-09",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-10",
+            "afterHour": 3
+          },
+          "startDate": "2026-11-09",
+          "finishDate": "2026-11-10"
+        },
+        {
+          "taskId": "T9",
+          "predecessorTaskIds": [
+            "T7"
+          ],
+          "startSlot": {
+            "date": "2026-11-09",
+            "hour": 4
+          },
+          "finishBoundary": {
+            "date": "2026-11-12",
+            "afterHour": 1
+          },
+          "startDate": "2026-11-09",
+          "finishDate": "2026-11-12"
+        }
+      ],
+      "projectCompletion": {
+        "date": "2027-01-04",
+        "afterHour": 4
+      }
+    }
+  },
+  "workTracking": {
+    "schemaVersion": 1,
+    "entries": [],
+    "remainingHours": {
+      "T1": 4,
+      "T2": 6,
+      "T3": 3,
+      "T4": 4,
+      "T5": 2,
+      "T6": 8,
+      "T7": 6,
+      "T8": 4,
+      "T9": 6,
+      "T10": 8,
+      "T11": 8,
+      "T12": 2,
+      "T13": 10,
+      "T14": 8,
+      "T15": 6,
+      "T16": 5,
+      "T17": 4,
+      "T18": 12,
+      "T19": 8,
+      "T20": 10,
+      "T21": 6,
+      "T22": 10,
+      "T23": 6,
+      "T24": 8,
+      "T25": 3,
+      "T26": 4,
+      "T27": 5,
+      "T28": 4,
+      "T29": 8,
+      "T30": 3,
+      "T31": 4,
+      "T32": 6,
+      "T33": 3,
+      "T34": 8,
+      "T35": 2,
+      "T36": 5,
+      "T37": 4,
+      "T38": 6,
+      "T39": 3,
+      "T40": 4
+    }
+  },
+  "taskProgress": {
+    "schemaVersion": 1,
+    "definitionOfDone": "",
+    "tasks": {},
+    "events": []
+  },
+  "forecastSettings": {
+    "schemaVersion": 1,
+    "enabled": true,
+    "classHoursPerStudent": 3,
+    "homeworkHoursPerStudent": 5,
+    "teamSize": 4,
+    "asOfDate": "2026-11-09"
+  }
+}

@@ -1,0 +1,26 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test tests/wp71/performance.spec.ts --workers=1 --repeat-each=3
+
+npm.cmd : [WebServer] (node:61988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+At line:3 char:1
++ npm.cmd run test:e2e -- tests/wp71/performance.spec.ts --workers=1 -- ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:77916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\wp71\performance.spec.ts:7:1 › E13 - forty-task observational input/chart/save latency and freeze detection (3.0s)
+(node:59568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\wp71\performance.spec.ts:7:1 › E13 - forty-task observational input/chart/save latency and freeze detection (2.7s)
+(node:45332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [chromium] › tests\wp71\performance.spec.ts:7:1 › E13 - forty-task observational input/chart/save latency and freeze detection (2.8s)
+
+  3 passed (12.3s)

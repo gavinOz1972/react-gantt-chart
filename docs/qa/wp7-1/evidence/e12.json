@@ -1,0 +1,8 @@
+{
+  "nativeBeforeUnloadDismissed": true,
+  "cancelledRefreshKeptDraft": true,
+  "acceptedRefreshDiscardedUnsavedDraft": true,
+  "explicitSavedStateRecovered": true,
+  "malformedDateRejected": true,
+  "baselineHash": "ce4aa88144899c07455521a20d15d3706414ac8a5b33a0f26ba309ddf60e8112"
+}

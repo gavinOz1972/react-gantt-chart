@@ -1,0 +1,20 @@
+{
+    "capturedAtUTC":  "2026-11-02T15:45:18.9231819Z",
+    "ownerAcceptedWP70":  true,
+    "acceptedCandidate":  "af96d3b257ddfdcbc7f26a968401d634d210aef6",
+    "stabilizationBase":  "af96d3b257ddfdcbc7f26a968401d634d210aef6",
+    "protectedRefs":  [
+                          "refs/heads/feature/wp6-progress-tracking b29c2a68815db9263bc79dcea966409d117fd096 ",
+                          "refs/heads/main a6a1c32c22a2bf074b161e52d523443602843dd7 ",
+                          "refs/tags/v1.0-pre-progress a4157bc84392c770c27111da58d779948b110a56 abb85011dafc9fb0876953e3132880e025ef65da",
+                          "refs/tags/v1.1-pre-stabilization 134305f2205eb993ab76672c2d2469d48d91a609 af96d3b257ddfdcbc7f26a968401d634d210aef6"
+                      ],
+    "remoteCheckedWith":  "git ls-remote origin (main, feature/wp6-progress-tracking, feature/wp7-stabilization and both protected annotated tags with peeled targets)",
+    "remoteValuesMatched":  true,
+    "branchUpdatedOnly":  "feature/wp7-stabilization",
+    "originalCheckout":  "feature/wp6-progress-tracking at b29c2a68815db9263bc79dcea966409d117fd096; only pre-existing docs/WP_Req/ untracked",
+    "originalServerRestarted":  false,
+    "productionSourceDiffAgainstCandidate":  [
+
+                                             ]
+}

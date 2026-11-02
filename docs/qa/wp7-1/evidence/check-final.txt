@@ -1,0 +1,39 @@
+
+> react-gantt-chart@0.0.0 check
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> react-gantt-chart@0.0.0 lint
+> eslint .
+
+
+> react-gantt-chart@0.0.0 typecheck
+> tsc -b --pretty false
+
+
+> react-gantt-chart@0.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+
+ Test Files  32 passed (32)
+      Tests  411 passed (411)
+   Start at  09:37:31
+   Duration  10.23s (tests 45%, environment 31%, setup 16%, transform 5%, import 3%)
+
+
+> react-gantt-chart@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 63 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.41 kB │ gzip:   0.28 kB
+dist/assets/index-DDoXpeDx.css   27.77 kB │ gzip:   6.61 kB
+dist/assets/index-t4jgrgWO.js   398.61 kB │ gzip: 120.10 kB
+
+✓ built in 189ms
