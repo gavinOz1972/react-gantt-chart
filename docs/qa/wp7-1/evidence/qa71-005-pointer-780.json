@@ -1,0 +1,67 @@
+{
+  "capturedAtUTC": "2026-11-02T22:14:52.624Z",
+  "browser": "156.0.8078.4",
+  "method": "pointer",
+  "initial": {
+    "viewport": {
+      "width": 780,
+      "height": 900
+    },
+    "table": {
+      "left": 49,
+      "right": 731,
+      "clientWidth": 682,
+      "scrollWidth": 1620,
+      "scrollLeft": 0,
+      "clientHeight": 460,
+      "scrollHeight": 4569
+    },
+    "duplicate": {
+      "left": 1568.984375,
+      "right": 1659,
+      "width": 90.015625,
+      "disabled": false,
+      "label": "Duplicate T1",
+      "withinHorizontalTableViewport": false,
+      "centreHit": false
+    },
+    "horizontalScrollHint": {
+      "text": "Scroll the table horizontally to see all columns.",
+      "display": "block"
+    },
+    "duplicateControlCount": 30
+  },
+  "revealed": {
+    "viewport": {
+      "width": 780,
+      "height": 900
+    },
+    "table": {
+      "left": 49,
+      "right": 731,
+      "clientWidth": 682,
+      "scrollWidth": 1620,
+      "scrollLeft": 938,
+      "clientHeight": 460,
+      "scrollHeight": 4569
+    },
+    "duplicate": {
+      "left": 630.984375,
+      "right": 721,
+      "width": 90.015625,
+      "disabled": false,
+      "label": "Duplicate T1",
+      "withinHorizontalTableViewport": true,
+      "centreHit": true
+    },
+    "horizontalScrollHint": {
+      "text": "Scroll the table horizontally to see all columns.",
+      "display": "block"
+    },
+    "duplicateControlCount": 30
+  },
+  "tabCount": 0,
+  "duplicateCreated": "T31",
+  "baselineUnchanged": true,
+  "originalTasksUnchanged": true
+}

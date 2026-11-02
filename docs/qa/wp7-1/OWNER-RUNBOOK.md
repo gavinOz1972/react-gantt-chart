@@ -1,7 +1,8 @@
 # WP7.1 owner verification — 28 minutes
 
-This is a guided functional check. Codex ran the automated tests; **your
-session is pending**. Leave the outcome boxes blank until you try each step.
+This is a guided functional check. Codex ran the automated tests; consolidated
+owner results and acceptance remain pending. QA71-005 has already been
+reported by the owner and reproduced. Mark each outcome only after trying it.
 New-student exploratory usability belongs to WP7.2.
 
 ## Start safely (2 minutes)
@@ -37,7 +38,12 @@ Expected: 30 tasks, start **Nov 2, 2026**, target **Feb 26, 2027**, working
    Attempt to make T1 depend on T30: expect a cycle error. Cancel that change.
    T25's requested Nov 18 (Wednesday) must schedule on Thursday Nov 19.
 3. Move T30 up; temporarily sort by name; return to Manual Order. Expect
-   your manual order to return. Duplicate T10: expect **T32**, predecessors
+   your manual order to return. **Known QA71-005:** scroll the Tasks & schedule
+   table horizontally right to the far-right **Actions** column to find
+   **Duplicate**. It starts offscreen even at common desktop widths, without
+   a desktop scroll hint. Tab navigation also reveals it. Record this
+   discoverability issue as an Observation; a successful workaround does not
+   close the defect. Duplicate T10: expect **T32**, predecessors
    T8/T9, original T10 retained. Do not rename any IDs.
 
 - [ ] Pass  [ ] Fail  [ ] Observation — entry/dependencies/order: __________

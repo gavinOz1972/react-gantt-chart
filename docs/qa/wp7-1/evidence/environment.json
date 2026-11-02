@@ -1,5 +1,5 @@
 {
-    "capturedAtUTC":  "2026-11-02T15:45:18.4027553Z",
+    "capturedAtUTC":  "2026-11-02T22:16:09.6113481Z",
     "localDate":  "2026-11-02",
     "timezone":  "America/Regina",
     "operatingSystem":  "Microsoft Windows NT 10.0.26200.0",
@@ -24,13 +24,13 @@
     "branch":  "feature/wp7-stabilization",
     "isolatedBrowserOrigin":  "http://127.0.0.1:4173",
     "ownerRunbookOrigin":  "http://127.0.0.1:4174",
-    "ownerManualSession":  "Pending",
+    "ownerManualSession":  "QA71-005 owner report received; consolidated owner checklist and acceptance pending",
     "mandatoryFinalChecks":  {
                                  "browser":  {
                                                  "exitCode":  0,
                                                  "skipped":  0,
                                                  "failed":  0,
-                                                 "passed":  131
+                                                 "passed":  137
                                              },
                                  "performance":  {
                                                      "exitCode":  0,
@@ -44,5 +44,17 @@
                                                "unitTests":  411,
                                                "buildModules":  63
                                            }
-                             }
+                             },
+    "qa71005":  {
+                    "severity":  "Medium",
+                    "classification":  "Confirmed UI discoverability defect",
+                    "widths":  [
+                                   1440,
+                                   1280,
+                                   780
+                               ],
+                    "targetedCasesPassed":  6,
+                    "productCorrection":  "Deferred to WP7.3 as requested",
+                    "sourceUnchanged":  true
+                }
 }

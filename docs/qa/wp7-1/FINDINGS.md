@@ -120,17 +120,82 @@ your normal laptop viewport/hardware. If a perceptible freeze occurs,
 record the exact action/browser/project and promote it to a reproducible
 WP7.3 candidate. No product fix is proposed from this limitation alone.
 
+## QA71-005 — Duplicate action initially offscreen without a desktop scroll hint
+
+**Severity: Medium. Classification: confirmed UI discoverability defect.**
+Owner report: an obvious, accessible Duplicate control could not be located.
+Investigation confirms the control exists and works, but its initial placement
+and lack of a desktop scroll hint can make previously available functionality
+appear missing. Keyboard and pointer access are possible after revealing it;
+an absolute keyboard-inaccessibility claim was not reproduced.
+
+Affected: accepted application at `af96d3b` (unchanged product source in the
+WP7.1 worktree), format-5 project with status and Remaining Effort columns.
+Reproduced using `student-30-prepared.json`, Chromium 156.0.8078.4, height
+900, at **1440, 1280 and 780 px** widths. No owner data was used.
+
+Steps:
+
+1. Import the prepared fixture and open Workspace → Tasks & schedule.
+2. Leave the table at its initial horizontal position; inspect the first row.
+3. Look for Duplicate and the Actions column. Both are outside the clipped
+   table viewport at all three widths.
+4. Scroll the table horizontally right, or focus the task schedule table and
+   Tab through the first row. The Actions column and Duplicate become visible.
+5. Click Duplicate or press Enter while it is focused. T31 is created, the
+   original 30 tasks and baseline remain unchanged, and the next ID is T32.
+
+Expected: students can discover and use Duplicate through an obvious,
+accessible control at normal desktop/laptop sizes. Actual: the table is
+**1620 px wide**; at 1440 the usable table viewport is **1334 px**, at 1280
+it is **1174 px**, and at 780 it is **682 px**. The first Duplicate button
+starts around screen x=1573 at desktop widths, beyond the table's right edge
+(1387 / 1227). The horizontal-scroll instruction is **display:none above
+850 px**, although the expanded table still overflows there. At 780 the
+hint is shown, but the action still starts offscreen. Eleven Tab presses
+from the focused table reveal Duplicate T1; Enter works in every case.
+
+Root cause: `src/styles/global.css` sets the status table's minimum width
+to 1620 px and clips it inside `.table-scroll`, while `.table-hint` defaults
+to hidden and is enabled only in the max-width:850px media query. The action
+is the final table column in `src/components/TaskTable.tsx`. Existing tests
+located Duplicate by accessible name and clicked it; Playwright automatically
+scrolled it into view, masking initial discoverability. The new probe records
+geometry **before** any action locator can auto-scroll.
+
+Evidence: [before scrolling](evidence/qa71-005-pointer-initial.png),
+[after scrolling](evidence/qa71-005-pointer-revealed.png),
+[keyboard reveal](evidence/qa71-005-keyboard-revealed.png),
+[1440 pointer metrics](evidence/qa71-005-pointer-1440.json),
+[1280 metrics](evidence/qa71-005-pointer-1280.json),
+[780 metrics](evidence/qa71-005-pointer-780.json), and
+[six-case investigation result](evidence/qa71-005-targeted.txt).
+`tests/wp71/duplicate-access.spec.ts` covers pointer and real Tab/Enter
+navigation at each width, activation, durable ID and data invariants.
+
+Workaround: horizontally scroll the **Tasks & schedule table** right to
+**Actions → Duplicate**. Keyboard users can Tab through the first task row;
+focus scrolls the action into view.
+
+Disposition: **investigated during WP7.1; confirmed and queued for WP7.3**,
+as requested by the owner. Correction scope: restore obvious discovery of
+task actions when the table overflows while preserving keyboard operation,
+duplication semantics, baseline and saved data. No layout or product code
+was changed in this investigation. Owner triage can select the final UI
+approach during WP7.3.
+
 ## Prioritized handoff
 
 | Priority | Observation | Proposed owner decision | State |
 | --- | --- | --- | --- |
-| 1 | QA71-003, Medium | Accept tooling risk temporarily or authorize bounded dependency review | Awaiting triage; unchanged |
-| 2 | QA71-002, Low | Keep current mode interaction or authorize fixed-today UX clarification | Awaiting owner observation/decision |
+| 1 | QA71-005, Medium | Correct task-action discovery in WP7.3; select the bounded UI approach there | Confirmed; product correction deferred as requested |
+| 2 | QA71-003, Medium | Accept tooling risk temporarily or authorize bounded dependency review | Awaiting triage; unchanged |
+| 3 | QA71-002, Low | Keep current mode interaction or authorize fixed-today UX clarification | Awaiting owner observation/decision |
 | Verification | QA71-004, Low | Run owner/laptop route and record results | Pending owner session |
 | Closed QA work | QA71-001, Medium | Accept test-only setup correction | Corrected and rerun; no product change |
 
-Confirmed application defects: **0**. UX concerns: **1**. Dependency findings:
+Confirmed application/UI discoverability defects: **1**. UX concerns: **1**. Dependency findings:
 **1**. Test limitations: **2** (one corrected). Unsupported requests: **0**.
-These categories overlap only where explicitly stated above. There is no
-authorized product-remediation backlog yet. WP7.2, WP7.3, WP7.4 and WP8 have
-not begun.
+These categories overlap only where explicitly stated above. QA71-005 is
+the confirmed WP7.3 candidate; no correction has begun. WP7.2, WP7.3, WP7.4
+and WP8 remain outside this investigation.

@@ -5,15 +5,19 @@ scenarios were exercised with disposable data. Production source, forecasting
 formulas, persistence formats and dependencies are unchanged. This package
 adds test coverage, realistic fixtures, QA evidence and an owner runbook.
 
-The final regression result is **411 unit/component tests and 131 browser
+The final regression result is **411 unit/component tests and 137 browser
 tests passing**, with lint, typecheck and build passing. An initial browser
 run had **126 passes / 4 failures** caused by a date-sensitive test setup;
 the original trace/result and test-only correction are disclosed in
-[QA71-001](FINDINGS.md). No confirmed application defect was reproduced.
-One UX concern and a development dependency audit finding await owner triage.
+[QA71-001](FINDINGS.md). Owner-reported **QA71-005 is confirmed as a task-action
+discoverability defect**: Duplicate is offscreen initially at common viewport
+widths, with the desktop scroll instruction hidden. The control works after
+horizontal scrolling or keyboard navigation. Correction is deferred to WP7.3.
+One separate UX concern and a development dependency audit finding await triage.
 
-The owner explicitly accepted WP7.0 before verification began. **The owner
-has not yet run this assessment's manual session or accepted WP7.1.** Begin
+The owner explicitly accepted WP7.0 before verification began and has since
+reported QA71-005. **Consolidated owner results and WP7.1 acceptance remain
+pending.** Continue
 with the [28-minute owner runbook](OWNER-RUNBOOK.md), then review the
 [findings and prioritized candidate list](FINDINGS.md). New-student usability
 and product remediation remain deferred to WP7.2/WP7.3.
@@ -98,6 +102,9 @@ npm.cmd run test:e2e -- --workers=3
 node node_modules/@playwright/test/cli.js test tests/save-forecast-qa.spec.ts tests/wp71/lifecycle.spec.ts --grep 'QA01|automatic today' --workers=3
 npm.cmd run check
 npm.cmd run test:e2e -- --workers=3
+npm.cmd run test:e2e -- tests/wp71/duplicate-access.spec.ts --workers=3
+npm.cmd run check
+npm.cmd run test:e2e -- --workers=3
 npm.cmd audit --json
 npm.cmd audit --omit=dev --json
 ```
@@ -116,7 +123,10 @@ skips were used in the final local browser run. Trace-on-failure is unchanged.
 | Initial complete browser run | 126 passed, 4 failed; all failures the same fixed-vs-automatic date setup | [initial result](evidence/browser-initial.txt) |
 | Date-mode diagnosis / Save regression rerun | 6 passed, 0 failed | [diagnostic run](evidence/date-mode.txt) |
 | Final `npm.cmd run check` | Lint/typecheck passed; **411 tests / 32 files passed**; build **63 modules**, exit 0 | [final check](evidence/check-final.txt) |
-| Final complete browser run | **131 passed, 0 failed, 0 skipped**, exit 0; 120 existing + 11 new cases | [final browsers](evidence/browser-final.txt) |
+| Initial WP7.1 complete browser run | **131 passed, 0 failed, 0 skipped**, exit 0; 120 existing + 11 new cases | [initial handoff browsers](evidence/browser-final.txt) |
+| QA71-005 targeted investigation | **6 passed**, pointer and keyboard at 1440/1280/780; initial offscreen action recorded | [targeted result](evidence/qa71-005-targeted.txt) |
+| QA71-005 final check | Lint/typecheck, **411 tests / 32 files**, build **63 modules**, exit 0 | [check](evidence/qa71-005-check.txt) |
+| Final complete browser run including QA71-005 | **137 passed, 0 failed, 0 skipped**, exit 0; diagnosis confirms the discovery defect despite functional-test success | [final browsers](evidence/qa71-005-full.txt) |
 | Isolated 40-task performance | **3/3 passed**, 0 page errors or freezes | [performance command](evidence/performance-isolated.txt) |
 | Full dependency audit | Exit 1: 12 affected packages, all moderate, dev-tool chain | [audit](evidence/dependency-audit.json) |
 | Production-only audit | Exit 0: 0 reported vulnerabilities | [audit](evidence/dependency-audit.json) |
@@ -130,15 +140,18 @@ assertion; only the explicit fixed-date setup changed.
 ## E01–E14 coverage
 
 “Pass” below means Codex executed the automated checks and reviewed the
-listed evidence. **All owner-manual outcomes remain pending.** There are
-**14 exercised / 14 passing scenario groups, 0 blocked groups**, with the
-hardware/interaction limits below. A group can span multiple test cases.
+listed evidence. **Consolidated owner-manual results remain pending**, with
+QA71-005 already reported by the owner. There are **14 exercised groups,
+13 without confirmed defects, 1 with a confirmed discoverability defect
+(E03), and 0 blocked groups**. Functional assertions still pass; the initial
+action-discovery problem is recorded separately rather than hidden by an
+automated locator's ability to scroll. A group can span multiple test cases.
 
 | Scenario | Automated checks and evidence | Owner manual check | Outcome |
 | --- | --- | --- | --- |
 | E01 Create | `wp71/lifecycle` E01–03 creates all 30 via UI, descriptions/durable IDs/date inputs; [created anchors](evidence/e01-e03.json). Existing `project-entry` opens native picker. | Runbook entry/calendar | Pass; owner pending |
 | E02 Schedule | Same test removes/restores T2 predecessor, multi-level/parallel anchor dates, T25 nonworking manual date, T1→T30 cycle rejection; domain calendar/scheduler tests and `wp5` retained-date dependency rules. | Dependency/cycle steps | Pass; owner pending |
-| E03 Organize | Manual move, sort/restore, duplicate T10 with T8/T9; E06 duplicate after history verifies copied criteria reset, no logs/events/remaining copied; `wp5` also checks drag/deleted ID nonreuse. | Order/duplicate | Pass; owner pending |
+| E03 Organize | Manual move, sort/restore, duplicate T10 with T8/T9; E06 duplicate after history verifies copied criteria reset, no logs/events/remaining copied. `duplicate-access` records initial clipping before auto-scroll and pointer/Tab/Enter activation at three widths. | Order/duplicate; known scroll workaround in runbook | Functional pass; **QA71-005 confirmed**; WP7.3 correction deferred |
 | E04 Visualize | E04–05 checks both modes × Hour/Day/Week, critical path, 30-node Network zoom/selection/pan/Fit/Close. Existing `gantt`, `network-viewport`, `week-header` cover hatching/arrows/geometry. [Screenshot](evidence/e04-e05-chart.png) inspected. | Readability/navigation | Pass; owner pending |
 | E05 Baseline | Deliberate baseline dialog, T18 +4 hours shifts current Dec 15→17, complete baseline source equality and hash; [evidence](evidence/e04-e05.json). | Baseline/current T30 | Pass; owner pending |
 | E06 Work log | Three contributors on Oct 31/Nov 1/Nov 2, edit/delete/cancel; 4.5→4.75→2.25 actual, table/chart remaining 2→1.25, effort-at-completion 3.5; [evidence](evidence/e06-e07-e10.json). | Work sessions/quick entry | Pass; owner pending |
@@ -173,6 +186,17 @@ human input/trackpad assessment. [Run1](evidence/performance-isolated-0.json),
 [run2](evidence/performance-isolated-1.json),
 [run3](evidence/performance-isolated-2.json) retain raw metrics and CDP deltas.
 
+QA71-005 follow-up: the **table itself** overflows horizontally even though
+the page does not. At 1440 px the table is 1620 px wide inside a 1334 px
+viewport; Actions/Duplicate are initially outside it. The `.table-hint`
+instruction is hidden above 850 px. Initial tests clicked a named action and
+Playwright auto-scrolled it into view, so functional duplication coverage
+did not prove discoverability. Six additional cases now capture the initial
+geometry and screenshots, then reveal and activate Duplicate with horizontal
+wheel scrolling or eleven Tab presses from the focused table. See the
+[finding, root cause and workaround](FINDINGS.md#qa71-005--duplicate-action-initially-offscreen-without-a-desktop-scroll-hint).
+The defect remains open for WP7.3; no source/layout correction was made.
+
 Cancelling the native refresh warning preserves the in-memory draft.
 Accepting it discards unsubmitted edits; recovery requires explicitly loading
 the last saved project or importing an export. Browser storage is local to
@@ -186,6 +210,9 @@ Added `tests/wp71/` lifecycle/performance tests, fixture generator/data factory,
 and `tests/fixtures/wp71/` JSON/README. Adjusted only the fixed-date test setup
 in `tests/save-forecast-qa.spec.ts`. Added this QA report, owner runbook,
 findings and evidence in `docs/qa/wp7-1/` plus a handoff index.
+The QA71-005 follow-up adds `duplicate-access.spec.ts`, initial/revealed
+screenshots and geometry, updates E03/triage, and explains the workaround
+in the runbook. It does not close the confirmed defect.
 
 `src/`, package/lock files, application configuration and existing stored
 project formats have zero diff against the accepted candidate. Protected
