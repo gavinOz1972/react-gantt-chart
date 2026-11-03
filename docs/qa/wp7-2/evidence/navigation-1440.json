@@ -1,0 +1,50 @@
+{
+  "capturedAtUTC": "2026-11-03T01:22:39.711Z",
+  "browser": "156.0.8078.4",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "taskCount": 40,
+  "selectedId": "T35",
+  "fullName": "Extended review 5: verify a long dependency chain and retain detailed student handover evidence",
+  "ganttBefore": {
+    "left": 8460,
+    "top": 1704
+  },
+  "ganttDimensions": {
+    "clientWidth": 1332,
+    "clientHeight": 448,
+    "scrollWidth": 19260,
+    "scrollHeight": 2152,
+    "maxHeight": "450px"
+  },
+  "networkCanvas": {
+    "width": 1332,
+    "height": 493
+  },
+  "initialFit": [
+    0.15127238454288408,
+    24,
+    192.04194156456174
+  ],
+  "zoomedPan": [
+    0.75,
+    -4402,
+    -63.5
+  ],
+  "afterScaleChange": {
+    "left": 0,
+    "top": 1704
+  },
+  "afterRepresentationChange": {
+    "left": 0,
+    "top": 1704
+  },
+  "goToSelectedRestoredTaskContext": true,
+  "viewAndTabRoundTripPreserved": true,
+  "keyboardPanAndSelection": true,
+  "existingExpandWorkspaceControls": 0,
+  "nativeFullscreenUsed": false,
+  "sourceAndBaselineUnchanged": true
+}

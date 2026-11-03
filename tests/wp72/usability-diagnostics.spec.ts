@@ -1,0 +1,151 @@
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { expect, test } from '@playwright/test'
+import type { Locator, Page } from '@playwright/test'
+import type { ProjectFile } from '../../src/persistence/projectFile'
+import { forecastSchedule } from '../../src/forecast/forecast'
+import { openPlan } from '../wp5-2-fixtures'
+import { fixtureTimestamp, studentFile } from '../wp71/studentFixture'
+
+test.use({ timezoneId: 'America/Regina', actionTimeout: 10_000 })
+const directory = 'docs/qa/wp7-2/evidence'
+const tab = (page: Page, name: string) => page.getByRole('tab', { name, exact: true }).click()
+const selected = (page: Page) => page.getByRole('region', { name: 'Selected chart task', exact: true })
+const work = (page: Page) => page.getByRole('region', { name: 'Work & effort', exact: true })
+async function record(name: string, value: unknown) {
+  await mkdir(directory, { recursive: true })
+  await writeFile(`${directory}/${name}.json`, JSON.stringify(value, null, 2) + '\n')
+}
+async function exported(page: Page): Promise<ProjectFile> {
+  await tab(page, 'Files')
+  const pending = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Export JSON', exact: true }).click()
+  const file = await pending
+  return JSON.parse(await readFile((await file.path())!, 'utf8'))
+}
+async function select(page: Page, id: string) {
+  await tab(page, 'Workspace')
+  await page.getByRole('button', { name: `Select ${id} in chart`, exact: true }).click()
+}
+const scrollPosition = (element: Locator) => element.evaluate(node => ({ left: node.scrollLeft, top: node.scrollTop }))
+
+for (const logged of [false, true]) test(`UX7-006 diagnostic - Complete stored/displayed estimate versus effective forecast, work logs ${logged}`, async ({ page, browser }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.clock.setFixedTime(new Date('2026-11-09T18:00:00Z'))
+  const seed = studentFile()
+  const entries = logged ? [{ entryId: 'W-WP72-OPTIONAL', taskId: 'T13', workDate: '2026-11-02', contributor: 'QA Student', hours: 2, description: 'Partial optional work record; coverage is not attested.', createdAt: fixtureTimestamp, updatedAt: fixtureTimestamp }] : []
+  const input = { ...seed, workTracking: { ...seed.workTracking!, entries } }
+  await openPlan(page, input); await select(page, 'T13')
+  const statusPanel = page.getByRole('region', { name: 'Status & completion', exact: true })
+  await statusPanel.getByRole('button', { name: 'Add criterion', exact: true }).click()
+  await statusPanel.getByLabel('Completion criterion', { exact: true }).fill('A teammate reviewed the task output')
+  await statusPanel.getByRole('button', { name: 'Save criterion', exact: true }).click()
+  const statuses = await page.getByRole('combobox', { name: 'T13 status in chart', exact: true }).locator('option').allTextContents()
+  await page.getByRole('combobox', { name: 'T13 status in chart', exact: true }).selectOption('Complete')
+  const dialog = page.getByRole('dialog')
+  await dialog.getByLabel('Effective completion date', { exact: true }).fill('2026-11-09')
+  for (const checkbox of await dialog.getByRole('checkbox').all()) await checkbox.check()
+  await dialog.getByRole('button', { name: 'Confirm completion', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Edit T13 remaining effort', exact: true })).toContainText('10 h')
+  await expect(page.getByRole('button', { name: 'Edit Selected T13 remaining effort', exact: true })).toContainText('10 h')
+  await expect(work(page).locator('[data-effort="remaining"]')).toHaveText('10 h')
+  await expect(work(page).locator('[data-effort="actual"]')).toHaveText(`${logged ? 2 : 0} h`)
+  await expect(work(page).locator('[data-effort="variance"]')).toHaveText(`${logged ? '+2' : '0'} h`)
+  await expect(page.getByRole('region', { name: 'Project health', exact: true })).toContainText('171 person-hours')
+  const displayed = { tableRemaining: await page.getByRole('button', { name: 'Edit T13 remaining effort', exact: true }).textContent(), selectedRemaining: await page.getByRole('button', { name: 'Edit Selected T13 remaining effort', exact: true }).textContent(), detailRemaining: await work(page).locator('[data-effort="remaining"]').textContent(), actual: await work(page).locator('[data-effort="actual"]').textContent(), effortAtCompletion: await work(page).locator('[data-effort="forecast"]').textContent(), variance: await work(page).locator('[data-effort="variance"]').textContent() }
+  await mkdir(directory, { recursive: true })
+  if (!logged) {
+    await selected(page).screenshot({ path: `${directory}/ux7-006-complete-summary.png` })
+    await work(page).screenshot({ path: `${directory}/ux7-006-work-details.png` })
+  }
+  const complete = await exported(page)
+  const forecast = forecastSchedule({ ...complete, remainingHours: complete.workTracking!.remainingHours, progress: complete.taskProgress, settings: complete.forecastSettings, today: '2026-11-09' })
+  expect(complete.workTracking!.remainingHours.T13).toBe(10)
+  expect(forecast.knownRemaining).toBe(171)
+  expect(forecast.tasks.find(task => task.taskId === 'T13')!.reason).toContain('zero future effort')
+  expect(complete.tasks).toEqual(input.tasks); expect(complete.baseline).toEqual(input.baseline); expect(complete.workTracking!.entries).toEqual(entries)
+  const event = complete.taskProgress!.events.at(-1)!
+  await select(page, 'T13')
+  await page.getByRole('combobox', { name: 'T13 status in chart', exact: true }).selectOption('In Progress')
+  await page.getByLabel('Reopening reason', { exact: true }).fill('Review identified additional work; test the existing reassessment path')
+  await page.getByRole('dialog').getByRole('button', { name: 'Reopen task', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Edit Selected T13 remaining effort', exact: true })).toContainText('10 h')
+  await expect(page.getByRole('region', { name: 'Project health', exact: true })).toContainText('181 person-hours')
+  const reopened = await exported(page)
+  expect(reopened.taskProgress!.events[0]).toEqual(event)
+  expect(reopened.workTracking).toEqual(complete.workTracking)
+  expect(reopened.baseline).toEqual(input.baseline)
+  const reopenedForecast = forecastSchedule({ ...reopened, remainingHours: reopened.workTracking!.remainingHours, progress: reopened.taskProgress, settings: reopened.forecastSettings, today: '2026-11-09' })
+  expect(reopenedForecast.knownRemaining).toBe(181)
+  await record(`ux7-006-logs-${logged}`, { capturedAtUTC: new Date().toISOString(), browser: browser.version(), task: 'T13', originalEstimate: 10, baselineEstimate: 10, loggedHours: logged ? 2 : 0, loggedCoverage: 'Unknown; no coverage attestation exists', statuses, displayedWhileComplete: displayed, storedWhileComplete: 10, projectRemainingBefore: 181, projectRemainingWhileComplete: forecast.knownRemaining, completedReason: forecast.tasks.find(task => task.taskId === 'T13')!.reason, completeEvent: event, reopenEvent: reopened.taskProgress!.events.at(-1), storedAfterReopen: reopened.workTracking!.remainingHours.T13, projectRemainingAfterReopen: reopenedForecast.knownRemaining, explicitRemainingReassessmentRequiredByCurrentDialog: false, baselineTasksActualsAndCompletionSnapshotPreserved: true })
+})
+
+test('UX03 diagnostic - new and duplicated estimates stay Unknown; a week and reload do not deduct remaining work', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-11-09T18:00:00Z'))
+  const input = studentFile(); await openPlan(page, input)
+  await page.getByRole('button', { name: 'Add task', exact: true }).click()
+  await page.locator('.editor').getByLabel(/^Task name/).fill('WP72 DISPOSABLE initial estimate check')
+  await page.locator('.editor').getByLabel(/^Estimated duration/).fill('10')
+  await page.locator('.editor').getByRole('button', { name: 'Save task', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Edit T31 remaining effort', exact: true })).toContainText('Unknown')
+  await page.getByRole('button', { name: 'Duplicate T13', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Edit T32 remaining effort', exact: true })).toContainText('Unknown')
+  await tab(page, 'Project Settings'); await page.getByRole('button', { name: 'Use today automatically', exact: true }).click()
+  await tab(page, 'Files'); await page.getByLabel('Saved plan name', { exact: true }).fill('WP72 DISPOSABLE week passage')
+  await page.getByRole('button', { name: 'Save As', exact: true }).click()
+  const before = await exported(page)
+  expect(before.workTracking!.remainingHours.T31 ?? null).toBeNull(); expect(before.workTracking!.remainingHours.T32 ?? null).toBeNull()
+  await page.clock.setFixedTime(new Date('2026-11-16T18:00:00Z')); await page.reload()
+  await page.getByLabel('Saved plans', { exact: true }).selectOption('WP72 DISPOSABLE week passage'); await page.getByRole('button', { name: 'Load project', exact: true }).click()
+  await expect(page.getByRole('region', { name: 'Project health', exact: true })).toContainText('As-of2026-11-16')
+  const after = await exported(page)
+  expect(after.workTracking).toEqual(before.workTracking); expect(after.tasks).toEqual(before.tasks); expect(after.baseline).toEqual(input.baseline)
+  await record('initialization-and-time', { capturedAtUTC: new Date().toISOString(), newTask: { id: 'T31', estimate: before.tasks.find(task => task.taskId === 'T31')!.durationHours, remaining: before.workTracking!.remainingHours.T31 ?? null }, duplicate: { id: 'T32', source: 'T13', estimate: before.tasks.find(task => task.taskId === 'T32')!.durationHours, remaining: before.workTracking!.remainingHours.T32 ?? null }, beforeLocalDate: '2026-11-09', afterLocalDate: '2026-11-16', existingT13RemainingBefore: before.workTracking!.remainingHours.T13, existingT13RemainingAfter: after.workTracking!.remainingHours.T13, optionalActualLogs: after.workTracking!.entries.length, allEstimatesAndBaselineUnchangedAfterWeek: true })
+})
+
+for (const width of [1440, 1280, 780]) test(`UX02 UX07 diagnostic - forty-task chart navigation and retained view state at ${width}px`, async ({ page, browser }) => {
+  await page.setViewportSize({ width, height: 900 })
+  const input = studentFile({ count: 40 }); await openPlan(page, input)
+  await select(page, 'T35'); await page.getByRole('button', { name: 'Go to selected task', exact: true }).click()
+  const timeline = page.getByRole('region', { name: 'Scrollable Gantt timeline', exact: true })
+  const ganttBefore = await scrollPosition(timeline)
+  const dimensions = await timeline.evaluate(element => ({ clientWidth: element.clientWidth, clientHeight: element.clientHeight, scrollWidth: element.scrollWidth, scrollHeight: element.scrollHeight, maxHeight: getComputedStyle(element).maxHeight }))
+  const fullName = input.tasks.find(task => task.taskId === 'T35')!.name
+  await expect(page.getByRole('button', { name: `Inspect T35 ${fullName}`, exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await tab(page, 'Files'); await tab(page, 'Workspace')
+  expect(await scrollPosition(timeline)).toEqual(ganttBefore)
+  await page.getByRole('button', { name: 'Network / Critical Path', exact: true }).click()
+  const network = page.getByRole('region', { name: 'Network / Critical Path', exact: true })
+  const transform = () => network.locator('.network-svg').evaluate(element => ['data-zoom', 'data-pan-x', 'data-pan-y'].map(name => Number(element.getAttribute(name))))
+  const initialFit = await transform()
+  await network.getByRole('combobox', { name: 'Network zoom', exact: true }).selectOption('0.75')
+  await network.getByRole('button', { name: 'Go to selected node', exact: true }).click()
+  const canvas = page.getByRole('region', { name: 'Scrollable dependency network', exact: true })
+  const canvasDimensions = await canvas.evaluate(element => ({ width: element.clientWidth, height: element.clientHeight }))
+  const beforePan = await transform()
+  await canvas.focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowDown')
+  const afterPan = await transform()
+  expect(afterPan[1]).toBe(beforePan[1] - 40); expect(afterPan[2]).toBe(beforePan[2] - 40)
+  const node = page.getByRole('button', { name: /^Network task T35 / })
+  await node.focus(); await page.keyboard.press('Enter'); await expect(node).toHaveAttribute('aria-pressed', 'true')
+  await page.getByRole('button', { name: 'Gantt', exact: true }).click()
+  expect(await scrollPosition(timeline)).toEqual(ganttBefore)
+  await page.getByRole('button', { name: 'Go to selected task', exact: true }).click()
+  await expect(selected(page)).toContainText(fullName)
+  await page.getByRole('combobox', { name: 'Scale', exact: true }).selectOption('day')
+  const afterScaleChange = await scrollPosition(timeline)
+  expect(afterScaleChange.left).toBe(0)
+  await page.getByRole('button', { name: 'Go to selected task', exact: true }).click()
+  await page.getByRole('button', { name: 'Compressed', exact: true }).click()
+  const afterRepresentationChange = await scrollPosition(timeline)
+  expect(afterRepresentationChange.left).toBe(0)
+  await page.getByRole('button', { name: 'Go to selected task', exact: true }).click()
+  await mkdir(directory, { recursive: true })
+  if (width === 1280) await page.getByRole('region', { name: 'Gantt chart', exact: true }).screenshot({ path: `${directory}/forty-gantt-1280.png` })
+  await page.getByRole('button', { name: 'Network / Critical Path', exact: true }).click()
+  expect(await transform()).toEqual(afterPan)
+  if (width === 1280) await network.screenshot({ path: `${directory}/forty-network-1280.png` })
+  const expandControls = await page.getByRole('button', { name: /Expand (Gantt|Network|workspace)|Restore workspace/i }).count()
+  const after = await exported(page)
+  expect({ ...after, savedAt: input.savedAt }).toEqual(input)
+  await record(`navigation-${width}`, { capturedAtUTC: new Date().toISOString(), browser: browser.version(), viewport: { width, height: 900 }, taskCount: 40, selectedId: 'T35', fullName, ganttBefore, ganttDimensions: dimensions, networkCanvas: canvasDimensions, initialFit, zoomedPan: afterPan, afterScaleChange, afterRepresentationChange, goToSelectedRestoredTaskContext: true, viewAndTabRoundTripPreserved: true, keyboardPanAndSelection: true, existingExpandWorkspaceControls: expandControls, nativeFullscreenUsed: false, sourceAndBaselineUnchanged: true })
+})

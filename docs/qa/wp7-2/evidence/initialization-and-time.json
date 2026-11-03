@@ -1,0 +1,20 @@
+{
+  "capturedAtUTC": "2026-11-03T01:22:38.899Z",
+  "newTask": {
+    "id": "T31",
+    "estimate": 10,
+    "remaining": null
+  },
+  "duplicate": {
+    "id": "T32",
+    "source": "T13",
+    "estimate": 10,
+    "remaining": null
+  },
+  "beforeLocalDate": "2026-11-09",
+  "afterLocalDate": "2026-11-16",
+  "existingT13RemainingBefore": 10,
+  "existingT13RemainingAfter": 10,
+  "optionalActualLogs": 0,
+  "allEstimatesAndBaselineUnchangedAfterWeek": true
+}

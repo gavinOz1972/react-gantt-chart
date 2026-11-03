@@ -1,0 +1,71 @@
+{
+    "capturedAtUTC":  "2026-11-03T01:33:55.8153136Z",
+    "localAssessmentDate":  "2026-11-02",
+    "timezone":  "America/Regina",
+    "operatingSystem":  "Microsoft Windows NT 10.0.26200.0",
+    "node":  "v24.19.0",
+    "npm":  "11.17.0",
+    "playwright":  "1.64.1",
+    "chromium":  "156.0.8078.4",
+    "vitest":  "5.0.5",
+    "vite":  "8.3.5",
+    "navigationViewports":  [
+                                {
+                                    "height":  900,
+                                    "width":  1440
+                                },
+                                {
+                                    "height":  900,
+                                    "width":  1280
+                                },
+                                {
+                                    "height":  900,
+                                    "width":  780
+                                }
+                            ],
+    "logicalProcessors":  32,
+    "sourceDocument":  "C:/Users/gavin/Downloads/Bugsys_Gantt_WP7_2_Usability_Assessment.docx",
+    "sourceSHA256":  "d37d8766b58ebf0e03a8bc0140fd256021ad6e636522639d4ab2b828776cc889",
+    "branch":  "feature/wp7-stabilization",
+    "assessmentStartingCommit":  "ffd93a57854943d60ecbd66f03c188c110237724",
+    "applicationCommit":  "af96d3b257ddfdcbc7f26a968401d634d210aef6",
+    "initialWorkingTree":  "Clean",
+    "protectedRefs":  [
+                          "refs/heads/main a6a1c32c22a2bf074b161e52d523443602843dd7 ",
+                          "refs/tags/v1.0-pre-progress a4157bc84392c770c27111da58d779948b110a56 abb85011dafc9fb0876953e3132880e025ef65da",
+                          "refs/tags/v1.1-pre-stabilization 134305f2205eb993ab76672c2d2469d48d91a609 af96d3b257ddfdcbc7f26a968401d634d210aef6"
+                      ],
+    "remoteRefsMatchedAtStart":  true,
+    "originalOwnerBranchAtStart":  "feature/wp6-progress-tracking at 1f5208552c8808112c43fdddf1d1b537d856b319",
+    "productionDiffAgainstAcceptedCandidate":  [
+
+                                               ],
+    "ownerWP71Acceptance":  "Not recorded; acceptance dependency remains",
+    "ownerWP72Acceptance":  "Pending",
+    "humanStudentParticipants":  0,
+    "ownerObservationReused":  "QA71-005",
+    "isolatedOrigin":  "http://127.0.0.1:4173",
+    "testOnlyAddition":  "tests/wp72/usability-diagnostics.spec.ts",
+    "finalChecks":  {
+                        "browsers":  {
+                                         "exitCode":  0,
+                                         "newDiagnosticCases":  6,
+                                         "skipped":  0,
+                                         "failed":  0,
+                                         "passed":  143
+                                     },
+                        "finalLint":  {
+                                          "exitCode":  0
+                                      },
+                        "check":  {
+                                      "typecheck":  "pass",
+                                      "exitCode":  0,
+                                      "testFiles":  32,
+                                      "lint":  "pass",
+                                      "unitTests":  411,
+                                      "buildModules":  63
+                                  }
+                    },
+    "productionCorrectionsImplemented":  false,
+    "wp73Started":  false
+}

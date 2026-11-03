@@ -1,0 +1,58 @@
+{
+  "capturedAtUTC": "2026-11-03T01:22:36.045Z",
+  "browser": "156.0.8078.4",
+  "task": "T13",
+  "originalEstimate": 10,
+  "baselineEstimate": 10,
+  "loggedHours": 0,
+  "loggedCoverage": "Unknown; no coverage attestation exists",
+  "statuses": [
+    "Not Started",
+    "In Progress",
+    "Blocked",
+    "Complete"
+  ],
+  "displayedWhileComplete": {
+    "tableRemaining": "10 hEdit",
+    "selectedRemaining": "10 hEdit",
+    "detailRemaining": "10 h",
+    "actual": "0 h",
+    "effortAtCompletion": "10 h",
+    "variance": "0 h"
+  },
+  "storedWhileComplete": 10,
+  "projectRemainingBefore": 181,
+  "projectRemainingWhileComplete": 171,
+  "completedReason": "Complete: zero future effort; dependencies satisfied immediately.",
+  "completeEvent": {
+    "eventId": "E-c8369403-5753-4ff4-a038-5ebedbfe35f0",
+    "taskId": "T13",
+    "fromStatus": "Not Started",
+    "toStatus": "Complete",
+    "date": "2026-11-09",
+    "recordedAt": "2026-11-09T18:00:00.000Z",
+    "criteriaSnapshot": [
+      {
+        "criterionId": "C-701030d3-afa3-4490-976d-16b65d5e28c7",
+        "text": "A teammate reviewed the task output",
+        "checked": true
+      }
+    ],
+    "completionAcknowledged": true,
+    "definitionOfDone": "",
+    "committedFinishDateAtCompletion": "2026-11-19"
+  },
+  "reopenEvent": {
+    "eventId": "E-2472d1eb-de1f-47f0-b1ec-3f5d04c5eff4",
+    "taskId": "T13",
+    "fromStatus": "Complete",
+    "toStatus": "In Progress",
+    "date": "2026-11-09",
+    "recordedAt": "2026-11-09T18:00:00.000Z",
+    "reason": "Review identified additional work; test the existing reassessment path"
+  },
+  "storedAfterReopen": 10,
+  "projectRemainingAfterReopen": 181,
+  "explicitRemainingReassessmentRequiredByCurrentDialog": false,
+  "baselineTasksActualsAndCompletionSnapshotPreserved": true
+}
