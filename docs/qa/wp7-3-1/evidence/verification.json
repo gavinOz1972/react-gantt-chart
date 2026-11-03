@@ -1,0 +1,66 @@
+{
+    "reviewDate":  "2026-11-03",
+    "reviewTimezone":  "America/Regina",
+    "capturedAtUTC":  "2026-11-03T15:59:04.1407093Z",
+    "branch":  "feature/wp7-stabilization",
+    "startingCommit":  "b09aae181589167889710b8992e3a82df35dd2b8",
+    "requiredWP73CommitIsAncestor":  true,
+    "initialWorktreeClean":  true,
+    "requirements":  "Bugsys_Gantt_WP7_3_1_Late_Completion_Design.docx",
+    "requirementsSHA256":  "3c55ed4a1fcf5775db823b41cc02f22a1c22dac8d8af73471bea899c54b3abac",
+    "protectedReferences":  {
+                                "main":  "a6a1c32c22a2bf074b161e52d523443602843dd7",
+                                "v10TagObject":  "a4157bc84392c770c27111da58d779948b110a56",
+                                "v10Target":  "abb85011dafc9fb0876953e3132880e025ef65da",
+                                "v11TagObject":  "134305f2205eb993ab76672c2d2469d48d91a609",
+                                "v11Target":  "af96d3b257ddfdcbc7f26a968401d634d210aef6",
+                                "remotePrePushMatchedLocal":  true
+                            },
+    "implementation":  "Design only. No production PA algorithm, UI, formulas or persistence changes.",
+    "productionSourceDiffEmpty":  true,
+    "sourceTestOnlyDiff":  [
+                               "src/components/ProjectEntry.test.tsx"
+                           ],
+    "dependenciesAndConfigDiffEmpty":  true,
+    "ownerDataModified":  false,
+    "originalServerRestarted":  false,
+    "environment":  {
+                        "node":  "24.19.0",
+                        "npm":  "11.17.0",
+                        "vitest":  "5.0.5",
+                        "vite":  "8.3.5",
+                        "playwright":  "1.64.1",
+                        "chromium":  "156.0.8078.4"
+                    },
+    "checks":  {
+                   "lint":  "pass",
+                   "typecheck":  "pass",
+                   "unitTestsPassed":  414,
+                   "unitFilesPassed":  32,
+                   "productionBuild":  "pass",
+                   "relevantChromiumTestsPassed":  57,
+                   "fullBrowserSuiteRun":  false,
+                   "diagnosticCasesPassed":  23,
+                   "requiredScenariosCovered":  16,
+                   "diagnosticIsGeneralProjection":  false,
+                   "initialUnitPass":  413,
+                   "initialUnitFail":  1,
+                   "initialFailure":  "Existing ambiguous Late locator in ProjectEntry.test.tsx scoped to Project overview; expected result and task dates retained.",
+                   "diagnosticAuthoringCorrection":  "Compare project-relative fixture indexes after subtracting global project-origin index; no product defect.",
+                   "browserWarning":  "Existing NO_COLOR/FORCE_COLOR warning captured by PowerShell, not a test failure."
+               },
+    "ownerAcceptance":  {
+                            "WP71":  "Outstanding",
+                            "WP73":  "Outstanding",
+                            "WP731Design":  "Pending",
+                            "policiesD01toD09":  "Pending",
+                            "productionImplementation":  "Not authorized"
+                        },
+    "limitations":  [
+                        "Manual candidate answers, not a new scheduling implementation",
+                        "Unknown/conflict and UI policies require owner approval",
+                        "No student participants",
+                        "No future PA performance measurement",
+                        "PA visual toggle acceptance not implemented or tested"
+                    ]
+}

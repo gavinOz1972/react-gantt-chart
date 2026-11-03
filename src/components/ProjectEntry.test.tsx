@@ -190,7 +190,9 @@ test('A11 target status changes without changing task dates; early target reject
   add('Research', '9')
   const dates = row('T1', 'Research').getAllByText(/2026-11-0/).map(element => element.textContent)
   setting('Target end date', '2026-11-02')
-  expect(screen.getByText('Late')).toBeInTheDocument()
+  // Target feasibility and As-of health can both say Late after Nov 2.
+  // This test asserts the committed plan's overview, not the health verdict.
+  expect(within(screen.getByRole('region', { name: 'Project overview' })).getByText('Late')).toBeInTheDocument()
   expect(row('T1', 'Research').getAllByText(/2026-11-0/).map(element => element.textContent)).toEqual(dates)
   setting('Target end date', '2026-12-18')
   expect(screen.getByText('On time')).toBeInTheDocument()

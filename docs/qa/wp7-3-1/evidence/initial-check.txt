@@ -1,0 +1,282 @@
+
+> react-gantt-chart@0.0.0 check
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> react-gantt-chart@0.0.0 lint
+> eslint .
+
+
+> react-gantt-chart@0.0.0 typecheck
+> tsc -b --pretty false
+
+
+> react-gantt-chart@0.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+ ❯ src/components/ProjectEntry.test.tsx (14 tests | 1 failed) 9156ms
+   × A11 target status changes without changing task dates; early target rejection is recoverable 261ms
+npm.cmd :
+At line:2 char:1
++ npm.cmd run check *> .wp731-check.log
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/ProjectEntry.test.tsx > A11 target status changes without changing task dates; early target
+rejection is recoverable
+TestingLibraryElementError: Found multiple elements with the text: Late
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+<span
+  class="late"
+>
+  Late
+</span>
+
+Ignored nodes: comments, script, style
+<span
+  class=""
+>
+  Late
+</span>
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or
+`findAllByText`)).
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <main>
+      <header
+        class="page-header"
+      >
+        <div>
+          <span
+            class="eyebrow"
+          >
+            Project planner
+          </span>
+          <h1>
+            React Gantt Chart
+          </h1>
+          <p
+            class="project-identity"
+          >
+            My semester project
+             ·
+            1
+             tasks
+          </p>
+        </div>
+        <div
+          class="persistent-save"
+        >
+          <span
+            class="unsaved-label"
+            role="status"
+          >
+            Unsaved changes
+          </span>
+          <button
+            type="button"
+          >
+            Save
+          </button>
+        </div>
+      </header>
+      <nav
+        aria-label="Project sections"
+        class="workspace-tabs"
+        role="tablist"
+      >
+        <button
+          aria-controls="panel-0"
+          aria-selected="false"
+          id="tab-0"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Files
+        </button>
+        <button
+          aria-controls="panel-1"
+          aria-selected="true"
+          id="tab-1"
+          role="tab"
+          tabindex="0"
+          type="button"
+        >
+          Project Settings
+        </button>
+        <button
+          aria-controls="panel-2"
+          aria-selected="false"
+          id="tab-2"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Workspace
+        </button>
+      </nav>
+      <section
+        aria-labelledby="summary-heading"
+        class="summary-panel compact-summary"
+      >
+        <div
+          class="section-heading"
+        >
+          <h2
+            id="summary-heading"
+          >
+            Project overview
+          </h2>
+          <span
+            class="status-label"
+          >
+            Schedule current
+          </span>
+        </div>
+        <dl
+          class="summary-grid"
+        >
+          <div>
+            <dt>
+              Tasks
+            </dt>
+            <dd>
+              1
+            </dd>
+          </div>
+
+ Test Files  1 failed | 31 passed (32)
+      Tests  1 failed | 413 passed (414)
+   Start at  09:33:57
+   Duration  12.65s (tests 35%, environment 32%, setup 24%, transform 6%, import 2%)
+
+          <div>
+            <dt>
+              Calculated completion
+            </dt>
+            <dd>
+              2026-11-04
+              <small>
+                after hour
+                1
+              </small>
+            </dd>
+          </div>
+          <div>
+            <dt>
+              Target end date
+            </dt>
+            <dd>
+              2026-11-02
+            </dd>
+          </div>
+          <div>
+            <dt>
+              Target status
+            </dt>
+            <dd>
+              <span
+                class="late"
+              >
+                Late
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </section>
+      <div
+        aria-labelledby="tab-0"
+        hidden=""
+        id="panel-0"
+        role="tabpanel"
+      >
+        <section
+          aria-labelledby="storage-heading"
+          class="panel storage-panel"
+        >
+          <div
+            class="section-heading"
+          >
+            <div>
+              <span
+                class="eyebrow"
+              >
+                Local project files
+              </span>
+              <h2
+                id="storage-heading"
+              >
+                Save & reopen
+              </h2>
+            </div>
+          </div>
+          <p
+            class="storage-current"
+          >
+            Current project:
+            <strong>
+              My semester project
+            </strong>
+          </p>
+          <p
+            class="muted"
+          >
+            Plans stay in this browser profile on this site. Save is explicit. Export JSON to move or back up a
+plan; no account or remote storage is used.
+          </p>
+          <div
+            class="storage-fields"
+          >
+            <label>
+              Saved plan name
+              <input
+                value="My semester project"
+              />
+            </label>
+            <div
+              class="storage-actions"
+            >
+              <button
+                type="button"
+              >
+                Save As
+              </button>
+              <button
+                class="quiet"
+                type="button"
+              >
+                Export JSON
+              </button>
+            </div>
+            <label>
+              Saved plans
+              <select
+                aria-label="Saved plans"
+        ...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ ❯ getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/components/ProjectEntry.test.tsx:193:17
+    191|   const dates = row('T1', 'Research').getAllByText(/2026-11-0/).map(el…
+    192|   setting('Target end date', '2026-11-02')
+    193|   expect(screen.getByText('Late')).toBeInTheDocument()
+       |                 ^
+    194|   expect(row('T1', 'Research').getAllByText(/2026-11-0/).map(element =…
+    195|   setting('Target end date', '2026-12-18')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

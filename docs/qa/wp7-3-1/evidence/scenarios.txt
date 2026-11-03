@@ -1,0 +1,1 @@
+PASS: 23 hand-specified cases cover L01-L16; committed anchors, candidate calendar arithmetic, source invariants, legacy event gaps and fixed-input save/reload checked. No production projection implemented.

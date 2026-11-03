@@ -1,0 +1,80 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test tests/task-status.spec.ts tests/progress-visualization.spec.ts tests/forecast-visual-clarity.spec.ts tests/wp73/corrections.spec.ts --workers=3
+
+npm.cmd : [WebServer] (node:12152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+At line:2 char:1
++ npm.cmd run test:e2e -- tests/task-status.spec.ts tests/progress-visu ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 57 tests using 3 workers
+
+(node:57068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\forecast-visual-clarity.spec.ts:31:93 › A01/A03/A04/A08 Expanded hour: forecast checkbox governs row/tooltip/badge visibility without moving bars or baseline (1.6s)
+  ok  3 [chromium] › tests\forecast-visual-clarity.spec.ts:31:93 › A01/A03/A04/A08 Expanded week: forecast checkbox governs row/tooltip/badge visibility without moving bars or baseline (1.7s)
+  ok  2 [chromium] › tests\forecast-visual-clarity.spec.ts:31:93 › A01/A03/A04/A08 Expanded day: forecast checkbox governs row/tooltip/badge visibility without moving bars or baseline (2.1s)
+  ok  4 [chromium] › tests\forecast-visual-clarity.spec.ts:31:93 › A01/A03/A04/A08 Compressed hour: forecast checkbox governs row/tooltip/badge visibility without moving bars or baseline (1.5s)
+  ok  5 [chromium] › tests\forecast-visual-clarity.spec.ts:31:93 › A01/A03/A04/A08 Compressed day: forecast checkbox governs row/tooltip/badge visibility without moving bars or baseline (1.5s)
+  ok  6 [chromium] › tests\forecast-visual-clarity.spec.ts:31:93 › A01/A03/A04/A08 Compressed week: forecast checkbox governs row/tooltip/badge visibility without moving bars or baseline (1.6s)
+  ok  8 [chromium] › tests\forecast-visual-clarity.spec.ts:89:1 › A04 project At Risk remains reserved for delivery past target, independently of task Forecast Slip (760ms)
+  ok  7 [chromium] › tests\forecast-visual-clarity.spec.ts:70:1 › A02 actual Blocked and Late indications remain when the forecast annotations are hidden (1.3s)
+  ok  9 [chromium] › tests\forecast-visual-clarity.spec.ts:98:48 › A05/A06 Expanded: FF left of the whole committed bar means an earlier finish, with dates and variance (1.5s)
+  ok 11 [chromium] › tests\forecast-visual-clarity.spec.ts:112:1 › A06/A07 remaining person-hours are distinct from calendar-date variance, including omitted compressed dates (1.1s)
+  ok 10 [chromium] › tests\forecast-visual-clarity.spec.ts:98:48 › A05/A06 Compressed: FF left of the whole committed bar means an earlier finish, with dates and variance (1.6s)
+  ok 14 [chromium] › tests\progress-visualization.spec.ts:36:1 › A01/A03 defaults are off, chart stays first; missing baseline is explained and details expand accessibly (720ms)
+  ok 12 [chromium] › tests\forecast-visual-clarity.spec.ts:123:1 › A09 hiding annotations preserves Enable forecasting; disabled overlay is explained and restores independently of baseline (1.8s)
+  ok 15 [chromium] › tests\progress-visualization.spec.ts:49:93 › A02/A04/A06/A07 Expanded hour: guides preserve committed geometry, identity, scroll and selection (1.2s)
+  ok 13 [chromium] › tests\forecast-visual-clarity.spec.ts:138:1 › A01/A03/A10 toggle-only save/export data is unchanged, Network and quick-edit/Close stay usable (2.1s)
+  ok 16 [chromium] › tests\progress-visualization.spec.ts:49:93 › A02/A04/A06/A07 Expanded day: guides preserve committed geometry, identity, scroll and selection (1.3s)
+  ok 18 [chromium] › tests\progress-visualization.spec.ts:49:93 › A02/A04/A06/A07 Compressed hour: guides preserve committed geometry, identity, scroll and selection (1.3s)
+  ok 17 [chromium] › tests\progress-visualization.spec.ts:49:93 › A02/A04/A06/A07 Expanded week: guides preserve committed geometry, identity, scroll and selection (1.4s)
+  ok 19 [chromium] › tests\progress-visualization.spec.ts:49:93 › A02/A04/A06/A07 Compressed day: guides preserve committed geometry, identity, scroll and selection (1.3s)
+  ok 20 [chromium] › tests\progress-visualization.spec.ts:49:93 › A02/A04/A06/A07 Compressed week: guides preserve committed geometry, identity, scroll and selection (1.3s)
+  ok 21 [chromium] › tests\progress-visualization.spec.ts:75:1 › A04/A05/A07 earlier forecasts, omitted dates and clipped ranges are explicit and live without moving bars (1.9s)
+  ok 23 [chromium] › tests\progress-visualization.spec.ts:119:1 › A11/A12 historical completion stays historical, counts exclude completed tasks and health uses completion evidence (753ms)
+  ok 22 [chromium] › tests\progress-visualization.spec.ts:98:1 › A08/A09/A10/A11 blocking and unknown effort suppress green health and fabricated endpoints; unblocking restores them (1.9s)
+  ok 24 [chromium] › tests\progress-visualization.spec.ts:135:1 › A02/A07 date ranges clip honestly and deleting a current row preserves the original baseline entry (1.4s)
+  ok 25 [chromium] › tests\progress-visualization.spec.ts:150:1 › A02/A13/A15 ID associations survive sort, duplicate, Close and explicit save/JSON round trips; toggles reset on load (2.4s)
+  ok 27 [chromium] › tests\progress-visualization.spec.ts:208:1 › A04/A06 owner evidence of combined guides and compact project health (1.5s)
+  ok 26 [chromium] › tests\progress-visualization.spec.ts:181:1 › A07/A14 long labels and 25 virtual rows stay scrollable and keyboard accessible at desktop/narrow widths (3.5s)
+  ok 28 [chromium] › tests\task-status.spec.ts:43:1 › selected Gantt summary edits status through the shared blocking, completion and reopening gates (2.0s)
+  ok 29 [chromium] › tests\task-status.spec.ts:75:1 › A01–A04 legacy defaults, ordinary transitions, blocked cancellation/reason and unblocking preserve inputs/history (1.6s)
+  ok 31 [chromium] › tests\task-status.spec.ts:137:1 › A06 dropdown Complete uses the same no-criteria acknowledgement and date-validation gate as Mark Complete (1.1s)
+  ok 30 [chromium] › tests\task-status.spec.ts:101:1 › A05/A07 project guidance and checklist CRUD feed explicit completion with a dated immutable snapshot (2.6s)
+  ok 32 [chromium] › tests\task-status.spec.ts:155:1 › A09/A10 reopening requires confirmation/reason and a second completion preserves the original attestation (2.7s)
+  ok 33 [chromium] › tests\task-status.spec.ts:181:1 › A08/A11 work hours and zero remaining do not infer status; copies get fresh unchecked criteria and no tracking history (2.2s)
+  ok 36 [chromium] › tests\task-status.spec.ts:244:1 › A01/A12 format 3 has no invented events and its original backup is available before migration (1.4s)
+  ok 34 [chromium] › tests\task-status.spec.ts:208:1 › A12 status/criteria/history/DoD and active blocked reasons survive local reopen and JSON import (2.9s)
+  ok 35 [chromium] › tests\task-status.spec.ts:226:1 › A13 corrupt enum, duplicate event IDs, orphan references and malformed snapshots reject atomically (2.5s)
+  ok 37 [chromium] › tests\task-status.spec.ts:263:1 › unfinished criteria and project definition drafts retain text, block saving and survive task/tab changes (1.9s)
+  ok 38 [chromium] › tests\task-status.spec.ts:284:1 › task deletion explicitly discloses criteria/history removal; cancellation keeps records and confirmation preserves baseline (2.0s)
+  ok 39 [chromium] › tests\task-status.spec.ts:298:34 › A14/A15 keyboard, checklist/history and status layout remain chart-first at 1440px (2.0s)
+  ok 40 [chromium] › tests\task-status.spec.ts:298:34 › A14/A15 keyboard, checklist/history and status layout remain chart-first at 600px (1.8s)
+  ok 41 [chromium] › tests\wp73\corrections.spec.ts:38:40 › C01 - pinned Actions, overflow hint, unoccluded focus and keyboard duplicate at 1440 (2.0s)
+  ok 42 [chromium] › tests\wp73\corrections.spec.ts:38:40 › C01 - pinned Actions, overflow hint, unoccluded focus and keyboard duplicate at 1280 (2.4s)
+  ok 43 [chromium] › tests\wp73\corrections.spec.ts:38:40 › C01 - pinned Actions, overflow hint, unoccluded focus and keyboard duplicate at 780 (2.0s)
+  ok 44 [chromium] › tests\wp73\corrections.spec.ts:78:76 › C02 C03 - Complete stored 10, logs false: zero effective work and qualified arithmetic persist (3.1s)
+  ok 45 [chromium] › tests\wp73\corrections.spec.ts:78:76 › C02 C03 - Complete stored 10, logs true: zero effective work and qualified arithmetic persist (2.9s)
+  ok 46 [chromium] › tests\wp73\corrections.spec.ts:78:76 › C02 C03 - Complete stored 0, logs false: zero effective work and qualified arithmetic persist (3.1s)
+  ok 47 [chromium] › tests\wp73\corrections.spec.ts:78:76 › C02 C03 - Complete stored 0, logs true: zero effective work and qualified arithmetic persist (3.0s)
+  ok 48 [chromium] › tests\wp73\corrections.spec.ts:78:76 › C02 C03 - Complete stored null, logs false: zero effective work and qualified arithmetic persist (3.0s)
+  ok 49 [chromium] › tests\wp73\corrections.spec.ts:78:76 › C02 C03 - Complete stored null, logs true: zero effective work and qualified arithmetic persist (3.0s)
+  ok 50 [chromium] › tests\wp73\corrections.spec.ts:105:61 › C05 - table reopening cancels atomically and requires deliberate reassessment (3.0s)
+  ok 51 [chromium] › tests\wp73\corrections.spec.ts:105:61 › C05 - chart reopening cancels atomically and requires deliberate reassessment (3.1s)
+  ok 52 [chromium] › tests\wp73\corrections.spec.ts:105:61 › C05 - details reopening cancels atomically and requires deliberate reassessment (2.8s)
+  ok 54 [chromium] › tests\wp73\corrections.spec.ts:170:33 › C05 - retained 0 must be explicitly reassessed; zero remains distinct from Unknown (1.7s)
+  ok 55 [chromium] › tests\wp73\corrections.spec.ts:170:33 › C05 - retained null must be explicitly reassessed; zero remains distinct from Unknown (1.9s)
+  ok 57 [chromium] › tests\wp73\corrections.spec.ts:215:1 › C02 C04 compatibility - legacy Complete Unknown remains stored Unknown and untouched estimates are not backfilled (1.6s)
+  ok 53 [chromium] › tests\wp73\corrections.spec.ts:136:1 › C04 C02 C05 - create, reassess, complete, reopen and duplicate have independent effort and forecast effects (5.6s)
+  ok 56 [chromium] › tests\wp73\corrections.spec.ts:191:1 › C06 - Fixed today pins explicitly; Automatic advances at idle local midnight and both modes round-trip (4.4s)
+
+  57 passed (46.1s)

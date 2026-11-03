@@ -1,0 +1,3074 @@
+{
+  "method": "Hand-specified candidate starts/finishes and independent calendar lookup tables; existing production utilities only check anchors and invariants. No projection algorithm is implemented.",
+  "capturedAtUTC": "2026-11-03T15:35:25.168Z",
+  "scenarioCount": 16,
+  "caseCount": 23,
+  "cases": [
+    {
+      "id": "L01",
+      "asOf": "2026-11-02",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L01",
+          "name": "WP731 DISPOSABLE L01",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L01-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-02",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-03",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L01b",
+      "asOf": "2026-11-02",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L01b",
+          "name": "WP731 DISPOSABLE L01b",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 2,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 2,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L01b-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-02",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 3
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-02",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-03",
+            "afterHour": 2
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-03",
+      "conditionalDate": null,
+      "note": "Precision-only conservative shift; no historically late date and no proof of actual delay.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L02",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L02",
+          "name": "WP731 DISPOSABLE L02",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L02-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-02",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1"
+      ],
+      "committedSlack": {
+        "T1": 0
+      },
+      "manuallySpecifiedCandidate": {},
+      "expectedProjectDate": "2026-11-03",
+      "conditionalDate": null,
+      "note": "All tasks Complete; actual project finish date, not a projected slot.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L03",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L03",
+          "name": "WP731 DISPOSABLE L03",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L03-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-05",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L04",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L04",
+          "name": "WP731 DISPOSABLE L04",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T3",
+            "name": "WP731 DISPOSABLE T3",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T2"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L04-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        },
+        {
+          "taskId": "T3",
+          "predecessorTaskIds": [
+            "T2"
+          ],
+          "startSlot": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-04",
+          "finishDate": "2026-11-04"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-04",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0,
+        "T3": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        },
+        "T3": {
+          "start": {
+            "date": "2026-11-06",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-06",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-06",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L05",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L05",
+          "name": "WP731 DISPOSABLE L05",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T3",
+            "name": "WP731 DISPOSABLE T3",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 12,
+            "predecessorTaskIds": [],
+            "independentStartMode": "MANUAL",
+            "requestedStartDate": "2026-11-03"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L05-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        },
+        {
+          "taskId": "T3",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-05"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-05",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T3"
+      ],
+      "committedSlack": {
+        "T1": 8,
+        "T2": 8,
+        "T3": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          }
+        },
+        "T3": {
+          "start": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-05",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L06",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L06",
+          "name": "WP731 DISPOSABLE L06",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 8,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T3",
+            "name": "WP731 DISPOSABLE T3",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1",
+              "T2"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          },
+          "T2": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L06-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          },
+          {
+            "eventId": "L06-E2",
+            "taskId": "T2",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-03"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-03"
+        },
+        {
+          "taskId": "T3",
+          "predecessorTaskIds": [
+            "T1",
+            "T2"
+          ],
+          "startSlot": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-04",
+          "finishDate": "2026-11-04"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-04",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T2",
+        "T3"
+      ],
+      "committedSlack": {
+        "T1": 4,
+        "T2": 0,
+        "T3": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T3": {
+          "start": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-04",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L07",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L07",
+          "name": "WP731 DISPOSABLE L07",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T3",
+            "name": "WP731 DISPOSABLE T3",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 8,
+            "predecessorTaskIds": [],
+            "independentStartMode": "MANUAL",
+            "requestedStartDate": "2026-11-03"
+          },
+          {
+            "taskId": "T4",
+            "name": "WP731 DISPOSABLE T4",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T2",
+              "T3"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L07-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        },
+        {
+          "taskId": "T3",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-04"
+        },
+        {
+          "taskId": "T4",
+          "predecessorTaskIds": [
+            "T2",
+            "T3"
+          ],
+          "startSlot": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-05",
+          "finishDate": "2026-11-05"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-05",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T3",
+        "T4"
+      ],
+      "committedSlack": {
+        "T1": 4,
+        "T2": 4,
+        "T3": 0,
+        "T4": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          }
+        },
+        "T3": {
+          "start": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          }
+        },
+        "T4": {
+          "start": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-05",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L08",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L08",
+          "name": "WP731 DISPOSABLE L08",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T3",
+            "name": "WP731 DISPOSABLE T3",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 8,
+            "predecessorTaskIds": [],
+            "independentStartMode": "MANUAL",
+            "requestedStartDate": "2026-11-03"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          },
+          "T3": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L08-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          },
+          {
+            "eventId": "L08-E2",
+            "taskId": "T3",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-04"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        },
+        {
+          "taskId": "T3",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-04"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-04",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T3"
+      ],
+      "committedSlack": {
+        "T1": 4,
+        "T2": 4,
+        "T3": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-05",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L09",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L09",
+          "name": "WP731 DISPOSABLE L09",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 8,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          },
+          "T2": {
+            "status": "In Progress",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L09-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          },
+          {
+            "eventId": "L09-E2",
+            "taskId": "T2",
+            "fromStatus": "Not Started",
+            "toStatus": "In Progress",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-04"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-04",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": null,
+          "finish": null,
+          "uncertainty": "No actual start or remaining scheduled-slot duration. Known remaining person-hours do not fill this gap."
+        }
+      },
+      "expectedProjectDate": null,
+      "conditionalDate": null,
+      "note": "No actual start or remaining scheduled-slot duration. Known remaining person-hours do not fill this gap.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L10",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L10",
+          "name": "WP731 DISPOSABLE L10",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T3",
+            "name": "WP731 DISPOSABLE T3",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T2"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          },
+          "T2": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L10-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          },
+          {
+            "eventId": "L10-E2",
+            "taskId": "T2",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-02",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-03"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        },
+        {
+          "taskId": "T3",
+          "predecessorTaskIds": [
+            "T2"
+          ],
+          "startSlot": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-04",
+          "finishDate": "2026-11-04"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-04",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0,
+        "T3": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T3": {
+          "start": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": null,
+      "conditionalDate": "2026-11-04",
+      "note": "B completed before predecessor A: definite historical ordering conflict; do not certify overall feasibility.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L11",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L11",
+          "name": "WP731 DISPOSABLE L11",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "MANUAL",
+            "requestedStartDate": "2026-11-03"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L11-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-05",
+      "conditionalDate": null,
+      "note": "Retained manual date is inactive while predecessors control the start.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L11b",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L11b",
+          "name": "WP731 DISPOSABLE L11b",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "MANUAL",
+            "requestedStartDate": "2026-11-03"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L11b-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 4,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-04",
+      "conditionalDate": null,
+      "note": "Active independent not-before release is superseded by As-of; no dependency from T1 to T2.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L12",
+      "asOf": "2026-11-07",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L12",
+          "name": "WP731 DISPOSABLE L12",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 20,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L12-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-07",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-06"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-06",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-06"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-09",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-09",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-09",
+          "finishDate": "2026-11-09"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-09",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-09",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-09",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-09",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L12b",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L12b",
+          "name": "WP731 DISPOSABLE L12b",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 8,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L12b-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-03"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-03"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-05",
+          "finishDate": "2026-11-05"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-05",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-05",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L13",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L13",
+          "name": "WP731 DISPOSABLE L13",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "In Progress",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L13-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          },
+          {
+            "eventId": "L13-E2",
+            "taskId": "T1",
+            "fromStatus": "Complete",
+            "toStatus": "In Progress",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "reason": "Deliberately reopened; no remaining working-slot duration exists."
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T1": {
+          "start": null,
+          "finish": null,
+          "uncertainty": "Previous actual completion is history, not the current dependency release."
+        },
+        "T2": {
+          "start": null,
+          "finish": null,
+          "uncertainty": "Previous actual completion is history, not the current dependency release."
+        }
+      },
+      "expectedProjectDate": null,
+      "conditionalDate": null,
+      "note": "Previous actual completion is history, not the current dependency release.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L14",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L14",
+          "name": "WP731 DISPOSABLE L14",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L14-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": ""
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-04",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-04",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-04",
+      "conditionalDate": null,
+      "note": "Legacy completion has no committed-finish-at-completion snapshot; historical lateness is unknown, current-plan impact can still be bounded.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L14b",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L14b",
+          "name": "WP731 DISPOSABLE L14b",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Blocked",
+            "criteria": [],
+            "blockedReason": "No known restart date in this diagnostic."
+          }
+        },
+        "events": [
+          {
+            "eventId": "L14b-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Blocked",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "reason": "No known restart date in this diagnostic."
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T1": {
+          "start": null,
+          "finish": null,
+          "uncertainty": "No restart date; do not treat blocked work as ready."
+        },
+        "T2": {
+          "start": null,
+          "finish": null,
+          "uncertainty": "No restart date; do not treat blocked work as ready."
+        }
+      },
+      "expectedProjectDate": null,
+      "conditionalDate": null,
+      "note": "No restart date; do not treat blocked work as ready.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "asOf": "2026-11-03",
+      "tasks": [
+        {
+          "taskId": "T1",
+          "name": "WP731 DISPOSABLE T1",
+          "description": "Fictional diagnostic task; not owner data.",
+          "durationHours": 4,
+          "predecessorTaskIds": [],
+          "independentStartMode": "DEFAULT"
+        },
+        {
+          "taskId": "T2",
+          "name": "WP731 DISPOSABLE T2",
+          "description": "Fictional diagnostic task; not owner data.",
+          "durationHours": 4,
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "independentStartMode": "DEFAULT"
+        }
+      ],
+      "c": {
+        "T1": [
+          0,
+          4
+        ],
+        "T2": [
+          4,
+          8
+        ]
+      },
+      "actual": {},
+      "p": {
+        "T1": null,
+        "T2": null
+      },
+      "projectDate": null,
+      "id": "L14c",
+      "invalidComplete": true,
+      "note": "Complete without a completion event is rejected by the existing decoder, not repaired.",
+      "decoderRejected": true,
+      "errors": [
+        {
+          "code": "STATUS_HISTORY_MISMATCH",
+          "message": "Current status/reason for T1 disagrees with its transition history."
+        }
+      ],
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "id": "L14d",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L14d",
+          "name": "WP731 DISPOSABLE L14d",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L14d-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-05",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": null,
+          "finish": null,
+          "uncertainty": "Future-effective completion relative to As-of is scenario evidence, not a validated actual fact yet."
+        }
+      },
+      "expectedProjectDate": null,
+      "conditionalDate": null,
+      "note": "Future-effective completion relative to As-of is scenario evidence, not a validated actual fact yet.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L14e",
+      "asOf": "2026-11-03",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L14e",
+          "name": "WP731 DISPOSABLE L14e",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "In Progress",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L14e-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "In Progress",
+            "date": "2026-11-03",
+            "recordedAt": "2026-11-10T12:00:00.000Z"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T1": {
+          "start": null,
+          "finish": null,
+          "uncertainty": "Zero remaining person-hours does not provide completion or a remaining scheduled-slot duration."
+        },
+        "T2": {
+          "start": null,
+          "finish": null,
+          "uncertainty": "Zero remaining person-hours does not provide completion or a remaining scheduled-slot duration."
+        }
+      },
+      "expectedProjectDate": null,
+      "conditionalDate": null,
+      "note": "Zero remaining person-hours does not provide completion or a remaining scheduled-slot duration.",
+      "baselineAndSourceUnchanged": true
+    },
+    {
+      "id": "L15",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L15",
+          "name": "WP731 DISPOSABLE L15",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L15-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-05",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true,
+      "effortModelT2Finish": "2026-11-04",
+      "proposedProgressAdjustedT2Finish": "2026-11-05",
+      "overlayCombinationsSpecified": 8
+    },
+    {
+      "id": "L16",
+      "asOf": "2026-11-04",
+      "inputs": {
+        "project": {
+          "projectId": "WP731-L16",
+          "name": "WP731 DISPOSABLE L16",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-20",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "WP731 DISPOSABLE T1",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "WP731 DISPOSABLE T2",
+            "description": "Fictional diagnostic task; not owner data.",
+            "durationHours": 4,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ]
+      },
+      "progress": {
+        "schemaVersion": 1,
+        "definitionOfDone": "",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": []
+          }
+        },
+        "events": [
+          {
+            "eventId": "L16-E1",
+            "taskId": "T1",
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "date": "2026-11-04",
+            "recordedAt": "2026-11-10T12:00:00.000Z",
+            "criteriaSnapshot": [],
+            "completionAcknowledged": true,
+            "noCriteriaAcknowledged": true,
+            "definitionOfDone": "",
+            "committedFinishDateAtCompletion": "2026-11-02"
+          }
+        ]
+      },
+      "committed": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "committedProjectFinish": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      },
+      "committedCriticalIds": [
+        "T1",
+        "T2"
+      ],
+      "committedSlack": {
+        "T1": 0,
+        "T2": 0
+      },
+      "manuallySpecifiedCandidate": {
+        "T2": {
+          "start": {
+            "date": "2026-11-05",
+            "hour": 1
+          },
+          "finish": {
+            "date": "2026-11-05",
+            "afterHour": 4
+          }
+        }
+      },
+      "expectedProjectDate": "2026-11-05",
+      "conditionalDate": null,
+      "note": "",
+      "baselineAndSourceUnchanged": true,
+      "exactRoundTrip": true,
+      "fixedAsOfRequiredForReproduction": "2026-11-04"
+    }
+  ]
+}
