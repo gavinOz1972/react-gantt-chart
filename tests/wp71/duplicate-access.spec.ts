@@ -26,7 +26,7 @@ async function layout(region: Locator) {
 }
 
 for (const width of [1440, 1280, 780]) for (const method of ['pointer', 'keyboard']) {
-  test(`QA71-005 - Duplicate discovery and ${method} access at ${width}px`, async ({ page, browser }) => {
+  test(`QA71-005 regression - pinned Duplicate discovery and ${method} access at ${width}px`, async ({ page, browser }) => {
     await page.setViewportSize({ width, height: 900 })
     const input = studentFile(); await openPlan(page, input)
     const panel = page.locator('.tasks-panel')
@@ -37,6 +37,9 @@ for (const width of [1440, 1280, 780]) for (const method of ['pointer', 'keyboar
     const initial = await layout(region)
     expect(initial.duplicateControlCount).toBe(30)
     expect(initial.duplicate.disabled).toBe(false)
+    expect(initial.duplicate.withinHorizontalTableViewport).toBe(true)
+    expect(initial.duplicate.centreHit).toBe(true)
+    expect(initial.horizontalScrollHint.display).not.toBe('none')
     await mkdir(directory, { recursive: true })
     if (width === 1440) await page.screenshot({ path: `${directory}/qa71-005-${method}-initial.png` })
     const duplicate = page.getByRole('button', { name: 'Duplicate T1', exact: true })

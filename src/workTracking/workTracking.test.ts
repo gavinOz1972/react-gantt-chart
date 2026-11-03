@@ -4,6 +4,14 @@ import { analyzeCriticalPath, calculateSchedule } from '../domain'
 import { workBaseline, workData, workEntry, workRecords, workTimestamp } from '../test/workFixture'
 import { chronologicalEntries, decodeWorkTracking, effortSummary, emptyWorkTracking, entryFromDraft, formatEffort, futureWorkWarning, parseEffort, removeTaskWork } from './workTracking'
 
+test.each([10, 0, null])('Complete has zero effective work while preserving the stored estimate %s and recorded arithmetic', remaining => {
+  const tracking = { ...workRecords(), remainingHours: { T2: remaining } }
+  const before = JSON.stringify(tracking)
+  expect(effortSummary(tracking, 'T2', workBaseline(), true)).toEqual({ actualHours: 5.75, remainingHours: 0, forecastHours: 5.75, baselineHours: 8, varianceHours: -2.25 })
+  expect(JSON.stringify(tracking)).toBe(before)
+  expect(effortSummary(tracking, 'T2').remainingHours).toBe(remaining)
+})
+
 test('A01/A02/A03/A05 actual, unknown, zero, effort at completion and baseline variance use permanent IDs', () => {
   expect(effortSummary(emptyWorkTracking(), 'T2', workBaseline())).toEqual({ actualHours: 0, remainingHours: null, forecastHours: null, baselineHours: 8, varianceHours: null })
   expect(effortSummary(workRecords(), 'T2', workBaseline())).toEqual({ actualHours: 5.75, remainingHours: 5, forecastHours: 10.75, baselineHours: 8, varianceHours: 2.75 })

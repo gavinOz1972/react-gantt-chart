@@ -73,7 +73,7 @@ dd small { display: block; font-size: .75rem; margin-top: 5px; font-weight: 400;
 .empty-state { text-align: center; padding: 44px 20px 24px; }
 .empty-state p { max-width: 470px; margin: 0 auto; color: #5b6c80; font-size: .9rem; }
 .table-scroll { overflow-x: auto; margin-top: 18px; }
-.table-hint { display: none; }
+.table-hint { margin: 14px 0 0; }
 table { width: 100%; min-width: 950px; border-collapse: collapse; font-size: .82rem; text-align: left; }
 th { color: #425e76; font-size: .72rem; font-weight: 650; }
 thead th { padding: 12px 10px; background: #f3f6f9; white-space: nowrap; }
@@ -100,7 +100,6 @@ footer { border-top: 1px solid #dce4ec; color: #65778a; padding-top: 18px; font-
   .phase-label { display: none; }
   .summary-grid { grid-template-columns: 1fr 1fr; }
   .panel, .summary-panel { padding: 20px; }
-  .table-hint { display: block; margin: 14px 0 0; }
 }
 @media (max-width: 560px) {
   .settings-fields, .editor-fields, .start-fields { grid-template-columns: 1fr; }
@@ -230,6 +229,11 @@ h1 { font-size: 1.7rem; margin: 4px 0; }
 .task-toolbar select { min-height: 40px; padding: 8px 10px; background: #fff; border: 1px solid #b8c7d5; border-radius: 6px; color: #1b3046; }
 .tasks-panel { margin-top: 20px; }
 .tasks-panel .table-scroll { max-height: 460px; overflow: auto; }
+.tasks-panel .table-scroll { scroll-padding-right: 140px; }
+.tasks-panel .task-actions-cell, .tasks-panel .task-actions-header { position: sticky; right: 0; min-width: 110px; width: 110px; background: #fff; box-shadow: -3px 0 5px #1b304615; z-index: 1; }
+.tasks-panel .task-actions-header { background: #f3f6f9; z-index: 3; }
+.tasks-panel .selected-task-row .task-actions-cell { background: #e0f0f8; }
+.tasks-panel .editing-row .task-actions-cell { background: #f4f9fc; }
 .tasks-panel thead { position: sticky; top: 0; z-index: 2; }
 .tasks-panel td { min-width: 110px; }
 .tasks-panel .order-cell { min-width: 65px; width: 65px; }
@@ -343,6 +347,11 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .selected-remaining > span { display: block; font-size: .75rem; color: #52657b; margin-bottom: 6px; }
 .selected-effort-quick dl { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 0; }
 .selected-effort-quick dt { color: #52657b; margin-bottom: 6px; font-size: .75rem; }
+.recorded-effort-note { flex-basis: 100%; font-size: .72rem; margin: 0; }
+.retained-effort { display: block; max-width: 200px; font-size: .7rem; font-weight: 400; }
+.forecast-date-mode, .reopening-remaining { display: grid; gap: 12px; border: 1px solid #c8d6e1; border-radius: 6px; padding: 12px; min-width: 0; }
+.forecast-date-mode > label:has(input[type="radio"]), .reopening-remaining > label:has(input[type="radio"]) { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+.forecast-date-mode input[type="radio"], .reopening-remaining input[type="radio"] { width: auto; min-height: 0; margin: 0; flex-shrink: 0; }
 .selected-effort-quick dd { font-size: .9rem; }
 .quick-remaining-pending { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; font-size: .85rem; }
 .tasks-panel .task-table-with-status { min-width: 1620px; }

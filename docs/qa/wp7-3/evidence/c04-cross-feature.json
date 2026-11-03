@@ -1,0 +1,22 @@
+{
+  "createdRemaining": 10,
+  "revisedRemaining": 14,
+  "durationEditedTo": 12,
+  "completeEffective": 0,
+  "completeStored": 14,
+  "reopenRemaining": 6,
+  "copiedRemaining": 12,
+  "explicitUnknownSupported": true,
+  "forecastTotals": [
+    191,
+    195,
+    181,
+    187
+  ],
+  "forecastDates": [
+    "2026-12-20",
+    "2026-12-18",
+    "2026-12-19"
+  ],
+  "baselineAndOriginalIdsPreserved": true
+}

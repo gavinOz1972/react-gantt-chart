@@ -1,0 +1,21 @@
+{
+  "fixedSettings": {
+    "schemaVersion": 1,
+    "enabled": true,
+    "classHoursPerStudent": 3,
+    "homeworkHoursPerStudent": 5,
+    "teamSize": 4,
+    "asOfDate": "2026-11-02"
+  },
+  "automaticSettings": {
+    "schemaVersion": 1,
+    "enabled": true,
+    "classHoursPerStudent": 3,
+    "homeworkHoursPerStudent": 5,
+    "teamSize": 4
+  },
+  "automaticAdvancedAtIdleMidnight": true,
+  "fixedRetainedAcrossNextDayReloadAndImport": true,
+  "noPersistedModeFlag": true,
+  "schemaVersion": 5
+}

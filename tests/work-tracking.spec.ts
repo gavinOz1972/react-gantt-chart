@@ -145,7 +145,7 @@ test('A07/A11/A12 task copies have no effort history; reorder/sort preserve asso
   await select(page)
   await page.getByRole('button', { name: 'Duplicate T2', exact: true }).click()
   await expect(summary(page, 'actual')).toHaveText('0 h')
-  await expect(summary(page, 'remaining')).toHaveText('Unknown')
+  await expect(summary(page, 'remaining')).toHaveText('8 h')
   await expect(summary(page, 'baseline')).toHaveText('No baseline')
   await add(page, '1.25', '2026-10-29', 'Jamie', 'Prepared the copied task')
   await remaining(page, '2')

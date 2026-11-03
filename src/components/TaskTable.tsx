@@ -17,15 +17,38 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
 }) {
   const scrollRegion = useRef<HTMLDivElement>(null)
   const dragging = useRef<string | null>(null)
+  const [overflowing, setOverflowing] = useState(false)
+  const hasTasks = tasks.length > 0
   useEffect(() => { if (scrollRegion.current) scrollRegion.current.scrollLeft = 0 }, [editingId])
+  useEffect(() => {
+    const region = scrollRegion.current
+    if (!region) return
+    const measure = () => setOverflowing(region.clientWidth > 0 && region.scrollWidth > region.clientWidth + 1)
+    measure()
+    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : undefined
+    observer?.observe(region)
+    if (region.querySelector('table')) observer?.observe(region.querySelector('table')!)
+    window.addEventListener('resize', measure)
+    return () => { observer?.disconnect(); window.removeEventListener('resize', measure) }
+  }, [hasTasks])
   const scheduled = new Map(result.ok ? result.tasks.map(task => [task.taskId, task]) : [])
   if (!tasks.length) return <div className="empty-state"><h3>Your project starts with one task</h3><p>Add your first task, enter its estimated hours, and see where it fits in your calendar.</p></div>
   function field(task: TaskInput, key: 'name' | 'description' | 'durationHours', type: 'text' | 'number' | 'multiline') {
     return onCommit ? <InlineField label={`${task.taskId} ${key === 'durationHours' ? 'duration' : key}`} value={String(task[key])} type={type} disabled={blocked}
       onDraftChange={dirty => onDraftChange?.(`${task.taskId}:${key}`, dirty)} onCommit={value => onCommit({ ...task, [key]: key === 'durationHours' ? Number(value) : value })} /> : task[key]
   }
-  return <><p className="table-hint muted">Scroll the table horizontally to see all columns.</p>
-    <div ref={scrollRegion} className="table-scroll" tabIndex={0} role="region" aria-label="Task schedule table" onDragOver={event => {
+  return <>{overflowing && <p className="table-hint muted">Scroll the table horizontally to see all columns. Actions stay visible on the right.</p>}
+    <div ref={scrollRegion} className="table-scroll" tabIndex={0} role="region" aria-label="Task schedule table" onFocusCapture={event => {
+      const region = event.currentTarget, target = event.target as HTMLElement
+      if (target === region || target.closest('.task-actions-cell')) return
+      const actions = region.querySelector('.task-actions-cell')?.getBoundingClientRect()
+      if (!actions) return
+      const bounds = region.getBoundingClientRect(), focused = target.getBoundingClientRect()
+      const right = bounds.left + region.clientWidth - actions.width
+      // Native focus scrolling cannot account for the pinned Actions column.
+      if (focused.right > right) region.scrollLeft += focused.right - right + 5
+      else if (focused.left < bounds.left) region.scrollLeft -= bounds.left - focused.left + 5
+    }} onDragOver={event => {
       if (!manual || blocked || !dragging.current) return
       event.preventDefault()
       const bounds = event.currentTarget.getBoundingClientRect()
@@ -33,7 +56,7 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
       else if (event.clientY > bounds.bottom - 45) event.currentTarget.scrollTop += 18
     }}>
     <table className={`${renderRemaining ? 'task-table-with-effort' : ''} ${renderStatus ? 'task-table-with-status' : ''}`}><caption className="sr-only">Task inputs and calculated schedule dates. Select a field to edit; total hours is the full task duration.</caption><thead><tr>
-      {onMove && <th scope="col">Order</th>}<th scope="col">ID</th><th scope="col">Task / description</th>{renderStatus && <th scope="col">Status</th>}<th scope="col">Total hours</th>{renderRemaining && <th scope="col">Remaining Effort</th>}<th scope="col">Predecessors</th><th scope="col">Start</th><th scope="col">Calculated finish</th><th scope="col">Actions</th>
+      {onMove && <th scope="col">Order</th>}<th scope="col">ID</th><th scope="col">Task / description</th>{renderStatus && <th scope="col">Status</th>}<th scope="col">Total hours</th>{renderRemaining && <th scope="col">Remaining Effort</th>}<th scope="col">Predecessors</th><th scope="col">Start</th><th scope="col">Calculated finish</th><th scope="col" className="task-actions-header">Actions</th>
     </tr></thead><tbody>{tasks.map((task, index) => {
       const dates = scheduled.get(task.taskId)
       return <tr key={task.taskId} data-task-row={task.taskId} aria-label={`${task.taskId} ${task.name}`} aria-selected={selectedTaskId === task.taskId} className={`${editingId === task.taskId ? 'editing-row' : ''}${selectedTaskId === task.taskId ? ' selected-task-row' : ''}`}
@@ -62,7 +85,7 @@ export function TaskTable({ tasks, result, editingId, selectedTaskId, blocked, o
           {task.independentStartMode === 'MANUAL' && <ResetStart task={task} disabled={blocked} onCommit={onCommit} />}</> : null}
           {dates ? <><span>{dates.startDate}</span><small>hour {dates.startSlot.hour} that day</small></> : <span className="muted">Unavailable</span>}</td>
         <td className="task-finish-cell">{dates ? <><span>{dates.finishDate}</span><small>after hour {dates.finishBoundary.afterHour} that day</small></> : <span className="muted">Unavailable</span>}</td>
-        <td><div className="row-actions">{onDuplicate && <button type="button" className="quiet" disabled={blocked} onClick={() => onDuplicate(task)} aria-label={`Duplicate ${task.taskId}`}>Duplicate</button>}
+        <td className="task-actions-cell"><div className="row-actions">{onDuplicate && <button type="button" className="quiet" disabled={blocked} onClick={() => onDuplicate(task)} aria-label={`Duplicate ${task.taskId}`}>Duplicate</button>}
           <button type="button" className="quiet" disabled={blocked} onClick={() => onEdit(task)} aria-label={`Edit ${task.taskId}`} title="Open full task form">Edit form</button>
           <button type="button" className="danger-text" disabled={blocked} onClick={() => onDelete(task)} aria-label={`Delete ${task.taskId}`}>Delete</button></div></td>
       </tr>

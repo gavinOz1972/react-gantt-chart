@@ -1,0 +1,38 @@
+{
+  "positions": [
+    {
+      "extreme": "start",
+      "scrollLeft": 0,
+      "tableRight": 1227,
+      "cellLeft": 1117,
+      "cellRight": 1227,
+      "headerLeft": 1117,
+      "headerRight": 1227,
+      "buttonHit": true
+    },
+    {
+      "extreme": "end",
+      "scrollLeft": 446,
+      "tableRight": 1227,
+      "cellLeft": 1117,
+      "cellRight": 1227,
+      "headerLeft": 1117,
+      "headerRight": 1227,
+      "buttonHit": true
+    }
+  ],
+  "focus": {
+    "left": 280.015625,
+    "right": 370.015625,
+    "availableLeft": 53,
+    "availableRight": 1117
+  },
+  "wideViewport": {
+    "clientWidth": 1494,
+    "scrollWidth": 1620
+  },
+  "duplicateId": "T31",
+  "initializedRemaining": 4,
+  "baselineAndOriginalTasksUnchanged": true,
+  "hintFollowsActualOverflow": true
+}

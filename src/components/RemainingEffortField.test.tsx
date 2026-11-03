@@ -22,6 +22,8 @@ function edit(value: string, key = 'Enter') {
 test('table quick entry distinguishes unknown/zero, synchronizes selected chart/details and saves the existing format', () => {
   setup()
   const trigger = () => screen.getByRole('button', { name: 'Edit T1 remaining effort' })
+  expect(trigger()).toHaveTextContent('1 h')
+  edit('')
   expect(trigger()).toHaveTextContent('Unknown')
   edit('0')
   expect(trigger()).toHaveTextContent('0 h')
@@ -67,5 +69,5 @@ test('invalid chart drafts survive task selection changes and can be resumed or 
   fireEvent.click(screen.getByRole('button', { name: 'Resume remaining edit for T1' }))
   expect(screen.getByLabelText('Selected T1 remaining effort', { exact: true })).toHaveValue('invalid')
   fireEvent.keyDown(screen.getByLabelText('Selected T1 remaining effort', { exact: true }), { key: 'Escape' })
-  expect(within(screen.getByRole('region', { name: 'Selected chart task' })).getByRole('button', { name: 'Edit Selected T1 remaining effort' })).toHaveTextContent('Unknown')
+  expect(within(screen.getByRole('region', { name: 'Selected chart task' })).getByRole('button', { name: 'Edit Selected T1 remaining effort' })).toHaveTextContent('1 h')
 })

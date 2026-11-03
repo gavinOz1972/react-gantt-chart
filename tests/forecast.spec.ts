@@ -16,6 +16,7 @@ async function configure(page: Page) {
   await page.getByLabel('Class hours per student per week', { exact: true }).fill('3')
   await page.getByLabel('Homework hours per student per week', { exact: true }).fill('5')
   await page.getByLabel('Team size', { exact: true }).fill('4')
+  await page.getByRole('radio', { name: /^Fixed/ }).check()
   await page.getByLabel('Forecast As-of date', { exact: true }).fill('2026-11-02')
   await tab(page, 'Workspace')
 }

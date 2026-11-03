@@ -10,8 +10,8 @@ function today() {
   const date = new Date()
   return `${String(date.getFullYear()).padStart(4, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 }
-export function TaskWorkPanel({ task, tracking, baseline, disabled, onChange, onDraftChange, onSelect }: {
-  task?: TaskInput; tracking: WorkTracking; baseline?: Baseline; disabled: boolean
+export function TaskWorkPanel({ task, tracking, baseline, complete = false, disabled, onChange, onDraftChange, onSelect }: {
+  task?: TaskInput; tracking: WorkTracking; baseline?: Baseline; complete?: boolean; disabled: boolean
   onChange: (value: WorkTracking) => string | undefined; onDraftChange: (dirty: boolean) => void; onSelect: (id: string) => void
 }) {
   const [drafts, setDrafts] = useState<Record<string, EntryForm>>({})
@@ -29,7 +29,8 @@ export function TaskWorkPanel({ task, tracking, baseline, disabled, onChange, on
   const draft = id && Object.hasOwn(drafts, id) ? drafts[id] : undefined
   const hasRemainingDraft = !!id && Object.hasOwn(remainingDrafts, id)
   const remainingError = id && Object.hasOwn(remainingErrors, id) ? remainingErrors[id] : ''
-  const summary = id ? effortSummary(tracking, id, baseline) : undefined
+  const summary = id ? effortSummary(tracking, id, baseline, complete) : undefined
+  const retained = id && Object.hasOwn(tracking.remainingHours, id) ? tracking.remainingHours[id] : null
   const entries = id ? chronologicalEntries(tracking, id) : []
   function clearEntry(taskId: string) { setDrafts(previous => Object.fromEntries(Object.entries(previous).filter(([key]) => key !== taskId))) }
   function clearRemaining(taskId: string) {
@@ -50,7 +51,7 @@ export function TaskWorkPanel({ task, tracking, baseline, disabled, onChange, on
     clearEntry(id); setNotice(previous ? 'Work entry updated. Totals recalculated.' : 'Work entry added. Totals recalculated.'); restoreFocus()
   }
   function saveRemaining() {
-    if (!id || !hasRemainingDraft || disabled) return
+    if (!id || !hasRemainingDraft || disabled || complete) return
     const parsed = parseEffort(remainingDrafts[id], true)
     const problem = parsed.ok ? onChange({ ...tracking, remainingHours: { ...tracking.remainingHours, [id]: parsed.value } }) : parsed.errors.map(error => error.message).join(' ')
     if (problem) { setRemainingErrors(previous => ({ ...previous, [id]: problem })); return }
@@ -68,19 +69,20 @@ export function TaskWorkPanel({ task, tracking, baseline, disabled, onChange, on
     {!task || !summary ? <p className="muted">Select a saved task to record work and estimate remaining effort.</p> : <>
       <p className="work-task-identity"><strong>{task.taskId} — {task.name}</strong></p>
       <dl className="effort-summary">
-        <div><dt>Actual effort</dt><dd data-effort="actual">{formatEffort(summary.actualHours)} h</dd></div>
+        <div><dt>Recorded actual effort</dt><dd data-effort="actual">{formatEffort(summary.actualHours)} h</dd>{!entries.length && <small>Not recorded — 0 hours logged</small>}</div>
         <div><dt>Remaining effort</dt><dd data-effort="remaining">{summary.remainingHours === null ? 'Unknown' : `${formatEffort(summary.remainingHours)} h`}</dd></div>
-        <div><dt>Effort at completion</dt><dd data-effort="forecast">{summary.forecastHours === null ? 'Not available' : `${formatEffort(summary.forecastHours)} h`}</dd></div>
+        <div><dt>Effort at completion (recorded data)</dt><dd data-effort="forecast">{!entries.length || summary.forecastHours === null ? 'Not available' : `${formatEffort(summary.forecastHours)} h`}</dd></div>
         <div><dt>Baseline estimate</dt><dd data-effort="baseline">{summary.baselineHours === null ? 'No baseline' : `${formatEffort(summary.baselineHours)} h`}</dd></div>
-        <div><dt>Effort variance</dt><dd data-effort="variance">{summary.varianceHours === null ? 'Not available' : `${summary.varianceHours > 0 ? '+' : ''}${formatEffort(summary.varianceHours)} h`}</dd></div>
+        <div><dt>Effort variance (recorded data)</dt><dd data-effort="variance">{!entries.length || summary.varianceHours === null ? 'Not available' : `${summary.varianceHours > 0 ? '+' : ''}${formatEffort(summary.varianceHours)} h`}</dd></div>
       </dl>
-      <p className="muted">Effort at completion = actual + known remaining effort. Variance compares that total with this task’s original baseline estimate; positive means over estimate, negative means under. This is an effort comparison, not a predicted finish date.</p>
+      <p className="muted">Work logging is optional. Recorded hours may be incomplete. The recorded-data total adds logged hours and effective remaining work; its difference from the baseline is not verified performance, a proven overrun or a saving. With no work recorded, comparisons are unavailable. This is an effort comparison, not a predicted finish date.</p>
+      {complete && <p className="muted">Complete: zero effective unfinished work. Retained previous estimate: {retained === null ? 'Unknown' : `${formatEffort(retained)} h`}. This retained value is not a dated historical estimate. Review it when reopening.</p>}
       {disabled && <p className="muted">Finish or cancel task/settings edits before changing work records.</p>}
       <form className="remaining-form" noValidate onSubmit={event => { event.preventDefault(); saveRemaining() }}>
-        <label>Remaining effort (hours)<input type="text" inputMode="decimal" disabled={disabled} value={hasRemainingDraft ? remainingDrafts[id!] : summary.remainingHours === null ? '' : String(summary.remainingHours)} aria-describedby="remaining-help remaining-error" aria-invalid={!!remainingError}
+        <label>Remaining effort (hours)<input type="text" inputMode="decimal" disabled={disabled || complete} value={hasRemainingDraft && !complete ? remainingDrafts[id!] : summary.remainingHours === null ? '' : String(summary.remainingHours)} aria-describedby="remaining-help remaining-error" aria-invalid={!!remainingError}
           onChange={event => { setRemainingDrafts(previous => ({ ...previous, [id!]: event.target.value })); setRemainingErrors(previous => ({ ...previous, [id!]: '' })) }}
           onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); clearRemaining(id!) } }} /></label>
-        <p id="remaining-help" className="muted">Leave blank for unknown. Zero explicitly estimates no effort remains; it does not mark the task Complete. Use at most two decimal places.</p>
+        <p id="remaining-help" className="muted">{complete ? 'Reopen the task to reassess unfinished work. Recorded work entries remain editable.' : 'Leave blank for unknown. Zero explicitly estimates no effort remains; it does not mark the task Complete. Use at most two decimal places.'}</p>
         {hasRemainingDraft && <div className="form-actions"><button type="submit" disabled={disabled}>Save remaining estimate</button><button type="button" className="quiet" onClick={() => clearRemaining(id!)}>Cancel estimate</button></div>}
         <p id="remaining-error" className="field-error" role={remainingError ? 'alert' : undefined}>{remainingError}</p>
       </form>

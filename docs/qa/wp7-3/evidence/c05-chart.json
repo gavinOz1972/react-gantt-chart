@@ -1,0 +1,8 @@
+{
+  "target": "Blocked",
+  "reassessedRemaining": 4,
+  "invalidInputRejected": true,
+  "cancelPreservedBothStates": true,
+  "originalCompletionSnapshotAndWorkUnchanged": true,
+  "format": 5
+}

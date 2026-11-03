@@ -93,9 +93,9 @@ export function futureWorkWarning(workDate: string, today: string): string | und
 export function removeTaskWork(tracking: WorkTracking, taskId: string): WorkTracking {
   return { schemaVersion: 1, entries: tracking.entries.filter(entry => entry.taskId !== taskId), remainingHours: Object.fromEntries(Object.entries(tracking.remainingHours).filter(([id]) => id !== taskId)) }
 }
-export function effortSummary(tracking: WorkTracking, taskId: string, baseline?: Baseline) {
+export function effortSummary(tracking: WorkTracking, taskId: string, baseline?: Baseline, complete = false) {
   const actual = tracking.entries.filter(entry => entry.taskId === taskId).reduce((sum, entry) => sum + hundredths(entry.hours), 0)
-  const remaining = Object.hasOwn(tracking.remainingHours, taskId) ? tracking.remainingHours[taskId] : null
+  const remaining = complete ? 0 : Object.hasOwn(tracking.remainingHours, taskId) ? tracking.remainingHours[taskId] : null
   const forecast = remaining === null ? null : actual + hundredths(remaining)
   const baselineHours = baseline?.tasks.find(task => task.taskId === taskId)?.durationHours ?? null
   return { actualHours: actual / 100, remainingHours: remaining, forecastHours: forecast === null ? null : forecast / 100, baselineHours,

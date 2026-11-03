@@ -31,6 +31,7 @@ import { TaskStatusPanel } from './components/progress/TaskStatusPanel'
 import { DefinitionOfDone } from './components/progress/DefinitionOfDone'
 import { StatusTransitionDialog } from './components/progress/StatusTransitionDialog'
 import { localDate } from './components/progress/localDate'
+import { useLocalDate } from './components/progress/useLocalDate'
 import { forecastSchedule } from './forecast/forecast'
 import type { ForecastSettings } from './forecast/settings'
 import { ForecastSettingsForm } from './components/forecast/ForecastSettingsForm'
@@ -91,7 +92,7 @@ function App() {
   const result = useMemo(() => calculateSchedule(proposedProject, proposedTasks), [proposedProject, proposedTasks])
   const analysis = useMemo(() => analyzeCriticalPath(proposedProject, proposedTasks, result), [proposedProject, proposedTasks, result])
   const committedResult = useMemo(() => calculateSchedule(project, tasks), [project, tasks])
-  const today = localDate()
+  const today = useLocalDate()
   const forecast = useMemo(() => forecastSchedule({ project, tasks, manualOrder, remainingHours: workTracking.remainingHours, progress: taskProgress, baseline, settings: forecastSettings, today }), [project, tasks, manualOrder, workTracking.remainingHours, taskProgress, baseline, forecastSettings, today])
   const selectedForecast = forecast.tasks.find(task => task.taskId === selectedTaskId)
   const forecastAnnotationsVisible = showForecast && forecast.state !== 'Disabled' && !forecastDraft
@@ -102,7 +103,8 @@ function App() {
   const isNew = !!editor && !tasks.some(task => task.taskId === editor.taskId)
   const selectedTask = proposedTasks.find(task => task.taskId === selectedTaskId)
   const selectedCurrentTask = tasks.find(task => task.taskId === selectedTaskId)
-  const selectedEffort = selectedCurrentTask ? effortSummary(workTracking, selectedCurrentTask.taskId, baseline) : undefined
+  const selectedComplete = !!selectedCurrentTask && progressForTask(taskProgress, selectedCurrentTask.taskId).status === 'Complete'
+  const selectedEffort = selectedCurrentTask ? effortSummary(workTracking, selectedCurrentTask.taskId, baseline, selectedComplete) : undefined
   const selectedSchedule = result.ok ? result.tasks.find(task => task.taskId === selectedTaskId) : undefined
   const completion = result.ok ? result.projectCompletion : null
   const previewing = !!editor || projectDirty
@@ -142,10 +144,18 @@ function App() {
     if (!checked.ok) return checked.errors.map(error => error.message).join(' ')
     setTaskProgress(checked.value)
   }
-  function applyStatus(taskId: string, request: TransitionRequest): string | undefined {
+  function applyStatus(taskId: string, request: TransitionRequest, remainingDecision?: { hours: number | null }): string | undefined {
     const committedFinish = committedResult.ok ? committedResult.tasks.find(task => task.taskId === taskId)?.finishDate : undefined
     const checked = transitionTask(taskProgress, taskId, { ...request, ...(request.target === 'Complete' && committedFinish ? { committedFinishDateAtCompletion: committedFinish } : {}) }, tasks.map(task => task.taskId))
     if (!checked.ok) return checked.errors.map(error => error.message).join(' ')
+    let reassessed: WorkTracking | undefined
+    if (progressForTask(taskProgress, taskId).status === 'Complete' && request.target !== 'Complete') {
+      if (!remainingDecision) return 'Review remaining effort before reopening this task.'
+      const validated = decodeWorkTracking({ ...workTracking, remainingHours: { ...workTracking.remainingHours, [taskId]: remainingDecision.hours } }, tasks.map(task => task.taskId))
+      if (!validated.ok) return validated.errors.map(error => error.message).join(' ')
+      reassessed = validated.value
+    }
+    if (reassessed) setWorkTracking(reassessed)
     setTaskProgress(checked.value); setNotice(`${taskId}: ${request.target}. Save or Export JSON to keep this decision.`)
   }
   function requestStatus(task: TaskInput, target: TaskStatus, trigger: HTMLElement) {
@@ -176,10 +186,12 @@ function App() {
   function remainingField(task: TaskInput, source: 'table' | 'chart') {
     const fieldKey = `${source}:${task.taskId}`
     const active = quickRemaining?.fieldKey === fieldKey
-    return <RemainingEffortField key={fieldKey} label={`${source === 'chart' ? 'Selected ' : ''}${task.taskId} remaining effort`} value={remainingValue(task.taskId)} draft={active ? quickRemaining : undefined}
-      disabled={!!editor || inlineDrafts.size > 0 || workDraft || progressDraft || !result.ok || projectDirty || (!!quickRemaining && !active)}
+    const complete = progressForTask(taskProgress, task.taskId).status === 'Complete'
+    return <div><RemainingEffortField key={fieldKey} label={`${source === 'chart' ? 'Selected ' : ''}${task.taskId} remaining effort`} value={complete ? 0 : remainingValue(task.taskId)} draft={active ? quickRemaining : undefined}
+      disabled={complete || !!editor || inlineDrafts.size > 0 || workDraft || progressDraft || !result.ok || projectDirty || (!!quickRemaining && !active)}
       onBegin={() => setQuickRemaining({ taskId: task.taskId, fieldKey, text: remainingValue(task.taskId) === null ? '' : String(remainingValue(task.taskId)), error: '' })}
       onChange={text => setQuickRemaining(previous => previous && { ...previous, text, error: '' })} onCommit={commitQuickRemaining} onCancel={() => setQuickRemaining(null)} />
+      {complete && <small className="retained-effort">Complete: no unfinished work. Retained previous estimate: {remainingValue(task.taskId) === null ? 'Unknown' : `${formatEffort(remainingValue(task.taskId)!)} h`}.</small>}</div>
   }
   function commitInline(task: TaskInput): string | undefined {
     const candidate = replaceTask(tasks, task)
@@ -196,6 +208,7 @@ function App() {
     const copiedProgress = duplicateProgress(taskProgress, task.taskId, copy.taskId, progressForTask(taskProgress, task.taskId).criteria.map(() => `C-${crypto.randomUUID()}`), candidate.map(task => task.taskId))
     if (!copiedProgress.ok) { setNotice(copiedProgress.errors.map(error => error.message).join(' ')); return }
     setTaskProgress(copiedProgress.value)
+    setWorkTracking(previous => ({ ...previous, remainingHours: { ...previous.remainingHours, [copy.taskId]: copy.durationHours } }))
     setTasks(candidate); setNextId(nextId + 1); setManualOrder(insertCopy(manualOrder, task.taskId, copy.taskId))
     setDuplicateOrigins(previous => ({ ...previous, [copy.taskId]: task.taskId })); setSelectedTaskId(copy.taskId)
     setNotice(`${copy.taskId} created immediately after ${task.taskId} in Manual Order. Current sort kept.`)
@@ -289,7 +302,11 @@ function App() {
   function saveTask() {
     if (!editor || !result.ok) return
     setTasks(proposedTasks)
-    if (isNew) { setNextId(nextId + 1); setManualOrder(previous => [...previous, editor.taskId]) }
+    if (isNew) {
+      const created = proposedTasks.find(task => task.taskId === editor.taskId)!
+      setWorkTracking(previous => ({ ...previous, remainingHours: { ...previous.remainingHours, [created.taskId]: created.durationHours } }))
+      setNextId(nextId + 1); setManualOrder(previous => [...previous, editor.taskId])
+    }
     closeEditor(`${editor.taskId} saved. Schedule updated.`)
   }
 
@@ -359,9 +376,10 @@ function App() {
         {newSinceBaseline && <span className="muted">New since baseline</span>}
         <label className="selected-chart-status">Status<TaskStatusControl taskId={selectedCurrentTask.taskId} value={progressForTask(taskProgress, selectedCurrentTask.taskId).status} context="chart" disabled={statusBlocked} onRequest={(target, trigger) => requestStatus(selectedCurrentTask, target, trigger)} /></label>
         <div className="selected-remaining"><span>Remaining Effort</span>{remainingField(selectedCurrentTask, 'chart')}</div>
-        <dl><div><dt>Actual effort</dt><dd>{formatEffort(selectedEffort.actualHours)} h</dd></div>
-          <div><dt>Effort at completion</dt><dd>{selectedEffort.forecastHours === null ? 'Not available' : `${formatEffort(selectedEffort.forecastHours)} h`}</dd></div>
-          <div><dt>Effort variance</dt><dd>{selectedEffort.varianceHours === null ? 'Not available' : `${selectedEffort.varianceHours > 0 ? '+' : ''}${formatEffort(selectedEffort.varianceHours)} h`}</dd></div></dl>
+        <dl><div><dt>Recorded actual effort</dt><dd>{formatEffort(selectedEffort.actualHours)} h</dd>{selectedEffort.actualHours === 0 && <small>Not recorded — 0 hours logged</small>}</div>
+          <div><dt>Effort at completion (recorded data)</dt><dd>{selectedEffort.actualHours === 0 || selectedEffort.forecastHours === null ? 'Not available' : `${formatEffort(selectedEffort.forecastHours)} h`}</dd></div>
+          <div><dt>Effort variance (recorded data)</dt><dd>{selectedEffort.actualHours === 0 || selectedEffort.varianceHours === null ? 'Not available' : `${selectedEffort.varianceHours > 0 ? '+' : ''}${formatEffort(selectedEffort.varianceHours)} h`}</dd></div></dl>
+        <p className="recorded-effort-note muted">Work logging is optional. Recorded hours may be incomplete; these comparisons are not verified total effort or proven savings.</p>
         {selectedForecast && !forecastDraft && <TaskForecastSummary task={selectedForecast} showForecastBadge={forecastAnnotationsVisible} />}
         <button type="button" className="quiet close-selected-task" aria-label="Close selected task details" disabled={!!quickRemaining?.fieldKey.startsWith('chart:')} title={quickRemaining?.fieldKey.startsWith('chart:') ? 'Save or cancel the remaining-effort edit before closing.' : 'Dismiss selection; task data is kept.'}
           onPointerDown={event => event.preventDefault()} onClick={dismissChartSelection}><span aria-hidden="true">×</span> Close</button>
@@ -394,13 +412,13 @@ function App() {
       {newSinceBaseline && <p className="muted">New since baseline: this permanent task ID has no originally approved dates.</p>}
       <TaskStatusPanel key={`status-${documentEpoch}`} task={selectedCurrentTask} tracking={taskProgress} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || definitionDraft || !!statusPrompt || forecastDraft || !result.ok || projectDirty} statusDisabled={statusBlocked}
         health={selectedTaskId ? health.tasks.get(selectedTaskId) : undefined} onRequest={requestStatus} onCriteria={commitCriteria} onDraftChange={setCriteriaDraft} onSelect={setSelectedTaskId} />
-      <TaskWorkPanel key={`work-${documentEpoch}`} task={selectedCurrentTask} tracking={workTracking} baseline={baseline} disabled={!!editor || inlineDrafts.size > 0 || !result.ok || projectDirty || !!quickRemaining || progressDraft}
+      <TaskWorkPanel key={`work-${documentEpoch}`} task={selectedCurrentTask} tracking={workTracking} baseline={baseline} complete={selectedComplete} disabled={!!editor || inlineDrafts.size > 0 || !result.ok || projectDirty || !!quickRemaining || progressDraft}
         onChange={commitWork} onDraftChange={setWorkDraft} onSelect={setSelectedTaskId} />
     </section>
     </div>
     <p className="save-notice" role="status">{notice}</p>
-    {statusPrompt && <StatusTransitionDialog key={`${statusPrompt.taskId}:${statusPrompt.target}`} task={tasks.find(task => task.taskId === statusPrompt.taskId)!} current={progressForTask(taskProgress, statusPrompt.taskId)} target={statusPrompt.target} definitionOfDone={taskProgress.definitionOfDone}
-      onCommit={request => { const problem = applyStatus(statusPrompt.taskId, request); if (!problem) closeStatusPrompt(); return problem }} onCancel={closeStatusPrompt} />}
+    {statusPrompt && <StatusTransitionDialog key={`${statusPrompt.taskId}:${statusPrompt.target}`} task={tasks.find(task => task.taskId === statusPrompt.taskId)!} current={progressForTask(taskProgress, statusPrompt.taskId)} target={statusPrompt.target} definitionOfDone={taskProgress.definitionOfDone} previousRemaining={remainingValue(statusPrompt.taskId)}
+      onCommit={(request, remainingDecision) => { const problem = applyStatus(statusPrompt.taskId, request, remainingDecision); if (!problem) closeStatusPrompt(); return problem }} onCancel={closeStatusPrompt} />}
     {deleting && <DeleteTaskDialog task={deleting} affected={tasks.filter(task => task.predecessorTaskIds.includes(deleting.taskId))} error={deleteError} workEntryCount={workTracking.entries.filter(entry => entry.taskId === deleting.taskId).length} hasRemainingEstimate={Object.hasOwn(workTracking.remainingHours, deleting.taskId) && workTracking.remainingHours[deleting.taskId] !== null} statusEventCount={taskProgress.events.filter(event => event.taskId === deleting.taskId).length} criterionCount={progressForTask(taskProgress, deleting.taskId).criteria.length}
       onConfirm={confirmDelete} onCancel={() => setDeleting(null)} />}
     <footer>Project, task entry, Gantt & Network / Critical Path · Local saves and portable JSON.</footer>

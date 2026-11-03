@@ -1,9 +1,12 @@
 # Owner review and decision sheet
 
-WP7.2 is complete as an assessment. **No production changes were authorized
-or made.** The application's visible UI is therefore unchanged. WP7.1
-acceptance is still unrecorded; mark it independently below. Starting WP7.2
-and reporting QA71-005 did not approve either assessment or any correction.
+WP7.2 was delivered as an assessment with no production changes. Subsequent
+owner authorization on November 2, 2026 explicitly approved **C01–C06** in
+`React_Gantt_WP7_Progress_Consistency_and_Usability_Corrections.docx` and the
+user's implementation request. Those corrections are now implemented for
+[WP7.3 owner review](../wp7-3/WP7-3-OWNER-RUNBOOK.md). C07–C10 are excluded.
+WP7.1 acceptance remains unrecorded and outstanding; scope authorization
+does not silently accept it or the earlier assessment checkboxes below.
 
 ## Review the key evidence
 
@@ -29,27 +32,28 @@ contains bounded acceptance and compatibility requirements.
 
 ## Approve, defer or reject independently
 
-All choices start **Pending**. Mark one disposition per row and add any
-scope conditions. Approval means authorization for a later explicitly started
-WP7.3/enhancement scope, not that it has already been implemented here.
+At the assessment handoff every choice was Pending. The current record below
+reflects the subsequent explicit C01–C06 implementation approval. WP7.3
+acceptance is a separate owner decision after testing; no approval is inferred
+for the remaining candidates or for future work packages.
 
 | Item | Proposed decision | Approve | Defer | Reject | Conditions / alternative |
 | --- | --- | --- | --- | --- | --- |
-| C01 / QA71-005 | Sticky visible Actions/Duplicate and overflow hint | [ ] | [ ] | [ ] | __________ |
-| C02 / UX7-006 | Complete shows zero effective remaining; retain stored estimate/history | [ ] | [ ] | [ ] | Pair with C03 qualification |
-| C03 | Qualify actual/variance as recorded data with unknown completeness; keep logging optional | [ ] | [ ] | [ ] | __________ |
-| C04 | One-time new-task remaining = initial entered estimate | [ ] | [ ] | [ ] | Duplicate: same seed / Unknown / other: ____ |
-| C05 | Require affirm/revise/Unknown remaining review when reopening, plus reason | [ ] | [ ] | [ ] | __________ |
-| C06 / QA71-002 | Explicit Automatic/Fixed As-of selection, existing file contract | [ ] | [ ] | [ ] | __________ |
+| C01 / QA71-005 | Sticky visible Actions/Duplicate and overflow hint | [x] | [ ] | [ ] | Implemented; WP7.3 owner validation pending |
+| C02 / UX7-006 | Complete shows zero effective remaining; retain stored estimate/history | [x] | [ ] | [ ] | Implemented with C03 qualification |
+| C03 | Qualify actual/variance as recorded data with unknown completeness; keep logging optional | [x] | [ ] | [ ] | Implemented; no completeness field added |
+| C04 | One-time new-task remaining = initial entered estimate | [x] | [ ] | [ ] | Duplicate seeds from copied planning duration; implemented |
+| C05 | Require affirm/revise/Unknown remaining review when reopening, plus reason | [x] | [ ] | [ ] | Implemented; history remains intact |
+| C06 / QA71-002 | Explicit Automatic/Fixed As-of selection, existing file contract | [x] | [ ] | [ ] | Implemented; optional asOfDate semantics retained |
 | C10 | Preserve task/date anchor on scale/mode change when practical | [ ] | [ ] | [ ] | Current Go to selected may suffice |
 | C07 (larger) | Separately scope Expand/Restore for both charts, controls/details/Esc/state retained | [ ] | [ ] | [ ] | No native browser fullscreen |
 | C08 (larger) | Separately scope exception-based meeting view | [ ] | [ ] | [ ] | Approve manual workflow only / view scope: ____ |
 | C09 (larger/storage) | Separately design optional dated student Green/Yellow/Red with history | [ ] | [ ] | [ ] | New version/backup review required |
 
-Recommended order: C01 and C02 with C03 first; independently decide C04/C05/C06.
-C10 is optional polish. Treat C07/C08/C09 as larger enhancements requiring
-their own scope and, for C09, a compatibility contract before implementation.
-Do not bundle them into a defect correction or silently add health history.
+C01–C06 have now been approved and implemented together for WP7.3 review.
+C10 remains optional, unapproved polish. C07/C08/C09 still require separate
+enhancement scope and, for C09, a compatibility contract before implementation.
+None was bundled into the correction package and no health history was added.
 
 Constraints already given by WP7.2 remain fixed: four work statuses, no
 calendar-based remaining deduction, optional actual logs, immutable baseline
@@ -68,5 +72,7 @@ Owner/date: ____________________ Approved item IDs/scope: ________________
 No new-student participant study was conducted. If student comprehension or
 meeting effort must be validated before selecting a design, request a short
 facilitated session separately; no automated pass rate substitutes for it.
-WP7.3 begins only after separate authorization naming its approved scope.
+WP7.3 implementation was explicitly authorized for C01–C06; its owner
+acceptance is still pending. The scope approval source/date are recorded
+above; it does not check the earlier assessment-acceptance boxes by inference.
 WP8 reporting and release/deployment work remain outside this package.
