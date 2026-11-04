@@ -114,7 +114,7 @@ test('desktop task workflow, dependencies, recalculation and confirmed deletion'
   await page.getByLabel('Target end date', { exact: true }).fill('2026-11-02')
   await page.getByRole('tab', { name: 'Project Settings', exact: true }).click()
   await page.getByLabel('Target end date', { exact: true }).press('Tab')
-  await expect(page.getByText('Late', { exact: true })).toBeVisible()
+  await expect(page.getByRole('region', { name: 'Project overview', exact: true }).getByText('Late', { exact: true })).toBeVisible()
   await page.screenshot({ path: info.outputPath('desktop.png'), fullPage: true })
 })
 

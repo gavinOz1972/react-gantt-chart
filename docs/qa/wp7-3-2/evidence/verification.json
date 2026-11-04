@@ -1,0 +1,72 @@
+{
+    "reviewDate":  "2026-11-03",
+    "reviewTimezone":  "America/Regina",
+    "capturedAtUTC":  "2026-11-04T04:24:32.8146863Z",
+    "branch":  "feature/wp7-stabilization",
+    "startingCommit":  "284a7f921790473c26f5248cefdfe11584d03c5d",
+    "requiredWP73Ancestor":  true,
+    "initialWorkingTreeClean":  true,
+    "authorization":  {
+                          "file":  "Bugsys_WP7_3_2_Implementation_Prompt.docx",
+                          "sha256":  "22706bfe95f6b1691bb0a4c0fa6bbf7e5efc399807fde8824fd8ff6323c73a11",
+                          "policies":  "D01-D09 approved with prompt conditions",
+                          "implementationAndPush":  true,
+                          "mainMergeDeploymentTags":  false
+                      },
+    "protectedReferences":  {
+                                "main":  "a6a1c32c22a2bf074b161e52d523443602843dd7",
+                                "v10TagObject":  "a4157bc84392c770c27111da58d779948b110a56",
+                                "v10Target":  "abb85011dafc9fb0876953e3132880e025ef65da",
+                                "v11TagObject":  "134305f2205eb993ab76672c2d2469d48d91a609",
+                                "v11Target":  "af96d3b257ddfdcbc7f26a968401d634d210aef6",
+                                "remotePrePushMatches":  true
+                            },
+    "boundaries":  {
+                       "committedEngineCalendarCPMUnchanged":  true,
+                       "effortForecastUnchanged":  true,
+                       "baselineAndEventSchemaUnchanged":  true,
+                       "persistenceFormats1to5Unchanged":  true,
+                       "dependenciesAndConfigurationUnchanged":  true,
+                       "ownerDataOperatedOn":  false,
+                       "originalOwnerServerRestarted":  false,
+                       "derivedPAStatePersisted":  false
+                   },
+    "checks":  {
+                   "lint":  "pass",
+                   "typecheck":  "pass",
+                   "unitTests":  452,
+                   "unitFiles":  33,
+                   "newDomainTests":  38,
+                   "fullChromiumTests":  182,
+                   "priorBrowserTests":  160,
+                   "newBrowserTests":  22,
+                   "build":  "pass",
+                   "finalCheckExit":  0,
+                   "finalBrowserExit":  0,
+                   "paperCases":  23,
+                   "principalScenarios":  16,
+                   "validOwnerFixtures":  13,
+                   "sparseDenseBenchFixtures":  8,
+                   "maximumP95Ms":  12.294200000000046,
+                   "benchmarkTargetP95Ms":  50,
+                   "browserCleanup":  "Final runs with permission for owned-server process cleanup",
+                   "ownerAcceptance":  "Pending",
+                   "WP71OwnerAcceptance":  "Outstanding",
+                   "WP73OwnerAcceptance":  "Outstanding"
+               },
+    "environment":  {
+                        "node":  "24.19.0",
+                        "npm":  "11.17.0",
+                        "vitest":  "5.0.5",
+                        "vite":  "8.3.5",
+                        "playwright":  "1.64.1",
+                        "chromium":  "156.0.8078.4",
+                        "scenarioTimezone":  "America/Regina"
+                    },
+    "limitations":  [
+                        "Conditional calendar/dependency outlook, not resource levelling",
+                        "Actual time and remaining scheduled-slot evidence not captured",
+                        "No projected CPM or new persistence version",
+                        "No student participant study; owner UX acceptance pending"
+                    ]
+}

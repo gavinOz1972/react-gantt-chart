@@ -102,7 +102,7 @@ test('manual release delay is separate from effort and target edits do not chang
   await page.getByLabel('Target end date', { exact: true }).fill('2026-11-02')
   await page.getByRole('tab', { name: 'Project Settings', exact: true }).click()
   await page.getByLabel('Target end date', { exact: true }).blur()
-  await expect(page.getByText('Late', { exact: true })).toBeVisible()
+  await expect(page.getByRole('region', { name: 'Project overview', exact: true }).getByText('Late', { exact: true })).toBeVisible()
   await page.getByRole('tab', { name: 'Workspace', exact: true }).click()
   await expect(node(page, 'T2')).toHaveAttribute('data-critical', 'true')
   await expect(node(page, 'T1')).toHaveAttribute('aria-label', /6 hours slack/)

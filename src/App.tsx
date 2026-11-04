@@ -38,6 +38,7 @@ import { ForecastSettingsForm } from './components/forecast/ForecastSettingsForm
 import { ForecastSummary, TaskForecastSummary } from './components/forecast/ForecastSummary'
 import { healthPresentation } from './progress/healthPresentation'
 import { TaskHealthBadge } from './components/progress/HealthBadge'
+import { calculateProgressImpact, impactDescription } from './projection/progressImpact'
 
 const tabs = ['Files', 'Project Settings', 'Workspace'] as const
 type Tab = typeof tabs[number]
@@ -93,6 +94,10 @@ function App() {
   const analysis = useMemo(() => analyzeCriticalPath(proposedProject, proposedTasks, result), [proposedProject, proposedTasks, result])
   const committedResult = useMemo(() => calculateSchedule(project, tasks), [project, tasks])
   const today = useLocalDate()
+  const [paAsOfOverride, setPaAsOfOverride] = useState<string | null>(null)
+  const paAsOf = paAsOfOverride ?? today
+  const impact = useMemo(() => calculateProgressImpact({ project, tasks, progress: taskProgress, asOf: paAsOf }), [project, tasks, taskProgress, paAsOf])
+  const selectedImpact = impact.ok ? impact.tasks.find(t => t.taskId === selectedTaskId) : undefined
   const forecast = useMemo(() => forecastSchedule({ project, tasks, manualOrder, remainingHours: workTracking.remainingHours, progress: taskProgress, baseline, settings: forecastSettings, today }), [project, tasks, manualOrder, workTracking.remainingHours, taskProgress, baseline, forecastSettings, today])
   const selectedForecast = forecast.tasks.find(task => task.taskId === selectedTaskId)
   const forecastAnnotationsVisible = showForecast && forecast.state !== 'Disabled' && !forecastDraft
@@ -221,6 +226,7 @@ function App() {
   }, [unsaved])
 
   function openProject(file: ProjectFile, name: string | null) {
+    setPaAsOfOverride(null)
     setShowBaseline(false); setShowForecast(false)
     setBaseline(file.baseline); setLegacySource(file.schemaVersion < 5 ? file : undefined)
     setForecastSettings(file.forecastSettings); setForecastDraft(false)
@@ -243,6 +249,7 @@ function App() {
     setCurrentSavedName(name); setSavedFingerprint(projectFingerprint(file))
   }
   function freshProject() {
+    setPaAsOfOverride(null)
     setShowBaseline(false); setShowForecast(false)
     setForecastSettings(undefined); setForecastDraft(false)
     setTaskProgress(emptyProgress()); setCriteriaDraft(false); setDefinitionDraft(false); setStatusPrompt(null)
@@ -369,6 +376,7 @@ function App() {
       <button type="button" aria-pressed={chartView === 'network'} onClick={() => setChartView('network')}>Network / Critical Path</button></div>
     <div ref={ganttContainer} hidden={chartView !== 'gantt'}><GanttChart project={proposedProject} tasks={displayed} result={result} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} onDismissSelection={dismissChartSelection} previewing={previewing}
       showInspection={false} analysis={analysis} highlightCritical={highlightCritical} onHighlightChange={setHighlightCritical}
+      impact={impact} paAsOf={paAsOf} onPaAsOfChange={setPaAsOfOverride} onPaToday={() => setPaAsOfOverride(null)}
       baseline={baseline} forecast={forecast} invalidForecast={forecastDraft} health={health.tasks} showBaseline={showBaseline} showForecast={showForecast} onBaselineChange={setShowBaseline} onForecastChange={setShowForecast} remainingHours={workTracking.remainingHours}>
       {selectedCurrentTask && selectedEffort && <section className="selected-effort-quick" aria-label="Selected chart task" tabIndex={0}>
         <strong>{selectedCurrentTask.taskId} — {selectedCurrentTask.name}</strong>
@@ -381,13 +389,15 @@ function App() {
           <div><dt>Effort variance (recorded data)</dt><dd>{selectedEffort.actualHours === 0 || selectedEffort.varianceHours === null ? 'Not available' : `${selectedEffort.varianceHours > 0 ? '+' : ''}${formatEffort(selectedEffort.varianceHours)} h`}</dd></div></dl>
         <p className="recorded-effort-note muted">Work logging is optional. Recorded hours may be incomplete; these comparisons are not verified total effort or proven savings.</p>
         {selectedForecast && !forecastDraft && <TaskForecastSummary task={selectedForecast} showForecastBadge={forecastAnnotationsVisible} />}
+        {selectedImpact && <p className="selected-impact">{impactDescription(selectedImpact, paAsOf)}</p>}
+        {selectedImpact && impact.ok && <p className="selected-impact">{impact.project.uncertain ? 'Project outlook Unknown.' : `${impact.project.actual ? 'Actual project finish' : 'Conditional project outlook'} ${impact.project.date}; current committed ${impact.project.committedDate}.`} {impact.tasks.filter(t => t.shiftSlots !== null && t.shiftSlots !== '0').length} shifted tasks. See the automatic impact summary above.</p>}
         <button type="button" className="quiet close-selected-task" aria-label="Close selected task details" disabled={!!quickRemaining?.fieldKey.startsWith('chart:')} title={quickRemaining?.fieldKey.startsWith('chart:') ? 'Save or cancel the remaining-effort edit before closing.' : 'Dismiss selection; task data is kept.'}
           onPointerDown={event => event.preventDefault()} onClick={dismissChartSelection}><span aria-hidden="true">×</span> Close</button>
       </section>}
       {quickRemaining?.fieldKey.startsWith('chart:') && selectedTaskId !== quickRemaining.taskId && <div className="quick-remaining-pending" role="status">Unsubmitted Remaining Effort edit for {quickRemaining.taskId}.
         <button type="button" className="quiet" onClick={() => setSelectedTaskId(quickRemaining.taskId)}>Resume remaining edit for {quickRemaining.taskId}</button><button type="button" className="quiet" onClick={() => setQuickRemaining(null)}>Cancel remaining edit</button></div>}
     </GanttChart></div>
-    <div hidden={chartView !== 'network'}><NetworkView key={documentEpoch} active={chartView === 'network' && tab === 'Workspace'} showInspection={false} tasks={proposedTasks} result={result} analysis={analysis} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} /></div>
+    <div hidden={chartView !== 'network'}><NetworkView key={documentEpoch} active={chartView === 'network' && tab === 'Workspace'} showInspection={false} tasks={proposedTasks} result={result} analysis={analysis} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} impact={impact} /></div>
     <ForecastSummary forecast={forecast} invalidDraft={forecastDraft} health={health.project} target={project.targetEndDate} />
     <section className="panel tasks-panel" aria-labelledby="tasks-heading">
       <div className="section-heading"><div><span className="eyebrow">02 / Tasks & Schedule</span><h2 id="tasks-heading">Tasks & schedule</h2></div>

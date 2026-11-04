@@ -1,0 +1,172 @@
+{
+  "project": {
+    "projectId": "WP731-L12",
+    "name": "WP732 DISPOSABLE L12",
+    "projectStartDate": "2026-11-02",
+    "targetEndDate": "2026-11-20",
+    "workingWeekdays": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "workingHoursPerDay": 4
+  },
+  "tasks": [
+    {
+      "taskId": "T1",
+      "name": "T1 Design approval",
+      "description": "Fictional diagnostic task; not owner data.",
+      "durationHours": 20,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T2",
+      "name": "T2 Build successor",
+      "description": "Fictional diagnostic task; not owner data.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T1"
+      ],
+      "independentStartMode": "DEFAULT"
+    }
+  ],
+  "nextTaskNumber": 3,
+  "manualOrder": [
+    "T1",
+    "T2"
+  ],
+  "sortMode": "manual",
+  "duplicateOrigins": {},
+  "format": "react-gantt-chart",
+  "schemaVersion": 5,
+  "createdBy": "React Gantt Chart",
+  "savedAt": "2026-11-10T12:00:00.000Z",
+  "baseline": {
+    "project": {
+      "projectId": "WP731-L12",
+      "name": "WP732 DISPOSABLE L12",
+      "projectStartDate": "2026-11-02",
+      "targetEndDate": "2026-11-20",
+      "workingWeekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "workingHoursPerDay": 4
+    },
+    "tasks": [
+      {
+        "taskId": "T1",
+        "name": "T1 Design approval",
+        "description": "Fictional diagnostic task; not owner data.",
+        "durationHours": 20,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T2",
+        "name": "T2 Build successor",
+        "description": "Fictional diagnostic task; not owner data.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T1"
+        ],
+        "independentStartMode": "DEFAULT"
+      }
+    ],
+    "nextTaskNumber": 3,
+    "manualOrder": [
+      "T1",
+      "T2"
+    ],
+    "sortMode": "manual",
+    "duplicateOrigins": {},
+    "schemaVersion": 1,
+    "baselineId": "WP732-L12",
+    "establishedAt": "2026-11-01T12:00:00.000Z",
+    "schedule": {
+      "tasks": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-06",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-06"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-09",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-09",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-09",
+          "finishDate": "2026-11-09"
+        }
+      ],
+      "projectCompletion": {
+        "date": "2026-11-09",
+        "afterHour": 4
+      }
+    }
+  },
+  "workTracking": {
+    "schemaVersion": 1,
+    "entries": [],
+    "remainingHours": {
+      "T1": 20,
+      "T2": 4
+    }
+  },
+  "taskProgress": {
+    "schemaVersion": 1,
+    "definitionOfDone": "",
+    "tasks": {
+      "T1": {
+        "status": "Complete",
+        "criteria": []
+      }
+    },
+    "events": [
+      {
+        "eventId": "L12-E1",
+        "taskId": "T1",
+        "fromStatus": "Not Started",
+        "toStatus": "Complete",
+        "date": "2026-11-07",
+        "recordedAt": "2026-11-10T12:00:00.000Z",
+        "criteriaSnapshot": [],
+        "completionAcknowledged": true,
+        "noCriteriaAcknowledged": true,
+        "definitionOfDone": "",
+        "committedFinishDateAtCompletion": "2026-11-06"
+      }
+    ]
+  },
+  "forecastSettings": {
+    "schemaVersion": 1,
+    "enabled": true,
+    "classHoursPerStudent": 28,
+    "homeworkHoursPerStudent": 0,
+    "teamSize": 1,
+    "asOfDate": "2026-11-07"
+  }
+}

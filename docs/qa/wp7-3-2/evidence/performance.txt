@@ -1,0 +1,3 @@
+10:23:35 p.m. [vite] (client) Re-optimizing dependencies because vite config has changed
+10:23:38 p.m. [vite] (client) [optimizer] bundling dependencies...
+PASS: 8 sparse/dense 30-100 task fixtures; all p95 <50ms; maximum p95 12.29ms.

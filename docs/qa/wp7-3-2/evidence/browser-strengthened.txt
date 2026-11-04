@@ -1,0 +1,44 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test tests/wp732/progress-impact.spec.ts --workers=3
+
+npm.cmd : [WebServer] (node:31408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+At line:2 char:1
++ npm.cmd run test:e2e -- tests/wp732/progress-impact.spec.ts --workers ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 3 workers
+
+(node:34112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:76852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\wp732\progress-impact.spec.ts:45:1 › B - shifted successor, absorbed slack and no modelled project delay (1.1s)
+  ok  3 [chromium] › tests\wp732\progress-impact.spec.ts:52:49 › C - L09 missing or contradictory evidence stays Unknown (1.2s)
+  ok  2 [chromium] › tests\wp732\progress-impact.spec.ts:26:1 › A J - completion immediately updates marker, successor and project summary with toggles off (1.9s)
+  ok  4 [chromium] › tests\wp732\progress-impact.spec.ts:52:49 › C - L14b missing or contradictory evidence stays Unknown (841ms)
+  ok  5 [chromium] › tests\wp732\progress-impact.spec.ts:52:49 › C - L13 missing or contradictory evidence stays Unknown (886ms)
+  ok  6 [chromium] › tests\wp732\progress-impact.spec.ts:52:49 › C - L10 missing or contradictory evidence stays Unknown (866ms)
+  ok  7 [chromium] › tests\wp732\progress-impact.spec.ts:62:1 › D - same-day completion uses next working day without historical lateness claim (891ms)
+  ok  8 [chromium] › tests\wp732\progress-impact.spec.ts:69:1 › E - changed outlook driver preserves committed critical highlighting and Network facts (1.2s)
+  ok 11 [chromium] › tests\wp732\progress-impact.spec.ts:107:46 › H - actual and PA automatic in overlay combination 0 (647ms)
+  ok  9 [chromium] › tests\wp732\progress-impact.spec.ts:81:1 › F - As-of-only shift stays independent of unrelated late completion and FF control (1.3s)
+  ok 10 [chromium] › tests\wp732\progress-impact.spec.ts:89:1 › G - save/reload/export/import preserves facts and reproduces PA with external As-of (1.8s)
+  ok 12 [chromium] › tests\wp732\progress-impact.spec.ts:107:46 › H - actual and PA automatic in overlay combination 1 (740ms)
+  ok 13 [chromium] › tests\wp732\progress-impact.spec.ts:107:46 › H - actual and PA automatic in overlay combination 2 (761ms)
+  ok 15 [chromium] › tests\wp732\progress-impact.spec.ts:107:46 › H - actual and PA automatic in overlay combination 4 (745ms)
+  ok 14 [chromium] › tests\wp732\progress-impact.spec.ts:107:46 › H - actual and PA automatic in overlay combination 3 (859ms)
+  ok 16 [chromium] › tests\wp732\progress-impact.spec.ts:107:46 › H - actual and PA automatic in overlay combination 5 (845ms)
+  ok 17 [chromium] › tests\wp732\progress-impact.spec.ts:107:46 › H - actual and PA automatic in overlay combination 6 (875ms)
+  ok 18 [chromium] › tests\wp732\progress-impact.spec.ts:107:46 › H - actual and PA automatic in overlay combination 7 (1.0s)
+  ok 19 [chromium] › tests\wp732\progress-impact.spec.ts:115:1 › nonworking actual date, keyboard access, long-range Go to impact and context retention (1.5s)
+  ok 20 [chromium] › tests\wp732\progress-impact.spec.ts:136:40 › I - 30 tasks stay virtualized and keyboard discoverable (1.4s)
+  ok 21 [chromium] › tests\wp732\progress-impact.spec.ts:136:40 › I - 40 tasks stay virtualized and keyboard discoverable (1.4s)
+
+  21 passed (10.6s)

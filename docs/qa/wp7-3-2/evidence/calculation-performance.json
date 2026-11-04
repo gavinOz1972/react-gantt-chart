@@ -1,0 +1,81 @@
+{
+  "capturedAtUTC": "2026-11-04T04:23:38.656Z",
+  "node": "v24.19.0",
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+  "logicalProcessors": 32,
+  "method": "Node/Vite SSR pure calculation only, 25 warmups + 100 iterations per fixture. Includes existing schedule/progress validation and new projection. Observational on shared host; not browser paint or a physical student laptop.",
+  "rows": [
+    {
+      "count": 30,
+      "edges": 29,
+      "dense": false,
+      "samples": 100,
+      "p50Ms": 0.3365000000000009,
+      "p95Ms": 0.5921999999999912,
+      "maxMs": 0.7136000000000422
+    },
+    {
+      "count": 30,
+      "edges": 435,
+      "dense": true,
+      "samples": 100,
+      "p50Ms": 1.2839999999999918,
+      "p95Ms": 1.9729999999999563,
+      "maxMs": 2.2631000000000085
+    },
+    {
+      "count": 40,
+      "edges": 39,
+      "dense": false,
+      "samples": 100,
+      "p50Ms": 0.41250000000002274,
+      "p95Ms": 0.8912000000000262,
+      "maxMs": 2.2830999999999904
+    },
+    {
+      "count": 40,
+      "edges": 780,
+      "dense": true,
+      "samples": 100,
+      "p50Ms": 1.9521000000000868,
+      "p95Ms": 2.712099999999964,
+      "maxMs": 3.3554000000000315
+    },
+    {
+      "count": 60,
+      "edges": 59,
+      "dense": false,
+      "samples": 100,
+      "p50Ms": 0.5460999999999103,
+      "p95Ms": 0.7853999999999814,
+      "maxMs": 0.9380999999999631
+    },
+    {
+      "count": 60,
+      "edges": 1770,
+      "dense": true,
+      "samples": 100,
+      "p50Ms": 4.185100000000148,
+      "p95Ms": 5.522900000000163,
+      "maxMs": 5.888299999999845
+    },
+    {
+      "count": 100,
+      "edges": 99,
+      "dense": false,
+      "samples": 100,
+      "p50Ms": 0.9555000000000291,
+      "p95Ms": 1.2993999999998778,
+      "maxMs": 1.77800000000002
+    },
+    {
+      "count": 100,
+      "edges": 4950,
+      "dense": true,
+      "samples": 100,
+      "p50Ms": 11.042300000000068,
+      "p95Ms": 12.294200000000046,
+      "maxMs": 14.033099999999877
+    }
+  ]
+}

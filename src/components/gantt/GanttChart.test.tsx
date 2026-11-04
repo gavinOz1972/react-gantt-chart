@@ -5,6 +5,7 @@ import { calculateSchedule } from '../../domain'
 import type { ProjectSettings, ScheduleResult, TaskInput } from '../../domain'
 import { GanttChart } from './GanttChart'
 import App from '../../App'
+import { ROW_HEIGHT } from '../../timeline/projection'
 
 const project: ProjectSettings = { projectId: 'P1', name: 'Chart example', projectStartDate: '2026-11-02', targetEndDate: '2026-11-09', workingWeekdays: [1, 4], workingHoursPerDay: 2 }
 const task = (taskId: string, durationHours = 3, predecessorTaskIds: string[] = []): TaskInput => ({ taskId, name: taskId, description: '', durationHours, predecessorTaskIds, independentStartMode: 'DEFAULT' })
@@ -65,7 +66,7 @@ test('A10 long projects render bounded visible rows and dates, and preserve scro
   expect(screen.getAllByRole('button', { name: /^Inspect T/ }).length).toBeLessThan(15)
   expect(container.querySelectorAll('*').length).toBeLessThan(1200)
   const region = screen.getByRole('region', { name: 'Scrollable Gantt timeline' })
-  fireEvent.scroll(region, { target: { scrollTop: 5200, scrollLeft: 6000 } })
+  fireEvent.scroll(region, { target: { scrollTop: 100 * ROW_HEIGHT, scrollLeft: 6000 } })
   expect(screen.queryByRole('button', { name: 'Inspect T1 T1' })).not.toBeInTheDocument()
   expect(screen.getByRole('button', { name: 'Inspect T101 T101' })).toBeInTheDocument()
   expect(container.querySelectorAll('*').length).toBeLessThan(1500)

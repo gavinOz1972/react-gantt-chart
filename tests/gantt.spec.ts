@@ -68,7 +68,7 @@ test('owner screenshots: expanded hatching and compressed work slots preserve se
   const link = chart.getByRole('img', { name: 'Dependency T1 to T2', exact: true })
   await link.focus()
   await expect(link).toBeFocused()
-  await expect(chart.getByRole('status')).toContainText('Dependency T1 to T2')
+  await expect(chart.getByRole('status', { name: 'Dependency inspection' })).toContainText('Dependency T1 to T2')
 })
 
 test('live upstream edits, checkbox removal, calendar edits and invalid drafts redraw the chart', async ({ page }) => {

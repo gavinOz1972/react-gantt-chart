@@ -1,4 +1,5 @@
-import { useEffect, useId, useMemo, useRef, useState } from 'react'
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { dateToOrdinal } from '../../domain'
 import type { ReactNode } from 'react'
 import type { CriticalPathResult, ProjectSettings, ScheduleResult, TaskInput } from '../../domain'
 import { TaskInspection } from '../TaskInspection'
@@ -12,8 +13,12 @@ import type { TaskHealth } from '../../progress/healthPresentation'
 import { TaskHealthBadge } from '../progress/HealthBadge'
 import { ProgressOverlays } from './ProgressOverlays'
 import { comparisonDescription } from '../../timeline/overlays'
+import type { ProgressImpact } from '../../projection/progressImpact'
+import { ImpactSummary } from './ImpactSummary'
+import { ActualImpactOverlays } from './ActualImpactOverlays'
+import type { TimelineAxis } from '../../timeline/projection'
 
-export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, onDismissSelection, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children, baseline, forecast, health, showBaseline = false, showForecast = false, onBaselineChange, onForecastChange, invalidForecast = false, remainingHours = {} }: {
+export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, onDismissSelection, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children, baseline, forecast, health, showBaseline = false, showForecast = false, onBaselineChange, onForecastChange, invalidForecast = false, remainingHours = {}, impact, paAsOf = '', onPaAsOfChange, onPaToday }: {
   project: ProjectSettings; tasks: readonly TaskInput[]; result: ScheduleResult; selectedTaskId: string | null
   previewing: boolean; onSelect: (id: string) => void
   analysis?: CriticalPathResult; highlightCritical?: boolean; onHighlightChange?: (enabled: boolean) => void
@@ -23,6 +28,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   baseline?: Baseline; forecast?: Forecast; health?: ReadonlyMap<string, TaskHealth>
   showBaseline?: boolean; showForecast?: boolean; onBaselineChange?: (value: boolean) => void; onForecastChange?: (value: boolean) => void; invalidForecast?: boolean
   remainingHours?: Readonly<Record<string, number | null>>
+  impact?: ProgressImpact; paAsOf?: string; onPaAsOfChange?: (date: string) => void; onPaToday?: () => void
 }) {
   const [mode, setMode] = useState<TimelineMode>('expanded')
   const [zoom, setZoom] = useState<TimelineZoom>('hour')
@@ -34,13 +40,14 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   const model = useMemo(() => {
     if (!result.ok || !result.tasks.length) return null
     try {
-      const axis = createTimelineAxis(project, result.tasks, mode)
+      const dates = impact?.ok ? impact.tasks.flatMap(t => [t.completion?.date, t.start?.date, t.finish?.date].filter((d): d is string => !!d)) : []
+      const axis = createTimelineAxis(project, result.tasks, mode, dates)
       return { axis, ...projectTimeline(axis, tasks, result.tasks) }
     } catch (error) {
       if (!(error instanceof RangeError)) throw error
       return { message: error.message }
     }
-  }, [project, tasks, result, mode])
+  }, [project, tasks, result, mode, impact])
 
   const hasTimeline = !!model && 'axis' in model
   useEffect(() => {
@@ -57,6 +64,26 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   const axis = geometry?.axis
   const scale = axis ? pixelsPerUnit(axis, zoom) : 1
   const view = timelineWindow(axis?.totalUnits ?? 1, scale, viewport.width - LABEL_WIDTH, viewport.left)
+  const previousAxis = useRef<{ axis: TimelineAxis; zoom: TimelineZoom; left: number; width: number } | null>(null)
+  useLayoutEffect(() => {
+    if (!axis) { previousAxis.current = null; return }
+    const previous = previousAxis.current
+    previousAxis.current = { axis, zoom, left: viewport.left, width: viewport.width }
+    const element = scroll.current
+    if (!previous || !element || (previous.axis === axis && previous.zoom === zoom)) return
+    // Preserve the established scale/mode reset policy. Only derived extent
+    // changes retain the visible calendar anchor; general C10 is out of scope.
+    if (previous.axis.mode !== axis.mode || previous.zoom !== zoom) return
+    const oldView = timelineWindow(previous.axis.totalUnits, pixelsPerUnit(previous.axis, previous.zoom), previous.width - LABEL_WIDTH, previous.left)
+    const ordinal = previous.axis.ordinalAt(oldView.left)
+    const span = previous.axis.dayEnd(ordinal) - previous.axis.dayStart(ordinal)
+    const fraction = span ? (oldView.left - previous.axis.dayStart(ordinal)) / span : 0
+    const unit = axis.dayStart(ordinal) + fraction * (axis.dayEnd(ordinal) - axis.dayStart(ordinal))
+    const available = axis.totalUnits - view.width / scale
+    const left = available > 0 ? Math.max(0, Math.min(1, unit / available)) * (view.scrollWidth - view.width) : 0
+    element.scrollLeft = left
+    setViewport(v => ({ ...v, left }))
+  }, [axis, zoom, viewport.left, viewport.width, view.width, view.scrollWidth, scale])
   const days = axis ? visibleDays(axis, view.left, view.right) : []
   const firstRow = Math.min(Math.max(0, tasks.length - 1), Math.max(0, Math.floor((viewport.top - HEADER_HEIGHT) / ROW_HEIGHT) - 2))
   const lastRow = Math.min(tasks.length, Math.ceil((viewport.top + viewport.height) / ROW_HEIGHT) + 2)
@@ -71,6 +98,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   const canShowForecast = !!forecast && forecast.state !== 'Disabled' && !invalidForecast
   const forecastVisible = showForecast && canShowForecast
   const forecastHelp = invalidForecast ? 'Correct invalid forecast assumptions in Project Settings.' : !forecast || forecast.state === 'Disabled' ? 'Enable effort-based forecasting in Project Settings to show forecast annotations.' : ''
+  const impactById = new Map(impact?.ok ? impact.tasks.map(t => [t.taskId, t]) : [])
 
   function resetScroll() {
     if (scroll.current) scroll.current.scrollLeft = 0
@@ -84,6 +112,17 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
     element.scrollLeft = unitsAvailable ? Math.max(0, row.start - 20 / scale) / unitsAvailable * (view.scrollWidth - view.width) : 0
     element.scrollTop = Math.max(0, row.index * ROW_HEIGHT - ROW_HEIGHT)
     setViewport(value => ({ ...value, left: element.scrollLeft, top: element.scrollTop }))
+  }
+  function goToImpact(id: string) {
+    const row = geometry?.rows.find(t => t.taskId === id), item = impactById.get(id), element = scroll.current
+    if (!row || !element || !axis || !item) return
+    onSelect(id)
+    const unit = item.start ? axis.startAt(item.start) : item.completion ? axis.dayStart(dateToOrdinal(item.completion.date)) : row.start
+    const available = axis.totalUnits - view.width / scale
+    element.scrollLeft = available > 0 ? Math.max(0, Math.min(1, (unit - 25 / scale) / available)) * (view.scrollWidth - view.width) : 0
+    element.scrollTop = Math.max(0, row.index * ROW_HEIGHT - ROW_HEIGHT)
+    setViewport(v => ({ ...v, left: element.scrollLeft, top: element.scrollTop }))
+    element.focus({ preventScroll: true })
   }
 
   return <section className="panel gantt-panel" aria-labelledby="gantt-heading" onKeyDown={event => {
@@ -107,6 +146,8 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
       <label className="overlay-toggle"><input type="checkbox" checked={forecastVisible} disabled={!canShowForecast} aria-describedby="forecast-visibility-help overlay-help" onChange={event => onForecastChange?.(event.target.checked)} />Show Forecast</label>
       <span id="forecast-visibility-help" className="muted forecast-toggle-help">{forecastHelp}</span>
     </div>
+    {impact && <ImpactSummary impact={impact} asOf={paAsOf} onAsOfChange={onPaAsOfChange} onToday={onPaToday} onGo={goToImpact} previewing={previewing} />}
+    {impact && <p className="gantt-legend">A: actual date (time unknown) · PA: conditional progress-adjusted outline · PA ?: Unknown. These cues are always visible. FF remains the optional effort forecast.</p>}
     <p className="gantt-help" id="gantt-help">Expanded keeps every calendar day, with hatched nonworking gaps. Compressed joins working slots and omits nonworking dates. Neither view changes the schedule.</p>
     <div className="gantt-legend" aria-label="Chart legend"><span><i className="legend-work" />Occupied working time</span><span><i className="legend-gap" />Nonworking elapsed time</span><span><i className="legend-link" />Finish-to-start dependency</span></div>
     <p id="overlay-help" className="muted overlay-help">{!baseline && 'Establish a baseline in Project Settings to show original dates. '}{(showBaseline || forecastVisible) && 'Overlays are read-only. Edge chevrons mean dates outside the visible range; a crossed forecast marker means a nonworking date omitted in Compressed view. Committed bars and range stay fixed.'}{forecastVisible && ' FF means Forecast Finish, even to the left of a committed bar. Dashed length represents a difference between calendar dates, not effort hours or scheduled working slots. Task Forecast Slip compares against its own commitment; project At Risk compares against the project target.'}{forecastVisible && previewing && ' Forecasts use the accepted plan; task/calendar edits remain previews until saved.'}</p>
@@ -155,6 +196,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
                       <rect className="gantt-bar-hit" x={left} y={y + 8} width={Math.max(8, right - left)} height={36} fill="transparent" />
                     </g>}
                     <ProgressOverlays axis={axis} row={row} baseline={baselineById.get(row.taskId)} baselineHours={baseline?.project.workingHoursPerDay ?? project.workingHoursPerDay} forecast={forecastById.get(row.taskId)} showBaseline={showBaseline && !!baseline} showForecast={forecastVisible} x={view.x} width={view.width} y={y} remainingHours={health?.get(row.taskId)?.workStatus === 'Complete' ? 0 : Object.hasOwn(remainingHours, row.taskId) ? remainingHours[row.taskId] : null} />
+                    {impact?.ok && impactById.has(row.taskId) && <ActualImpactOverlays item={impactById.get(row.taskId)!} asOf={impact.asOf} axis={axis} x={view.x} width={view.width} y={y} onSelect={onSelect} />}
                   </g>
                 })}
                 {geometry.links.map(link => {
@@ -171,7 +213,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
               </svg>
             </div>
           </div>}
-    <div className="gantt-link-inspection" role="status">{geometry?.links.some(link => `Dependency ${link.predecessorId} to ${link.successorId}` === inspectedLink) ? inspectedLink : ''}</div>
+    <div className="gantt-link-inspection" role="status" aria-label="Dependency inspection">{geometry?.links.some(link => `Dependency ${link.predecessorId} to ${link.successorId}` === inspectedLink) ? inspectedLink : ''}</div>
     {children}
     {showInspection && selected && selectedSchedule && <TaskInspection task={selected} scheduled={selectedSchedule} analysis={analyzed.get(selected.taskId)} />}
   </section>

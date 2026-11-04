@@ -426,3 +426,16 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 @media (max-width: 780px) { .health-metrics { grid-template-columns: 1fr 1fr; } }
 .forecast-toggle-help { max-width: 300px; align-self: center; font-size: .72rem; }
 .forecast-toggle-help:empty { display: none; }
+.pa-summary { background: #fffaf0; border: 1px solid #d5bc89; border-radius: 7px; padding: 12px 14px; margin-block: 12px; font-size: .8rem; }
+.pa-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; }
+.pa-controls label { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+.pa-controls input { width: 155px; }
+.pa-summary p { margin: 8px 0; line-height: 1.5; }
+.pa-verdict p:first-child { font-weight: 650; color: #563a0b; }
+.pa-details summary { cursor: pointer; font-weight: 600; }
+.pa-details ul { padding-left: 18px; max-height: 280px; overflow-y: auto; }
+.pa-details li { margin-bottom: 12px; }
+.selected-impact { flex-basis: 100%; font-size: .8rem; line-height: 1.5; }
+.actual-date-marker, .pa-outline, .pa-unknown { cursor: pointer; }
+.actual-date-marker:focus, .pa-outline:focus, .pa-unknown:focus { outline: 2px solid #2689bb; outline-offset: 2px; }
+.network-pa-label { font-size: 10px; font-weight: 650; fill: #704200; }

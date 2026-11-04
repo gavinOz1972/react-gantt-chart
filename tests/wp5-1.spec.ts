@@ -34,7 +34,9 @@ test('A01–A03 hierarchy, shared details and full editor remain below timeline;
   await expect(gantt.getByText('01 / Timeline', { exact: true })).toBeVisible()
   await expect(tasks.getByText('02 / Tasks & Schedule', { exact: true })).toBeVisible()
   await expect(details(page).getByText('03 / Task Details', { exact: true })).toBeVisible()
-  await page.evaluate(() => scrollTo(0, 0))
+  // Automatic PA summary adds height. Establish the pre-click position with
+  // the actual target in view, excluding Playwright's actionability scroll.
+  await bar(page, 'T1').scrollIntoViewIfNeeded()
   const before = await page.evaluate(() => scrollY)
   await bar(page, 'T1').click()
   expect(await page.evaluate(() => scrollY)).toBe(before)

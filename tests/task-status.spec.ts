@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
@@ -303,11 +302,14 @@ for (const width of [1440, 600]) test(`A14/A15 keyboard, checklist/history and s
   await page.keyboard.press('Tab'); await page.keyboard.press('Enter')
   await panel(page).getByRole('checkbox').focus(); await page.keyboard.press('Space')
   await expect(panel(page).getByRole('checkbox')).toBeChecked()
-  const surface = page.locator('.gantt-surface'); await page.getByRole('heading', { name: 'Gantt chart', exact: true }).click()
-  const before = createHash('sha256').update(await surface.screenshot()).digest('hex')
+  // Status now intentionally changes PA overlays. Compare only the preserved
+  // committed bars and connector geometry, rather than all chart pixels.
+  const committed = () => page.locator('.gantt-bar, .gantt-connector').evaluateAll(elements => elements.map(e => e.outerHTML))
+  await page.getByRole('heading', { name: 'Gantt chart', exact: true }).click()
+  const before = await committed()
   await status(page).selectOption('In Progress')
   await page.getByRole('heading', { name: 'Gantt chart', exact: true }).click()
-  expect(createHash('sha256').update(await surface.screenshot()).digest('hex')).toBe(before)
+  expect(await committed()).toEqual(before)
   await complete(page); await panel(page).locator('summary').click()
   await panel(page).screenshot({ path: `docs/review/wp6-3-details-${width}.png` })
   await status(page).scrollIntoViewIfNeeded()

@@ -21,11 +21,13 @@ export interface TimelineAxis {
 }
 
 /** Coordinate mapping only: it never calculates, repairs, or changes a schedule. */
-export function createTimelineAxis(project: ProjectSettings, schedule: readonly ScheduledTask[], mode: TimelineMode): TimelineAxis {
+export function createTimelineAxis(project: ProjectSettings, schedule: readonly ScheduledTask[], mode: TimelineMode, impactDates: readonly string[] = []): TimelineAxis {
   const hours = project.workingHoursPerDay
   const weekdays = new Set<number>(project.workingWeekdays)
-  const startOrdinal = schedule.reduce((first, task) => Math.min(first, dateToOrdinal(task.startDate)), dateToOrdinal(project.projectStartDate))
-  const last = schedule.reduce((end, task) => Math.max(end, dateToOrdinal(task.finishDate)), Math.max(dateToOrdinal(project.projectStartDate), dateToOrdinal(project.targetEndDate)))
+  const committedStart = schedule.reduce((first, task) => Math.min(first, dateToOrdinal(task.startDate)), dateToOrdinal(project.projectStartDate))
+  const startOrdinal = impactDates.reduce((first, date) => Math.min(first, dateToOrdinal(date)), committedStart)
+  const committedLast = schedule.reduce((end, task) => Math.max(end, dateToOrdinal(task.finishDate)), Math.max(dateToOrdinal(project.projectStartDate), dateToOrdinal(project.targetEndDate)))
+  const last = impactDates.reduce((end, date) => Math.max(end, dateToOrdinal(date)), committedLast)
   const endOrdinal = Math.min(MAX_DAY, last + 2)
   const isWorkingDay = (ordinal: number) => weekdays.has((ordinal + 1) % 7)
 
@@ -124,7 +126,8 @@ export function pixelsPerUnit(axis: TimelineAxis, zoom: TimelineZoom): number {
 
 export const LABEL_WIDTH = 220
 export const HEADER_HEIGHT = 72
-export const ROW_HEIGHT = 52
+// Shared by rows, virtualization, bar geometry and dependency endpoints.
+export const ROW_HEIGHT = 84
 export const MAX_SCROLL_WIDTH = 4_000_000
 
 /** A bounded native scroll surface mapped to logical units for very long schedules. */

@@ -4,8 +4,11 @@ import { layoutNetwork, NODE_HEIGHT, NODE_WIDTH } from '../../network/layout'
 import { centerNetwork, fitNetwork, hitNetworkNode, MAX_NETWORK_ZOOM, MIN_NETWORK_ZOOM, networkWindow, panNetwork, zoomNetwork } from '../../network/viewport'
 import type { ViewTransform } from '../../network/viewport'
 import { TaskInspection } from '../TaskInspection'
+import type { ProgressImpact } from '../../projection/progressImpact'
+import { impactDescription } from '../../projection/progressImpact'
+import { ImpactSummary } from '../gantt/ImpactSummary'
 
-export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect, showInspection = true, active = true }: { tasks: readonly TaskInput[]; result: ScheduleResult; analysis: CriticalPathResult; selectedTaskId: string | null; onSelect: (id: string) => void; showInspection?: boolean; active?: boolean }) {
+export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect, showInspection = true, active = true, impact }: { tasks: readonly TaskInput[]; result: ScheduleResult; analysis: CriticalPathResult; selectedTaskId: string | null; onSelect: (id: string) => void; showInspection?: boolean; active?: boolean; impact?: ProgressImpact }) {
   const [manualView, setView] = useState<ViewTransform>({ scale: 1, x: 0, y: 0 })
   const [size, setSize] = useState({ width: 1000, height: 500 })
   const [fitMode, setFitMode] = useState(true)
@@ -34,6 +37,8 @@ export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect,
   const view = fitMode && hasNodes ? fitNetwork(bounds, size) : manualView
   const byId = new Map(tasks.map(task => [task.taskId, task]))
   const analyzed = new Map(analysis.ok ? analysis.tasks.map(task => [task.taskId, task]) : [])
+  const impactById = new Map(impact?.ok ? impact.tasks.map(t => [t.taskId, t]) : [])
+  const drivingLinks = new Set(impact?.ok ? impact.drivingLinks : [])
   const selected = byId.get(selectedTaskId ?? '')
   const selectedSchedule = result.ok ? result.tasks.find(task => task.taskId === selectedTaskId) : undefined
   const visible = networkWindow(view, size, 48)
@@ -81,6 +86,8 @@ export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect,
   return <section className="panel network-panel" aria-labelledby="network-heading">
     <div className="section-heading"><div><span className="eyebrow">01 / Timeline</span><h2 id="network-heading">Network / Critical Path</h2></div><span className="phase-label">Read-only dependency view</span></div>
     <p className="gantt-help">Follow the arrows from predecessor to successor. Critical nodes have zero working-hour slack against calculated completion, not the target. Independent release dates are not task effort.</p>
+    {impact && <ImpactSummary impact={impact} asOf={impact.ok ? impact.asOf : ''} />}
+    {impact && <p className="muted">PA labels show affected/Unknown work. Amber parallel dashed edges are outlook-driving constraints; red remains committed critical analysis.</p>}
     <div className="gantt-toolbar network-toolbar">
       <button type="button" className="quiet" aria-label="Zoom out" title="Zoom out (minimum 5%)" disabled={!hasNodes || view.scale <= MIN_NETWORK_ZOOM} onClick={() => zoomTo(view.scale / 1.25)}>Zoom out <span aria-hidden="true">-</span></button>
       <button type="button" className="quiet" aria-label="Zoom in" title="Zoom in (maximum 300%)" disabled={!hasNodes || view.scale >= MAX_NETWORK_ZOOM} onClick={() => zoomTo(view.scale * 1.25)}>Zoom in <span aria-hidden="true">+</span></button>
@@ -110,26 +117,30 @@ export function NetworkView({ tasks, result, analysis, selectedTaskId, onSelect,
               {batchedEdges && [false, true].map(critical => <path key={String(critical)} className="network-edge" d={edges.filter(edge => edge.critical === critical).map(edge => edge.path).join(' ')} fill="none" stroke={critical ? '#aa3d32' : '#647e92'} strokeWidth={critical ? 3 : 1.4} strokeDasharray={critical ? undefined : '5 4'} markerEnd={`url(#${arrow})`} />)}
               {(!batchedEdges ? edges : []).map(edge => {
                 const label = `Network dependency ${edge.predecessorId} to ${edge.successorId}`
+                const outlookLabel = drivingLinks.has(edge.key) ? '; outlook-driving constraint (separate from committed criticality)' : ''
                 return <path key={edge.key} d={edge.path} className={`network-edge${edge.critical ? ' critical' : ''}`} fill="none" stroke={edge.critical ? '#aa3d32' : '#647e92'} strokeWidth={edge.critical ? 3 : 1.4} strokeDasharray={edge.critical ? undefined : '5 4'} markerEnd={`url(#${arrow})`}
-                  role="img" tabIndex={0} aria-label={label} data-critical={edge.critical} onFocus={() => setInspected(label)} onBlur={() => setInspected('')} onMouseEnter={() => setInspected(label)} onMouseLeave={() => setInspected('')}><title>{label}{edge.critical ? ' — critical relationship' : ''}</title></path>
+                  role="img" tabIndex={0} aria-label={label} aria-description={outlookLabel || undefined} data-critical={edge.critical} onFocus={() => setInspected(label)} onBlur={() => setInspected('')} onMouseEnter={() => setInspected(label)} onMouseLeave={() => setInspected('')}><title>{label}{outlookLabel}{edge.critical ? ' — critical relationship' : ''}</title></path>
               })}
               {detailedNodes.map(node => {
                 const task = byId.get(node.taskId)!
                 const info = analyzed.get(node.taskId)!
                 const selected = selectedTaskId === node.taskId
                 const nameClip = `${arrow}-${node.x}-${node.y}-name`
-                const label = `Network task ${task.taskId} ${task.name}: ${task.durationHours} working hours, ${info.totalSlackHours} hours slack${info.critical ? ', critical' : ''}`
+                const pa = impactById.get(task.taskId)
+                const paLabel = pa?.state === 'Unknown' ? 'PA ? Unknown' : pa?.shiftSlots && pa.shiftSlots !== '0' ? 'PA shifted' : pa?.completion?.active && pa.completion.historical === 'Late' ? 'Actual late' : ''
+                const label = `Network task ${task.taskId} ${task.name}: ${task.durationHours} working hours, ${info.totalSlackHours} hours slack${info.critical ? ', critical' : ''}${pa ? `. ${impactDescription(pa, impact?.ok ? impact.asOf : '')}` : ''}`
                 return <g key={node.taskId} transform={`translate(${node.x} ${node.y})`} className={`network-node${info.critical ? ' critical' : ''}${selected ? ' selected' : ''}`} role="button" tabIndex={0} aria-label={label} aria-pressed={selected} data-task-id={node.taskId} data-critical={info.critical}
                   onClick={() => onSelect(node.taskId)} onFocus={() => onSelect(node.taskId)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onSelect(node.taskId) } }}>
                   <title>{label}</title><rect className="network-node-box" width={NODE_WIDTH} height={NODE_HEIGHT} rx={8} fill={info.critical ? '#fff6f1' : '#f4f9fc'} stroke={info.critical ? '#aa3d32' : '#6d92a8'} strokeWidth={info.critical ? 3 : 1.5} />
                   <defs><clipPath id={nameClip}><rect x={12} y={30} width={NODE_WIDTH - 24} height={40} /></clipPath></defs>
                   <text x={12} y={22} className="network-id">{task.taskId.length > 12 ? `${task.taskId.slice(0, 11)}…` : task.taskId}</text><text x={NODE_WIDTH - 12} y={22} textAnchor="end" className="network-classification">{info.critical ? 'CRITICAL · 0 slack' : `${info.totalSlackHours}h slack`}</text>
                   <g clipPath={`url(#${nameClip})`}>{node.nameLines.map((line, index) => <text key={index} x={12} y={46 + index * 16} className="network-name">{line}</text>)}</g>
-                  <text x={12} y={86}>{task.durationHours} working hours effort</text>
+                  <text x={12} y={86}>{task.durationHours}h scheduled{paLabel ? ` · ${paLabel}` : ''}</text>
                   <text x={12} y={105}>Starts {info.earliestStart.date}, H{info.earliestStart.hour}</text>
                   <text x={12} y={123}>{info.releaseDelayHours > 0 ? `Release wait: ${info.releaseDelayHours} working slots` : `Finishes ${info.earliestFinish.date}, after H${info.earliestFinish.afterHour}`}</text>
                 </g>
               })}
+              {edges.filter(edge => drivingLinks.has(edge.key)).map(edge => <path key={`pa-${edge.key}`} d={edge.path} transform="translate(0 5)" fill="none" stroke="#895300" strokeDasharray="2 4" strokeWidth={2} pointerEvents="none" aria-hidden="true" />)}
               </g>
             </svg>
           </div>}
