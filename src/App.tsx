@@ -376,7 +376,7 @@ function App() {
       <button type="button" aria-pressed={chartView === 'network'} onClick={() => setChartView('network')}>Network / Critical Path</button></div>
     <div ref={ganttContainer} hidden={chartView !== 'gantt'}><GanttChart project={proposedProject} tasks={displayed} result={result} selectedTaskId={selectedTaskId} onSelect={setSelectedTaskId} onDismissSelection={dismissChartSelection} previewing={previewing}
       showInspection={false} analysis={analysis} highlightCritical={highlightCritical} onHighlightChange={setHighlightCritical}
-      impact={impact} paAsOf={paAsOf} onPaAsOfChange={setPaAsOfOverride} onPaToday={() => setPaAsOfOverride(null)}
+      impact={impact} impactProject={project} paAsOf={paAsOf} onPaAsOfChange={setPaAsOfOverride} onPaToday={() => setPaAsOfOverride(null)}
       baseline={baseline} forecast={forecast} invalidForecast={forecastDraft} health={health.tasks} showBaseline={showBaseline} showForecast={showForecast} onBaselineChange={setShowBaseline} onForecastChange={setShowForecast} remainingHours={workTracking.remainingHours}>
       {selectedCurrentTask && selectedEffort && <section className="selected-effort-quick" aria-label="Selected chart task" tabIndex={0}>
         <strong>{selectedCurrentTask.taskId} — {selectedCurrentTask.name}</strong>

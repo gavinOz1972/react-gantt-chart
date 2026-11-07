@@ -1,0 +1,65 @@
+{
+  "purpose": "WP733 fictional owner-review fixtures, not actual owner data",
+  "cases": [
+    {
+      "file": "late.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "before.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "future.json",
+      "paAsOf": "2026-11-04"
+    },
+    {
+      "file": "absorbed.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "leaf.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "tied.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "driver.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "started.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "blocked.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "reopened.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "conflict.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "on-time.json",
+      "paAsOf": "2026-11-02"
+    },
+    {
+      "file": "early.json",
+      "paAsOf": "2026-11-02"
+    },
+    {
+      "file": "missing-reference.json",
+      "paAsOf": "2026-11-06"
+    },
+    {
+      "file": "weekend.json",
+      "paAsOf": "2026-11-07"
+    }
+  ]
+}

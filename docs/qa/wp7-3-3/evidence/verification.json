@@ -1,0 +1,55 @@
+{
+    "workPackage":  "WP7.3.3",
+    "reviewDate":  "2026-11-06",
+    "reviewTimezone":  "America/Regina",
+    "capturedAtUTC":  "2026-11-07T05:52:59.7573438Z",
+    "branch":  "feature/wp7-stabilization",
+    "startingCommit":  "70dd0625243de143731f40d5338c6e4d0527ee4c",
+    "requirementSHA256":  "33f332311eccb67803d4beda24cb77bcfc8948aee38b5589c29f0abae6368fac",
+    "checks":  {
+                   "unitAndComponent":  486,
+                   "testFiles":  35,
+                   "addedAdapterTests":  29,
+                   "addedComponentTests":  5,
+                   "browserPassed":  223,
+                   "priorBrowserTests":  182,
+                   "addedBrowserTests":  41,
+                   "targetedExistingChecksPassed":  3,
+                   "lint":  "Pass",
+                   "typecheck":  "Pass",
+                   "build":  "Pass",
+                   "reviewFixtures":  15,
+                   "projectFormats":  [
+                                          1,
+                                          2,
+                                          3,
+                                          4,
+                                          5
+                                      ]
+               },
+    "boundaries":  {
+                       "calculationModulesUnchanged":  true,
+                       "persistenceAndMigrationModulesUnchanged":  true,
+                       "baselineAndHistoryModulesUnchanged":  true,
+                       "packageAndTestServerConfigsUnchanged":  true,
+                       "newSavedFields":  false,
+                       "ownerProjectDataOperatedOn":  false,
+                       "ownerDevelopmentServerRestarted":  false,
+                       "isolatedBrowserTestPort":  4173,
+                       "historicalEvidenceRestored":  true
+                   },
+    "prePushProtectedLocalAndRemoteRefsVerified":  true,
+    "protectedRefs":  {
+                          "main":  "a6a1c32c22a2bf074b161e52d523443602843dd7",
+                          "v1_0TagObject":  "a4157bc84392c770c27111da58d779948b110a56",
+                          "v1_0Target":  "abb85011dafc9fb0876953e3132880e025ef65da",
+                          "v1_1TagObject":  "134305f2205eb993ab76672c2d2469d48d91a609",
+                          "v1_1Target":  "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+                      },
+    "acceptance":  {
+                       "WP7_1":  "Pending independent owner decision",
+                       "WP7_3":  "Pending independent owner decision",
+                       "WP7_3_2":  "Pending independent owner decision",
+                       "WP7_3_3":  "Pending separate owner UX acceptance"
+                   }
+}

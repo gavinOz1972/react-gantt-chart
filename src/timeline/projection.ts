@@ -127,7 +127,7 @@ export function pixelsPerUnit(axis: TimelineAxis, zoom: TimelineZoom): number {
 export const LABEL_WIDTH = 220
 export const HEADER_HEIGHT = 72
 // Shared by rows, virtualization, bar geometry and dependency endpoints.
-export const ROW_HEIGHT = 84
+export const ROW_HEIGHT = 112
 export const MAX_SCROLL_WIDTH = 4_000_000
 
 /** A bounded native scroll surface mapped to logical units for very long schedules. */

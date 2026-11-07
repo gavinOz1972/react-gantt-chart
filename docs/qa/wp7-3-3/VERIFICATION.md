@@ -1,0 +1,114 @@
+# WP7.3.3 verification
+
+Review date: **2026-11-06, America/Regina**; UTC logs can be dated Nov7.
+Starting branch `feature/wp7-stabilization`, clean at
+`70dd0625243de143731f40d5338c6e4d0527ee4c`. Authority/hash and source boundaries
+are in [README](README.md). All example projects are fictional.
+
+## Final automated results
+
+| Command | Actual result | Evidence |
+| --- | --- | --- |
+| `npm.cmd run check` | **486 tests / 35 files pass**, lint, typecheck and production build pass; exit0 | [check](evidence/check.txt) |
+| `npm.cmd run test:e2e -- --workers=3` | **223 Chromium tests pass** (182 existing +41 new), exit0, about2.6 minutes | [full browser log](evidence/browser-all.txt) |
+| Final targeted existing reference/order/large-Network checks | **3 pass**, exit0, including explicit PA As-of and primary hatching assertions | [reference checks](evidence/browser-reference-checks.txt) |
+| Final lint after test refinements | Pass, exit0 | [lint](evidence/lint-final.txt) |
+| `node tests/wp733/export-fixtures.mjs` | **15 format5 review fixtures** validated by the unchanged parser | [fixture log](evidence/fixtures.txt) |
+| Source/ref/link guards | [machine-readable record](evidence/verification.json); unchanged protected calculation/persistence/config paths and refs | Pre-commit and post-push checks |
+
+Node24.19.0/npm11.17.0, Vitest5.0.5, Vite8.3.5,
+Playwright1.64.1/Chromium156.0.8078.4 on Windows, scenario timezone
+America/Regina. Tests use their own localhost4173 server and isolated browser
+storage. The owner's open app/server/library were not operated on.
+
+## Independent checks
+
+The 34 added unit/component checks comprise29 pure presentation-adapter tests
+and5 component tests. Both axes check four calendar days of historical
+lateness, Friday-to-Monday release, nonworking-date collapse, leaf/absorbed
+impact, tied predecessor links, started/blocked/reopened/future/conflict
+uncertainty, on-date/early/missing references, changed current plan versus
+saved historical date, deterministic format4/5 redraw and source immutability.
+Draft graph edits cannot create or remove accepted PA relationships: a dedicated
+test removes an existing preview edge and adds a new one, while verifying that
+only the accepted relationship is presented and no source is mutated.
+Component checks establish primary/reference dimensions, one interval for
+PA=C, keyboard selection, no invented future connector and lazy/reachable
+large detail lists. All earlier domain/progress/forecast/persistence tests
+remain in the full check.
+
+The 41 new browser checks map to all10 prompt cases in
+[TRACEABILITY](TRACEABILITY.md). All8 Baseline/Forecast/critical masks run in
+Expanded and Compressed. Geometry assertions separate the red band from FF
+and Baseline; both primary and reference affordances remain discoverable.
+30/40-task cases exercise600px keyboard scrolling and no horizontal page
+overflow/page errors. Completion is asserted immediately after confirmation,
+before any refresh, mode/scale/toggle or navigation action.
+
+Formats1-5 import/export/import preserve supported source fields and
+baselines; formats4/5 retain exact completion history. Existing upgrade rules
+continue to write current format5. No PA preference, rendered overrun or
+release-relationship data is inserted into files. Older-format recovery,
+optional logs, status gates, capacity Save regression, CPM and baseline
+protection also pass in the existing suite.
+
+## Findings resolved during verification
+
+- Initial typecheck required an explicit generic for the heterogeneous
+  relation adapter's flatMap. This was a type-inference correction, not a
+  scheduling change.
+- An initial new-browser setup used a label-text locator that included the
+  select's option text. It was replaced by the existing accessible combobox
+  name. The interrupted setup run is not counted as a completed suite.
+- The next targeted run had **39 pass /2 fail**: both all-layer views caught
+  a roughly0.35px font-box overlap between FF and the red band. Visual review
+  also found Actual/R crowding at a collapsed weekend boundary. Dedicated
+  lanes and the lower R position corrected both, with shared112px geometry.
+  The [targeted log](evidence/browser-targeted-initial.txt) is retained.
+- The initial full run had **220 pass /3 fail**; [raw log](evidence/browser-initial.txt).
+  One large-Network check found2,055 DOM elements versus its300 limit, caused
+  by closed summary details mounting many tasks after As-of advanced. Lazy,
+  paged details and a component test correct the rendering cost. No Network
+  calculation/layout or schedule source changed.
+- The other two failures were old presentation assumptions: a solid filled
+  committed critical bar and all seven Gantt rows existing simultaneously.
+  Updated tests retain committed flags/slots and inspect primary hatching,
+  and collect all virtual windows for order/data comparisons. Their expected
+  data is not shortened or regenerated by the implementation under test.
+- Final review found the relationship adapter initially read predecessor IDs
+  from preview rows. It now reads accepted predecessor IDs from the existing
+  impact record, matching the accepted PA context. The added draft-isolation
+  regression and the full unit/browser suites pass after this correction.
+
+No failed final checks remain. No scheduling, forecasting, critical-path,
+history, baseline or persistence defect required a contract change. Existing
+NO_COLOR/FORCE_COLOR warnings are captured as warnings, not test failures.
+Browser commands run with permission for owned test-server process cleanup;
+no owner's development server is restarted.
+
+## Performance and visual evidence
+
+The existing40-task input/chart/save observation passed with a responsive
+heartbeat, no page errors or horizontal page overflow. The recorded Save
+through visible result was about194ms including automation/actionability/two
+frames; storage write was below the timer's millisecond resolution. A64ms long task was observed, so this is
+not a zero-long-task or classroom-hardware guarantee. See the
+[raw record](evidence/forty-task-performance.json).
+
+| Visible state | Screenshot |
+| --- | --- |
+| Late actual and primary Monday PA | [Expanded](evidence/01-late-expanded.png), [Compressed](evidence/01-late-compressed.png) |
+| Future-effective context / Unknown | [Expanded](evidence/03-future-expanded.png), [Compressed](evidence/03-future-compressed.png) |
+| Historical late but absorbed project impact | [Expanded](evidence/04-absorbed-expanded.png), [Compressed](evidence/04-absorbed-compressed.png) |
+| Ties and changed driver | [Both releases](evidence/05-tied-releases.png), [committed versus outlook](evidence/05-changed-driver.png) |
+| Started / Blocked / reopened / contradiction | [Started](evidence/06-started.png), [Blocked](evidence/06-blocked.png), [reopened](evidence/06-reopened.png), [conflict](evidence/06-conflict.png) |
+| Nonworking actual | [Expanded](evidence/08-weekend-expanded.png), [Compressed collapse](evidence/08-weekend-compressed.png) |
+| All layers together | [Expanded](evidence/10-all-layers-expanded.png), [Compressed](evidence/10-all-layers-compressed.png) |
+| Narrow keyboard views | [30 tasks](evidence/10-30-narrow.png), [40 tasks](evidence/10-40-narrow.png) |
+| Immediate post-confirmation update | [Completion](evidence/10-immediate-completion.png) |
+
+Late, all-layer, collapsed-weekend and narrow images were visually inspected.
+Generated historical review/QA screenshots are restored; only this package's
+new evidence and copied performance record are retained. No student study or
+owner UX acceptance is claimed. Review [OPEN-FINDINGS](OPEN-FINDINGS.md) and
+complete [ACCEPTANCE](ACCEPTANCE.md) separately.

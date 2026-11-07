@@ -1,0 +1,124 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test tests/wp733/historical-gantt.spec.ts --workers=3
+
+npm.cmd : [WebServer] (node:59584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+At line:2 char:1
++ npm.cmd run test:e2e -- tests/wp733/historical-gantt.spec.ts --worker ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 41 tests using 3 workers
+
+(node:57584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [chromium] › tests\wp733\historical-gantt.spec.ts:61:3 › 4 Expanded - red overrun remains when parallel margin absorbs successor shift (996ms)
+  ok  1 [chromium] › tests\wp733\historical-gantt.spec.ts:31:3 › 1/2 Expanded - prominent actual lateness and primary Monday PA, conservative release link (1.1s)
+  ok  2 [chromium] › tests\wp733\historical-gantt.spec.ts:51:3 › 3 Expanded - future completion is warned, Unknown has no invented shifted relation (1.1s)
+  ok  4 [chromium] › tests\wp733\historical-gantt.spec.ts:68:3 › 8 Expanded - weekend actual and elapsed overrun retain date-only precision (928ms)
+  ok  6 [chromium] › tests\wp733\historical-gantt.spec.ts:51:3 › 3 Compressed - future completion is warned, Unknown has no invented shifted relation (958ms)
+  ok  5 [chromium] › tests\wp733\historical-gantt.spec.ts:31:3 › 1/2 Compressed - prominent actual lateness and primary Monday PA, conservative release link (1.0s)
+  ok  7 [chromium] › tests\wp733\historical-gantt.spec.ts:61:3 › 4 Compressed - red overrun remains when parallel margin absorbs successor shift (920ms)
+  ok  8 [chromium] › tests\wp733\historical-gantt.spec.ts:68:3 › 8 Compressed - weekend actual and elapsed overrun retain date-only precision (864ms)
+  ok  9 [chromium] › tests\wp733\historical-gantt.spec.ts:77:77 › 6 started - no fabricated primary duration or precise shifted connector (866ms)
+  ok 10 [chromium] › tests\wp733\historical-gantt.spec.ts:77:77 › 6 blocked - no fabricated primary duration or precise shifted connector (851ms)
+  ok 11 [chromium] › tests\wp733\historical-gantt.spec.ts:77:77 › 6 reopened - no fabricated primary duration or precise shifted connector (867ms)
+  ok 12 [chromium] › tests\wp733\historical-gantt.spec.ts:77:77 › 6 conflict - no fabricated primary duration or precise shifted connector (912ms)
+  ok 13 [chromium] › tests\wp733\historical-gantt.spec.ts:86:72 › 7 on-time - actual precedence without fabricated late interval (787ms)
+  ok 14 [chromium] › tests\wp733\historical-gantt.spec.ts:86:72 › 7 early - actual precedence without fabricated late interval (765ms)
+  ok 15 [chromium] › tests\wp733\historical-gantt.spec.ts:86:72 › 7 missing-reference - actual precedence without fabricated late interval (722ms)
+  ok 16 [chromium] › tests\wp733\historical-gantt.spec.ts:94:1 › 4 leaf - task overrun is visible with no successors (685ms)
+  ok 18 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 0 (804ms)
+  ok 19 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 1 (853ms)
+  ok 17 [chromium] › tests\wp733\historical-gantt.spec.ts:100:1 › 5 ties and changed driving branch preserve committed CPM (1.7s)
+  ok 20 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 2 (860ms)
+  ok 21 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 3 (958ms)
+  ok 22 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 4 (897ms)
+  ok 23 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 5 (943ms)
+  ok 24 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 6 (878ms)
+  ok 26 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 0 (773ms)
+  x  25 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 7 (1.1s)
+  ok 27 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 1 (789ms)
+  ok 28 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 2 (744ms)
+(node:58568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 29 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 4 (785ms)
+  ok 30 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 5 (915ms)
+  ok 31 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 3 (1.1s)
+  ok 32 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 6 (1.1s)
+  x  33 [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 7 (1.2s)
+(node:58440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 34 [chromium] › tests\wp733\historical-gantt.spec.ts:128:40 › 10 30-task narrow keyboard navigation and noncolor meaning (1.1s)
+  ok 35 [chromium] › tests\wp733\historical-gantt.spec.ts:128:40 › 10 40-task narrow keyboard navigation and noncolor meaning (1.4s)
+  ok 37 [chromium] › tests\wp733\historical-gantt.spec.ts:158:40 › 9 format1 sources round-trip without new presentation fields (1.0s)
+  ok 38 [chromium] › tests\wp733\historical-gantt.spec.ts:158:40 › 9 format2 sources round-trip without new presentation fields (1.0s)
+  ok 36 [chromium] › tests\wp733\historical-gantt.spec.ts:141:1 › 10 completion immediately redraws overrun and primary PA; keyboard selects actual evidence (1.4s)
+  ok 39 [chromium] › tests\wp733\historical-gantt.spec.ts:158:40 › 9 format3 sources round-trip without new presentation fields (987ms)
+  ok 40 [chromium] › tests\wp733\historical-gantt.spec.ts:158:40 › 9 format4 sources round-trip without new presentation fields (1.0s)
+  ok 41 [chromium] › tests\wp733\historical-gantt.spec.ts:158:40 › 9 format5 sources round-trip without new presentation fields (1.1s)
+
+
+  1) [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 7
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 1127.8656005859375
+    Received:   1128.215576171875
+
+      122 |     const forecast = await page.locator('.forecast-overlay[data-task-id="T1"]').boundingBox()
+      123 |     expect(baseline!.y).toBeGreaterThan(band!.y + band!.height)
+    > 124 |     expect(forecast!.y + forecast!.height).toBeLessThan(band!.y)
+          |                                            ^
+      125 |     await screenshot(page, `10-all-layers-${mode.toLowerCase()}`)
+      126 |   }
+      127 | })
+        at C:\Users\gavin\Documents\CodexProjects\GanttProject\wp7-stabilization\tests\wp733\historical-gantt.spec.ts:124:44
+
+    Error Context: test-results\wp733-historical-gantt-10--b2bdf-d-PA-survive-overlay-mask-7-chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\wp733-historical-gantt-10--b2bdf-d-PA-survive-overlay-mask-7-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\wp733-historical-gantt-10--b2bdf-d-PA-survive-overlay-mask-7-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 7
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 1127.8656005859375
+    Received:   1128.215576171875
+
+      122 |     const forecast = await page.locator('.forecast-overlay[data-task-id="T1"]').boundingBox()
+      123 |     expect(baseline!.y).toBeGreaterThan(band!.y + band!.height)
+    > 124 |     expect(forecast!.y + forecast!.height).toBeLessThan(band!.y)
+          |                                            ^
+      125 |     await screenshot(page, `10-all-layers-${mode.toLowerCase()}`)
+      126 |   }
+      127 | })
+        at C:\Users\gavin\Documents\CodexProjects\GanttProject\wp7-stabilization\tests\wp733\historical-gantt.spec.ts:124:44
+
+    Error Context: test-results\wp733-historical-gantt-10--04f13-d-PA-survive-overlay-mask-7-chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\wp733-historical-gantt-10--04f13-d-PA-survive-overlay-mask-7-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\wp733-historical-gantt-10--04f13-d-PA-survive-overlay-mask-7-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Expanded - actual, overrun and PA survive overlay mask 7
+    [chromium] › tests\wp733\historical-gantt.spec.ts:112:85 › 10 Compressed - actual, overrun and PA survive overlay mask 7
+  39 passed (16.5s)

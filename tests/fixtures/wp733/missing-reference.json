@@ -1,0 +1,171 @@
+{
+  "project": {
+    "projectId": "WP733-missing-reference",
+    "name": "WP733 DISPOSABLE missing-reference",
+    "projectStartDate": "2026-11-02",
+    "targetEndDate": "2026-11-20",
+    "workingWeekdays": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "workingHoursPerDay": 4
+  },
+  "tasks": [
+    {
+      "taskId": "T1",
+      "name": "Design approval",
+      "description": "WP733 DISPOSABLE review only.",
+      "durationHours": 4,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T2",
+      "name": "Build successor",
+      "description": "WP733 DISPOSABLE review only.",
+      "durationHours": 4,
+      "predecessorTaskIds": [
+        "T1"
+      ],
+      "independentStartMode": "DEFAULT"
+    }
+  ],
+  "nextTaskNumber": 3,
+  "manualOrder": [
+    "T1",
+    "T2"
+  ],
+  "sortMode": "manual",
+  "duplicateOrigins": {},
+  "format": "react-gantt-chart",
+  "schemaVersion": 5,
+  "createdBy": "React Gantt Chart",
+  "savedAt": "2026-11-10T12:00:00.000Z",
+  "baseline": {
+    "project": {
+      "projectId": "WP733-missing-reference",
+      "name": "WP733 DISPOSABLE missing-reference",
+      "projectStartDate": "2026-11-02",
+      "targetEndDate": "2026-11-20",
+      "workingWeekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "workingHoursPerDay": 4
+    },
+    "tasks": [
+      {
+        "taskId": "T1",
+        "name": "Design approval",
+        "description": "WP733 DISPOSABLE review only.",
+        "durationHours": 4,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T2",
+        "name": "Build successor",
+        "description": "WP733 DISPOSABLE review only.",
+        "durationHours": 4,
+        "predecessorTaskIds": [
+          "T1"
+        ],
+        "independentStartMode": "DEFAULT"
+      }
+    ],
+    "nextTaskNumber": 3,
+    "manualOrder": [
+      "T1",
+      "T2"
+    ],
+    "sortMode": "manual",
+    "duplicateOrigins": {},
+    "schemaVersion": 1,
+    "baselineId": "WP733-BL-missing-reference",
+    "establishedAt": "2026-11-01T12:00:00.000Z",
+    "schedule": {
+      "tasks": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-02",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-02"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "startSlot": {
+            "date": "2026-11-03",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-03",
+            "afterHour": 4
+          },
+          "startDate": "2026-11-03",
+          "finishDate": "2026-11-03"
+        }
+      ],
+      "projectCompletion": {
+        "date": "2026-11-03",
+        "afterHour": 4
+      }
+    }
+  },
+  "workTracking": {
+    "schemaVersion": 1,
+    "entries": [],
+    "remainingHours": {
+      "T1": 4,
+      "T2": 4
+    }
+  },
+  "taskProgress": {
+    "schemaVersion": 1,
+    "definitionOfDone": "",
+    "tasks": {
+      "T1": {
+        "status": "Complete",
+        "criteria": []
+      }
+    },
+    "events": [
+      {
+        "eventId": "WP733-E1",
+        "taskId": "T1",
+        "fromStatus": "Not Started",
+        "toStatus": "Complete",
+        "date": "2026-11-06",
+        "recordedAt": "2026-11-10T12:00:00.000Z",
+        "criteriaSnapshot": [],
+        "completionAcknowledged": true,
+        "noCriteriaAcknowledged": true,
+        "definitionOfDone": ""
+      }
+    ]
+  },
+  "forecastSettings": {
+    "schemaVersion": 1,
+    "enabled": true,
+    "classHoursPerStudent": 28,
+    "homeworkHoursPerStudent": 0,
+    "teamSize": 1,
+    "asOfDate": "2026-11-06"
+  }
+}

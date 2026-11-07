@@ -7,10 +7,11 @@ function EdgeMark({ x, y, direction }: { x: number; y: number; direction: string
   const delta = direction.startsWith('before') ? 5 : -5
   return <path d={`M ${x + delta} ${y - 4} L ${x} ${y} L ${x + delta} ${y + 4}`} fill="none" strokeWidth={2} />
 }
-export function ProgressOverlays({ axis, row, baseline, baselineHours, forecast, showBaseline, showForecast, x, width, y, remainingHours }: {
+export function ProgressOverlays({ axis, row, baseline, baselineHours, forecast, showBaseline, showForecast, x, width, y, remainingHours, baselineY = 43 }: {
   axis: TimelineAxis; row: TimelineRow; baseline?: ScheduledTask; baselineHours: number; forecast?: TaskForecast
   showBaseline: boolean; showForecast: boolean; x: (unit: number) => number; width: number; y: number
   remainingHours?: number | null
+  baselineY?: number
 }) {
   const start = baseline ? overlayPoint(axis, baseline.startDate, (baseline.startSlot.hour - 1) / baselineHours) : null
   const end = baseline ? overlayPoint(axis, baseline.finishDate, baseline.finishBoundary.afterHour / baselineHours) : null
@@ -24,9 +25,9 @@ export function ProgressOverlays({ axis, row, baseline, baselineHours, forecast,
   return <g className="progress-overlays">
     {showBaseline && baseline && first && last && <g className="baseline-overlay" role="img" tabIndex={0} aria-label={baselineLabel} data-overlay="baseline" data-task-id={row.taskId} data-start-date={baseline.startDate} data-finish-date={baseline.finishDate} data-start-unit={start!.unit} data-end-unit={end!.unit} data-clipped={first.clipping || last.clipping || 'none'} data-omitted={first.omitted || last.omitted}>
       <title>{baselineLabel}</title>
-      <rect x={Math.min(first.x, last.x)} y={y + 43} width={Math.max(1, Math.abs(last.x - first.x))} height={5} fill="none" stroke="#64717e" strokeWidth={1.6} />
-      {first.clipping && <EdgeMark x={first.x} y={y + 45} direction={first.clipping} />}
-      {last.clipping && <EdgeMark x={last.x} y={y + 45} direction={last.clipping} />}
+      <rect x={Math.min(first.x, last.x)} y={y + baselineY} width={Math.max(1, Math.abs(last.x - first.x))} height={5} fill="none" stroke="#64717e" strokeWidth={1.6} />
+      {first.clipping && <EdgeMark x={first.x} y={y + baselineY + 2} direction={first.clipping} />}
+      {last.clipping && <EdgeMark x={last.x} y={y + baselineY + 2} direction={last.clipping} />}
     </g>}
     {showForecast && forecast && projected && point && <g className="forecast-overlay" role="img" tabIndex={0} aria-label={forecastLabel} data-overlay="forecast" data-task-id={row.taskId} data-finish-date={forecast.forecastFinish!} data-end-unit={projected.unit} data-endpoint-x={point.x} data-clipped={point.clipping || 'none'} data-omitted={point.omitted}>
       <title>{forecastLabel}</title>

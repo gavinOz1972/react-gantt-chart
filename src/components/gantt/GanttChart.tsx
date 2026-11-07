@@ -17,8 +17,10 @@ import type { ProgressImpact } from '../../projection/progressImpact'
 import { ImpactSummary } from './ImpactSummary'
 import { ActualImpactOverlays } from './ActualImpactOverlays'
 import type { TimelineAxis } from '../../timeline/projection'
+import { BASELINE_Y, hasPrimaryPA, historicalDates, historyCaption, presentImpactRelations, PRIMARY_Y, REFERENCE_Y, subordinateCommitment } from '../../timeline/historyPresentation'
+import { ImpactRelations } from './ImpactRelations'
 
-export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, onDismissSelection, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children, baseline, forecast, health, showBaseline = false, showForecast = false, onBaselineChange, onForecastChange, invalidForecast = false, remainingHours = {}, impact, paAsOf = '', onPaAsOfChange, onPaToday }: {
+export function GanttChart({ project, tasks, result, selectedTaskId, previewing, onSelect, onDismissSelection, analysis, highlightCritical = false, onHighlightChange, showInspection = true, children, baseline, forecast, health, showBaseline = false, showForecast = false, onBaselineChange, onForecastChange, invalidForecast = false, remainingHours = {}, impact, impactProject = project, paAsOf = '', onPaAsOfChange, onPaToday }: {
   project: ProjectSettings; tasks: readonly TaskInput[]; result: ScheduleResult; selectedTaskId: string | null
   previewing: boolean; onSelect: (id: string) => void
   analysis?: CriticalPathResult; highlightCritical?: boolean; onHighlightChange?: (enabled: boolean) => void
@@ -29,6 +31,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   showBaseline?: boolean; showForecast?: boolean; onBaselineChange?: (value: boolean) => void; onForecastChange?: (value: boolean) => void; invalidForecast?: boolean
   remainingHours?: Readonly<Record<string, number | null>>
   impact?: ProgressImpact; paAsOf?: string; onPaAsOfChange?: (date: string) => void; onPaToday?: () => void
+  impactProject?: ProjectSettings
 }) {
   const [mode, setMode] = useState<TimelineMode>('expanded')
   const [zoom, setZoom] = useState<TimelineZoom>('hour')
@@ -40,14 +43,15 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   const model = useMemo(() => {
     if (!result.ok || !result.tasks.length) return null
     try {
-      const dates = impact?.ok ? impact.tasks.flatMap(t => [t.completion?.date, t.start?.date, t.finish?.date].filter((d): d is string => !!d)) : []
+      const dates = historicalDates(impactProject, impact)
       const axis = createTimelineAxis(project, result.tasks, mode, dates)
-      return { axis, ...projectTimeline(axis, tasks, result.tasks) }
+      const projected = projectTimeline(axis, tasks, result.tasks)
+      return { axis, ...projected, impactRelations: presentImpactRelations(axis, impactProject, projected.rows, impact) }
     } catch (error) {
       if (!(error instanceof RangeError)) throw error
       return { message: error.message }
     }
-  }, [project, tasks, result, mode, impact])
+  }, [project, tasks, result, mode, impact, impactProject])
 
   const hasTimeline = !!model && 'axis' in model
   useEffect(() => {
@@ -99,6 +103,7 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
   const forecastVisible = showForecast && canShowForecast
   const forecastHelp = invalidForecast ? 'Correct invalid forecast assumptions in Project Settings.' : !forecast || forecast.state === 'Disabled' ? 'Enable effort-based forecasting in Project Settings to show forecast annotations.' : ''
   const impactById = new Map(impact?.ok ? impact.tasks.map(t => [t.taskId, t]) : [])
+  const shownRelations = geometry?.impactRelations ?? []
 
   function resetScroll() {
     if (scroll.current) scroll.current.scrollLeft = 0
@@ -109,7 +114,9 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
     const element = scroll.current
     if (!row || !element || !axis) return
     const unitsAvailable = Math.max(0, axis.totalUnits - view.width / scale)
-    element.scrollLeft = unitsAvailable ? Math.max(0, row.start - 20 / scale) / unitsAvailable * (view.scrollWidth - view.width) : 0
+    const item = impactById.get(row.taskId)
+    const primary = item?.start ? axis.startAt(item.start) : item?.completion ? axis.dayStart(dateToOrdinal(item.completion.date)) : row.start
+    element.scrollLeft = unitsAvailable ? Math.max(0, primary - 20 / scale) / unitsAvailable * (view.scrollWidth - view.width) : 0
     element.scrollTop = Math.max(0, row.index * ROW_HEIGHT - ROW_HEIGHT)
     setViewport(value => ({ ...value, left: element.scrollLeft, top: element.scrollTop }))
   }
@@ -147,9 +154,9 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
       <span id="forecast-visibility-help" className="muted forecast-toggle-help">{forecastHelp}</span>
     </div>
     {impact && <ImpactSummary impact={impact} asOf={paAsOf} onAsOfChange={onPaAsOfChange} onToday={onPaToday} onGo={goToImpact} previewing={previewing} />}
-    {impact && <p className="gantt-legend">A: actual date (time unknown) · PA: conditional progress-adjusted outline · PA ?: Unknown. These cues are always visible. FF remains the optional effort forecast.</p>}
+    {impact && <p className="gantt-legend history-legend">Actual: date-only reported history. Red dotted extension: elapsed lateness since the saved historical commitment, not work or extra effort. PA: primary conditional window; PA=C: same as commitment. C: secondary current committed reference. R: conservative next-working-day release. Deps ?: uncertain relation. Committed criticality, Baseline and FF remain separate.{mode === 'compressed' && ' Compressed red spans use working-axis positions; a collapsed red gap is schematic. Read calendar-day labels, not span length.'}</p>}
     <p className="gantt-help" id="gantt-help">Expanded keeps every calendar day, with hatched nonworking gaps. Compressed joins working slots and omits nonworking dates. Neither view changes the schedule.</p>
-    <div className="gantt-legend" aria-label="Chart legend"><span><i className="legend-work" />Occupied working time</span><span><i className="legend-gap" />Nonworking elapsed time</span><span><i className="legend-link" />Finish-to-start dependency</span></div>
+    <div className="gantt-legend" aria-label="Chart legend"><span><i className="legend-work" />{impact ? 'Planned working time (conditional PA / committed)' : 'Occupied working time'}</span><span><i className="legend-gap" />Nonworking elapsed time</span><span><i className="legend-link" />Finish-to-start dependency</span></div>
     <p id="overlay-help" className="muted overlay-help">{!baseline && 'Establish a baseline in Project Settings to show original dates. '}{(showBaseline || forecastVisible) && 'Overlays are read-only. Edge chevrons mean dates outside the visible range; a crossed forecast marker means a nonworking date omitted in Compressed view. Committed bars and range stay fixed.'}{forecastVisible && ' FF means Forecast Finish, even to the left of a committed bar. Dashed length represents a difference between calendar dates, not effort hours or scheduled working slots. Task Forecast Slip compares against its own commitment; project At Risk compares against the project target.'}{forecastVisible && previewing && ' Forecasts use the accepted plan; task/calendar edits remain previews until saved.'}</p>
     {(showBaseline || forecastVisible) && <div className="gantt-legend overlay-legend" aria-label="Overlay legend"><span><i className="legend-work" />Committed plan</span>{showBaseline && <span><i className="legend-baseline" />Baseline: originally approved plan</span>}{forecastVisible && <span><i className="legend-forecast" />FF: Forecast Finish (calendar date)</span>}{forecastVisible && <span>Unavailable or indeterminate forecasts have no endpoint.</span>}</div>}
     {analysis?.ok && tasks.length > 0 && <p className="critical-help">{analysis.tasks.filter(task => task.critical).length} critical tasks. Zero slack means no working-slot delay is possible without moving calculated completion. The target date is not the critical-path deadline.{highlightCritical && <span className="critical-badge">Critical work · bold outline and label; hatching still means nonworking time</span>}</p>}
@@ -164,14 +171,15 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
                 <div className="gantt-corner" style={{ width: LABEL_WIDTH, height: HEADER_HEIGHT }}>Task / total hours</div>
                 <div className="gantt-header-window" style={{ left: viewport.left + LABEL_WIDTH, width: view.width }}><TimelineHeader axis={axis} days={days} zoom={zoom} x={view.x} width={view.width} left={view.left} right={view.right} scale={scale} /></div>
               </div>
-              {rows.map(row => <div key={row.taskId} className={`gantt-row${selectedTaskId === row.taskId ? ' selected' : ''}`} style={{ top: HEADER_HEIGHT + row.index * ROW_HEIGHT, height: ROW_HEIGHT }}>
-                <button type="button" className="gantt-row-label" style={{ width: LABEL_WIDTH, height: ROW_HEIGHT }} aria-label={`Inspect ${row.taskId} ${row.task.name}`} aria-description={`${health?.get(row.taskId) ? `${taskHealthDescription(health.get(row.taskId)!, forecastVisible)} ` : ''}${comparisonDescription(row.scheduled, baselineById.get(row.taskId), forecastById.get(row.taskId), !!baseline, forecastVisible)}`} aria-pressed={selectedTaskId === row.taskId} onClick={() => onSelect(row.taskId)}>
-                  <span className="gantt-row-identity"><span className="task-id">{row.taskId}</span>{health?.get(row.taskId) && <TaskHealthBadge health={health.get(row.taskId)!} showForecast={forecastVisible} compact />}</span><span className="gantt-row-name" title={row.task.name}>{row.task.name}<small>{row.task.durationHours} working hours{highlightCritical && analyzed.get(row.taskId)?.critical && <b className="critical-word"> · Critical</b>}</small></span>
+                {rows.map(row => <div key={row.taskId} className={`gantt-row${selectedTaskId === row.taskId ? ' selected' : ''}`} style={{ top: HEADER_HEIGHT + row.index * ROW_HEIGHT, height: ROW_HEIGHT }}>
+                <button type="button" className="gantt-row-label" style={{ width: LABEL_WIDTH, height: ROW_HEIGHT }} aria-label={`Inspect ${row.taskId} ${row.task.name}`} aria-description={`${health?.get(row.taskId) ? `${taskHealthDescription(health.get(row.taskId)!, forecastVisible)} ` : ''}${comparisonDescription(row.scheduled, baselineById.get(row.taskId), forecastById.get(row.taskId), !!baseline, forecastVisible)}${impactById.has(row.taskId) ? ` ${historyCaption(impactById.get(row.taskId)!)}` : ''}`} aria-pressed={selectedTaskId === row.taskId} onClick={() => onSelect(row.taskId)}>
+                  <span className="gantt-row-identity"><span className="task-id">{row.taskId}</span>{health?.get(row.taskId) && <TaskHealthBadge health={health.get(row.taskId)!} showForecast={forecastVisible} compact />}</span><span className="gantt-row-name" title={row.task.name}>{row.task.name}<small>{row.task.durationHours} working hours{highlightCritical && analyzed.get(row.taskId)?.critical && <b className="critical-word"> · Critical</b>}</small>{impactById.has(row.taskId) && <small className={`history-row-caption${impactById.get(row.taskId)?.completion?.historical === 'Late' ? ' is-late' : ''}`} title={historyCaption(impactById.get(row.taskId)!)}>{historyCaption(impactById.get(row.taskId)!)}</small>}</span>
                 </button>
               </div>)}
               <svg className="gantt-drawing" width={view.width} height={bodyHeight} style={{ left: viewport.left + LABEL_WIDTH, top: HEADER_HEIGHT + firstRow * ROW_HEIGHT }} aria-label="Task bars and dependencies">
                 <defs><pattern id={patternId} patternUnits="userSpaceOnUse" width={8} height={8}><rect width={8} height={8} fill="#e3eaf0" /><path d="M -2 2 L 2 -2 M 0 8 L 8 0 M 6 10 L 10 6" stroke="#91a6b8" strokeWidth={1.4} /></pattern>
-                  <marker id={arrowId} viewBox="0 0 8 8" refX={7} refY={4} markerWidth={6} markerHeight={6} orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z" fill="#5f788d" /></marker></defs>
+                  <marker id={arrowId} viewBox="0 0 8 8" refX={7} refY={4} markerWidth={6} markerHeight={6} orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z" fill="#5f788d" /></marker>
+                  <marker id={`${arrowId}-pa`} viewBox="0 0 8 8" refX={7} refY={4} markerWidth={6} markerHeight={6} orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#895300" /></marker></defs>
                 {days.map(day => <g key={day.date}><rect x={view.x(day.start)} y={0} width={view.x(day.end) - view.x(day.start)} height={bodyHeight} fill={day.working ? '#fff' : '#f0f3f6'} /><line x1={view.x(day.start)} x2={view.x(day.start)} y1={0} y2={bodyHeight} stroke="#d5e0e9" />
                   {zoom === 'hour' && visibleHourTicks(axis, day, view.left, view.right, scale).map(tick => <line key={tick.hour} x1={view.x(tick.unit)} x2={view.x(tick.unit)} y1={0} y2={bodyHeight} stroke="#e9eef3" />)}</g>)}
                 {rows.map(row => {
@@ -182,38 +190,44 @@ export function GanttChart({ project, tasks, result, selectedTaskId, previewing,
                   const critical = highlightCritical && !!analyzed.get(row.taskId)?.critical
                   const label = `${row.taskId} ${row.task.name}: ${row.task.durationHours} working hours; starts ${row.scheduled.startDate} hour ${row.scheduled.startSlot.hour}; finishes ${row.scheduled.finishDate} after hour ${row.scheduled.finishBoundary.afterHour}`
                   const comparison = comparisonDescription(row.scheduled, baselineById.get(row.taskId), forecastById.get(row.taskId), !!baseline, forecastVisible)
+                  const item = impactById.get(row.taskId)
+                  const reference = subordinateCommitment(item)
+                  const samePA = !!item && hasPrimaryPA(item) && item.shiftSlots === '0'
+                  const barY = reference ? REFERENCE_Y - 3 : item ? 20 : 14, barHeight = reference ? 6 : item ? 20 : 24
                   return <g key={row.taskId}>
                     <line x1={0} x2={view.width} y1={y + ROW_HEIGHT} y2={y + ROW_HEIGHT} stroke="#e1e8ef" />
                     {selected && <rect x={0} y={y} width={view.width} height={ROW_HEIGHT} fill="#24779b0d" />}
-                    {right > left && <g className={`gantt-bar${selected ? ' is-selected' : ''}${critical ? ' is-critical' : ''}`} role="button" tabIndex={0} aria-label={`${label}${critical ? '; critical, zero slack' : ''}`} aria-description={comparison} aria-pressed={selected} data-task-id={row.taskId} data-start={row.start} data-end={row.end} data-critical={critical}
+                    {right > left && <g className={`gantt-bar${selected ? ' is-selected' : ''}${critical ? ' is-critical' : ''}${reference ? ' is-reference' : ''}${samePA ? ' pa-matches-commitment' : ''}`} role="button" tabIndex={0} aria-label={`${label}${reference ? '; secondary current committed reference C' : samePA ? '; conditional PA equals commitment' : ''}${critical ? '; committed critical, zero slack' : ''}`} aria-description={comparison} aria-pressed={selected} data-task-id={row.taskId} data-start={row.start} data-end={row.end} data-critical={critical} data-presentation={reference ? 'committed-reference' : samePA ? 'pa-equals-commitment' : 'committed'}
                       onClick={() => onSelect(row.taskId)} onFocus={() => onSelect(row.taskId)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onSelect(row.taskId) } }}>
                       <title>{label}. {comparison}</title>
-                      <rect className="gantt-bar-outline" x={left} y={y + 14} width={right - left} height={24} rx={3} fill={mode === 'expanded' ? `url(#${patternId})` : critical ? '#aa3d32' : '#24779b'} />
+                      <rect className="gantt-bar-outline" x={left} y={y + barY} width={right - left} height={barHeight} rx={reference ? 0 : 3} fill={reference ? 'none' : mode === 'expanded' ? `url(#${patternId})` : samePA ? '#fff6db' : critical ? '#aa3d32' : '#24779b'} />
                       {mode === 'expanded' && taskSegments(axis, row, days).filter(segment => segment.kind === 'working').map(segment => {
                         const x = Math.max(-1, view.x(segment.start))
-                        return <rect key={segment.start} data-kind="working" x={x} y={y + 14} width={Math.max(0, Math.min(view.width + 1, view.x(segment.end)) - x)} height={24} fill={critical ? '#aa3d32' : '#24779b'} />
+                        return <rect key={segment.start} data-kind="working" x={x} y={y + barY} width={Math.max(0, Math.min(view.width + 1, view.x(segment.end)) - x)} height={barHeight} fill={reference ? '#dce5eb' : samePA ? '#fff0c8' : critical ? '#aa3d32' : '#24779b'} />
                       })}
-                      <rect className="gantt-bar-hit" x={left} y={y + 8} width={Math.max(8, right - left)} height={36} fill="transparent" />
+                      <rect className="gantt-bar-hit" x={left} y={y + (reference ? 61 : item ? 17 : 8)} width={Math.max(8, right - left)} height={reference ? 18 : item ? 26 : 36} fill="transparent" />
+                      {item && <text x={Math.min(view.width - 24, left + 4)} y={y + (reference ? 74 : 34)} fontSize={reference ? 8 : 10} fill={reference ? '#526a7c' : '#704200'}>{reference ? 'C' : 'PA=C'}</text>}
                     </g>}
-                    <ProgressOverlays axis={axis} row={row} baseline={baselineById.get(row.taskId)} baselineHours={baseline?.project.workingHoursPerDay ?? project.workingHoursPerDay} forecast={forecastById.get(row.taskId)} showBaseline={showBaseline && !!baseline} showForecast={forecastVisible} x={view.x} width={view.width} y={y} remainingHours={health?.get(row.taskId)?.workStatus === 'Complete' ? 0 : Object.hasOwn(remainingHours, row.taskId) ? remainingHours[row.taskId] : null} />
-                    {impact?.ok && impactById.has(row.taskId) && <ActualImpactOverlays item={impactById.get(row.taskId)!} asOf={impact.asOf} axis={axis} x={view.x} width={view.width} y={y} onSelect={onSelect} />}
+                    <ProgressOverlays axis={axis} row={row} baseline={baselineById.get(row.taskId)} baselineHours={baseline?.project.workingHoursPerDay ?? project.workingHoursPerDay} forecast={forecastById.get(row.taskId)} showBaseline={showBaseline && !!baseline} showForecast={forecastVisible} x={view.x} width={view.width} y={y} baselineY={impact ? BASELINE_Y : 43} remainingHours={health?.get(row.taskId)?.workStatus === 'Complete' ? 0 : Object.hasOwn(remainingHours, row.taskId) ? remainingHours[row.taskId] : null} />
+                    {impact?.ok && impactById.has(row.taskId) && <ActualImpactOverlays item={impactById.get(row.taskId)!} asOf={impact.asOf} axis={axis} x={view.x} width={view.width} y={y} days={days} gapPatternId={patternId} onSelect={onSelect} />}
                   </g>
                 })}
                 {geometry.links.map(link => {
-                  const fromY = (link.from.row - firstRow) * ROW_HEIGHT + 26
-                  const toY = (link.to.row - firstRow) * ROW_HEIGHT + 26
+                  const fromY = (link.from.row - firstRow) * ROW_HEIGHT + (subordinateCommitment(impactById.get(link.predecessorId)) ? REFERENCE_Y : impactById.has(link.predecessorId) ? PRIMARY_Y : 26)
+                  const toY = (link.to.row - firstRow) * ROW_HEIGHT + (subordinateCommitment(impactById.get(link.successorId)) ? REFERENCE_Y : impactById.has(link.successorId) ? PRIMARY_Y : 26)
                   const fromX = view.x(link.from.x)
                   const toX = view.x(link.to.x)
                   if (Math.max(fromY, toY) < 0 || Math.min(fromY, toY) > bodyHeight || Math.max(fromX, toX) + 12 < 0 || Math.min(fromX, toX) - 12 > view.width) return null
                   const label = `Dependency ${link.predecessorId} to ${link.successorId}`
                   const critical = highlightCritical && criticalLinks.has(link.key)
-                  return <path key={link.key} className={`gantt-connector${critical ? ' is-critical' : ''}`} d={connectorPath(fromX, fromY, toX, toY)} fill="none" stroke={critical ? '#aa3d32' : '#5f788d'} strokeWidth={critical ? 2.8 : 1.4} markerEnd={`url(#${arrowId})`} tabIndex={0} role="img" aria-label={label} data-critical={critical}
+                  return <path key={link.key} className={`gantt-connector${critical ? ' is-critical' : ''}${impact ? ' is-reference' : ''}`} d={connectorPath(fromX, fromY, toX, toY)} fill="none" stroke={critical ? '#aa3d32' : '#5f788d'} strokeWidth={critical ? 2.8 : 1.4} strokeDasharray={impact ? '2 4' : undefined} markerEnd={`url(#${arrowId})`} tabIndex={0} role="img" aria-label={label} aria-description={impact ? 'Committed dependency reference; not a projected or actual handoff.' : undefined} data-critical={critical}
                     onMouseEnter={() => setInspectedLink(label)} onMouseLeave={() => setInspectedLink('')} onFocus={() => setInspectedLink(label)} onBlur={() => setInspectedLink('')}><title>{label}</title></path>
                 })}
+                <ImpactRelations relations={shownRelations} x={view.x} width={view.width} firstRow={firstRow} bodyHeight={bodyHeight} markerId={`${arrowId}-pa`} onInspect={setInspectedLink} />
               </svg>
             </div>
           </div>}
-    <div className="gantt-link-inspection" role="status" aria-label="Dependency inspection">{geometry?.links.some(link => `Dependency ${link.predecessorId} to ${link.successorId}` === inspectedLink) ? inspectedLink : ''}</div>
+    <div className="gantt-link-inspection" role="status" aria-label="Dependency inspection">{geometry?.links.some(link => `Dependency ${link.predecessorId} to ${link.successorId}` === inspectedLink) || shownRelations.some(r => inspectedLink.includes(r.label)) ? inspectedLink : ''}</div>
     {children}
     {showInspection && selected && selectedSchedule && <TaskInspection task={selected} scheduled={selectedSchedule} analysis={analyzed.get(selected.taskId)} />}
   </section>

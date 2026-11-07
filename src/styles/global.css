@@ -439,3 +439,16 @@ button.inline-reset { min-height: 28px; padding: 4px 6px; font-size: .7rem; whit
 .actual-date-marker, .pa-outline, .pa-unknown { cursor: pointer; }
 .actual-date-marker:focus, .pa-outline:focus, .pa-unknown:focus { outline: 2px solid #2689bb; outline-offset: 2px; }
 .network-pa-label { font-size: 10px; font-weight: 650; fill: #704200; }
+.gantt-row-name .history-row-caption { white-space: normal; font-size: .64rem; line-height: 1.2; margin-top: 3px; color: #704200; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.gantt-row-name .history-row-caption.is-late { color: #a12d25; font-weight: 650; }
+.gantt-bar.is-reference .gantt-bar-outline { stroke: #6c8598; stroke-width: 1.3; stroke-dasharray: 3 2; }
+.gantt-bar.is-reference.is-critical .gantt-bar-outline { stroke: #994534; stroke-width: 2; }
+.gantt-bar.is-reference:focus .gantt-bar-outline, .gantt-bar.is-reference.is-selected .gantt-bar-outline { stroke: #092d45; stroke-width: 2.8; }
+.gantt-bar.pa-matches-commitment .gantt-bar-outline { stroke: #895300; stroke-dasharray: 6 2; }
+.gantt-bar.pa-matches-commitment.is-critical .gantt-bar-outline { stroke: #842a20; }
+.gantt-connector.is-reference { opacity: .52; }
+.gantt-connector.is-reference:focus, .gantt-connector.is-reference:hover { opacity: 1; }
+.historical-overrun, .actual-release-bound { cursor: pointer; }
+.historical-overrun.is-historical { opacity: .72; }
+.historical-overrun:focus, .pa-dependency:focus, .uncertain-dependency:focus, .actual-release-bound:focus { outline: 2px solid #2689bb; outline-offset: 2px; }
+.history-legend { line-height: 1.6; }

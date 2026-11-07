@@ -37,11 +37,28 @@ async function exportPlan(page: Page) {
   const download = await downloaded
   return JSON.parse(await readFile((await download.path())!, 'utf8'))
 }
+async function chartSnapshot(page: Page) {
+  const region = page.getByRole('region', { name: 'Scrollable Gantt timeline', exact: true })
+  const initial = await region.evaluate(e => e.scrollTop)
+  const labels = new Map<number, string>(), bars = new Map<string, string[]>()
+  // Shared row height now reserves historical/PA/reference lanes. Collect both
+  // virtual windows instead of assuming all seven rows coexist in the DOM.
+  for (const end of [false, true]) {
+    await region.evaluate((e, last) => { e.scrollTop = last ? e.scrollHeight : 0 }, end)
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(resolve)))
+    const rows = await page.locator('.gantt-row-label').evaluateAll(elements => elements.map(e => [Number.parseFloat((e.parentElement as HTMLElement).style.top), e.querySelector('.task-id')!.textContent!] as const))
+    for (const [position, id] of rows) labels.set(position, id)
+    for (const values of await page.locator('.gantt-bar').evaluateAll(elements => elements.map(e => [e.getAttribute('data-task-id')!, e.getAttribute('aria-label')!, e.getAttribute('data-critical')!]))) bars.set(values[0], values)
+  }
+  await region.evaluate((e, top) => { e.scrollTop = top }, initial)
+  return { order: [...labels].sort(([a], [b]) => a - b).map(([, id]) => id), bars: [...bars.values()].sort() }
+}
 
 test('A01–A04 actual vertical drag, keyboard moves and non-destructive sorts preserve WP1/CPM/edges and Gantt row order', async ({ page }) => {
   await open(page)
   await page.getByRole('checkbox', { name: 'Highlight Critical Path', exact: true }).check()
-  const before = await page.locator('.gantt-bar').evaluateAll(bars => bars.map(element => [element.getAttribute('data-task-id'), element.getAttribute('aria-label'), element.getAttribute('data-critical')]).sort())
+  await page.getByRole('combobox', { name: 'Scale', exact: true }).selectOption('week')
+  const before = await chartSnapshot(page)
   const source = page.getByRole('button', { name: 'Drag T7 to reorder', exact: true })
   await source.scrollIntoViewIfNeeded()
   const from = (await source.boundingBox())!
@@ -55,9 +72,9 @@ test('A01–A04 actual vertical drag, keyboard moves and non-destructive sorts p
   await page.mouse.move(to.x + 16, to.y + 21)
   await page.mouse.up()
   expect(await order(page)).toEqual(['T1', 'T7', 'T2', 'T3', 'T4', 'T5', 'T6'])
-  expect(await page.locator('.gantt-row-label .task-id').allTextContents()).toEqual(await order(page))
-  const after = await page.locator('.gantt-bar').evaluateAll(bars => bars.map(element => [element.getAttribute('data-task-id'), element.getAttribute('aria-label'), element.getAttribute('data-critical')]).sort())
-  expect(after).toEqual(before)
+  const after = await chartSnapshot(page)
+  expect(after.order).toEqual(await order(page))
+  expect(after.bars).toEqual(before.bars)
   await page.getByRole('button', { name: 'Move T3 up', exact: true }).click()
   const manual = await order(page)
   for (const mode of ['start', 'name', 'duration']) {
