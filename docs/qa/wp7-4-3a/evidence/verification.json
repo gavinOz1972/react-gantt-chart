@@ -1,0 +1,81 @@
+{
+  "workPackage": "WP7.4.3a",
+  "scope": "Design and contract verification only",
+  "clientDate": "2026-11-07",
+  "clientTimeZone": "America/Regina",
+  "recordedAtUTC": "2026-11-08T04:29:34.593Z",
+  "base": "f61cacecd97bbfd5b83f48576aec8775d380a121",
+  "requirementSha256": "f782cac63ad57092734ed98979c384de47df2a4bc23e99825baf27905779d7f4",
+  "checks": {
+    "check": {
+      "exitCode": 0,
+      "unitComponentTests": 551,
+      "testFiles": 36,
+      "lint": true,
+      "typecheck": true,
+      "build": true
+    },
+    "browser": {
+      "exitCode": 0,
+      "passed": 223,
+      "browser": "Chromium",
+      "duration": "2.4m",
+      "ownedServerPort": 4173
+    },
+    "examples": {
+      "exitCode": 0,
+      "passed": 33,
+      "toyCases": 28,
+      "currentFormatReadOnlyChecks": 5
+    },
+    "finalLint": {
+      "exitCode": 0
+    }
+  },
+  "unchanged": [
+    "production source",
+    "WP1 and forecast formulas",
+    "unused pure working evaluator",
+    "existing codec and local persistence",
+    "models/configuration/dependencies",
+    "historical evidence and acceptance sheets",
+    "immutable baseline and real project data",
+    "main and protected release tags"
+  ],
+  "notImplemented": [
+    "repository port or browser adapter",
+    "format6 decoder or migration",
+    "new persistence key",
+    "HTTP API or relational DBMS",
+    "authentication/collaboration",
+    "App consumers or UI",
+    "main merge/tag/release/deployment/WP8"
+  ],
+  "acceptance": {
+    "wp742": "Limited by current requirement to unused pure evaluator only",
+    "olderIndependentGates": "Unchanged",
+    "newMechanisms": "All Pending",
+    "newOwnerDecisionBoxesChecked": 0,
+    "nextPackageAuthorized": false
+  },
+  "limits": [
+    "Toy minimal validator and simplified result shapes; not compiled typed port conformance",
+    "One Node event loop and injected faults; no native concurrency or crash proof",
+    "Two memory backings; no API/DBMS adapter certification",
+    "Formats1-5 existing codec only; no format6 conversion",
+    "Prior native Web Locks observations historical; new adapter and browser matrix pending"
+  ],
+  "protectedReferencesBeforeCommit": {
+    "main": {
+      "object": "a6a1c32c22a2bf074b161e52d523443602843dd7"
+    },
+    "v1.0-pre-progress": {
+      "object": "a4157bc84392c770c27111da58d779948b110a56",
+      "peeled": "abb85011dafc9fb0876953e3132880e025ef65da"
+    },
+    "v1.1-pre-stabilization": {
+      "object": "134305f2205eb993ab76672c2d2469d48d91a609",
+      "peeled": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+    }
+  }
+}

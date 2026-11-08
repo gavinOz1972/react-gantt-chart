@@ -1,0 +1,55 @@
+{
+  "designOnly": true,
+  "checkedAtUTC": "2026-11-08T04:29:34.570Z",
+  "branch": "feature/wp7-stabilization",
+  "startingHead": "f61cacecd97bbfd5b83f48576aec8775d380a121",
+  "requiredDocuments": [
+    "README.md",
+    "REPOSITORY-CONTRACT.md",
+    "BROWSER-ADAPTER-DECISION.md",
+    "FORMAT6-IMPACT.md",
+    "CONCURRENCY-FAILURE-MATRIX.md",
+    "FUTURE-API-ADAPTER.md",
+    "IMPLEMENTATION-IMPACT.md",
+    "OWNER-DECISIONS.md",
+    "VERIFICATION.md"
+  ],
+  "relativeLinksChecked": 47,
+  "brokenLinks": [],
+  "checkedDecisionBoxes": 0,
+  "trackedChangesOutsidePackage": [],
+  "newPathsBeforeEvidence": [
+    "docs/qa/wp7-4-3a/BROWSER-ADAPTER-DECISION.md",
+    "docs/qa/wp7-4-3a/CONCURRENCY-FAILURE-MATRIX.md",
+    "docs/qa/wp7-4-3a/FORMAT6-IMPACT.md",
+    "docs/qa/wp7-4-3a/FUTURE-API-ADAPTER.md",
+    "docs/qa/wp7-4-3a/IMPLEMENTATION-IMPACT.md",
+    "docs/qa/wp7-4-3a/OWNER-DECISIONS.md",
+    "docs/qa/wp7-4-3a/README.md",
+    "docs/qa/wp7-4-3a/REPOSITORY-CONTRACT.md",
+    "docs/qa/wp7-4-3a/VERIFICATION.md",
+    "docs/qa/wp7-4-3a/diagnostics/contract-examples.mjs",
+    "docs/qa/wp7-4-3a/evidence/browser-all.txt",
+    "docs/qa/wp7-4-3a/evidence/check.txt",
+    "docs/qa/wp7-4-3a/evidence/contract-examples.json",
+    "docs/qa/wp7-4-3a/evidence/contract-examples.txt",
+    "docs/qa/wp7-4-3a/evidence/lint-final.txt"
+  ],
+  "sourceRequirementSha256": "f782cac63ad57092734ed98979c384de47df2a4bc23e99825baf27905779d7f4",
+  "protectedReferencesBeforeCommit": {
+    "main": {
+      "object": "a6a1c32c22a2bf074b161e52d523443602843dd7"
+    },
+    "v1.0-pre-progress": {
+      "object": "a4157bc84392c770c27111da58d779948b110a56",
+      "peeled": "abb85011dafc9fb0876953e3132880e025ef65da"
+    },
+    "v1.1-pre-stabilization": {
+      "object": "134305f2205eb993ab76672c2d2469d48d91a609",
+      "peeled": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+    }
+  },
+  "localAndRemoteReferencesVerified": true,
+  "postPushReferenceVerification": "Required after commit; report actual SHA and result in owner handoff",
+  "guardNote": "First link-check attempt preceded generation of its two linked metadata files; generate them before the final link check."
+}

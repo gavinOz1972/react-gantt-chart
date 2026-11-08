@@ -1,0 +1,1 @@
+PASS: 33 illustrative checks (28 fake contract cases + five existing-format read-only checks); no production repository or format6 implemented.

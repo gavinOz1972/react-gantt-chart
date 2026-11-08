@@ -1,0 +1,178 @@
+{
+  "designOnly": true,
+  "recordedAtUTC": "2026-11-08T04:27:19.671Z",
+  "node": "v24.19.0",
+  "checks": [
+    {
+      "id": "C01",
+      "result": "Pass",
+      "details": "One complete toy snapshot created; caller input unchanged."
+    },
+    {
+      "id": "C02",
+      "result": "Pass",
+      "details": "Create retry uses same resource identity without an additional resource."
+    },
+    {
+      "id": "C03",
+      "result": "Pass",
+      "details": "Create transaction ID reused for different intent conflicts."
+    },
+    {
+      "id": "C04",
+      "result": "Pass",
+      "details": "Two simulated simultaneous Save As commands with the same label create distinct stable IDs."
+    },
+    {
+      "id": "C05",
+      "result": "Pass",
+      "details": "Load of missing resource returns NotFound."
+    },
+    {
+      "id": "C06",
+      "result": "Pass",
+      "details": "Completion, edge decision and Unresolved are one accepted revision2 with unchanged baseline."
+    },
+    {
+      "id": "C07",
+      "result": "Pass",
+      "details": "Identical conditional commit retry is idempotent, not a new event or revision."
+    },
+    {
+      "id": "C08",
+      "result": "Pass",
+      "details": "Reused commit ID with changed complete candidate conflicts."
+    },
+    {
+      "id": "C09",
+      "result": "Pass",
+      "details": "Old expected revision rejects without overwrite."
+    },
+    {
+      "id": "C10",
+      "result": "Pass",
+      "details": "Changed baseline rejects before persistence."
+    },
+    {
+      "id": "C11",
+      "result": "Pass",
+      "details": "Removing an existing baseline rejects."
+    },
+    {
+      "id": "C12",
+      "result": "Pass",
+      "details": "Malformed toy candidate rejects; not validation of actual Bugsys schema."
+    },
+    {
+      "id": "C13",
+      "result": "Pass",
+      "details": "Unknown illustrative model returns Unsupported."
+    },
+    {
+      "id": "C14",
+      "result": "Pass",
+      "details": "Commit to missing resource never recreates it."
+    },
+    {
+      "id": "C15",
+      "result": "Pass",
+      "details": "Injected quota failure before toy critical-section write leaves saved data unchanged."
+    },
+    {
+      "id": "C16",
+      "result": "Pass",
+      "details": "Injected security failure before toy critical-section write leaves saved data unchanged."
+    },
+    {
+      "id": "C17",
+      "result": "Pass",
+      "details": "Simulated unavailable coordination fails closed; no real browser lock exercised."
+    },
+    {
+      "id": "C18",
+      "result": "Pass",
+      "details": "Preparing/cancelling a local draft without invoking commit makes no saved change."
+    },
+    {
+      "id": "C19",
+      "result": "Pass",
+      "details": "Simulated write-before-publication/lost acknowledgement reconciles through retry; not a crash durability test."
+    },
+    {
+      "id": "C20",
+      "result": "Pass",
+      "details": "Old successful retry returns original receipt and current revision separately; no UI rollback to old candidate."
+    },
+    {
+      "id": "C21",
+      "result": "Pass",
+      "details": "One same-base write wins under the fake synchronous critical section; other conflicts. Not actual parallel browser proof."
+    },
+    {
+      "id": "C22",
+      "result": "Pass",
+      "details": "Rewriting old historical facts rejects; corrections must append."
+    },
+    {
+      "id": "C23",
+      "result": "Pass",
+      "details": "Object-memory export -> serialized-memory import preserves toy lineage/task IDs/history/revision/baseline, with a new repository ID."
+    },
+    {
+      "id": "C24",
+      "result": "Pass",
+      "details": "Changing transport export metadata does not alter semantic snapshot fingerprint."
+    },
+    {
+      "id": "C25",
+      "result": "Pass",
+      "details": "Reverse fake-adapter transfer is lossless; no real API/DBMS or format6 exercised."
+    },
+    {
+      "id": "C26",
+      "result": "Pass",
+      "details": "Fresh imported resource can conditionally commit at the preserved logical revision; receipts are repository-local."
+    },
+    {
+      "id": "C27",
+      "result": "Pass",
+      "details": "Toy completion without its evidence rejects as a whole, not partially applied."
+    },
+    {
+      "id": "C28",
+      "result": "Pass",
+      "details": "Same counter with externally changed content fails fingerprint comparison; this is not cryptographic protection from external editing."
+    },
+    {
+      "id": "L1",
+      "result": "Pass",
+      "details": "tests/fixtures/wp71/legacy-format-1.json: unchanged existing codec round-trip/source text. New format6 copy-upgrade remains a future acceptance test."
+    },
+    {
+      "id": "L2",
+      "result": "Pass",
+      "details": "tests/fixtures/wp71/legacy-format-2.json: unchanged existing codec round-trip/source text. New format6 copy-upgrade remains a future acceptance test."
+    },
+    {
+      "id": "L3",
+      "result": "Pass",
+      "details": "tests/fixtures/wp71/legacy-format-3.json: unchanged existing codec round-trip/source text. New format6 copy-upgrade remains a future acceptance test."
+    },
+    {
+      "id": "L4",
+      "result": "Pass",
+      "details": "tests/fixtures/wp71/legacy-format-4.json: unchanged existing codec round-trip/source text. New format6 copy-upgrade remains a future acceptance test."
+    },
+    {
+      "id": "L5",
+      "result": "Pass",
+      "details": "tests/fixtures/wp733/late.json: unchanged existing codec round-trip/source text. New format6 copy-upgrade remains a future acceptance test."
+    }
+  ],
+  "limits": [
+    "Toy in-memory reference only, not production repository or domain validation",
+    "Serialized/object fake backings only, no real browser/API/DBMS substitutability proof",
+    "Faults/races/unknown acknowledgement simulated in one Node event loop",
+    "No format6 decoder, native storage mutation, baseline/source/user-data change or scheduling/domain logic change"
+  ]
+}
