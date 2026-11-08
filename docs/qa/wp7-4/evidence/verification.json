@@ -1,0 +1,66 @@
+{
+    "workPackage":  "WP7.4",
+    "scope":  "Design only",
+    "reviewDate":  "2026-11-07",
+    "reviewTimezone":  "America/Regina",
+    "recordedAtUTC":  "2026-11-08T00:12:35.3775200Z",
+    "branch":  "feature/wp7-stabilization",
+    "startingCommit":  "a5a953e820615e2b1105f235f0060c5831e335bf",
+    "requirementSHA256":  "112eeff3985315df171a0b3de1e4dc62087f2f8fb4fa37c444d7f82cc9737cac",
+    "checks":  {
+                   "checkExitCode":  0,
+                   "unitComponentTestsPassed":  486,
+                   "unitComponentFiles":  35,
+                   "lint":  "Pass",
+                   "typecheck":  "Pass",
+                   "build":  "Pass",
+                   "browserExitCode":  0,
+                   "existingBrowserTestsPassed":  223,
+                   "calendarDiagnosticExitCode":  0,
+                   "existingCalendarAnchorsPassed":  12,
+                   "finalLintExitCode":  0,
+                   "productionAndExistingTestsChanged":  false,
+                   "dependencyOrConfigurationChanges":  false,
+                   "priorAcceptanceSheetsChanged":  false,
+                   "historicalGeneratedEvidenceRestored":  true,
+                   "markdownFiles":  9,
+                   "relativeLinkCheck":  "Pass",
+                   "suppliedScenarioGroups":  12,
+                   "relativeLinksValidated":  88
+               },
+    "environment":  {
+                        "node":  "24.19.0",
+                        "npm":  "11.17.0",
+                        "vitest":  "5.0.5",
+                        "vite":  "8.3.5",
+                        "playwright":  "1.64.1",
+                        "chromium":  "156.0.8078.4",
+                        "operatingSystem":  "Windows",
+                        "isolatedBrowserPort":  4173,
+                        "scenarioTimezone":  "America/Regina",
+                        "ownerAppAndDataOperatedOn":  false
+                    },
+    "protectedLocalAndRemoteRefsPrePush":  {
+                                               "main":  "a6a1c32c22a2bf074b161e52d523443602843dd7",
+                                               "v1_0TagObject":  "a4157bc84392c770c27111da58d779948b110a56",
+                                               "v1_0Target":  "abb85011dafc9fb0876953e3132880e025ef65da",
+                                               "v1_1TagObject":  "134305f2205eb993ab76672c2d2469d48d91a609",
+                                               "v1_1Target":  "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+                                           },
+    "limits":  [
+                   "New guided behavior not implemented or tested",
+                   "New Actual Start/file/transaction contract is a proposal only",
+                   "No new UI screenshot or prototype claimed",
+                   "No student study or new performance benchmark",
+                   "No main merge, tag, deployment or WP8"
+               ],
+    "ownerGates":  {
+                       "WP7_1":  "Pending independently",
+                       "WP7_3":  "Pending independently",
+                       "WP7_3_2":  "Pending independently",
+                       "WP7_3_3":  "Pending independently",
+                       "WP7_4Design":  "Pending",
+                       "P01_P12":  "All Pending; no prechecked decisions",
+                       "laterImplementation":  "Separate owner-approved work package required"
+                   }
+}

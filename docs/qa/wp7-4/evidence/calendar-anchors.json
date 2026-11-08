@@ -1,0 +1,164 @@
+{
+  "purpose": "Existing calendar/WP1 checks only; no proposed workflow or scheduling implementation",
+  "sourceCommit": "a5a953e820615e2b1105f235f0060c5831e335bf",
+  "observations": [
+    {
+      "name": "Existing calendar: strict date-after 2026-11-06",
+      "expected": {
+        "date": "2026-11-09",
+        "hour": 1
+      },
+      "actual": {
+        "date": "2026-11-09",
+        "hour": 1
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "Existing calendar: strict date-after 2026-11-07",
+      "expected": {
+        "date": "2026-11-09",
+        "hour": 1
+      },
+      "actual": {
+        "date": "2026-11-09",
+        "hour": 1
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "Existing calendar: strict date-after 2026-11-11",
+      "expected": {
+        "date": "2026-11-12",
+        "hour": 1
+      },
+      "actual": {
+        "date": "2026-11-12",
+        "hour": 1
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "Existing calendar: strict date-after 2026-11-12",
+      "expected": {
+        "date": "2026-11-13",
+        "hour": 1
+      },
+      "actual": {
+        "date": "2026-11-13",
+        "hour": 1
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "Existing calendar: strict date-after 2026-11-13",
+      "expected": {
+        "date": "2026-11-16",
+        "hour": 1
+      },
+      "actual": {
+        "date": "2026-11-16",
+        "hour": 1
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "M/Th/F gap after Monday2",
+      "expected": {
+        "date": "2026-11-05",
+        "hour": 1
+      },
+      "actual": {
+        "date": "2026-11-05",
+        "hour": 1
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "Four planned slots starting Monday9",
+      "expected": {
+        "date": "2026-11-09",
+        "afterHour": 4
+      },
+      "actual": {
+        "date": "2026-11-09",
+        "afterHour": 4
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "Known planned boundary releases next day",
+      "expected": {
+        "date": "2026-11-10",
+        "hour": 1
+      },
+      "actual": {
+        "date": "2026-11-10",
+        "hour": 1
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "Twenty planned slots starting Monday9",
+      "expected": {
+        "date": "2026-11-13",
+        "afterHour": 4
+      },
+      "actual": {
+        "date": "2026-11-13",
+        "afterHour": 4
+      },
+      "result": "Pass"
+    },
+    {
+      "name": "Legacy chain before review",
+      "expected": [
+        [
+          "A",
+          "2026-11-02",
+          "2026-11-02"
+        ],
+        [
+          "B",
+          "2026-11-03",
+          "2026-11-03"
+        ],
+        [
+          "C",
+          "2026-11-04",
+          "2026-11-04"
+        ]
+      ],
+      "actual": [
+        [
+          "A",
+          "2026-11-02",
+          "2026-11-02"
+        ],
+        [
+          "B",
+          "2026-11-03",
+          "2026-11-03"
+        ],
+        [
+          "C",
+          "2026-11-04",
+          "2026-11-04"
+        ]
+      ],
+      "result": "Pass"
+    },
+    {
+      "name": "Current dependent manual date remains inactive",
+      "expected": "2026-11-03",
+      "actual": "2026-11-03",
+      "result": "Pass"
+    },
+    {
+      "name": "Historical Nov2 to actual Nov6 means calendar days",
+      "expected": 4,
+      "actual": 4,
+      "result": "Pass"
+    }
+  ]
+}
