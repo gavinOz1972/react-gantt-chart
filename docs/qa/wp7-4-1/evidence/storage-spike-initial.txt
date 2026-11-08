@@ -1,0 +1,25 @@
+node : node:internal/modules/run_main:107
+At line:2 char:1
++ node docs/qa/wp7-4-1/diagnostics/storage-spike.mjs *> .wp741-storage- ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (node:internal/modules/run_main:107:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'Busy' !== 'Written'
+
+    at file:///C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization/docs/qa/wp7-4-1/diagnostics/storag
+e-spike.mjs:151:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'Busy',
+  expected: 'Written',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

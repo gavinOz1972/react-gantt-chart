@@ -1,0 +1,181 @@
+{
+  "designOnly": true,
+  "recordedAtUTC": "2026-11-08T01:47:18.126Z",
+  "node": "v24.19.0",
+  "environment": {
+    "secureContext": true,
+    "locks": true,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+    "browser": "156.0.8078.4"
+  },
+  "fixtures": [
+    {
+      "path": "tests/fixtures/wp71/legacy-format-1.json",
+      "version": 1,
+      "sourceSha256": "d8cd8b5b1eceea3a486a8e58987fd9714cc79ff5a5b1b9f561d2fc11966b2589",
+      "baselinePresent": false,
+      "decodedBaselineSerializationSha256": null
+    },
+    {
+      "path": "tests/fixtures/wp71/legacy-format-2.json",
+      "version": 2,
+      "sourceSha256": "da7dc6e6a65325fa3d51e08925bc7b26b4271c4f08a56657da43316dc295b03e",
+      "baselinePresent": true,
+      "decodedBaselineSerializationSha256": "ce4aa88144899c07455521a20d15d3706414ac8a5b33a0f26ba309ddf60e8112"
+    },
+    {
+      "path": "tests/fixtures/wp71/legacy-format-3.json",
+      "version": 3,
+      "sourceSha256": "649acf9c9b613701b0d0845817692c7b1bb207c55f5f5868181b9e2479ea0796",
+      "baselinePresent": true,
+      "decodedBaselineSerializationSha256": "ce4aa88144899c07455521a20d15d3706414ac8a5b33a0f26ba309ddf60e8112"
+    },
+    {
+      "path": "tests/fixtures/wp71/legacy-format-4.json",
+      "version": 4,
+      "sourceSha256": "be419e16fcde26a371d03ff9721993387eda5c456917724a16ff0063ed655bf8",
+      "baselinePresent": true,
+      "decodedBaselineSerializationSha256": "ce4aa88144899c07455521a20d15d3706414ac8a5b33a0f26ba309ddf60e8112"
+    },
+    {
+      "path": "tests/fixtures/wp733/late.json",
+      "version": 5,
+      "sourceSha256": "97d936a76565513daeb1aa14c703067bff4604bab58c61abc2aa292b9db08812",
+      "baselinePresent": true,
+      "decodedBaselineSerializationSha256": "6058e012f108e2be1e891722090890cf182d877b8f80d87618d14792255cf21d"
+    }
+  ],
+  "results": [
+    {
+      "id": "F1",
+      "result": "Pass",
+      "details": "Existing parser/serializer and current-format5 write retain supported data and decoded baseline; original fixture bytes unchanged. Not a v6 migration test."
+    },
+    {
+      "id": "F2",
+      "result": "Pass",
+      "details": "Existing parser/serializer and current-format5 write retain supported data and decoded baseline; original fixture bytes unchanged. Not a v6 migration test."
+    },
+    {
+      "id": "F3",
+      "result": "Pass",
+      "details": "Existing parser/serializer and current-format5 write retain supported data and decoded baseline; original fixture bytes unchanged. Not a v6 migration test."
+    },
+    {
+      "id": "F4",
+      "result": "Pass",
+      "details": "Existing parser/serializer and current-format5 write retain supported data and decoded baseline; original fixture bytes unchanged. Not a v6 migration test."
+    },
+    {
+      "id": "F5",
+      "result": "Pass",
+      "details": "Existing parser/serializer and current-format5 write retain supported data and decoded baseline; original fixture bytes unchanged. Not a v6 migration test."
+    },
+    {
+      "id": "F6",
+      "result": "Pass",
+      "details": "Current production reader rejects version6; no new reader implemented."
+    },
+    {
+      "id": "F7",
+      "result": "Pass",
+      "details": "Current format5 known-field decoder drops an unknown section; confirms need for explicit versioning."
+    },
+    {
+      "id": "F8",
+      "result": "Pass",
+      "details": "An unsupported record rejects the old whole-library read, without writing."
+    },
+    {
+      "id": "B01",
+      "result": "Pass",
+      "details": {
+        "secureContext": true,
+        "locks": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+        "browser": "156.0.8078.4"
+      }
+    },
+    {
+      "id": "B02",
+      "result": "Pass",
+      "details": "Simulated unavailable lock blocks write; no unlocked fallback."
+    },
+    {
+      "id": "B03",
+      "result": "Pass",
+      "details": "Actual same-origin exclusive lock prevents a cooperating second tab from entering its write callback."
+    },
+    {
+      "id": "B04",
+      "result": "Pass",
+      "details": {
+        "outcomes": [
+          {
+            "kind": "Busy"
+          },
+          {
+            "kind": "Written"
+          }
+        ],
+        "detail": "One accepted same-revision write, no lost increment from two cooperating tabs."
+      }
+    },
+    {
+      "id": "B05",
+      "result": "Pass",
+      "details": "Revision is rechecked inside lock; stale intent does not write."
+    },
+    {
+      "id": "B06",
+      "result": "Pass",
+      "details": "Injected failure before write leaves key and accepted stand-in unchanged; not proof of all platform failure modes."
+    },
+    {
+      "id": "B07",
+      "result": "Pass",
+      "details": "Injected failure before write leaves key and accepted stand-in unchanged; not proof of all platform failure modes."
+    },
+    {
+      "id": "B08",
+      "result": "Pass",
+      "details": "Actual oversized Chromium setItem throws QuotaExceededError and retains the previous key value."
+    },
+    {
+      "id": "B09",
+      "result": "Pass",
+      "details": "Actual opaque sandbox origin denies localStorage access. This is not a user privacy-setting compatibility test."
+    },
+    {
+      "id": "B10",
+      "result": "Pass",
+      "details": "Tab close after one successful write with publication omitted: reopened tab reads receipt and retry does not duplicate. Not a power-loss/process-crash durability test."
+    },
+    {
+      "id": "B11",
+      "result": "Pass",
+      "details": "Same transaction ID with different diagnostic intent rejected."
+    },
+    {
+      "id": "B12",
+      "result": "Pass",
+      "details": "Closing lock-owning tab releases the actual Web Lock for a cooperating writer within a bounded wait; release is asynchronous, not immediate."
+    },
+    {
+      "id": "B13",
+      "result": "Pass",
+      "details": "Negative control: a noncooperating raw setItem bypasses Web Locks. Coordination is not a storage security boundary."
+    },
+    {
+      "id": "B14",
+      "result": "Pass",
+      "details": "Independent legacy sentinel bytes unchanged throughout the primitive spike."
+    }
+  ],
+  "limits": [
+    "Counter stand-in only; no format6 decoder, production adapter, evaluator or actual-start workflow",
+    "One Chromium build on loopback only; no Safari/Firefox/Edge-brand or classroom-device certification",
+    "No guarantee against noncooperating writers, eviction, browser clearing, power loss or multiple-key atomicity",
+    "No owner app/server/storage operated on"
+  ]
+}

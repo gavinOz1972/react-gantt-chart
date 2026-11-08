@@ -1,0 +1,1 @@
+PASS: 22 design diagnostics (5 legacy format fixtures; native locks/two tabs/quota/denial and qualified failure simulations). No production behavior or format change.
