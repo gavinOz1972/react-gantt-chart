@@ -1,0 +1,319 @@
+{
+  "designOnly": true,
+  "recordedAtUTC": "2026-11-08T21:14:04.154Z",
+  "checks": [
+    {
+      "id": "JSON:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "TaskMapCoverage:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "EventIdentityOrder:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "LinkedFact:corrected-completion.json:T1:completion",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveDecisions:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "WorkingSourceBasis:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSON:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "TaskMapCoverage:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "EventIdentityOrder:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "LinkedFact:early-keep.json:T1:start",
+      "result": "Pass"
+    },
+    {
+      "id": "LinkedFact:early-keep.json:T1:completion",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveDecisions:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "WorkingSourceBasis:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSON:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "TaskMapCoverage:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "EventIdentityOrder:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSON:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "TaskMapCoverage:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "EventIdentityOrder:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "LinkedFact:late-retained-actual.json:T1:completion",
+      "result": "Pass"
+    },
+    {
+      "id": "LinkedFact:late-retained-actual.json:T2:start",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveDecisions:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "WorkingSourceBasis:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSON:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "TaskMapCoverage:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "EventIdentityOrder:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "LinkedFact:late-retained.json:T1:completion",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveDecisions:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "WorkingSourceBasis:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSON:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "TaskMapCoverage:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "EventIdentityOrder:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "LinkedFact:late-severed-actual.json:T1:completion",
+      "result": "Pass"
+    },
+    {
+      "id": "LinkedFact:late-severed-actual.json:T2:start",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveDecisions:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "WorkingSourceBasis:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSON:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "TaskMapCoverage:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "EventIdentityOrder:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSON:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "TaskMapCoverage:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "EventIdentityOrder:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveDecisions:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "WorkingSourceBasis:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSON:source-format1.json",
+      "result": "Pass"
+    },
+    {
+      "id": "LateActualAndOriginalPromise",
+      "result": "Pass"
+    },
+    {
+      "id": "NoStartFromTwoHours",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedSuccessorLiteral",
+      "result": "Pass"
+    },
+    {
+      "id": "ActualStartRetainedConflict",
+      "result": "Pass"
+    },
+    {
+      "id": "ActualStartSevered",
+      "result": "Pass"
+    },
+    {
+      "id": "PairedOriginalBaselinesUnchanged",
+      "result": "Pass"
+    },
+    {
+      "id": "EarlyCompletionKeep",
+      "result": "Pass"
+    },
+    {
+      "id": "AppendCorrectionPreservesOldFact",
+      "result": "Pass"
+    },
+    {
+      "id": "PartialDoesNotRequireReplay",
+      "result": "Pass"
+    },
+    {
+      "id": "LegacyRawDigest",
+      "result": "Pass"
+    },
+    {
+      "id": "LegacyIdentity",
+      "result": "Pass"
+    },
+    {
+      "id": "ExistingLegacyParser",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineValueUnmodified:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineValueUnmodified:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineValueUnmodified:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineValueUnmodified:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineValueUnmodified:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineValueUnmodified:partial-current.json",
+      "result": "Pass"
+    }
+  ],
+  "limits": [
+    "Built-in JSON syntax and restricted ASCII/integer digest authoring only",
+    "Selected references and literal scenario checks, not complete schema/JCS/codec acceptance",
+    "Existing legacy and WP1 validators only; no production model or baseline replaced"
+  ]
+}

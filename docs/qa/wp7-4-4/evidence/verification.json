@@ -1,0 +1,53 @@
+{
+  "workPackage": "WP7.4.4",
+  "clientDate": "2026-11-08",
+  "clientTimeZone": "America/Regina",
+  "recordedAtUTC": "2026-11-08T21:17:37.435Z",
+  "scope": "Design only; R07 remains Pending",
+  "ownerSelectedDirection": "Option A: authoritative self-contained current snapshot, structured explanatory history; no load-time replay",
+  "base": "4f8d70548bfbc2867fdfd859d6bf54e8867342e7",
+  "requirementSHA256": "d8c17d8a75f9a03e5a443fe9cfdd423cdf3f10294a70df8ba2b2a9996f4dd42f",
+  "verification": {
+    "isolatedExportOfHead": true,
+    "check": {
+      "exitCode": 0,
+      "tests": 625,
+      "testFiles": 37,
+      "lint": true,
+      "typecheck": true,
+      "build": true
+    },
+    "browser": {
+      "nativeExitCode": 0,
+      "passed": 223,
+      "duration": "2.6m",
+      "ownedPort": 4173,
+      "ownerPortsUntouched": [
+        5173,
+        5174
+      ]
+    },
+    "exampleAuthoring": {
+      "passed": 77,
+      "files": 8,
+      "legacySources": 1,
+      "limits": "Selected syntax, restricted fixture digests, references/literal dates and existing legacy/WP1 validators only; no format6/JCS/codec certification"
+    },
+    "firstAuthoringFailure": "Fictional early baseline failed old WP1 because a dependent manual start is ignored; corrected authoring inputs/literal baseline and digest, not the engine or real data",
+    "toolProbe": "Python unavailable; Node built-ins used"
+  },
+  "conflictsWithEarlierProposals": [
+    "Replace A/B mandatory Seed/patch/group replay with snapshot authority",
+    "Existing decodeProgress and evaluator completion extraction are not general Option A projections; separate event-independent input review or Unsupported required",
+    "Candidate profile/envelope differs from pending A/B fields; no automatic draft bridge",
+    "Proposed JCS profile replaces pending custom canonicalization; arrays retain all order"
+  ],
+  "notImplemented": [
+    "models/validator/serializer/parser/codec/migration",
+    "repository integration/fingerprint provider",
+    "browser physical storage/keys/locks",
+    "evaluator/PA/FF/CPM/formula/UI changes",
+    "main merge/tag/deployment/WP8"
+  ],
+  "gate": "Owner must explicitly accept schema, compatibility and integrity; no follow-on starts automatically"
+}

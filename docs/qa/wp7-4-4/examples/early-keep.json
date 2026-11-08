@@ -1,0 +1,594 @@
+{
+  "format": "react-gantt-chart",
+  "schemaVersion": 6,
+  "profile": "snapshot-history/1",
+  "exportInfo": {
+    "application": "React Gantt Chart",
+    "exportedAt": "2026-11-10T16:00:00.000Z"
+  },
+  "snapshot": {
+    "logicalRevision": 2,
+    "origin": {
+      "kind": "New",
+      "createdAt": "2026-11-02T15:00:00.000Z",
+      "attribution": {
+        "source": "User",
+        "actorLabel": "Example owner",
+        "application": "React Gantt Chart"
+      }
+    },
+    "current": {
+      "project": {
+        "projectId": "example-early-lineage",
+        "name": "Historical reality example",
+        "projectStartDate": "2026-11-02",
+        "targetEndDate": "2026-11-30",
+        "workingWeekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "workingHoursPerDay": 4
+      },
+      "tasks": [
+        {
+          "taskId": "T1",
+          "name": "First task",
+          "description": "Four planned slots; recorded effort can still be two person-hours.",
+          "durationHours": 4,
+          "predecessorTaskIds": [],
+          "independentStartMode": "MANUAL",
+          "requestedStartDate": "2026-11-06"
+        },
+        {
+          "taskId": "T2",
+          "name": "Dependent task",
+          "description": "No Actual Start without attestation.",
+          "durationHours": 2,
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "independentStartMode": "DEFAULT"
+        }
+      ],
+      "nextTaskNumber": 3,
+      "manualOrder": [
+        "T1",
+        "T2"
+      ],
+      "sortMode": "manual",
+      "duplicateOrigins": {},
+      "progress": {
+        "definitionOfDone": "Owner confirms completion.",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": [],
+            "statusEventId": "E-status-T1"
+          },
+          "T2": {
+            "status": "Not Started",
+            "criteria": [],
+            "statusEventId": null
+          }
+        }
+      },
+      "actuals": {
+        "T1": {
+          "start": {
+            "kind": "Known",
+            "claimId": "A-T1",
+            "date": "2026-11-04",
+            "precision": "DateOnly",
+            "recordedAt": "2026-11-05T15:00:00.000Z",
+            "attribution": {
+              "source": "User",
+              "actorLabel": "Example owner",
+              "application": "React Gantt Chart"
+            },
+            "sourceEventId": "E-start-T1"
+          },
+          "completion": {
+            "kind": "Known",
+            "claimId": "C-T1",
+            "date": "2026-11-04",
+            "precision": "DateOnly",
+            "recordedAt": "2026-11-05T15:00:00.000Z",
+            "attribution": {
+              "source": "User",
+              "actorLabel": "Example owner",
+              "application": "React Gantt Chart"
+            },
+            "sourceEventId": "E-completion",
+            "committedAtCompletion": {
+              "kind": "Reviewed",
+              "workingRevisionId": "W-original",
+              "finishDate": "2026-11-06"
+            },
+            "attestation": {
+              "kind": "Attested",
+              "criteriaSnapshot": [],
+              "definitionOfDone": "Owner confirms completion.",
+              "completionAcknowledged": true,
+              "noCriteriaAcknowledged": true
+            }
+          }
+        },
+        "T2": {
+          "start": {
+            "kind": "Unknown",
+            "reason": "Actual Start was not recorded."
+          },
+          "completion": {
+            "kind": "Unknown",
+            "reason": "No active completion is recorded."
+          }
+        }
+      },
+      "workTracking": {
+        "schemaVersion": 1,
+        "entries": [
+          {
+            "entryId": "L-T1",
+            "taskId": "T1",
+            "workDate": "2026-11-04",
+            "contributor": "Example student",
+            "hours": 2,
+            "description": "Two recorded person-hours; completeness of logs is unknown.",
+            "createdAt": "2026-11-05T15:00:00.000Z",
+            "updatedAt": "2026-11-05T15:00:00.000Z"
+          }
+        ],
+        "remainingHours": {
+          "T1": 2,
+          "T2": 2
+        }
+      },
+      "forecastSettings": {
+        "schemaVersion": 1,
+        "enabled": false,
+        "classHoursPerStudent": 4,
+        "homeworkHoursPerStudent": 2,
+        "teamSize": 4
+      },
+      "working": {
+        "kind": "Reviewed",
+        "reference": {
+          "interpretation": "WP742-v1",
+          "reviewDate": "2026-11-05",
+          "reviewTimezone": "America/Regina",
+          "acceptedAt": "2026-11-05T15:00:00.000Z",
+          "inputs": {
+            "project": {
+              "projectId": "example-early-lineage",
+              "name": "Historical reality example",
+              "projectStartDate": "2026-11-02",
+              "targetEndDate": "2026-11-30",
+              "workingWeekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "workingHoursPerDay": 4
+            },
+            "tasks": [
+              {
+                "taskId": "T1",
+                "name": "First task",
+                "description": "Four planned slots; recorded effort can still be two person-hours.",
+                "durationHours": 4,
+                "predecessorTaskIds": [],
+                "independentStartMode": "MANUAL",
+                "requestedStartDate": "2026-11-06"
+              },
+              {
+                "taskId": "T2",
+                "name": "Dependent task",
+                "description": "No Actual Start without attestation.",
+                "durationHours": 2,
+                "predecessorTaskIds": [
+                  "T1"
+                ],
+                "independentStartMode": "DEFAULT"
+              }
+            ]
+          },
+          "state": {
+            "revisionId": "W-keep",
+            "ruleVersion": 1,
+            "calendar": {
+              "workingWeekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "workingHoursPerDay": 4
+            },
+            "constraints": {
+              "T1": {
+                "notBefore": {
+                  "date": "2026-11-06",
+                  "hour": 1
+                },
+                "origin": "SeededLegacy",
+                "decisionId": "D-original-T1"
+              },
+              "T2": {
+                "notBefore": {
+                  "date": "2026-11-09",
+                  "hour": 1
+                },
+                "origin": "Confirmed",
+                "decisionId": "D-T2"
+              }
+            },
+            "commitments": {
+              "T1": {
+                "kind": "Known",
+                "start": {
+                  "date": "2026-11-06",
+                  "hour": 1
+                },
+                "finish": {
+                  "date": "2026-11-06",
+                  "afterHour": 4
+                },
+                "decisionId": "D-original-T1"
+              },
+              "T2": {
+                "kind": "Known",
+                "start": {
+                  "date": "2026-11-09",
+                  "hour": 1
+                },
+                "finish": {
+                  "date": "2026-11-09",
+                  "afterHour": 2
+                },
+                "decisionId": "D-T2"
+              }
+            }
+          },
+          "decisions": [
+            {
+              "decisionId": "D-original-T1",
+              "taskId": "T1",
+              "predecessorIds": [],
+              "outcome": "KeepCommitment",
+              "reason": "Retain original accepted task reference.",
+              "sourceEventId": "E-W-original"
+            },
+            {
+              "decisionId": "D-T2",
+              "taskId": "T2",
+              "predecessorIds": [
+                "T1"
+              ],
+              "outcome": "KeepCommitment",
+              "reason": "Explicit fictional owner decision.",
+              "sourceEventId": "E-dependency"
+            }
+          ]
+        }
+      }
+    },
+    "originalBaseline": {
+      "kind": "Present",
+      "interpretation": "WP1-v1",
+      "value": {
+        "schemaVersion": 1,
+        "baselineId": "B-original",
+        "establishedAt": "2026-11-02T15:00:00.000Z",
+        "project": {
+          "projectId": "example-early-lineage",
+          "name": "Historical reality example",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-30",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "First task",
+            "description": "Four planned slots; recorded effort can still be two person-hours.",
+            "durationHours": 4,
+            "predecessorTaskIds": [],
+            "independentStartMode": "MANUAL",
+            "requestedStartDate": "2026-11-06"
+          },
+          {
+            "taskId": "T2",
+            "name": "Dependent task",
+            "description": "No Actual Start without attestation.",
+            "durationHours": 2,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ],
+        "nextTaskNumber": 3,
+        "manualOrder": [
+          "T1",
+          "T2"
+        ],
+        "sortMode": "manual",
+        "duplicateOrigins": {},
+        "schedule": {
+          "tasks": [
+            {
+              "taskId": "T1",
+              "predecessorTaskIds": [],
+              "startSlot": {
+                "date": "2026-11-06",
+                "hour": 1
+              },
+              "finishBoundary": {
+                "date": "2026-11-06",
+                "afterHour": 4
+              },
+              "startDate": "2026-11-06",
+              "finishDate": "2026-11-06"
+            },
+            {
+              "taskId": "T2",
+              "predecessorTaskIds": [
+                "T1"
+              ],
+              "startSlot": {
+                "date": "2026-11-09",
+                "hour": 1
+              },
+              "finishBoundary": {
+                "date": "2026-11-09",
+                "afterHour": 2
+              },
+              "startDate": "2026-11-09",
+              "finishDate": "2026-11-09"
+            }
+          ],
+          "projectCompletion": {
+            "date": "2026-11-09",
+            "afterHour": 2
+          }
+        },
+        "legacyOpaque": {
+          "note": "Preserve this inert original baseline extra."
+        }
+      }
+    },
+    "history": {
+      "coverage": {
+        "kind": "CompleteSince",
+        "revision": 1
+      },
+      "nextSequence": 7,
+      "events": [
+        {
+          "eventId": "E-W-original",
+          "sequence": 1,
+          "recordedInRevision": 1,
+          "recordedAt": "2026-11-02T15:00:00.000Z",
+          "effectiveDate": null,
+          "attribution": {
+            "source": "User",
+            "actorLabel": "Example owner",
+            "application": "React Gantt Chart"
+          },
+          "taskIds": [
+            "T1",
+            "T2"
+          ],
+          "supersedesEventId": null,
+          "reason": "Explicit fictional record, not inferred from effort.",
+          "kind": "WorkingReview",
+          "payload": {
+            "workingRevisionId": "W-original",
+            "reviewDate": "2026-11-02",
+            "reviewTimezone": "America/Regina",
+            "decisions": [
+              {
+                "decisionId": "D-original-T1",
+                "taskId": "T1",
+                "predecessorIds": [],
+                "outcome": "KeepCommitment",
+                "reason": "Retain original accepted task reference.",
+                "sourceEventId": "E-W-original"
+              }
+            ]
+          }
+        },
+        {
+          "eventId": "E-start-T1",
+          "sequence": 2,
+          "recordedInRevision": 2,
+          "recordedAt": "2026-11-05T15:00:00.000Z",
+          "effectiveDate": "2026-11-04",
+          "attribution": {
+            "source": "User",
+            "actorLabel": "Example owner",
+            "application": "React Gantt Chart"
+          },
+          "taskIds": [
+            "T1"
+          ],
+          "supersedesEventId": null,
+          "reason": "Explicit fictional record, not inferred from effort.",
+          "kind": "ActualStart",
+          "payload": {
+            "operation": "Record",
+            "fact": {
+              "kind": "Known",
+              "claimId": "A-T1",
+              "date": "2026-11-04",
+              "precision": "DateOnly",
+              "recordedAt": "2026-11-05T15:00:00.000Z",
+              "attribution": {
+                "source": "User",
+                "actorLabel": "Example owner",
+                "application": "React Gantt Chart"
+              },
+              "sourceEventId": "E-start-T1"
+            }
+          }
+        },
+        {
+          "eventId": "E-status-T1",
+          "sequence": 3,
+          "recordedInRevision": 2,
+          "recordedAt": "2026-11-05T15:00:00.000Z",
+          "effectiveDate": "2026-11-04",
+          "attribution": {
+            "source": "User",
+            "actorLabel": "Example owner",
+            "application": "React Gantt Chart"
+          },
+          "taskIds": [
+            "T1"
+          ],
+          "supersedesEventId": null,
+          "reason": "Explicit fictional record, not inferred from effort.",
+          "kind": "StatusChanged",
+          "payload": {
+            "fromStatus": "Not Started",
+            "toStatus": "Complete",
+            "blockedReason": null
+          }
+        },
+        {
+          "eventId": "E-completion",
+          "sequence": 4,
+          "recordedInRevision": 2,
+          "recordedAt": "2026-11-05T15:00:00.000Z",
+          "effectiveDate": "2026-11-04",
+          "attribution": {
+            "source": "User",
+            "actorLabel": "Example owner",
+            "application": "React Gantt Chart"
+          },
+          "taskIds": [
+            "T1"
+          ],
+          "supersedesEventId": null,
+          "reason": "Explicit fictional record, not inferred from effort.",
+          "kind": "Completion",
+          "payload": {
+            "operation": "Record",
+            "fact": {
+              "kind": "Known",
+              "claimId": "C-T1",
+              "date": "2026-11-04",
+              "precision": "DateOnly",
+              "recordedAt": "2026-11-05T15:00:00.000Z",
+              "attribution": {
+                "source": "User",
+                "actorLabel": "Example owner",
+                "application": "React Gantt Chart"
+              },
+              "sourceEventId": "E-completion",
+              "committedAtCompletion": {
+                "kind": "Reviewed",
+                "workingRevisionId": "W-original",
+                "finishDate": "2026-11-06"
+              },
+              "attestation": {
+                "kind": "Attested",
+                "criteriaSnapshot": [],
+                "definitionOfDone": "Owner confirms completion.",
+                "completionAcknowledged": true,
+                "noCriteriaAcknowledged": true
+              }
+            }
+          }
+        },
+        {
+          "eventId": "E-dependency",
+          "sequence": 5,
+          "recordedInRevision": 2,
+          "recordedAt": "2026-11-05T15:00:00.000Z",
+          "effectiveDate": null,
+          "attribution": {
+            "source": "User",
+            "actorLabel": "Example owner",
+            "application": "React Gantt Chart"
+          },
+          "taskIds": [
+            "T1",
+            "T2"
+          ],
+          "supersedesEventId": null,
+          "reason": "Explicit fictional record, not inferred from effort.",
+          "kind": "DependencyDecision",
+          "payload": {
+            "predecessorTaskId": "T1",
+            "successorTaskId": "T2",
+            "outcome": "Retain",
+            "resultingWorkingRevisionId": "W-keep",
+            "basisActualStartClaimId": null
+          }
+        },
+        {
+          "eventId": "E-W-keep",
+          "sequence": 6,
+          "recordedInRevision": 2,
+          "recordedAt": "2026-11-05T15:00:00.000Z",
+          "effectiveDate": null,
+          "attribution": {
+            "source": "User",
+            "actorLabel": "Example owner",
+            "application": "React Gantt Chart"
+          },
+          "taskIds": [
+            "T1",
+            "T2"
+          ],
+          "supersedesEventId": null,
+          "reason": "Explicit fictional record, not inferred from effort.",
+          "kind": "WorkingReview",
+          "payload": {
+            "workingRevisionId": "W-keep",
+            "reviewDate": "2026-11-05",
+            "reviewTimezone": "America/Regina",
+            "decisions": [
+              {
+                "decisionId": "D-original-T1",
+                "taskId": "T1",
+                "predecessorIds": [],
+                "outcome": "KeepCommitment",
+                "reason": "Retain original accepted task reference.",
+                "sourceEventId": "E-W-original"
+              },
+              {
+                "decisionId": "D-T2",
+                "taskId": "T2",
+                "predecessorIds": [
+                  "T1"
+                ],
+                "outcome": "KeepCommitment",
+                "reason": "Explicit fictional owner decision.",
+                "sourceEventId": "E-dependency"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "integrity": {
+    "profile": "bugsys-jcs-sha256/1",
+    "snapshotSha256": "02a69d9568d2c2e58592eac5523f80d7c6d29de5bee57ed1d16c1b4b23f0d91e"
+  }
+}

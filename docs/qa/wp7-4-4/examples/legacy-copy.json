@@ -1,0 +1,137 @@
+{
+  "format": "react-gantt-chart",
+  "schemaVersion": 6,
+  "profile": "snapshot-history/1",
+  "exportInfo": {
+    "application": "React Gantt Chart",
+    "exportedAt": "2026-11-10T16:00:00.000Z"
+  },
+  "snapshot": {
+    "logicalRevision": 1,
+    "origin": {
+      "kind": "LegacyCopy",
+      "sourceVersion": 1,
+      "sourceSavedAt": "2026-11-09T15:00:00.000Z",
+      "sourceRawSha256": "61e8168811e2afe4f186cdf5f65b6b76d658a88389bd683d1ceeb8e3a5a18ec6",
+      "upgradedAt": "2026-11-10T15:00:00.000Z",
+      "attribution": {
+        "source": "LegacyImport",
+        "actorLabel": null,
+        "application": "React Gantt Chart"
+      },
+      "limitations": [
+        "No original Actual Start, progress, remaining effort or historical edit records exist in source format1.",
+        "Not Started is the inherited default, not proof that no work occurred."
+      ]
+    },
+    "current": {
+      "project": {
+        "projectId": "example-legacy-lineage",
+        "name": "Historical reality example",
+        "projectStartDate": "2026-11-02",
+        "targetEndDate": "2026-11-30",
+        "workingWeekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "workingHoursPerDay": 4
+      },
+      "tasks": [
+        {
+          "taskId": "T1",
+          "name": "First task",
+          "description": "Two planned working slots; actual duration is not inferred.",
+          "durationHours": 2,
+          "predecessorTaskIds": [],
+          "independentStartMode": "DEFAULT"
+        },
+        {
+          "taskId": "T2",
+          "name": "Dependent task",
+          "description": "No Actual Start without attestation.",
+          "durationHours": 2,
+          "predecessorTaskIds": [
+            "T1"
+          ],
+          "independentStartMode": "DEFAULT"
+        }
+      ],
+      "nextTaskNumber": 3,
+      "manualOrder": [
+        "T1",
+        "T2"
+      ],
+      "sortMode": "manual",
+      "duplicateOrigins": {},
+      "progress": {
+        "definitionOfDone": "Owner confirms completion.",
+        "tasks": {
+          "T1": {
+            "status": "Not Started",
+            "criteria": [],
+            "statusEventId": null
+          },
+          "T2": {
+            "status": "Not Started",
+            "criteria": [],
+            "statusEventId": null
+          }
+        }
+      },
+      "actuals": {
+        "T1": {
+          "start": {
+            "kind": "Unknown",
+            "reason": "Actual Start was not recorded."
+          },
+          "completion": {
+            "kind": "Unknown",
+            "reason": "No active completion is recorded."
+          }
+        },
+        "T2": {
+          "start": {
+            "kind": "Unknown",
+            "reason": "Actual Start was not recorded."
+          },
+          "completion": {
+            "kind": "Unknown",
+            "reason": "No active completion is recorded."
+          }
+        }
+      },
+      "workTracking": {
+        "schemaVersion": 1,
+        "entries": [],
+        "remainingHours": {
+          "T1": null,
+          "T2": null
+        }
+      },
+      "forecastSettings": null,
+      "working": {
+        "kind": "Unreviewed",
+        "reason": "No working commitment review was recorded in the legacy source.",
+        "reference": null
+      }
+    },
+    "originalBaseline": {
+      "kind": "Absent"
+    },
+    "history": {
+      "coverage": {
+        "kind": "Partial",
+        "reason": "Legacy source records no status or edit history."
+      },
+      "nextSequence": 1,
+      "events": []
+    }
+  },
+  "integrity": {
+    "profile": "bugsys-jcs-sha256/1",
+    "snapshotSha256": "e2fe16566c302becb08391577507a4d40acd0ef3d7fe6a015c6b61ed43916e3d"
+  }
+}

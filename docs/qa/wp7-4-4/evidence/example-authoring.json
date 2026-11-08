@@ -1,0 +1,58 @@
+{
+  "designOnly": true,
+  "examples": [
+    {
+      "file": "empty.json",
+      "revision": 1,
+      "snapshotSha256": "182bb3643b095f0bfcefac162abfe79519764e6dcaa6b107f6ead5d6fabff972",
+      "events": 0
+    },
+    {
+      "file": "late-retained.json",
+      "revision": 2,
+      "snapshotSha256": "906f89230f07df7b385d7234c77904fbce1cb93739c291e743e4a611d1142e2d",
+      "events": 5
+    },
+    {
+      "file": "late-retained-actual.json",
+      "revision": 3,
+      "snapshotSha256": "12c479480b2b2c6c96a926bfba93ed3fc0c392b4c179dc7e9803468a875ce865",
+      "events": 9
+    },
+    {
+      "file": "late-severed-actual.json",
+      "revision": 3,
+      "snapshotSha256": "4f10c15551bbf0abdea44b88ee43a5217a73cc6afc076ad9a9219e214660f09a",
+      "events": 9
+    },
+    {
+      "file": "early-keep.json",
+      "revision": 2,
+      "snapshotSha256": "02a69d9568d2c2e58592eac5523f80d7c6d29de5bee57ed1d16c1b4b23f0d91e",
+      "events": 6
+    },
+    {
+      "file": "corrected-completion.json",
+      "revision": 3,
+      "snapshotSha256": "63a6ad6ef481d82db1777a51834f275c93b5d5709f799f112e95c66fc0e800d3",
+      "events": 6
+    },
+    {
+      "file": "legacy-copy.json",
+      "revision": 1,
+      "snapshotSha256": "e2fe16566c302becb08391577507a4d40acd0ef3d7fe6a015c6b61ed43916e3d",
+      "events": 0
+    },
+    {
+      "file": "partial-current.json",
+      "revision": 2,
+      "snapshotSha256": "b67add0ddbab003d7a819dfa52354e8409d9739f4278e290516774d3474ef336",
+      "events": 0
+    }
+  ],
+  "limits": [
+    "ASCII object keys and safe integer fixture numbers only",
+    "Built-in JSON authoring/syntax/digest illustration, not a JCS implementation or format6 decoder",
+    "No generic migration, serializer, parser or repository code delivered"
+  ]
+}
