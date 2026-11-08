@@ -1,0 +1,40 @@
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/repository/projectRepository.test.ts -t C08 two writers and exact retry
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 73 skipped (74)
+   Start at  00:08:29
+   Duration  751ms (environment 80%, setup 16%, transform 2%, import 1%, tests 1%)
+
+
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/repository/projectRepository.test.ts -t C11 old receipt
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 73 skipped (74)
+   Start at  00:08:30
+   Duration  745ms (environment 80%, setup 16%, transform 2%, import 1%, tests 1%, worker 1%)
+
+
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/repository/projectRepository.test.ts -t C16
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed | 70 skipped (74)
+   Start at  00:08:31
+   Duration  801ms (environment 77%, setup 16%, transform 3%, import 1%, tests 1%)

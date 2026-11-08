@@ -1,0 +1,12 @@
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/repository/projectRepository.test.ts
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+
+ Test Files  1 passed (1)
+      Tests  69 passed (69)
+   Start at  00:02:14
+   Duration  1.46s (environment 76%, setup 15%, transform 5%, tests 2%, import 1%)

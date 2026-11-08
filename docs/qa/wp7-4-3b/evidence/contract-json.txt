@@ -1,0 +1,5 @@
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/repository/projectRepository.test.ts --reporter=json --outputFile=docs/qa/wp7-4-3b/evidence/contract-results.json
+
+JSON report written to C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization/docs/qa/wp7-4-3b/evidence/contract-results.json

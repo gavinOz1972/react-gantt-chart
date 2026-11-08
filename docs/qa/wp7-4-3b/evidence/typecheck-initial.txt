@@ -1,0 +1,6 @@
+
+> react-gantt-chart@0.0.0 typecheck
+> tsc -b --pretty false
+
+docs/qa/wp7-4-3b/tests/referenceRepository.ts(36,15): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+docs/qa/wp7-4-3b/tests/referenceRepository.ts(36,51): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.

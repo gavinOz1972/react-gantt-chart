@@ -1,0 +1,113 @@
+{
+  "workPackage": "WP7.4.3b",
+  "clientDate": "2026-11-08",
+  "clientTimeZone": "America/Regina",
+  "recordedAtUTC": "2026-11-08T06:12:02.070Z",
+  "branch": "feature/wp7-stabilization",
+  "cleanStartingHead": "4d32a4e8ccb61651f422cdb2de242e6d0297573e",
+  "requirementSHA256": "a8df94919e78642cc7daeca33439d5cd0a81730a0d4d5922ab77206e2bae60b3",
+  "authorization": {
+    "accepted": "WP7.4.3a design handoff",
+    "approved": [
+      "R01",
+      "R02",
+      "R03",
+      "R06",
+      "R08",
+      "R09"
+    ],
+    "conditionalForFuturePhysicalAdapter": [
+      "R04",
+      "R05"
+    ],
+    "deferred": [
+      "R07"
+    ],
+    "olderIndependentAcceptanceGates": "Unchanged",
+    "newOwnerAcceptance": "Pending"
+  },
+  "checks": {
+    "initialTypecheck": {
+      "exitCode": 1,
+      "diagnostics": 2,
+      "code": "TS1294",
+      "correction": "Replace constructor parameter properties with explicit readonly fields/assignments; configuration unchanged"
+    },
+    "correctedTypecheck": {
+      "exitCode": 0
+    },
+    "initialConformance": {
+      "exitCode": 0,
+      "passed": 69
+    },
+    "finalCheck": {
+      "exitCode": 0,
+      "passed": 625,
+      "testFiles": 37,
+      "existing": 551,
+      "newConformance": 74,
+      "lint": true,
+      "typecheck": true,
+      "build": true
+    },
+    "finalConformanceJSON": {
+      "exitCode": 0,
+      "passed": 74,
+      "failed": 0
+    },
+    "ownerExamples": {
+      "exitCode": 0,
+      "C08": 1,
+      "C11": 1,
+      "C16": 4
+    },
+    "browserFirst": {
+      "assertionsPassed": 223,
+      "assertionsFailed": 0,
+      "shellWrapperExitCode": 1,
+      "warning": "NO_COLOR/FORCE_COLOR NativeCommandError in PowerShell"
+    },
+    "browserVerified": {
+      "nativeExitCode": 0,
+      "passed": 223,
+      "duration": "2.5m",
+      "browser": "Chromium",
+      "ownedPort": 4173,
+      "owner5173And5174Untouched": true
+    },
+    "finalLint": {
+      "exitCode": 0
+    }
+  },
+  "contractAdaptations": [
+    "Generic recursively readonly complete snapshot S requiring only logicalRevision; no pending format6 fields",
+    "Opaque compile-only identity/reference/cursor brands",
+    "Injected validation/fingerprint boundaries; narrow exact-JSON fixture fake only",
+    "Instance-lifetime receipt/cursor memory; no physical durability"
+  ],
+  "notImplemented": [
+    "R07 schema/replay/canonicalization/golden vectors/codec/migration",
+    "R04/R05 browser storage/locks",
+    "application consumers/coordinator/UI",
+    "API/DBMS/authentication/collaboration",
+    "actual-start/guided review/editor gates",
+    "main merge/protected tag/deploy/WP8"
+  ],
+  "protectedLocalAndRemoteReferencesBeforeCommit": {
+    "main": {
+      "object": "a6a1c32c22a2bf074b161e52d523443602843dd7"
+    },
+    "v1.0-pre-progress": {
+      "object": "a4157bc84392c770c27111da58d779948b110a56",
+      "peeled": "abb85011dafc9fb0876953e3132880e025ef65da"
+    },
+    "v1.1-pre-stabilization": {
+      "object": "134305f2205eb993ab76672c2d2469d48d91a609",
+      "peeled": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+    }
+  },
+  "remoteFeatureHeadBeforeCommit": "4d32a4e8ccb61651f422cdb2de242e6d0297573e",
+  "postPushReferenceVerification": "Required final live check; actual commit SHA reported in owner handoff",
+  "scopeEvidence": "scope-review.json",
+  "testCaseEvidence": "contract-results.json"
+}
