@@ -1,0 +1,76 @@
+{
+  "artifact": "Transient fictional review/view example, not a portable project or implemented workflow",
+  "sourceLogicalRevision": 2,
+  "nominatedTaskIds": [
+    "T2"
+  ],
+  "originalReachabilityPathsToT5": [
+    [
+      "T2",
+      "T3",
+      "T5"
+    ],
+    [
+      "T2",
+      "T3",
+      "T4",
+      "T5"
+    ]
+  ],
+  "finalAffectedTaskIds": [
+    "T2",
+    "T3",
+    "T4",
+    "T5"
+  ],
+  "finalPromptCountByTask": {
+    "T2": 1,
+    "T3": 1,
+    "T4": 1,
+    "T5": 1
+  },
+  "unaffectedPredecessorRetainedForT5": "T1",
+  "cancel": {
+    "acceptedSnapshotRemains": "retirement-before.json",
+    "acceptedRevision": 2,
+    "newAcceptedEvents": 0
+  },
+  "confirm": {
+    "snapshot": "retirement-cascade.json",
+    "acceptedRevision": 3,
+    "wholeTransactionCount": 1
+  },
+  "view": {
+    "defaultShowRetiredTasks": false,
+    "defaultVisibleTaskIds": [
+      "T1",
+      "T4",
+      "T5"
+    ],
+    "toggledVisibleTaskIds": [
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5"
+    ],
+    "retiredRelics": [
+      "T2",
+      "T3"
+    ],
+    "retirementDate": "2026-11-09",
+    "actualDatesRemainUnknownFor": [
+      "T2",
+      "T3"
+    ],
+    "relicIsElapsedWorkBar": false,
+    "baselineOverlayStillContains": [
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5"
+    ],
+    "savedSnapshotWithEitherToggle": "retirement-cascade.json"
+  }
+}

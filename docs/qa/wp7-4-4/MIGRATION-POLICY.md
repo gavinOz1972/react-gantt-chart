@@ -3,6 +3,8 @@
 No upgrade/codec is implemented. Current [public decoder/writer](../../../src/persistence/projectFile.ts)
 still reads1–5 and writes5. Schema6 and this exact profile require explicit
 owner acceptance and later private codec/integration work before public use.
+WP7.4.4a approves F07 in principle, subject to final complete-contract consistency
+review; F08 source-preservation/limit qualification remains conditional.
 
 ## Legacy field mapping without invented evidence
 
@@ -17,6 +19,7 @@ owner acceptance and later private codec/integration work before public use.
 | Earlier files without progress | Explicit existing legacy default Not Started/empty criteria/guidance with origin limitation; actuals Unknown for every task. | Default Not Started is inherited application state, not proof no work ever happened. |
 | Forecast settings (5 only) | Preserve assumptions and optional As-of exactly; otherwise null(unconfigured). | No forecast output/health/slack or today's derived date is persisted as fact. |
 | Actual Start/working plan | Actual Start Unknown. Working Unreviewed; optionally retain the legacy WP1 plan as a clearly unreviewed reference, never a fabricated reviewed W. | No Actual Start from earliest log/In Progress event and no changed future working promises without a later review. |
+| Lifecycle/archives/reviews absent in1–5 | Each surviving current task defaults explicitly to Active, lastDecisionId:null/decisions:[]; archivedDependencies:[] and scopeReviews:[]. Existing progress/estimate/actual/log/baseline evidence is retained. | No invented retirement/restoration/date/rationale/actor/archive. Active now does not prove never-retired history. |
 
 Use Partial history for legacy upgrades, even when all surviving old status
 events are present: old versions did not record every source/effort/dependency
@@ -94,3 +97,23 @@ of these flows.
 No storage key/library migration, destructive replace or automatic schema
 activation is part of this document. First-baseline/raw-backup guarantees and
 future adapter power-loss limits are distinct and must be tested separately.
+
+## Retirement-specific migration and copy rules
+
+A task absent from legacy current scope is not automatically retired. Missing
+ID numbers, duplicateOrigins, deleted-task behavior or a task found only in the
+baseline do not establish a retirement date/rationale. Preserve baseline-only
+evidence and label it absent from legacy current scope, retirement Unknown.
+Do not synthesize task/lifecycle records. No surviving task evidence means no
+factual retirement can be reported; allocation high-water marks still prevent
+reuse. The fictional format5 pair illustrates these defaults, not a new converter.
+
+New recorded retirements retain task records, progress, actuals, estimates,
+logs, lifecycle decisions and archived edges on every copy/restore. Reject
+lossy down-export or restoration dropping old rationale/evidence. No lifecycle
+decision replaces the original baseline.
+
+Pre-amendment `snapshot-history/1` was an unreleased design candidate; `/2`
+adds required lifecycle/archives/reviews and a distinct hash-domain prefix.
+Examples were re-authored, not migrated by delivered code. No production6
+exists. A bridge for unofficial old drafts requires separate authorization.

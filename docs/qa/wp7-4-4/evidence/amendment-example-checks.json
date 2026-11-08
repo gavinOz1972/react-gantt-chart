@@ -1,0 +1,808 @@
+{
+  "designOnly": true,
+  "recordedAtUTC": "2026-11-08T22:03:25.389Z",
+  "checks": [
+    {
+      "id": "JSONSyntax:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ReviewDistinctOutcomes:retirement-cascade.json:REVIEW-cascade",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ReviewDistinctOutcomes:retirement-chain-remove.json:REVIEW-remove",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ReviewDistinctOutcomes:retirement-chain-replace.json:REVIEW-replace",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ReviewDistinctOutcomes:retirement-leaf.json:REVIEW-leaf",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-legacy-v5-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:retirement-legacy-v5-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:retirement-legacy-v5-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:retirement-legacy-v5-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:retirement-legacy-v5-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:retirement-legacy-v5-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-restored.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RestrictedFixtureDigest:retirement-restored.json",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedMapCoverage:retirement-restored.json",
+      "result": "Pass"
+    },
+    {
+      "id": "NoActiveRetiredPredecessor:retirement-restored.json",
+      "result": "Pass"
+    },
+    {
+      "id": "FourProgressStatuses:retirement-restored.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ActiveWorkingCoverage:retirement-restored.json",
+      "result": "Pass"
+    },
+    {
+      "id": "UniqueEventArchiveIds:retirement-restored.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ReviewDistinctOutcomes:retirement-restored.json:REVIEW-cascade",
+      "result": "Pass"
+    },
+    {
+      "id": "ReviewDistinctOutcomes:retirement-restored.json:REVIEW-restore",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:retirement-review-preview.example.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:source-format1.json",
+      "result": "Pass"
+    },
+    {
+      "id": "JSONSyntax:source-format5-no-retirement.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselinePreserved:leaf",
+      "result": "Pass"
+    },
+    {
+      "id": "OneAcceptedRevision:leaf",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedTaskIdsCounter:leaf",
+      "result": "Pass"
+    },
+    {
+      "id": "StatusFactsEffortPreserved:leaf",
+      "result": "Pass"
+    },
+    {
+      "id": "RetirementBeforeContext:leaf:T5",
+      "result": "Pass"
+    },
+    {
+      "id": "RationaleActorDates:leaf:T5",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselinePreserved:chain-remove",
+      "result": "Pass"
+    },
+    {
+      "id": "OneAcceptedRevision:chain-remove",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedTaskIdsCounter:chain-remove",
+      "result": "Pass"
+    },
+    {
+      "id": "StatusFactsEffortPreserved:chain-remove",
+      "result": "Pass"
+    },
+    {
+      "id": "RetirementBeforeContext:chain-remove:T2",
+      "result": "Pass"
+    },
+    {
+      "id": "RationaleActorDates:chain-remove:T2",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselinePreserved:chain-replace",
+      "result": "Pass"
+    },
+    {
+      "id": "OneAcceptedRevision:chain-replace",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedTaskIdsCounter:chain-replace",
+      "result": "Pass"
+    },
+    {
+      "id": "StatusFactsEffortPreserved:chain-replace",
+      "result": "Pass"
+    },
+    {
+      "id": "RetirementBeforeContext:chain-replace:T2",
+      "result": "Pass"
+    },
+    {
+      "id": "RationaleActorDates:chain-replace:T2",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselinePreserved:cascade",
+      "result": "Pass"
+    },
+    {
+      "id": "OneAcceptedRevision:cascade",
+      "result": "Pass"
+    },
+    {
+      "id": "RetainedTaskIdsCounter:cascade",
+      "result": "Pass"
+    },
+    {
+      "id": "StatusFactsEffortPreserved:cascade",
+      "result": "Pass"
+    },
+    {
+      "id": "RetirementBeforeContext:cascade:T2",
+      "result": "Pass"
+    },
+    {
+      "id": "RationaleActorDates:cascade:T2",
+      "result": "Pass"
+    },
+    {
+      "id": "RetirementBeforeContext:cascade:T3",
+      "result": "Pass"
+    },
+    {
+      "id": "RationaleActorDates:cascade:T3",
+      "result": "Pass"
+    },
+    {
+      "id": "LeafNoSuccessor",
+      "result": "Pass"
+    },
+    {
+      "id": "RemoveAndExplicitFuturePlan",
+      "result": "Pass"
+    },
+    {
+      "id": "ConfirmedReplacement",
+      "result": "Pass"
+    },
+    {
+      "id": "CascadeTwoRetirements",
+      "result": "Pass"
+    },
+    {
+      "id": "JoinReviewedOnceUnaffectedParentKept",
+      "result": "Pass"
+    },
+    {
+      "id": "RemovedEdgeEpisodesExactlyOnce",
+      "result": "Pass"
+    },
+    {
+      "id": "CancelAcceptedBytesIdentical",
+      "result": "Pass"
+    },
+    {
+      "id": "ConfirmMultipleEventsSingleRevision",
+      "result": "Pass"
+    },
+    {
+      "id": "RestorePreservesArchiveBaseline",
+      "result": "Pass"
+    },
+    {
+      "id": "RestoreKeepsRetirement",
+      "result": "Pass"
+    },
+    {
+      "id": "RestoreExplicitGraphNotBaseline",
+      "result": "Pass"
+    },
+    {
+      "id": "RestoreExplicitDatesNoActualStart",
+      "result": "Pass"
+    },
+    {
+      "id": "RestorationRetainsPriorReviewAndEvents",
+      "result": "Pass"
+    },
+    {
+      "id": "LegacyDefaultNoFabricatedRetirement",
+      "result": "Pass"
+    },
+    {
+      "id": "LegacyCounterGapsNotInventedTasks",
+      "result": "Pass"
+    },
+    {
+      "id": "LegacyRawBytesDigest",
+      "result": "Pass"
+    },
+    {
+      "id": "TransientDuplicateReachability",
+      "result": "Pass"
+    },
+    {
+      "id": "ViewToggleNoSavedDataChange",
+      "result": "Pass"
+    },
+    {
+      "id": "PriorExampleBaselineUnchanged:empty.json",
+      "result": "Pass"
+    },
+    {
+      "id": "PriorExampleBaselineUnchanged:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "PriorExampleBaselineUnchanged:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "PriorExampleBaselineUnchanged:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "PriorExampleBaselineUnchanged:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "PriorExampleBaselineUnchanged:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "PriorExampleBaselineUnchanged:legacy-copy.json",
+      "result": "Pass"
+    },
+    {
+      "id": "PriorExampleBaselineUnchanged:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ExistingLegacyParser:source-format1.json",
+      "result": "Pass"
+    },
+    {
+      "id": "ExistingLegacyParser:source-format5-no-retirement.json",
+      "result": "Pass"
+    },
+    {
+      "id": "CurrentReaderStillRejectsFormat6",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:corrected-completion.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:early-keep.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:late-retained-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:late-retained.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:late-severed-actual.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:partial-current.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:retirement-before.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:retirement-cancelled.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:retirement-cascade.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:retirement-chain-remove.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:retirement-chain-replace.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:retirement-leaf.json",
+      "result": "Pass"
+    },
+    {
+      "id": "OriginalWP1Baseline:retirement-restored.json",
+      "result": "Pass"
+    },
+    {
+      "id": "BaselineNotMutated:retirement-restored.json",
+      "result": "Pass"
+    }
+  ],
+  "limitations": [
+    "Selected fictional JSON/digest/reference/literal assertions, not a complete format6 or lifecycle validator",
+    "Restricted ASCII-key/safe-integer digest authoring, no independent cross-language JCS qualification",
+    "Cancel/commit/toggle are data oracles, not implemented runtime workflows or UI",
+    "No realistic/larger fixture capacity/depth qualification; F04/F08 remain conditional"
+  ]
+}

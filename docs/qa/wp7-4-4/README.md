@@ -1,6 +1,6 @@
 # WP7.4.4 — R07 portable file design
 
-**Design handoff only.** R07 remains Pending until the owner explicitly accepts
+**Accepted as a design handoff only; amended by WP7.4.4a.** R07 remains Pending until the owner explicitly accepts
 the schema, compatibility and integrity decisions. No parser, serializer,
 migration, repository integration, storage or UI is implemented here.
 
@@ -15,9 +15,18 @@ The owner selected **Option A**: a self-contained authoritative current
 snapshot, immutable original baseline and structured explanatory history.
 Replaying events is not necessary to load the current project.
 
+WP7.4.4a authority: owner-confirmed retirement amendment
+`Bugsys_WP7_4_4a_R07_Retirement_Amendment.docx`, SHA-256
+`bfd029dc021ff550f5b56e119562acd2c9a7adf54be5d278993b8ce6bdc8c0c9`.
+Amendment base: `fd7fee933f843c9b547e88590e2bb1b20edb4081`.
+Read [AMENDMENT-SUMMARY](AMENDMENT-SUMMARY.md) first for changed fields,
+owner dispositions and current verification. The original regression/authoring
+evidence remains historical; amended examples use the distinct unreleased
+`snapshot-history/2` profile/domain prefix. No production6 file is migrated.
+
 ## Recommendation and reading order
 
-1. [FORMAT6-CONTRACT](FORMAT6-CONTRACT.md): candidate `snapshot-history/1`,
+1. [FORMAT6-CONTRACT](FORMAT6-CONTRACT.md): candidate `snapshot-history/2`,
    required snapshot fields, Unknown, original baseline and event invariants.
 2. [JSON-EXAMPLES](JSON-EXAMPLES.md): complete fictional files, including the
    November2/November6 T1 reality case and T2 decisions.
@@ -25,7 +34,7 @@ Replaying events is not necessary to load the current project.
    preserved source bytes, missing history and interrupted migration.
 4. [VALIDATION-AND-INTEGRITY](VALIDATION-AND-INTEGRITY.md): canonical bytes,
    digest scope, corruption/failure classification and recovery.
-5. [SCENARIO-MATRIX](SCENARIO-MATRIX.md): proposed acceptance cases versus actual
+5. [SCENARIO-MATRIX](SCENARIO-MATRIX.md): original and amended acceptance cases versus actual
    design/example/regression checks and their limits.
 6. [OWNER-DECISIONS](OWNER-DECISIONS.md): concrete recommendations and remaining
    consequences; new acceptance/decision boxes remain unchecked.
@@ -50,3 +59,5 @@ it never proves T2 started. See the complete examples and their stated calendar.
 No baseline regeneration, forecast/PA/FF/CPM change, extra work status,
 mandatory log, application activation, physical adapter, API/DBMS,
 main merge/tag/deployment or WP8 is included. Stop for owner review.
+The amendment proposes retirement/restoration and presentation/reporting
+contracts only; no guided workflow, Gantt toggle or lifecycle UI is implemented.

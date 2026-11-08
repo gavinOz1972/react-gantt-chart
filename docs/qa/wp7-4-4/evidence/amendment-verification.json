@@ -1,0 +1,82 @@
+{
+  "workPackage": "WP7.4.4a",
+  "clientDate": "2026-11-08",
+  "clientTimeZone": "America/Regina",
+  "recordedAtUTC": "2026-11-08T22:08:12.636Z",
+  "base": "fd7fee933f843c9b547e88590e2bb1b20edb4081",
+  "ownerScope": "Explicitly confirmed WP7.4.4a retirement amendment after clarification",
+  "requirementSHA256": "bfd029dc021ff550f5b56e119562acd2c9a7adf54be5d278993b8ce6bdc8c0c9",
+  "dispositions": {
+    "WP744": "Accepted as design handoff only",
+    "approvedInPrinciple": [
+      "F01",
+      "F02",
+      "F03",
+      "F05",
+      "F06",
+      "F07"
+    ],
+    "conditional": [
+      "F04",
+      "F08"
+    ],
+    "F09": "Retirement workflow approved; concrete schema/consistency pending",
+    "R07Final": false,
+    "nextImplementationAuthorized": false
+  },
+  "checks": {
+    "isolatedFeatureHeadExport": true,
+    "check": {
+      "exitCode": 0,
+      "unitComponentTests": 625,
+      "testFiles": 37,
+      "lint": true,
+      "typecheck": true,
+      "build": true
+    },
+    "browser": {
+      "nativeExitCode": 0,
+      "passed": 223,
+      "duration": "2.6m",
+      "ownedPort": 4173,
+      "ownerPortsUntouched": [
+        5173,
+        5174
+      ]
+    },
+    "selectedDesignAuthoring": {
+      "exitCode": 0,
+      "passed": 199,
+      "completeProfile2Documents": 16,
+      "legacySources": 2,
+      "transientReviewViewExamples": 1,
+      "limits": "Selected fixture syntax/digest/data assertions and existing legacy/WP1 validators only; no codec/workflow/UI certification"
+    }
+  },
+  "authoringIssuesCorrected": [
+    "Temporary Windows ESM absolute import changed to package import",
+    "New fictional five-task baseline scheduled predecessor ordering corrected to existing WP1 convention; prior eight baselines and real data unchanged"
+  ],
+  "conditionalVerificationNotCompleted": [
+    "Independent cross-language JCS vectors",
+    "Unicode/numeric/duplicate-member canonical qualification",
+    "Realistic/larger fixtures and provisional10MiB/depth64 boundaries",
+    "Native lifecycle/workflow/cancel/physical transaction/Gantt/accessibility/report tests"
+  ],
+  "schemaChanges": [
+    "Unreleased snapshot-history/2 profile and hash-domain prefix",
+    "Current lifecycle/archivedDependencies/scopeReviews",
+    "Retained-task maps versus active-only graph/W projection",
+    "Immutable lifecycle before-context, archive/review/history retention",
+    "Source1-5 Active defaults without fabricated retirement"
+  ],
+  "notImplemented": [
+    "pure format6 model/validator/canonicalizer/codec/migration",
+    "repository or physical storage activation",
+    "guided retirement/restoration workflow",
+    "lifecycle UI/Gantt toggle/WP8 reporting",
+    "evaluator/PA/FF/CPM/formula changes",
+    "main merge/tag/deployment"
+  ],
+  "requiredStop": "Owner final complete-contract consistency and conditional gate review"
+}

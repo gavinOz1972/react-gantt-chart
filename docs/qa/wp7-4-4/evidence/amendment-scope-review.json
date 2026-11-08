@@ -1,0 +1,393 @@
+{
+  "workPackage": "WP7.4.4a",
+  "designOnly": true,
+  "recordedAtUTC": "2026-11-08T22:08:12.613Z",
+  "base": "fd7fee933f843c9b547e88590e2bb1b20edb4081",
+  "branch": "feature/wp7-stabilization",
+  "allowedPackage": "docs/qa/wp7-4-4/",
+  "sourceCodeConfigDependencyChanges": [],
+  "preExistingModifiedFilesPreservedByteForByte": [
+    {
+      "path": "docs/qa/wp7-1/evidence/as-of-date-modes.json",
+      "sha256": "043fe186e896bd33cc6935e9fb88ca5e0ba6c3155d230a79346517262cd6cd43"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e04-e05-chart.png",
+      "sha256": "5183af304b4f1178fd4aaf6821ec6f0592cf550cf38abfb030979ef6c0c44549"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e04-e05.json",
+      "sha256": "586711d58808fd2e7b5c0378e33d429f8b49ec45af326fc0959b690851fc4b1c"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e06-e07-e10.json",
+      "sha256": "7b05bb20953dfee4ab0b6cced9b538b76cddb9fde3017eefc46ceee17716b0f1"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e13-forty-task.png",
+      "sha256": "0ef855352016cd2e6e9cb97595639eb4bb7b576c719e93f53b11af5c0bdc58c9"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/performance-regression-0.json",
+      "sha256": "4b2666355ed9889a35b4a8b3aa474f0a4c1ce448609b1b1e4e8edfe70b98234b"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-1280.json",
+      "sha256": "df354e077a44037540eb8488e52a28192e35dcf3c62eea8c9a96dda132906483"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-1440.json",
+      "sha256": "1049e03d82e0131c80792288142745d28d6e90cf16254ec41e0eebd230dc3751"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-780.json",
+      "sha256": "f734d67de68ce39364987c545a886f982d592562bf304cbec88ca7cd16cc2832"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-initial.png",
+      "sha256": "db1c65af71b13a8741fab902c25d5c873743e2e9ce396a29d87c68d92d88dc0f"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-revealed.png",
+      "sha256": "9c3b2d9aeeb698bc4ef8d0a405a725020847eff83b9db88225152290235d5522"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-1280.json",
+      "sha256": "ead475d16e8385cf18141d2ee7ddddc05dd6ca63b5c6ab974602bcfecbac9cf4"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-1440.json",
+      "sha256": "a9aeae7c9aeeed6e01489cfced9323c072ed56d5a1a29243a155374b608a1bef"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-780.json",
+      "sha256": "a946c27b6f9dffeba0f5c1af4e0cf7f9fa9d15018e612e21427d45cec73a4f43"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-initial.png",
+      "sha256": "db1c65af71b13a8741fab902c25d5c873743e2e9ce396a29d87c68d92d88dc0f"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-revealed.png",
+      "sha256": "627b558034a29739f3a740a04211ed98e1ea2f9f931fa7cc3c2d5093e621263b"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/forty-gantt-1280.png",
+      "sha256": "c6af38c9bde9a1f22935ada061d67f4797c3c20813a1a8f1a3e90f19d1778fd6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/forty-network-1280.png",
+      "sha256": "e633beae6be01234149307c84b633238ede73882edf59d3aa2685a57899f9ae6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/initialization-and-time.json",
+      "sha256": "1d35ac3e04b8886a268077a5214357ae8108247359dcffd6244f51ccc108764a"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-1280.json",
+      "sha256": "7b3fa0fa03e319f8402a139aedfdcf191694302389c34322ed83c5b62f743bef"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-1440.json",
+      "sha256": "efbdaa021198a91be4f76bf24e19a91162779c29b8bfbdc1e954fdc448bfc8db"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-780.json",
+      "sha256": "8d57c965420d4ab12023e451fa131d24712b2125d6187978e62f539aca6fc7aa"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-complete-summary.png",
+      "sha256": "a046c506d030c641689fc5eb3e3a074a463dd902b214fdcd4c04f817e19134d6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-logs-false.json",
+      "sha256": "41c8233f311ea4fb532a6c87db3a7b10ca3ffc79f97bc460f1f40509b333a981"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-logs-true.json",
+      "sha256": "05f5598a7fadea795df028cbecfdcf26a02281523365ddfbb92b8b0d558cf7c6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-work-details.png",
+      "sha256": "166cdbbc537486498a3cece92c32a39cb36711fa2673799161e187c29d853f3e"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/a-j-immediate.png",
+      "sha256": "388dace1281ff5ca20ee0ec6959f5d52b5401653c0b59091a67437256589ef26"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/b-slack-absorbed.png",
+      "sha256": "26bf919a64120df3f58515cc9e1374e399352494e7c80612dcd6a2faf57dceec"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l09.png",
+      "sha256": "9039f874ba552cba9a9799b85417e85bf5b412d7d9f47733ecc91c9cd54fabc5"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l10.png",
+      "sha256": "99b533801f297de7885c533e5ba003b0bf777f0756da8095a81e7bf7248d171c"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l13.png",
+      "sha256": "c96f5b9b22047225c70d8eab4f77d97a9029ed09822f23238d0da938b5389a07"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l14b.png",
+      "sha256": "e68169abceb310cea3aebcfd4dd464d90e550cffb36a99903298f0777e8e2d00"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/d-date-only-precision.png",
+      "sha256": "6e5a39ca24d0ba397f88bb1706557df6bc31a7ac85c208744c5591a64effcb2f"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/e-changed-driver-gantt.png",
+      "sha256": "a40ae5bae10c1f0c798abb83bb491fa405f15a2da55885141a59ef5aa737b619"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/e-network.png",
+      "sha256": "9b8018b35fda6bf07ee691a6e09590cfdbfe3a731ea12eb3e64ce76f998a4a89"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/h-all-layers.png",
+      "sha256": "b87b03e2dadec3169c3c43c15d7973e102e6580d2b886cd7b67691d6e2694f15"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-30-browser.json",
+      "sha256": "05e2e45147b547c045e47a3e0486d71cadc4c8a9de4226db602ee6eb95446fab"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-30-tasks.png",
+      "sha256": "d9fa80d3c8aa1c888dda37785ea876d2015748fb9b26b305db91c6bb36b53243"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-40-browser.json",
+      "sha256": "0d9f97c65a8652c126172bdfd32428a46a9badc850acecec2e2dba14583e5632"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-40-tasks.png",
+      "sha256": "6608be3bf371e3b9a899696e04c9ba1e451e1a1adca45ba656fe6b72982327f2"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/nonworking-compressed.png",
+      "sha256": "5ff2560df00f0340df8f8641849244a113696a522f6044616e13129fbb763479"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/same-date-project-slot-delay.png",
+      "sha256": "05d613dc99e7c21ec1dcd2ecbb01f4e00a74c2c83883626e9d14e88c18174041"
+    },
+    {
+      "path": "docs/qa/wp7-3-3/evidence/08-weekend-compressed.png",
+      "sha256": "0d410e3328c2c50f7ef91aae743e229a9c9ec6b3d3dc59668c48a38ed1a9eced"
+    },
+    {
+      "path": "docs/qa/wp7-3-3/evidence/08-weekend-expanded.png",
+      "sha256": "a306096089add7e1bdec116fab681d411edb1db6d0108d7f7fa51f3d885af998"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-actions-1280.png",
+      "sha256": "aca22cb6568906368b265c3beb9e24e44dce73cb207f34b6b05e1c472c217670"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-end-1280.png",
+      "sha256": "ee3bf7cd136340be9a091f29a3f32207323fd17144f19009df7f1ae211af24bb"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-start-1280.png",
+      "sha256": "b20ffa23d82489cb87aff9ac56144f9ff71cd4feea5df1a4f432197392523cb7"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c02-complete-summary.png",
+      "sha256": "02582fe19d458626c37c965fcc80385774af588f9e7a763dc037134d9287b348"
+    },
+    {
+      "path": "docs/review/wp5-1-dependencies.png",
+      "sha256": "9388729a1445760ebe5e2b8338c3a37a717cf92429b1b695b99fbcab3da2d95a"
+    },
+    {
+      "path": "docs/review/wp5-1-editor.png",
+      "sha256": "74c8121b065c4d00c40574040197d983bce46d6ff679cd4f772eb3dbfea61b9b"
+    },
+    {
+      "path": "docs/review/wp5-1-narrow-picker.png",
+      "sha256": "1b32ad171de5230f93d9a19c403034af0838248f8233f4d723ee445ac11fa919"
+    },
+    {
+      "path": "docs/review/wp5-1-narrow-workspace.png",
+      "sha256": "891844bf8c89c6fef0c058568f78253b7d4f85c6f314ebd2ea5cd8862da7b813"
+    },
+    {
+      "path": "docs/review/wp5-1-workspace.png",
+      "sha256": "341dd60e8902ad5ef90af01d7464a2eb72a42d40ce419b3bd1bec2dd50b4c341"
+    },
+    {
+      "path": "docs/review/wp5-2-network-fit.png",
+      "sha256": "791f695efbe48e4febfb6b838e3ff5b5cbd8c5fe89d6d51686166fc21d2dcd41"
+    },
+    {
+      "path": "docs/review/wp5-2-network-narrow-fit.png",
+      "sha256": "fe9b034dfc7975c65c53032365f65574ad6b08722f66b1545faf5679f808fb7a"
+    },
+    {
+      "path": "docs/review/wp5-2-network-zoomed.png",
+      "sha256": "4484b80cd486471924cf41ee44bba7502720fc2dcb806302cc3efb6e0ba05d71"
+    },
+    {
+      "path": "docs/review/wp5-2-week-1440.png",
+      "sha256": "1fae21ce4eb0ff5cedc643f939bab5aff84610df5d0cb59d9efe255146cc5d40"
+    },
+    {
+      "path": "docs/review/wp5-2-week-780.png",
+      "sha256": "e1bde2896387bfaa060dbb6a78c27c0dce26da5667efa8bb035537d66752f789"
+    },
+    {
+      "path": "docs/review/wp6-1-baseline-desktop.png",
+      "sha256": "7f4a56a69780cb133afa56e3ac3f3efb4f97aa81794390aab224a3dd5765c69b"
+    },
+    {
+      "path": "docs/review/wp6-1-baseline-narrow.png",
+      "sha256": "825dc6fb5d98a63472655708d280bdc5d6d3730b54ff68d3f83815ea0c6badcb"
+    },
+    {
+      "path": "docs/review/wp6-1-legacy-backup.png",
+      "sha256": "92fcacd5621b4862b72abd6d9b34d65042990b56477459c402e6ac1c24467b6a"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-1440.png",
+      "sha256": "1d869994ab782040dbe61d4fc5440fc2fae995c48402050e1fbe42b091a8c5a4"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-600.png",
+      "sha256": "5daa91f6508d98a8577a1491c0ddf2bb9955f3542650595b542efe7ee44598fe"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-780.png",
+      "sha256": "f2a08ce680cdb2612917472c9017e7e6dd29bb4cc2f54cd124b50f980c6f6cde"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-1440.png",
+      "sha256": "86a4d26d391b7986af01e3d3432c580d5124df40b2a20f91dc6d942bcdc3d078"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-600.png",
+      "sha256": "bdae63eedeeb69dd4f975981c7c24fe6c212809a7b616317939597068029188e"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-780.png",
+      "sha256": "f216481e6e6ae76797bb60efce052261536fd454ce4ff2f5417401422820c17b"
+    },
+    {
+      "path": "docs/review/wp6-2-entry-form.png",
+      "sha256": "5392dba068c8c5178100bcd3d301cdbd67917e47055859990cc5642e346e73b4"
+    },
+    {
+      "path": "docs/review/wp6-2-work-desktop.png",
+      "sha256": "46abfad480ce5f8bf750618930601cba7f9ea5687d426a9a31f1ecded0809e5a"
+    },
+    {
+      "path": "docs/review/wp6-2-work-narrow.png",
+      "sha256": "7535b9558ac6a4ca12f97018a62e4f02b513e93717a2d67423cd9d09813252df"
+    },
+    {
+      "path": "docs/review/wp6-3-details-1440.png",
+      "sha256": "a9c5557159b7923c970fc2110ad9429262436941623045819f43123805203311"
+    },
+    {
+      "path": "docs/review/wp6-3-details-600.png",
+      "sha256": "b33c8fed3f451fd8efe26de022e42473eb800a893f4c346311f8da25334d3623"
+    },
+    {
+      "path": "docs/review/wp6-3-editable-chart-status.png",
+      "sha256": "56dc74f71bd787653cda307a5ab9a94c0ba588a1ddf485a382d1c0f132554be9"
+    },
+    {
+      "path": "docs/review/wp6-3-table-1440.png",
+      "sha256": "ecfcc5c9b6021015ee91e00cc79cdf24c86129ae3c54787cfa89b16fde1044f5"
+    },
+    {
+      "path": "docs/review/wp6-3-table-600.png",
+      "sha256": "d628c41e7628ab55f7d7e855c603ef89d3b4d664f75bbde875b95aa1a1a2cb5c"
+    },
+    {
+      "path": "docs/review/wp6-4-forecast-1440.png",
+      "sha256": "4c0f30f199ee1031dda3dfb4402f94c050d8ffc377a1e2048e5159a542131097"
+    },
+    {
+      "path": "docs/review/wp6-4-forecast-600.png",
+      "sha256": "26cf5fb9e82b12ec9f06af0f9d313d36e58034309d0d0f203acee5d34d4f908c"
+    },
+    {
+      "path": "docs/review/wp6-5-1-earlier-compressed.png",
+      "sha256": "e6dfe1ae4328b84aecea30ca2c1627708977deac5869f19bd0fca920a02513df"
+    },
+    {
+      "path": "docs/review/wp6-5-1-earlier-expanded.png",
+      "sha256": "bcc3f5cc4196020bbf628394ec2b0232b2772c7ed67a85499ba5db2215e1736a"
+    },
+    {
+      "path": "docs/review/wp6-5-1-forecast-off.png",
+      "sha256": "298b3b95f51e53fa8524435bcf3770dad844bd74a9c6b9068af846ece67fd1a0"
+    },
+    {
+      "path": "docs/review/wp6-5-1-forecast-on.png",
+      "sha256": "f6f1d4af86e41d4bf15e252da5cdb5256614eef13536d278620588c868344cb3"
+    },
+    {
+      "path": "docs/review/wp6-5-combined-compressed.png",
+      "sha256": "43759488aa2ff28478d6061c55f49e259427d767199f8b27c717ecdc68b9d424"
+    },
+    {
+      "path": "docs/review/wp6-5-combined-expanded.png",
+      "sha256": "40e6350672a6c7f6de60d4863613cfd7b860c25ad02c621343a5712543cbec74"
+    },
+    {
+      "path": "docs/review/wp6-5-long-1440.png",
+      "sha256": "de0d14b70bfeca44c4546eb12190d817f596e7829012793dbf1a0df52c0934f1"
+    },
+    {
+      "path": "docs/review/wp6-5-long-600.png",
+      "sha256": "fb9432992f7547354eafcc7d90be8a5cbc5af7c01feb99812fc86aa84f767ef0"
+    }
+  ],
+  "applicationAssetsByteIdentical": true,
+  "assets": [
+    {
+      "name": "index-1Q4VyGQ_.js",
+      "sha256": "c551bd05284d502c70c7178edd6e9df8b344478dfe715e25c16cd7851fed59a7"
+    },
+    {
+      "name": "index-GW2dyLss.css",
+      "sha256": "3699c2d2da14afab01c1ad104ee98d6dd17fe345990346a9b8ea82569d98228a"
+    }
+  ],
+  "protectedLocalAndRemoteRefsBeforeCommit": {
+    "main": {
+      "object": "a6a1c32c22a2bf074b161e52d523443602843dd7"
+    },
+    "v1.0-pre-progress": {
+      "object": "a4157bc84392c770c27111da58d779948b110a56",
+      "peeled": "abb85011dafc9fb0876953e3132880e025ef65da"
+    },
+    "v1.1-pre-stabilization": {
+      "object": "134305f2205eb993ab76672c2d2469d48d91a609",
+      "peeled": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+    }
+  },
+  "postPushCheck": "Required live reference check; report actual SHA in final handoff",
+  "requirementSHA256": "bfd029dc021ff550f5b56e119562acd2c9a7adf54be5d278993b8ce6bdc8c0c9",
+  "oldEvidencePreservedAsHistorical": true,
+  "oldEightExampleBaselinesValueUnchanged": true,
+  "physicalProjectDataUntouched": true,
+  "documentsReviewed": [
+    "README.md",
+    "FORMAT6-CONTRACT.md",
+    "JSON-EXAMPLES.md",
+    "MIGRATION-POLICY.md",
+    "VALIDATION-AND-INTEGRITY.md",
+    "SCENARIO-MATRIX.md",
+    "OWNER-DECISIONS.md",
+    "IMPLEMENTATION-SEQUENCE.md",
+    "AMENDMENT-SUMMARY.md"
+  ],
+  "localLinksChecked": 65,
+  "onlyRecordedDesignHandoffCheckboxChecked": true
+}

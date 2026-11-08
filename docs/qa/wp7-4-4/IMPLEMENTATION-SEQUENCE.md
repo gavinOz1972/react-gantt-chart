@@ -1,7 +1,7 @@
 # Separately gated implementation sequence
 
 This file is planning only. WP7.4.4 delivers no new application/persistence
-module or codec. R07 remains a proposal until the owner accepts all schema,
+module or codec. WP7.4.4 is accepted as a design handoff only. R07 remains pending until the owner accepts all schema,
 compatibility and integrity choices in [OWNER-DECISIONS](OWNER-DECISIONS.md).
 
 ## Compare and map accepted contracts first
@@ -11,7 +11,8 @@ compatibility and integrity choices in [OWNER-DECISIONS](OWNER-DECISIONS.md).
 | WP7.4.3b ProjectSnapshot requires only logicalRevision, generic S | Snapshot6 satisfies this shape without changing the port. Use ProjectRepository<Snapshot6>; keep complete readonly snapshot/ref/receipt/failure/result semantics. Test-only reference is not production storage. |
 | Injected SnapshotSemantics | A future approved pure validator checks this snapshot and accepted-state transitions; fingerprint provider uses the proposed full-snapshot profile. Never reuse the fixture-only JSON string fingerprint or fixture validator as real validation. |
 | Conditional commit n→n+1 | Append actual changed events in that one project revision; preserve B/old history/IDs/high-water marks. Domain copy/export is not a revision. Receipt reuse is repository-local and separate from historical event identity. |
-| WP7.4.2 WorkingState | Reviewed reference.state supplies old promises/calendar; current.tasks/project supply proposed graph, inline actuals supply fact read model; dates/floors/holds/review set remain explicit coordinator inputs. No automatic evaluation or publication on load. |
+| Retirement/restoration atomicity | Whole S includes all retained tasks/lifecycle/archives/reviews/events, active W and immutable B. One commit for complete closure, no per-task save loop. Matching retry reuses the same review/receipt; conflict/unknown semantics stay unchanged. |
+| WP7.4.2 WorkingState | Reviewed reference.state covers ACTIVE tasks; full registry stays portable. Active graph/order/progress/remaining projections are nonmutating and must not feed orphan retired records to old validators. Historical promises remain in retirement before-context. Evaluator/read-model adapter remains separately gated. |
 | WP7.4.2 progress input calls decodeProgress and derives completion from status-event history | This is incompatible with general Option A partial-history/current-actual snapshots. Propose an event-independent validated progress/active-completion input and reopened-history indicator in a later contract review, or typed Unsupported projection. Do not fabricate status events to satisfy the current decoder. |
 | WP7.4.1/3a required historical patch/group replay | Explicitly replaced as a proposed portable shape, not accepted code. Event history now explains/qualifies current state; present linked contradictions still reject. No reconstruction prerequisite, sourceDocument digest chain or browser destination in the domain file. |
 
@@ -44,6 +45,20 @@ Do not bundle all stages into "finish R07". Each starts only after a separate
 owner instruction naming its scope; completion of this document is not that
 instruction. Native browser adapter and pure codec may be developed separately
 after their prerequisites, without forcing domain code to know storage details.
+
+WP7.4.4a authorizes NONE of those stages. F01/F02/F03/F05/F06/F07 are approved
+in principle, F04/F08 conditionally, and the concrete F09 schema requires final
+consistency review. Before any implementation slice: qualify independent
+cross-language integrity vectors and provisional limits under explicit scope;
+resolve retained-reference/allocation/active-graph interactions. A pure model,
+canonicalizer or codec is not authorized by completing this amendment.
+
+The later transaction/UI scope must include finite deduplicated successor review,
+whole-preview/cancel/single-commit behavior, explicit restoration and immutable
+reason/history preservation. Gantt default hiding, Show Retired Tasks relics and
+task details are separately implemented presentation contracts; no elapsed-work
+geometry can be inferred from retirement date. WP8 scope-change reports are a
+future scope, never a feature delivered by these design documents.
 
 ## Deployment and rollback boundaries
 

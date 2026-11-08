@@ -1,0 +1,91 @@
+{
+  "designOnly": true,
+  "profile": "snapshot-history/2",
+  "examples": [
+    {
+      "file": "corrected-completion.json",
+      "logicalRevision": 3,
+      "snapshotSha256": "a220968ca48e9d6dba000376ee60de3791a45dd247b0f021787a603e2af96ad7"
+    },
+    {
+      "file": "early-keep.json",
+      "logicalRevision": 2,
+      "snapshotSha256": "468c18e1e21f985dec5f81d2b9a9ea5d03a681d38b4e62a4ab8eade9ecd66e39"
+    },
+    {
+      "file": "empty.json",
+      "logicalRevision": 1,
+      "snapshotSha256": "6006247505bf92a3ac36f83768bf9c4c82e757043d4fd3c2d1d0c19b0b0ce2f0"
+    },
+    {
+      "file": "late-retained-actual.json",
+      "logicalRevision": 3,
+      "snapshotSha256": "01c7af88b97435688791894e91f4b4bdf1df0a751596779c4e2dba078e87b137"
+    },
+    {
+      "file": "late-retained.json",
+      "logicalRevision": 2,
+      "snapshotSha256": "cb091c8d2ad8d279ee0e7305af45e4ff2ae2ab60ca98772fb1c4141d0c650661"
+    },
+    {
+      "file": "late-severed-actual.json",
+      "logicalRevision": 3,
+      "snapshotSha256": "934895096236edc69c490c3f494018aba9eed443502282cc45c23e3ea234d9d4"
+    },
+    {
+      "file": "legacy-copy.json",
+      "logicalRevision": 1,
+      "snapshotSha256": "b26c3dc485077a4da07c177c8ba96212aaaa6c2b62138195631ddf39411b1fa9"
+    },
+    {
+      "file": "partial-current.json",
+      "logicalRevision": 2,
+      "snapshotSha256": "5afed0a75ba7a3bf04f625723e0422a0bb6ea5f29922db45d4aa140e019a1f18"
+    },
+    {
+      "file": "retirement-before.json",
+      "logicalRevision": 2,
+      "snapshotSha256": "0b0dd5fe1a67cfddc6eeee0f271ea86ae01d969448ecd6380b865e1d58e454df"
+    },
+    {
+      "file": "retirement-cancelled.json",
+      "logicalRevision": 2,
+      "snapshotSha256": "0b0dd5fe1a67cfddc6eeee0f271ea86ae01d969448ecd6380b865e1d58e454df"
+    },
+    {
+      "file": "retirement-leaf.json",
+      "logicalRevision": 3,
+      "snapshotSha256": "e099c53996d8a7dcfa6a7852b67f41a85b70a202be12133d49b72a5108d8116d"
+    },
+    {
+      "file": "retirement-chain-remove.json",
+      "logicalRevision": 3,
+      "snapshotSha256": "a4a08bedfdb66321527cb3fab58e04fd2fe8be8f69e7ccac0e5e66eaf227bbe3"
+    },
+    {
+      "file": "retirement-chain-replace.json",
+      "logicalRevision": 3,
+      "snapshotSha256": "8d315671df5a920ac42d9b3a6808b9b48069c4d6f8c8a1e037f8e57186cff1b8"
+    },
+    {
+      "file": "retirement-cascade.json",
+      "logicalRevision": 3,
+      "snapshotSha256": "5ce137e04a33dbe26daf183ba5864074fa81f6fe27d075d881a9ce7f32d894f8"
+    },
+    {
+      "file": "retirement-restored.json",
+      "logicalRevision": 4,
+      "snapshotSha256": "9bafcca0493d8a0275931a24a9cb60b61b79be4f27b687fdbba24a8a827ded4c"
+    },
+    {
+      "file": "retirement-legacy-v5-copy.json",
+      "logicalRevision": 1,
+      "snapshotSha256": "4524dceb0818026e7c525f9cdae6547e95d17cc3fd59a98b8c13f91103703e57"
+    }
+  ],
+  "limits": [
+    "Fictional data assembly with built-in JSON tools, not a model/codec/migration implementation",
+    "Restricted ASCII-key/safe-integer digest authoring only; F04 cross-language qualification remains pending",
+    "Transient review and view JSON is an illustrative contract, not browser behavior"
+  ]
+}

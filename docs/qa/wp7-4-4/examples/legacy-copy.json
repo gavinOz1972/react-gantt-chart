@@ -1,7 +1,7 @@
 {
   "format": "react-gantt-chart",
   "schemaVersion": 6,
-  "profile": "snapshot-history/1",
+  "profile": "snapshot-history/2",
   "exportInfo": {
     "application": "React Gantt Chart",
     "exportedAt": "2026-11-10T16:00:00.000Z"
@@ -21,7 +21,8 @@
       },
       "limitations": [
         "No original Actual Start, progress, remaining effort or historical edit records exist in source format1.",
-        "Not Started is the inherited default, not proof that no work occurred."
+        "Not Started is the inherited default, not proof that no work occurred.",
+        "No retirement evidence is recorded; Active is a migration default, not a reconstruction of deleted tasks."
       ]
     },
     "current": {
@@ -116,7 +117,21 @@
         "kind": "Unreviewed",
         "reason": "No working commitment review was recorded in the legacy source.",
         "reference": null
-      }
+      },
+      "lifecycle": {
+        "T1": {
+          "kind": "Active",
+          "lastDecisionId": null,
+          "decisions": []
+        },
+        "T2": {
+          "kind": "Active",
+          "lastDecisionId": null,
+          "decisions": []
+        }
+      },
+      "archivedDependencies": [],
+      "scopeReviews": []
     },
     "originalBaseline": {
       "kind": "Absent"
@@ -132,6 +147,6 @@
   },
   "integrity": {
     "profile": "bugsys-jcs-sha256/1",
-    "snapshotSha256": "e2fe16566c302becb08391577507a4d40acd0ef3d7fe6a015c6b61ed43916e3d"
+    "snapshotSha256": "b26c3dc485077a4da07c177c8ba96212aaaa6c2b62138195631ddf39411b1fa9"
   }
 }

@@ -1,0 +1,1047 @@
+{
+  "format": "react-gantt-chart",
+  "schemaVersion": 6,
+  "profile": "snapshot-history/2",
+  "exportInfo": {
+    "application": "React Gantt Chart",
+    "exportedAt": "2026-11-10T16:00:00.000Z"
+  },
+  "snapshot": {
+    "logicalRevision": 3,
+    "origin": {
+      "kind": "New",
+      "createdAt": "2026-11-02T15:00:00.000Z",
+      "attribution": {
+        "source": "User",
+        "actorLabel": "Example owner",
+        "application": "React Gantt Chart"
+      }
+    },
+    "current": {
+      "project": {
+        "projectId": "retirement-example-lineage",
+        "name": "Fictional retirement and restoration review",
+        "projectStartDate": "2026-11-02",
+        "targetEndDate": "2026-11-30",
+        "workingWeekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "workingHoursPerDay": 4
+      },
+      "tasks": [
+        {
+          "taskId": "T1",
+          "name": "Task 1",
+          "description": "Fictional two-slot task; no elapsed-work inference.",
+          "durationHours": 2,
+          "predecessorTaskIds": [],
+          "independentStartMode": "DEFAULT"
+        },
+        {
+          "taskId": "T2",
+          "name": "Task 2",
+          "description": "Fictional two-slot task; no elapsed-work inference.",
+          "durationHours": 2,
+          "predecessorTaskIds": [],
+          "independentStartMode": "DEFAULT"
+        },
+        {
+          "taskId": "T3",
+          "name": "Task 3",
+          "description": "Fictional two-slot task; no elapsed-work inference.",
+          "durationHours": 2,
+          "predecessorTaskIds": [],
+          "independentStartMode": "DEFAULT"
+        },
+        {
+          "taskId": "T4",
+          "name": "Task 4",
+          "description": "Fictional two-slot task; no elapsed-work inference.",
+          "durationHours": 2,
+          "predecessorTaskIds": [
+            "T3"
+          ],
+          "independentStartMode": "DEFAULT"
+        },
+        {
+          "taskId": "T5",
+          "name": "Task 5",
+          "description": "Fictional two-slot task; no elapsed-work inference.",
+          "durationHours": 2,
+          "predecessorTaskIds": [
+            "T3",
+            "T4",
+            "T1"
+          ],
+          "independentStartMode": "DEFAULT"
+        }
+      ],
+      "nextTaskNumber": 6,
+      "manualOrder": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "sortMode": "manual",
+      "duplicateOrigins": {},
+      "progress": {
+        "definitionOfDone": "Explicit owner confirmation.",
+        "tasks": {
+          "T1": {
+            "status": "Complete",
+            "criteria": [],
+            "statusEventId": null
+          },
+          "T2": {
+            "status": "Not Started",
+            "criteria": [],
+            "statusEventId": null
+          },
+          "T3": {
+            "status": "Not Started",
+            "criteria": [],
+            "statusEventId": null
+          },
+          "T4": {
+            "status": "Not Started",
+            "criteria": [],
+            "statusEventId": null
+          },
+          "T5": {
+            "status": "Not Started",
+            "criteria": [],
+            "statusEventId": null
+          }
+        }
+      },
+      "actuals": {
+        "T1": {
+          "start": {
+            "kind": "Unknown",
+            "reason": "Actual Start is not recorded."
+          },
+          "completion": {
+            "kind": "Known",
+            "claimId": "C-original-T1",
+            "date": "2026-11-06",
+            "precision": "DateOnly",
+            "recordedAt": "2026-11-09T15:00:00.000Z",
+            "attribution": {
+              "source": "User",
+              "actorLabel": null,
+              "application": "React Gantt Chart"
+            },
+            "sourceEventId": null,
+            "committedAtCompletion": {
+              "kind": "LegacySnapshot",
+              "finishDate": "2026-11-02"
+            },
+            "attestation": {
+              "kind": "Attested",
+              "criteriaSnapshot": [],
+              "definitionOfDone": "Explicit owner confirmation.",
+              "completionAcknowledged": true,
+              "noCriteriaAcknowledged": true
+            }
+          }
+        },
+        "T2": {
+          "start": {
+            "kind": "Unknown",
+            "reason": "Actual Start is not recorded."
+          },
+          "completion": {
+            "kind": "Unknown",
+            "reason": "No current completion is recorded."
+          }
+        },
+        "T3": {
+          "start": {
+            "kind": "Unknown",
+            "reason": "Actual Start is not recorded."
+          },
+          "completion": {
+            "kind": "Unknown",
+            "reason": "No current completion is recorded."
+          }
+        },
+        "T4": {
+          "start": {
+            "kind": "Unknown",
+            "reason": "Actual Start is not recorded."
+          },
+          "completion": {
+            "kind": "Unknown",
+            "reason": "No current completion is recorded."
+          }
+        },
+        "T5": {
+          "start": {
+            "kind": "Unknown",
+            "reason": "Actual Start is not recorded."
+          },
+          "completion": {
+            "kind": "Unknown",
+            "reason": "No current completion is recorded."
+          }
+        }
+      },
+      "workTracking": {
+        "schemaVersion": 1,
+        "entries": [],
+        "remainingHours": {
+          "T1": 2,
+          "T2": 2,
+          "T3": 2,
+          "T4": 2,
+          "T5": 2
+        }
+      },
+      "forecastSettings": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "classHoursPerStudent": 4,
+        "homeworkHoursPerStudent": 2,
+        "teamSize": 4
+      },
+      "lifecycle": {
+        "T1": {
+          "kind": "Active",
+          "lastDecisionId": null,
+          "decisions": []
+        },
+        "T2": {
+          "kind": "Retired",
+          "lastDecisionId": "D-Retire-remove-T2",
+          "decisions": [
+            {
+              "decisionId": "D-Retire-remove-T2",
+              "taskId": "T2",
+              "operation": "Retire",
+              "priorDecisionId": null,
+              "reviewId": "REVIEW-remove",
+              "recordedInRevision": 3,
+              "effectiveDate": "2026-11-09",
+              "recordedAt": "2026-11-09T15:00:00.000Z",
+              "attribution": {
+                "source": "User",
+                "actorLabel": null,
+                "application": "React Gantt Chart"
+              },
+              "rationale": "Owner removes this task from active scope while preserving all evidence.",
+              "sourceEventId": "E-D-Retire-remove-T2",
+              "before": {
+                "task": {
+                  "taskId": "T2",
+                  "name": "Task 2",
+                  "description": "Fictional two-slot task; no elapsed-work inference.",
+                  "durationHours": 2,
+                  "predecessorTaskIds": [
+                    "T1"
+                  ],
+                  "independentStartMode": "DEFAULT"
+                },
+                "progress": {
+                  "status": "Not Started",
+                  "criteria": [],
+                  "statusEventId": null
+                },
+                "actuals": {
+                  "start": {
+                    "kind": "Unknown",
+                    "reason": "Actual Start is not recorded."
+                  },
+                  "completion": {
+                    "kind": "Unknown",
+                    "reason": "No current completion is recorded."
+                  }
+                },
+                "remainingHours": 2,
+                "working": {
+                  "workingRevisionId": "W-before-retirement",
+                  "calendar": {
+                    "workingWeekdays": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "workingHoursPerDay": 4
+                  },
+                  "constraint": {
+                    "notBefore": {
+                      "date": "2026-11-09",
+                      "hour": 1
+                    },
+                    "origin": "Confirmed",
+                    "decisionId": "D-W-before-retirement-T2"
+                  },
+                  "commitment": {
+                    "kind": "Known",
+                    "start": {
+                      "date": "2026-11-09",
+                      "hour": 1
+                    },
+                    "finish": {
+                      "date": "2026-11-09",
+                      "afterHour": 2
+                    },
+                    "decisionId": "D-W-before-retirement-T2"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "T3": {
+          "kind": "Active",
+          "lastDecisionId": null,
+          "decisions": []
+        },
+        "T4": {
+          "kind": "Active",
+          "lastDecisionId": null,
+          "decisions": []
+        },
+        "T5": {
+          "kind": "Active",
+          "lastDecisionId": null,
+          "decisions": []
+        }
+      },
+      "archivedDependencies": [
+        {
+          "archiveId": "ARCH-remove-T1-T2",
+          "predecessorTaskId": "T1",
+          "successorTaskId": "T2",
+          "archivedInRevision": 3,
+          "reviewId": "REVIEW-remove",
+          "rationale": "Archived once for this confirmed scope-change episode; not an active constraint.",
+          "sourceEventId": "E-REVIEW-remove"
+        },
+        {
+          "archiveId": "ARCH-remove-T2-T3",
+          "predecessorTaskId": "T2",
+          "successorTaskId": "T3",
+          "archivedInRevision": 3,
+          "reviewId": "REVIEW-remove",
+          "rationale": "Archived once for this confirmed scope-change episode; not an active constraint.",
+          "sourceEventId": "E-REVIEW-remove"
+        }
+      ],
+      "scopeReviews": [
+        {
+          "reviewId": "REVIEW-remove",
+          "operation": "Retirement",
+          "reviewDate": "2026-11-09",
+          "recordedAt": "2026-11-09T15:00:00.000Z",
+          "attribution": {
+            "source": "User",
+            "actorLabel": null,
+            "application": "React Gantt Chart"
+          },
+          "rationale": "Owner confirms the complete preview; no partial state is accepted.",
+          "sourceLogicalRevision": 2,
+          "targetLogicalRevision": 3,
+          "retiredTaskIds": [
+            "T2"
+          ],
+          "restoredTaskIds": [],
+          "affectedTaskIds": [
+            "T2",
+            "T3",
+            "T4",
+            "T5"
+          ],
+          "successorDecisions": [
+            {
+              "taskId": "T2",
+              "outcome": "Retire",
+              "removedPredecessorIds": [
+                "T1"
+              ],
+              "confirmedPredecessorIds": [],
+              "plan": {
+                "kind": "Retired"
+              },
+              "rationale": "Explicitly resolve all changed predecessor constraints and confirm this outcome."
+            },
+            {
+              "taskId": "T3",
+              "outcome": "RemoveAndSchedule",
+              "removedPredecessorIds": [
+                "T2"
+              ],
+              "confirmedPredecessorIds": [],
+              "plan": {
+                "kind": "Planned",
+                "notBefore": {
+                  "date": "2026-11-09",
+                  "hour": 1
+                }
+              },
+              "rationale": "Explicitly resolve all changed predecessor constraints and confirm this outcome."
+            },
+            {
+              "taskId": "T4",
+              "outcome": "KeepCurrent",
+              "removedPredecessorIds": [],
+              "confirmedPredecessorIds": [
+                "T3"
+              ],
+              "plan": {
+                "kind": "Planned",
+                "notBefore": {
+                  "date": "2026-11-09",
+                  "hour": 1
+                }
+              },
+              "rationale": "Explicitly resolve all changed predecessor constraints and confirm this outcome."
+            },
+            {
+              "taskId": "T5",
+              "outcome": "KeepCurrent",
+              "removedPredecessorIds": [],
+              "confirmedPredecessorIds": [
+                "T3",
+                "T4",
+                "T1"
+              ],
+              "plan": {
+                "kind": "Planned",
+                "notBefore": {
+                  "date": "2026-11-10",
+                  "hour": 1
+                }
+              },
+              "rationale": "Explicitly resolve all changed predecessor constraints and confirm this outcome."
+            }
+          ],
+          "archivedDependencyIds": [
+            "ARCH-remove-T1-T2",
+            "ARCH-remove-T2-T3"
+          ],
+          "addedDependencies": [],
+          "resultingWorkingRevisionId": "W-remove",
+          "sourceEventId": "E-REVIEW-remove"
+        }
+      ],
+      "working": {
+        "kind": "Reviewed",
+        "reference": {
+          "interpretation": "WP742-v1",
+          "reviewDate": "2026-11-09",
+          "reviewTimezone": "America/Regina",
+          "acceptedAt": "2026-11-09T15:00:00.000Z",
+          "inputs": {
+            "project": {
+              "projectId": "retirement-example-lineage",
+              "name": "Fictional retirement and restoration review",
+              "projectStartDate": "2026-11-02",
+              "targetEndDate": "2026-11-30",
+              "workingWeekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "workingHoursPerDay": 4
+            },
+            "tasks": [
+              {
+                "taskId": "T1",
+                "name": "Task 1",
+                "description": "Fictional two-slot task; no elapsed-work inference.",
+                "durationHours": 2,
+                "predecessorTaskIds": [],
+                "independentStartMode": "DEFAULT"
+              },
+              {
+                "taskId": "T3",
+                "name": "Task 3",
+                "description": "Fictional two-slot task; no elapsed-work inference.",
+                "durationHours": 2,
+                "predecessorTaskIds": [],
+                "independentStartMode": "DEFAULT"
+              },
+              {
+                "taskId": "T4",
+                "name": "Task 4",
+                "description": "Fictional two-slot task; no elapsed-work inference.",
+                "durationHours": 2,
+                "predecessorTaskIds": [
+                  "T3"
+                ],
+                "independentStartMode": "DEFAULT"
+              },
+              {
+                "taskId": "T5",
+                "name": "Task 5",
+                "description": "Fictional two-slot task; no elapsed-work inference.",
+                "durationHours": 2,
+                "predecessorTaskIds": [
+                  "T3",
+                  "T4",
+                  "T1"
+                ],
+                "independentStartMode": "DEFAULT"
+              }
+            ]
+          },
+          "state": {
+            "revisionId": "W-remove",
+            "ruleVersion": 1,
+            "calendar": {
+              "workingWeekdays": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "workingHoursPerDay": 4
+            },
+            "constraints": {
+              "T1": {
+                "notBefore": {
+                  "date": "2026-11-02",
+                  "hour": 1
+                },
+                "origin": "SeededLegacy",
+                "decisionId": "D-W-remove-T1"
+              },
+              "T3": {
+                "notBefore": {
+                  "date": "2026-11-09",
+                  "hour": 1
+                },
+                "origin": "Confirmed",
+                "decisionId": "D-W-remove-T3"
+              },
+              "T4": {
+                "notBefore": {
+                  "date": "2026-11-09",
+                  "hour": 1
+                },
+                "origin": "Confirmed",
+                "decisionId": "D-W-remove-T4"
+              },
+              "T5": {
+                "notBefore": {
+                  "date": "2026-11-10",
+                  "hour": 1
+                },
+                "origin": "Confirmed",
+                "decisionId": "D-W-remove-T5"
+              }
+            },
+            "commitments": {
+              "T1": {
+                "kind": "Known",
+                "start": {
+                  "date": "2026-11-02",
+                  "hour": 1
+                },
+                "finish": {
+                  "date": "2026-11-02",
+                  "afterHour": 2
+                },
+                "decisionId": "D-W-remove-T1"
+              },
+              "T3": {
+                "kind": "Known",
+                "start": {
+                  "date": "2026-11-09",
+                  "hour": 1
+                },
+                "finish": {
+                  "date": "2026-11-09",
+                  "afterHour": 2
+                },
+                "decisionId": "D-W-remove-T3"
+              },
+              "T4": {
+                "kind": "Known",
+                "start": {
+                  "date": "2026-11-09",
+                  "hour": 3
+                },
+                "finish": {
+                  "date": "2026-11-09",
+                  "afterHour": 4
+                },
+                "decisionId": "D-W-remove-T4"
+              },
+              "T5": {
+                "kind": "Known",
+                "start": {
+                  "date": "2026-11-10",
+                  "hour": 1
+                },
+                "finish": {
+                  "date": "2026-11-10",
+                  "afterHour": 2
+                },
+                "decisionId": "D-W-remove-T5"
+              }
+            }
+          },
+          "decisions": [
+            {
+              "decisionId": "D-W-remove-T1",
+              "taskId": "T1",
+              "predecessorIds": [],
+              "outcome": "KeepAndMove",
+              "reason": "Explicit fictional scope-review planning decision.",
+              "sourceEventId": null
+            },
+            {
+              "decisionId": "D-W-remove-T3",
+              "taskId": "T3",
+              "predecessorIds": [],
+              "outcome": "KeepAndMove",
+              "reason": "Explicit fictional scope-review planning decision.",
+              "sourceEventId": null
+            },
+            {
+              "decisionId": "D-W-remove-T4",
+              "taskId": "T4",
+              "predecessorIds": [
+                "T3"
+              ],
+              "outcome": "KeepAndMove",
+              "reason": "Explicit fictional scope-review planning decision.",
+              "sourceEventId": null
+            },
+            {
+              "decisionId": "D-W-remove-T5",
+              "taskId": "T5",
+              "predecessorIds": [
+                "T3",
+                "T4",
+                "T1"
+              ],
+              "outcome": "KeepAndMove",
+              "reason": "Explicit fictional scope-review planning decision.",
+              "sourceEventId": null
+            }
+          ]
+        }
+      }
+    },
+    "originalBaseline": {
+      "kind": "Present",
+      "interpretation": "WP1-v1",
+      "value": {
+        "schemaVersion": 1,
+        "baselineId": "B-retirement-original",
+        "establishedAt": "2026-11-02T15:00:00.000Z",
+        "project": {
+          "projectId": "retirement-example-lineage",
+          "name": "Fictional retirement and restoration review",
+          "projectStartDate": "2026-11-02",
+          "targetEndDate": "2026-11-30",
+          "workingWeekdays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "workingHoursPerDay": 4
+        },
+        "tasks": [
+          {
+            "taskId": "T1",
+            "name": "Task 1",
+            "description": "Fictional two-slot task; no elapsed-work inference.",
+            "durationHours": 2,
+            "predecessorTaskIds": [],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T2",
+            "name": "Task 2",
+            "description": "Fictional two-slot task; no elapsed-work inference.",
+            "durationHours": 2,
+            "predecessorTaskIds": [
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T3",
+            "name": "Task 3",
+            "description": "Fictional two-slot task; no elapsed-work inference.",
+            "durationHours": 2,
+            "predecessorTaskIds": [
+              "T2"
+            ],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T4",
+            "name": "Task 4",
+            "description": "Fictional two-slot task; no elapsed-work inference.",
+            "durationHours": 2,
+            "predecessorTaskIds": [
+              "T3"
+            ],
+            "independentStartMode": "DEFAULT"
+          },
+          {
+            "taskId": "T5",
+            "name": "Task 5",
+            "description": "Fictional two-slot task; no elapsed-work inference.",
+            "durationHours": 2,
+            "predecessorTaskIds": [
+              "T3",
+              "T4",
+              "T1"
+            ],
+            "independentStartMode": "DEFAULT"
+          }
+        ],
+        "nextTaskNumber": 6,
+        "manualOrder": [
+          "T1",
+          "T2",
+          "T3",
+          "T4",
+          "T5"
+        ],
+        "sortMode": "manual",
+        "duplicateOrigins": {},
+        "schedule": {
+          "tasks": [
+            {
+              "taskId": "T1",
+              "predecessorTaskIds": [],
+              "startSlot": {
+                "date": "2026-11-02",
+                "hour": 1
+              },
+              "finishBoundary": {
+                "date": "2026-11-02",
+                "afterHour": 2
+              },
+              "startDate": "2026-11-02",
+              "finishDate": "2026-11-02"
+            },
+            {
+              "taskId": "T2",
+              "predecessorTaskIds": [
+                "T1"
+              ],
+              "startSlot": {
+                "date": "2026-11-02",
+                "hour": 3
+              },
+              "finishBoundary": {
+                "date": "2026-11-02",
+                "afterHour": 4
+              },
+              "startDate": "2026-11-02",
+              "finishDate": "2026-11-02"
+            },
+            {
+              "taskId": "T3",
+              "predecessorTaskIds": [
+                "T2"
+              ],
+              "startSlot": {
+                "date": "2026-11-03",
+                "hour": 1
+              },
+              "finishBoundary": {
+                "date": "2026-11-03",
+                "afterHour": 2
+              },
+              "startDate": "2026-11-03",
+              "finishDate": "2026-11-03"
+            },
+            {
+              "taskId": "T4",
+              "predecessorTaskIds": [
+                "T3"
+              ],
+              "startSlot": {
+                "date": "2026-11-03",
+                "hour": 3
+              },
+              "finishBoundary": {
+                "date": "2026-11-03",
+                "afterHour": 4
+              },
+              "startDate": "2026-11-03",
+              "finishDate": "2026-11-03"
+            },
+            {
+              "taskId": "T5",
+              "predecessorTaskIds": [
+                "T1",
+                "T3",
+                "T4"
+              ],
+              "startSlot": {
+                "date": "2026-11-04",
+                "hour": 1
+              },
+              "finishBoundary": {
+                "date": "2026-11-04",
+                "afterHour": 2
+              },
+              "startDate": "2026-11-04",
+              "finishDate": "2026-11-04"
+            }
+          ],
+          "projectCompletion": {
+            "date": "2026-11-04",
+            "afterHour": 2
+          }
+        },
+        "legacyOpaque": {
+          "note": "Preserve this inert original baseline extra."
+        }
+      }
+    },
+    "history": {
+      "coverage": {
+        "kind": "Partial",
+        "reason": "Fixture starts from a complete current snapshot; earlier explanations are unavailable."
+      },
+      "nextSequence": 3,
+      "events": [
+        {
+          "eventId": "E-D-Retire-remove-T2",
+          "sequence": 1,
+          "recordedInRevision": 3,
+          "recordedAt": "2026-11-09T15:00:00.000Z",
+          "effectiveDate": "2026-11-09",
+          "attribution": {
+            "source": "User",
+            "actorLabel": null,
+            "application": "React Gantt Chart"
+          },
+          "taskIds": [
+            "T2"
+          ],
+          "supersedesEventId": null,
+          "reason": "Owner confirms the complete preview; no partial state is accepted.",
+          "kind": "TaskRetired",
+          "payload": {
+            "decision": {
+              "decisionId": "D-Retire-remove-T2",
+              "taskId": "T2",
+              "operation": "Retire",
+              "priorDecisionId": null,
+              "reviewId": "REVIEW-remove",
+              "recordedInRevision": 3,
+              "effectiveDate": "2026-11-09",
+              "recordedAt": "2026-11-09T15:00:00.000Z",
+              "attribution": {
+                "source": "User",
+                "actorLabel": null,
+                "application": "React Gantt Chart"
+              },
+              "rationale": "Owner removes this task from active scope while preserving all evidence.",
+              "sourceEventId": "E-D-Retire-remove-T2",
+              "before": {
+                "task": {
+                  "taskId": "T2",
+                  "name": "Task 2",
+                  "description": "Fictional two-slot task; no elapsed-work inference.",
+                  "durationHours": 2,
+                  "predecessorTaskIds": [
+                    "T1"
+                  ],
+                  "independentStartMode": "DEFAULT"
+                },
+                "progress": {
+                  "status": "Not Started",
+                  "criteria": [],
+                  "statusEventId": null
+                },
+                "actuals": {
+                  "start": {
+                    "kind": "Unknown",
+                    "reason": "Actual Start is not recorded."
+                  },
+                  "completion": {
+                    "kind": "Unknown",
+                    "reason": "No current completion is recorded."
+                  }
+                },
+                "remainingHours": 2,
+                "working": {
+                  "workingRevisionId": "W-before-retirement",
+                  "calendar": {
+                    "workingWeekdays": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "workingHoursPerDay": 4
+                  },
+                  "constraint": {
+                    "notBefore": {
+                      "date": "2026-11-09",
+                      "hour": 1
+                    },
+                    "origin": "Confirmed",
+                    "decisionId": "D-W-before-retirement-T2"
+                  },
+                  "commitment": {
+                    "kind": "Known",
+                    "start": {
+                      "date": "2026-11-09",
+                      "hour": 1
+                    },
+                    "finish": {
+                      "date": "2026-11-09",
+                      "afterHour": 2
+                    },
+                    "decisionId": "D-W-before-retirement-T2"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "eventId": "E-REVIEW-remove",
+          "sequence": 2,
+          "recordedInRevision": 3,
+          "recordedAt": "2026-11-09T15:00:00.000Z",
+          "effectiveDate": "2026-11-09",
+          "attribution": {
+            "source": "User",
+            "actorLabel": null,
+            "application": "React Gantt Chart"
+          },
+          "taskIds": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5"
+          ],
+          "supersedesEventId": null,
+          "reason": "Owner confirms the complete preview; no partial state is accepted.",
+          "kind": "ScopeReview",
+          "payload": {
+            "review": {
+              "reviewId": "REVIEW-remove",
+              "operation": "Retirement",
+              "reviewDate": "2026-11-09",
+              "recordedAt": "2026-11-09T15:00:00.000Z",
+              "attribution": {
+                "source": "User",
+                "actorLabel": null,
+                "application": "React Gantt Chart"
+              },
+              "rationale": "Owner confirms the complete preview; no partial state is accepted.",
+              "sourceLogicalRevision": 2,
+              "targetLogicalRevision": 3,
+              "retiredTaskIds": [
+                "T2"
+              ],
+              "restoredTaskIds": [],
+              "affectedTaskIds": [
+                "T2",
+                "T3",
+                "T4",
+                "T5"
+              ],
+              "successorDecisions": [
+                {
+                  "taskId": "T2",
+                  "outcome": "Retire",
+                  "removedPredecessorIds": [
+                    "T1"
+                  ],
+                  "confirmedPredecessorIds": [],
+                  "plan": {
+                    "kind": "Retired"
+                  },
+                  "rationale": "Explicitly resolve all changed predecessor constraints and confirm this outcome."
+                },
+                {
+                  "taskId": "T3",
+                  "outcome": "RemoveAndSchedule",
+                  "removedPredecessorIds": [
+                    "T2"
+                  ],
+                  "confirmedPredecessorIds": [],
+                  "plan": {
+                    "kind": "Planned",
+                    "notBefore": {
+                      "date": "2026-11-09",
+                      "hour": 1
+                    }
+                  },
+                  "rationale": "Explicitly resolve all changed predecessor constraints and confirm this outcome."
+                },
+                {
+                  "taskId": "T4",
+                  "outcome": "KeepCurrent",
+                  "removedPredecessorIds": [],
+                  "confirmedPredecessorIds": [
+                    "T3"
+                  ],
+                  "plan": {
+                    "kind": "Planned",
+                    "notBefore": {
+                      "date": "2026-11-09",
+                      "hour": 1
+                    }
+                  },
+                  "rationale": "Explicitly resolve all changed predecessor constraints and confirm this outcome."
+                },
+                {
+                  "taskId": "T5",
+                  "outcome": "KeepCurrent",
+                  "removedPredecessorIds": [],
+                  "confirmedPredecessorIds": [
+                    "T3",
+                    "T4",
+                    "T1"
+                  ],
+                  "plan": {
+                    "kind": "Planned",
+                    "notBefore": {
+                      "date": "2026-11-10",
+                      "hour": 1
+                    }
+                  },
+                  "rationale": "Explicitly resolve all changed predecessor constraints and confirm this outcome."
+                }
+              ],
+              "archivedDependencyIds": [
+                "ARCH-remove-T1-T2",
+                "ARCH-remove-T2-T3"
+              ],
+              "addedDependencies": [],
+              "resultingWorkingRevisionId": "W-remove",
+              "sourceEventId": "E-REVIEW-remove"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "integrity": {
+    "profile": "bugsys-jcs-sha256/1",
+    "snapshotSha256": "a4a08bedfdb66321527cb3fab58e04fd2fe8be8f69e7ccac0e5e66eaf227bbe3"
+  }
+}

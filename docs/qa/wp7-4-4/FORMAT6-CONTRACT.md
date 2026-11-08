@@ -1,6 +1,8 @@
-# Candidate format6 `snapshot-history/1`
+# Candidate format6 `snapshot-history/2`
 
-**Proposed, not accepted or implemented.** This is a complete field contract in
+**Retirement amendment proposed; R07 not final or implemented.** F01/F02/F03/
+F05/F06/F07 are approved in principle, F04/F08 conditionally; the concrete F09
+schema below still needs complete-contract review. This is a field contract in
 design notation, not a compiled model or JSON Schema. All fields are required
 unless explicitly marked optional. No decoder may guess this profile from an
 old `guidedPlanning` object. Root `schemaVersion:6` alone is insufficient.
@@ -9,7 +11,7 @@ old `guidedPlanning` object. Root `schemaVersion:6` alone is insufficient.
 
 ```ts
 type File6 = {
-  format: 'react-gantt-chart'; schemaVersion: 6; profile: 'snapshot-history/1';
+  format: 'react-gantt-chart'; schemaVersion: 6; profile: 'snapshot-history/2';
   exportInfo: { application: 'React Gantt Chart'; exportedAt: UTC };
   snapshot: Snapshot6;
   integrity: { profile: 'bugsys-jcs-sha256/1'; snapshotSha256: Hash };
@@ -29,6 +31,8 @@ type Origin =
       attribution: Attribution; limitations: string[] };
 type Current = {
   project: LegacyProjectSettings; tasks: LegacyTaskInput[];
+  lifecycle: { [taskId: TaskId]: TaskLifecycle };
+  archivedDependencies: ArchivedDependency[]; scopeReviews: ScopeReview[];
   nextTaskNumber: SafePositiveInteger; manualOrder: TaskId[];
   sortMode: 'manual'|'start'|'name'|'duration';
   duplicateOrigins: { [copyTaskId: TaskId]: TaskId };
@@ -37,7 +41,7 @@ type Current = {
   actuals: { [taskId: TaskId]: {
     start: DateFact; completion: CompletionFact } };
   workTracking: LegacyWorkTracking; forecastSettings: LegacyForecastSettings|null;
-  working: Working;
+  working: Working; // Reviewed state/input population is ACTIVE tasks only
 }
 type CurrentProgress = {
   status: 'Not Started'|'In Progress'|'Blocked'|'Complete';
@@ -102,10 +106,14 @@ reason/decisionId). This design adds no scheduling formula.
   to original-baseline project identity when present. Task IDs are stable exact
   strings; labels/names are not identities. Copies keep them. Repository stored
   resource IDs, receipt ledgers, file paths and lock names are absent.
-- Tasks are a valid acyclic source graph under existing WP1 rules. Dependencies
-  are only `tasks[].predecessorTaskIds`, not a second writable edge array.
-  manualOrder lists each current task once. Progress, actuals and remainingHours
-  maps cover current task IDs exactly; empty projects have empty maps/arrays.
+- Tasks retain all active AND retired identities/inputs. The current acyclic
+  scheduling graph is the active projection under existing WP1 rules: only
+  active tasks can have active `predecessorTaskIds`, and all those IDs must be
+  active. A retired task's array is empty. Removed edges are immutable archive
+  episodes, never a second writable set of active constraints.
+  manualOrder lists every retained task once; active views filter it without
+  reordering. Lifecycle, progress, actuals and remainingHours maps cover ALL
+  retained task IDs exactly; empty projects have empty maps/arrays.
   nextTaskNumber exceeds every allocated numeric T ID in current/baseline/
   retained history and never decreases across accepted edits.
 - Current progress is explicitly stored, not derived from event replay.
@@ -151,8 +159,10 @@ reason/decisionId). This design adds no scheduling formula.
   Unreviewed references are historical context, never certified new promises.
   Slot.hour/finish.afterHour are ordinal planned hours, never clock times.
 
-Reviewed reference inputs match the current scheduling fields/graph/calendar
-(names/descriptions can change independently); state keys cover those tasks.
+Reviewed reference inputs match the ACTIVE projection's scheduling fields/graph/
+calendar (names/descriptions can change independently); state keys cover only
+active tasks. Retired task promises remain in their retirement decision's
+preserved working context and the original baseline, not as active W entries.
 An Unreviewed reference validates against its own retained inputs, not today's
 changed source. Inline decisions cover referenced active decision IDs; a non-null
 sourceEventId must match an available corresponding review/dependency/fact event.
@@ -191,6 +201,8 @@ type Event = {
 | SourceEdit | `{fields:string[], summary:string}`; fields are names of changed current sections, not replay patches. |
 | EffortChange | `{taskId, remainingHours:number|null}`. |
 | BaselineEstablished | `{baselineId, interpretation:'WP1-v1'}`. |
+| TaskRetired / TaskRestored | `{decision:LifecycleDecision}`; exact matching retained inline lifecycle decision. |
+| ScopeReview | `{review:ScopeReview}`; exact matching self-contained review/closure record. |
 
 History itself is mandatory; an event list can be empty. An empty new snapshot
 at logical1 can declare CompleteSince1. Missing older records require Partial
@@ -237,10 +249,170 @@ that the latest explanation is unavailable; do not infer a new current value.
 An older completed episode can differ from a reopened current state without
 contradiction. None of these checks replays patches to build Current.
 
-Phase-one history refers to surviving tasks; baseline-only IDs may appear inside
-the frozen baseline. Future edit gates must prevent deletion of a task needed
-by retained history/facts/decisions. This is a proposed compatibility restriction,
-not a new tombstone/archive feature or a change to current deletion behavior.
+History/facts/decisions/archive references resolve to retained active OR retired
+task identities; baseline-only older IDs remain in the immutable baseline.
+Replace the original blanket deletion prohibition with the retirement contract
+below. Physical erasure/history pruning remains prohibited; current production
+deletion behavior is unchanged until separately authorized integration.
+
+## Task retirement and restoration (F09 amendment)
+
+```ts
+type TaskLifecycle = {
+  kind: 'Active'|'Retired'; lastDecisionId: Id|null;
+  decisions: LifecycleDecision[]; // preserve every recorded retirement/restore
+}
+type LifecycleDecision = {
+  decisionId: Id; taskId: TaskId; operation: 'Retire'|'Restore';
+  priorDecisionId: Id|null; reviewId: Id; recordedInRevision: SafePositiveInteger;
+  effectiveDate: DateOnly; recordedAt: UTC; attribution: Attribution;
+  rationale: string; sourceEventId: EventId|null;
+  before: {
+    task: LegacyTaskInput; progress: CurrentProgress;
+    actuals: { start: DateFact; completion: CompletionFact };
+    remainingHours: number|null;
+    working: { workingRevisionId: Id; calendar: LegacyCalendarSettings;
+      constraint: ExistingConstraint; commitment: ExistingCommitment }|null;
+  };
+}
+type ArchivedDependency = {
+  archiveId: Id; predecessorTaskId: TaskId; successorTaskId: TaskId;
+  archivedInRevision: SafePositiveInteger; reviewId: Id; rationale: string;
+  sourceEventId: EventId|null;
+}
+type SuccessorDecision = {
+  taskId: TaskId;
+  outcome: 'RemoveAndSchedule'|'ReplacePredecessors'|'Retire'|
+           'Restore'|'KeepCurrent';
+  removedPredecessorIds: TaskId[]; confirmedPredecessorIds: TaskId[];
+  plan: { kind: 'Planned'; notBefore: Slot } |
+        { kind: 'ActualKnown'; claimId: Id } |
+        { kind: 'ReferenceOnly'; reason: string } | { kind: 'Retired' };
+  rationale: string;
+}
+type ScopeReview = {
+  reviewId: Id; operation: 'Retirement'|'Restoration'; reviewDate: DateOnly;
+  recordedAt: UTC; attribution: Attribution; rationale: string;
+  sourceLogicalRevision: SafePositiveInteger;
+  targetLogicalRevision: SafePositiveInteger;
+  retiredTaskIds: TaskId[]; restoredTaskIds: TaskId[];
+  affectedTaskIds: TaskId[]; successorDecisions: SuccessorDecision[];
+  archivedDependencyIds: Id[];
+  addedDependencies: { predecessorTaskId: TaskId; successorTaskId: TaskId;
+                       reinstatesArchiveIds: Id[] }[];
+  resultingWorkingRevisionId: Id;
+  sourceEventId: EventId|null;
+}
+```
+
+ExistingConstraint/Commitment are the exact constraint/commitment entries in
+WorkingState. Their retirement `before` context uses before.task duration and
+its own calendar; it never validates old dates using today's changed estimate.
+Every `before` is captured from the common accepted source revision, not from
+an intermediate partially retired draft. Retired source fields still validate
+identity/scalars, but current active scheduling restrictions do not reinterpret
+their historical requested dates. Slot means the existing planned WorkingSlot.
+Lifecycle is independent of the four progress statuses. Retirement is neither
+completion nor a fifth status. Store current progress/criteria/actuals/remaining/
+work logs unchanged unless a separately explicit attestation/correction is part
+of the same review. Preserve the pre-review task/estimate/promise in `before`;
+never substitute retirement date for Actual Start/completion. The complete
+baseline JSON value stays identical. Reports label original-baseline estimate separately
+from estimate-at-retirement; if the original entered estimate is unavailable,
+say Unknown rather than invent it from a later estimate or deleted task gap.
+
+Initial Active uses lastDecisionId:null/decisions:[]. Retired requires a last
+Retire decision; restored Active requires its last Restore. Records alternate
+through priorDecisionId, with strictly increasing recordedInRevision for that
+task, nonblank rationale3–500 and explicit effective/recording dates. Last ID
+and kind are stored current state, checked for consistency without replaying
+the entire event history. All earlier lifecycle decisions/rationales remain
+unchanged, including after multiple retirement/restoration cycles. Imported
+Partial coverage may have missing explanatory events (null sourceEventId), but
+cannot erase any known inline lifecycle decisions. New reviews emit matching
+events with real recording metadata; an unavailable actor stays null.
+
+Every removed active edge is archived once per removal episode, including
+incoming edges of a retiring task and outgoing edges to successors. Archive
+IDs are unique; the same pair may have later archive episodes. Endpoints must
+remain in the retained task registry. A pair can be active again after explicit
+restoration/review while its earlier archive record remains: the archive is
+history, never an active constraint. Do not apply DAG validation to the union
+of archive episodes from different revisions. Current active DAG validation
+must reject any active task depending on a retired/missing ID.
+
+ScopeReviews and their successor decisions persist the whole approved scope
+change, not forecast outputs. All referenced review/decision/archive IDs resolve
+in the self-contained snapshot; an ID denotes one immutable decision definition
+even if its identical payload is repeated in an explanatory event. History adds
+TaskRetired/TaskRestored payload `{decision:LifecycleDecision}` and ScopeReview
+payload `{review:ScopeReview}`. Event taskIds may include retained retired tasks.
+All records for one review share targetLogicalRevision=source+1; these fields
+are historical stamps, not extra writable current counters or repository receipts.
+SourceEdit or generic import/save cannot bypass lifecycle review by assigning
+these fields directly: a known accepted transition changing scope requires the
+matching complete ScopeReview and append-only records at the repository boundary.
+
+### Guided successor closure and atomic review
+
+1. Freeze accepted snapshot/ref; collect original active downstream closure of
+   nominated tasks. Accumulate affected incoming-edge changes by task ID, not
+   by traversed path. Use deterministic topological order, with exact-ID ties.
+2. For each affected active successor choose: remove the retiring dependency
+   and explicitly plan it; confirm replacement active predecessor(s); or retire
+   that successor. Preserve unaffected predecessors. Each additional retirement
+   expands closure transitively. In a diamond/join, collect ALL changed parents
+   before one final successor decision; no duplicate prompts/events/IDs by path.
+3. If a later choice changes a previously reviewed bound, invalidate that draft
+   preview and require explicit reconfirmation. Keep one final outcome per task;
+   do not silently reuse an outdated decision. Terminate only when every affected
+   task is reviewed and no active retired-predecessor edge or pending choice remains.
+4. Future planned floors cannot precede review/project start. A genuinely started
+   task can reference a real Known actual claim; remaining schedule can stay
+   honestly ReferenceOnly, without inventing a finish from person-hours. This
+   is a resolved dependency choice, not permission to leave a dangling edge.
+5. Preview retirements, archived/new edges, all affected task outcomes and full
+   working schedule/Unknown/conflicts. Validate active graph, explicit holds/
+   floors and accepted-state invariants using the separately agreed adapters.
+6. Confirm one complete candidate/logical revision and one repository transaction,
+   including lifecycle/archives/reviews/events/working state. Cancel before dispatch
+   leaves accepted state/ref/IDs/history/B unchanged. Lost acknowledgement after
+   dispatch remains OutcomeUnknown and uses exact-request receipt reconciliation.
+
+Restoration is an equally explicit review, with rationale. Consider archived
+incoming/outgoing relations and affected active successors, but reinstate NONE
+automatically. Confirm current active predecessors (reject retired/missing/cyclic
+ones), choose any successor reconnections and review their consequences to closure.
+Preserve every old archive/retirement; append Restore and reviewed added-edge
+records. Never restore a baseline graph or old commitment by assignment. Dates
+of restoration/retirement are scope decisions, not actual worked durations.
+
+### Calculation, Gantt and reporting contracts only
+
+Current scheduling/FF/CPM/working-readiness input projects ACTIVE tasks and their
+active edges/order/progress/remaining only. Retired tasks remain in portable
+maps/logs/details but contribute no active constraint, forecast cost or critical
+path. If all tasks are retired, report no active work, not an invented project
+actual-completion date. Original-baseline views still use the full original graph.
+No existing formula is changed by this design; new projection adapters remain gated.
+
+Default Gantt hides retired tasks. Proposed Show Retired Tasks reveals subdued,
+clearly labelled relics with a retirement-date marker/details, plus separate
+known actual date markers. It must NEVER draw an elapsed-work bar from planned
+start to retirement. Original commitments remain available through baseline
+overlay; promise-at-retirement is labelled separately if shown. Toggle state is
+presentation-only, outside portable snapshot/fingerprint, and changes no schedule
+or baseline. No toggle/renderer is implemented here.
+The toggle reveals currently retired rows. A restored task is a normal active
+row; earlier retirement episodes remain in details/history rather than creating
+duplicate task rows. A current relic uses its latest retirement marker, with
+earlier dates still available as separate evidence.
+
+Details and future WP8 scope-change reports expose retirement rationale/date,
+available actor, preserved status/actuals, baseline estimate versus retirement
+estimate, archived/replacement edges, downstream outcomes and all restorations.
+Retired values are historical retained evidence, not zeroed work. WP8 report
+implementation and lifecycle UI require separate authorization.
 
 ## Versions, scalars and port/evaluator mapping
 

@@ -1,7 +1,7 @@
 {
   "format": "react-gantt-chart",
   "schemaVersion": 6,
-  "profile": "snapshot-history/1",
+  "profile": "snapshot-history/2",
   "exportInfo": {
     "application": "React Gantt Chart",
     "exportedAt": "2026-11-10T16:00:00.000Z"
@@ -285,7 +285,21 @@
             }
           ]
         }
-      }
+      },
+      "lifecycle": {
+        "T1": {
+          "kind": "Active",
+          "lastDecisionId": null,
+          "decisions": []
+        },
+        "T2": {
+          "kind": "Active",
+          "lastDecisionId": null,
+          "decisions": []
+        }
+      },
+      "archivedDependencies": [],
+      "scopeReviews": []
     },
     "originalBaseline": {
       "kind": "Present",
@@ -692,6 +706,6 @@
   },
   "integrity": {
     "profile": "bugsys-jcs-sha256/1",
-    "snapshotSha256": "12c479480b2b2c6c96a926bfba93ed3fc0c392b4c179dc7e9803468a875ce865"
+    "snapshotSha256": "01c7af88b97435688791894e91f4b4bdf1df0a751596779c4e2dba078e87b137"
   }
 }

@@ -5,6 +5,10 @@ current state, original-baseline representation, history and a concrete digest.
 There are no elided fields, partial patches or production files. Pretty layout
 is for review; canonical export bytes are defined separately. Do not import
 these into today's app: its unchanged reader supports formats1–5 only.
+WP7.4.4a re-authors these unreleased examples as `snapshot-history/2`, adding
+explicit lifecycle/archives/reviews. Original77 checks/inventory refer to the
+pre-amendment `/1` files at fd7fee9; current checks are linked from
+[AMENDMENT-SUMMARY](AMENDMENT-SUMMARY.md). No production converter is delivered.
 
 All scenarios use2026 dates. The late case uses Monday–Friday, four planned
 working slots/day. Slot numbers are not clock hours. The review date is an
@@ -97,9 +101,50 @@ their raw digest. A real migration must hash the bytes actually selected; it
 must not normalize a backup to force an expected match. Pretty-layout changes
 do not change a parsed snapshot's canonical digest.
 
+## Retirement/restoration examples (WP7.4.4a)
+
+All retirement variants retain the same five-task registry, estimates/progress/
+actuals/remaining and immutable original baseline from
+[retirement-before.json](examples/retirement-before.json). The original graph is:
+
+```mermaid
+flowchart LR
+  T1 --> T2 --> T3
+  T3 --> T4 --> T5
+  T3 --> T5
+  T1 --> T5
+```
+
+| Complete example | Confirmed fictional outcome |
+| --- | --- |
+| [retirement-leaf.json](examples/retirement-leaf.json) | Retire unstarted T5, no successors. Its incoming edges are archived, all task IDs/data/B remain, current W includes T1–T4 only. |
+| [retirement-chain-remove.json](examples/retirement-chain-remove.json) | Retire T2; archive T1→T2/T2→T3. Keep T3 as an independent active root with explicitly confirmed November9 floor; review T4/T5 consequences too. No Actual Start is fabricated. |
+| [retirement-chain-replace.json](examples/retirement-chain-replace.json) | Retire T2; explicitly replace T3's predecessor with active T1. Preserve other predecessors, including T5's unaffected T1 edge. All changed plans are previewed/confirmed. |
+| [retirement-cascade.json](examples/retirement-cascade.json) | Retire T2 and explicitly T3. Review T4/T5 to closure. T5 is reachable by two paths but has ONE final decision; preserve its T4 and unaffected T1 predecessors. Archive each removed pair once, accept logical2→3 once with multiple events. |
+| [retirement-cancelled.json](examples/retirement-cancelled.json) | Exact accepted before document at logical2; no new events/reviews/lifecycle mutations. This is an illustrative cancel oracle, not output of an implemented UI. |
+| [retirement-restored.json](examples/retirement-restored.json) | From cascade3, restore T3 at4 after November10 review. Explicitly choose T1, never retired T2, as predecessor. Do not restore old T3→T4/T5 edges. Review T4/T5 current-date plans and explicitly plan restored T3 for November11. Old retirements/archives/B remain. |
+| [source-format5-no-retirement.json](examples/source-format5-no-retirement.json) and [retirement-legacy-v5-copy.json](examples/retirement-legacy-v5-copy.json) | Complete authored v5 source/proposed v6 copy. Complete T1 is still lifecycle Active. Every surviving task defaults Active with no retirement decisions; no archive/date/rationale is invented. Missing deleted-task evidence remains unknown. |
+
+Every lifecycle record carries a user rationale, dates, nullable actor and a
+preserved pre-review context. In cascade, T2/T3 remain Not Started, retain their
+two-slot estimate/stored effort and Unknown actuals; retirement does not mark
+them Complete or replace their dates. Restore retains both the earlier Retire
+and new Restore records. T3's original-baseline edge from T2 is still visible
+as baseline history, not silently reactivated.
+
+[Transient review/view example](examples/retirement-review-preview.example.json)
+illustrates deduplicated closure, cancel/confirm and presentation contracts.
+Default hides T2/T3; toggle reveals subdued labelled relics and a retirement
+marker, never an elapsed-work bar. Known actual dates, if available, remain
+separate. Baseline overlay still contains all five original tasks/edges. Both
+toggle states reference the SAME saved snapshot/digest. This is neither a
+portable view preference nor an implemented Gantt toggle or WP8 report.
+
 ## Authoring checks, not a codec certification
 
-[Example evidence](evidence/example-authoring.json) records each digest/revision.
+[Original evidence](evidence/example-authoring.json) records pre-amendment `/1`
+digests/revisions. [Current inventory](evidence/amendment-example-authoring.json)
+records the amended `/2` fictional files.
 The examples use ASCII object keys and safe integer numbers only; built-in
 JSON property-list ordering and SHA-256 were used to author their illustrative
 canonical snapshot digests. Syntax, digest, references, selected literal dates,

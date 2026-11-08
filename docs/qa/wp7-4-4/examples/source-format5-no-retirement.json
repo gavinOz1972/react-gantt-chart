@@ -1,0 +1,91 @@
+{
+  "format": "react-gantt-chart",
+  "schemaVersion": 5,
+  "savedAt": "2026-11-09T15:00:00.000Z",
+  "createdBy": "React Gantt Chart",
+  "project": {
+    "projectId": "retirement-legacy-v5-lineage",
+    "name": "Historical reality example",
+    "projectStartDate": "2026-11-02",
+    "targetEndDate": "2026-11-30",
+    "workingWeekdays": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "workingHoursPerDay": 4
+  },
+  "tasks": [
+    {
+      "taskId": "T1",
+      "name": "First task",
+      "description": "Two planned working slots; actual duration is not inferred.",
+      "durationHours": 2,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T2",
+      "name": "Dependent task",
+      "description": "No Actual Start without attestation.",
+      "durationHours": 2,
+      "predecessorTaskIds": [
+        "T1"
+      ],
+      "independentStartMode": "DEFAULT"
+    }
+  ],
+  "nextTaskNumber": 7,
+  "manualOrder": [
+    "T1",
+    "T2"
+  ],
+  "sortMode": "manual",
+  "duplicateOrigins": {},
+  "taskProgress": {
+    "schemaVersion": 1,
+    "definitionOfDone": "Explicit owner confirmation.",
+    "tasks": {
+      "T1": {
+        "status": "Complete",
+        "criteria": []
+      },
+      "T2": {
+        "status": "Not Started",
+        "criteria": []
+      }
+    },
+    "events": [
+      {
+        "eventId": "V5-completion",
+        "taskId": "T1",
+        "fromStatus": "Not Started",
+        "toStatus": "Complete",
+        "date": "2026-11-06",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "criteriaSnapshot": [],
+        "completionAcknowledged": true,
+        "noCriteriaAcknowledged": true,
+        "definitionOfDone": "Explicit owner confirmation.",
+        "committedFinishDateAtCompletion": "2026-11-02"
+      }
+    ]
+  },
+  "workTracking": {
+    "schemaVersion": 1,
+    "entries": [],
+    "remainingHours": {
+      "T1": 2,
+      "T2": null
+    }
+  },
+  "forecastSettings": {
+    "schemaVersion": 1,
+    "enabled": false,
+    "classHoursPerStudent": 4,
+    "homeworkHoursPerStudent": 2,
+    "teamSize": 4
+  }
+}
