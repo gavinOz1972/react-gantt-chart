@@ -1,0 +1,40 @@
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/planning/workingPlan.test.ts
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+ ❯ src/planning/workingPlan.test.ts (65 tests | 1 failed) 102ms
+   ❯ range and graph-size boundaries (9)
+     × already completed successor needs no new planned release beyond year9999 3ms
+npm.cmd :
+At line:2 char:1
++ npm.cmd test -- src/planning/workingPlan.test.ts *> .wp742-range-init ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/planning/workingPlan.test.ts > range and graph-size boundaries > already completed successor needs no new
+planned release beyond year9999
+Error: [{"code":"DATE_OUT_OF_RANGE","message":"The schedule exceeds the supported date range 0001-01-01 through
+9999-12-31."}]
+ ❯ success src/planning/workingPlan.test.ts:23:25
+     21|   const result = evaluateWorkingCandidate(input)
+     22|   expect(snapshot(input)).toBe(before)
+     23|   if (!result.ok) throw new Error(JSON.stringify(result.issues))
+       |                         ^
+     24|   return result
+     25| }
+ ❯ known src/planning/workingPlan.test.ts:27:18
+ ❯ src/planning/workingPlan.test.ts:284:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 64 passed (65)
+   Start at  20:31:10
+   Duration  1.06s (environment 71%, setup 11%, tests 11%, transform 5%, import 2%)

@@ -1,0 +1,43 @@
+
+> react-gantt-chart@0.0.0 typecheck
+> tsc -b --pretty false
+
+src/planning/workingPlan.ts(72,56): error TS2345: Argument of type 'Record<string, unknown>[]' is not assignable to parameter of type 'readonly TaskInput[]'.
+  Type 'Record<string, unknown>' is not assignable to type 'TaskInput'.
+    Type 'Record<string, unknown>' is not assignable to type 'TaskFields & { readonly independentStartMode: "MANUAL"; readonly requestedStartDate: string; }'.
+      Type 'Record<string, unknown>' is missing the following properties from type 'TaskFields': taskId, name, description, durationHours, predecessorTaskIds
+src/planning/workingPlan.ts(76,52): error TS2345: Argument of type 'unknown[]' is not assignable to parameter of type 'readonly string[]'.
+  Type 'unknown' is not assignable to type 'string'.
+src/planning/workingPlan.ts(107,36): error TS2345: Argument of type '(a: string, b: string) => 0 | 1 | -1' is not assignable to parameter of type '(a: unknown, b: unknown) => number'.
+  Types of parameters 'a' and 'a' are incompatible.
+    Type 'unknown' is not assignable to type 'string'.
+src/planning/workingPlan.ts(108,37): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(108,113): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | undefined'.
+src/planning/workingPlan.ts(109,46): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(111,50): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(111,93): error TS2538: Type 'unknown' cannot be used as an index type.
+src/planning/workingPlan.ts(112,205): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | undefined'.
+src/planning/workingPlan.ts(113,73): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(113,173): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | undefined'.
+src/planning/workingPlan.ts(114,48): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(114,143): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | undefined'.
+src/planning/workingPlan.ts(115,27): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(115,50): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(116,38): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(116,75): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(116,101): error TS2538: Type 'unknown' cannot be used as an index type.
+src/planning/workingPlan.ts(118,145): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | undefined'.
+src/planning/workingPlan.ts(120,43): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(122,154): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | undefined'.
+src/planning/workingPlan.ts(125,152): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | undefined'.
+src/planning/workingPlan.ts(133,30): error TS2345: Argument of type 'Record<string, unknown>[]' is not assignable to parameter of type 'readonly TaskInput[]'.
+  Type 'Record<string, unknown>' is not assignable to type 'TaskInput'.
+    Type 'Record<string, unknown>' is not assignable to type 'TaskFields & { readonly independentStartMode: "MANUAL"; readonly requestedStartDate: string; }'.
+      Type 'Record<string, unknown>' is missing the following properties from type 'TaskFields': taskId, name, description, durationHours, predecessorTaskIds
+src/planning/workingPlan.ts(134,58): error TS2488: Type 'unknown' must have a '[Symbol.iterator]()' method that returns an iterator.
+src/planning/workingPlan.ts(142,37): error TS2488: Type 'unknown' must have a '[Symbol.iterator]()' method that returns an iterator.
+src/planning/workingPlan.ts(174,12): error TS18046: 'task.predecessorTaskIds' is of type 'unknown'.
+src/planning/workingPlan.ts(174,176): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string'.
+src/planning/workingPlan.ts(181,37): error TS2488: Type 'unknown' must have a '[Symbol.iterator]()' method that returns an iterator.
+src/planning/workingPlan.ts(198,53): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | number | bigint | boolean'.
+src/planning/workingPlan.ts(209,88): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'number'.

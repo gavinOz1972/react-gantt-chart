@@ -1,0 +1,83 @@
+{
+    "workPackage":  "WP7.4.2",
+    "scope":  "Unused pure evaluator, independent tests/fixtures and QA only",
+    "reviewDate":  "2026-11-07",
+    "reviewTimezone":  "America/Regina",
+    "recordedAtUTC":  "2026-11-08T02:39:58.4679042Z",
+    "branch":  "feature/wp7-stabilization",
+    "startingCommit":  "b9e258ddcb0c96e4ec96620f533247e6c9104049",
+    "requirementSHA256":  "de6863afdc0a7df5936391a21450a4e2ea143b958ae596f4a776013316f1716f",
+    "authority":  {
+                      "WP7_4_1":  "Accepted design handoff by saved WP7.4.2 requirement",
+                      "P01_C_P12_E":  "Approved for bounded pure evaluator only",
+                      "ownerAcceptanceWP7_4_2":  "Pending",
+                      "P09_P11_P12Integration_P10":  "Separate deferred scopes; no activation authorized"
+                  },
+    "checks":  {
+                   "checkExitCode":  0,
+                   "unitComponentPassed":  551,
+                   "existingUnitComponent":  486,
+                   "newEvaluatorTests":  65,
+                   "testFiles":  36,
+                   "lint":  "Pass",
+                   "typecheck":  "Pass",
+                   "build":  "Pass",
+                   "browserExitCode":  0,
+                   "existingBrowserPassed":  223,
+                   "benchmarkExitCode":  0,
+                   "benchmarkFixtures":  6,
+                   "benchmarkSamplesPerFixture":  300,
+                   "benchmarkWarmupPerFixture":  25,
+                   "literalCases":  "C01-C12 and E13-E18, variants and independent edge cases",
+                   "links":  "Pass",
+                   "decisionBoxes":  "Unchecked",
+                   "markdownFiles":  5,
+                   "relativeLinks":  37
+               },
+    "scopeGuards":  {
+                        "productionConsumerReferences":  0,
+                        "newModuleDirectClockStorageNetworkReactUses":  0,
+                        "existingSourceTestsConfigsModified":  false,
+                        "persistenceOrPackagesModified":  false,
+                        "historicalAcceptanceModified":  false,
+                        "generatedHistoricalEvidenceRestored":  true,
+                        "originalCheckoutModified":  false,
+                        "ownerDevelopmentServerOrDataOperatedOn":  false,
+                        "emittedJS":  "index-1Q4VyGQ_.js",
+                        "emittedCSS":  "index-GW2dyLss.css",
+                        "transformedAppModules":  69
+                    },
+    "environment":  {
+                        "node":  "24.19.0",
+                        "npm":  "11.17.0",
+                        "vitest":  "5.0.5",
+                        "vite":  "8.3.5",
+                        "playwright":  "1.64.1",
+                        "chromium":  "156.0.8078.4",
+                        "operatingSystem":  "Windows",
+                        "isolatedBrowserPort":  4173,
+                        "scenarioTimezone":  "America/Regina"
+                    },
+    "protectedLocalAndRemoteRefsPrePush":  {
+                                               "main":  "a6a1c32c22a2bf074b161e52d523443602843dd7",
+                                               "v1_0TagObject":  "a4157bc84392c770c27111da58d779948b110a56",
+                                               "v1_0Target":  "abb85011dafc9fb0876953e3132880e025ef65da",
+                                               "v1_1TagObject":  "134305f2205eb993ab76672c2d2469d48d91a609",
+                                               "v1_1Target":  "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+                                           },
+    "clarifications":  [
+                           "C12 raw requested nonworking date stays in fixture envelope; Slot input is normalized Thursday5",
+                           "C09 unspecified predecessor start/duration supplied as future8slots Nov12-13, finish13 unchanged",
+                           "Optional Bound.source distinguishes task floor from independent root lower bound; no existing API changes"
+                       ],
+    "failuresResolved":  [
+                             "Initial typed array narrowing error fixed with boolean shape check",
+                             "Unnecessary planned release for completed successor near year9999 fixed with demand-driven release; final full checks rerun"
+                         ],
+    "limits":  [
+                   "Evaluator not consumed by App/UI/storage or existing engines",
+                   "Node metrics are not browser/UI/classroom-device guarantees",
+                   "No Actual Start history decoder, durable context capture, format6, v2 storage or wizard",
+                   "No owner acceptance, merge, tag, deployment, rebaseline or WP8"
+               ]
+}

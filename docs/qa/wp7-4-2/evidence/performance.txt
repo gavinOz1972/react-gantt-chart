@@ -1,0 +1,7 @@
+{"tasks":30,"shape":"sparse","edges":0,"warmup":25,"samples":300,"p50Ms":0.45690000000001874,"p95Ms":0.7183999999999742,"maxMs":1.279800000000023}
+{"tasks":30,"shape":"diamond","edges":38,"warmup":25,"samples":300,"p50Ms":0.5113999999999805,"p95Ms":0.7472000000000207,"maxMs":1.1809000000000083}
+{"tasks":30,"shape":"chain","edges":29,"warmup":25,"samples":300,"p50Ms":0.49530000000004293,"p95Ms":0.829900000000066,"maxMs":1.5875999999999522}
+{"tasks":40,"shape":"sparse","edges":0,"warmup":25,"samples":300,"p50Ms":0.5929999999999609,"p95Ms":0.8727000000000089,"maxMs":1.231300000000033}
+{"tasks":40,"shape":"diamond","edges":52,"warmup":25,"samples":300,"p50Ms":0.6764000000000578,"p95Ms":1.0229000000001633,"maxMs":1.4321999999999662}
+{"tasks":40,"shape":"chain","edges":39,"warmup":25,"samples":300,"p50Ms":0.6388999999999214,"p95Ms":0.9745000000000346,"maxMs":1.4101000000000568}
+8:35:54 p.m. [vite] (client) [optimizer] bundling dependencies...

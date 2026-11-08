@@ -1,0 +1,6 @@
+PASS: No incoming planning/workingPlan/evaluateWorkingCandidate references outside src/planning (only scoped tests/fixtures and QA benchmark invoke it).
+Command: rg --no-ignore -n workingPlan|evaluateWorkingCandidate|(from|import|require).*planning src -g !**/planning/** (exit1 means no matches).
+PASS: No direct clock, storage, network, timer or React import in src/planning/workingPlan.ts.
+PASS: No tracked source/test/config/historical QA edits; only new allowed paths exist.
+PASS: Build assets remain index-1Q4VyGQ_.js and index-GW2dyLss.css;69 modules.
+PASS: main and protected tag objects/targets match starting local/remote references.
