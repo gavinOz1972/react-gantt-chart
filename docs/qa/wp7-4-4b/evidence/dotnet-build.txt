@@ -1,0 +1,9 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  CrossCheck -> C:\Users\gavin\Documents\CodexProjects\GanttProject\output\wp7-4-4b-verification\dotnet\bin\Release\net10.0\CrossCheck.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.91

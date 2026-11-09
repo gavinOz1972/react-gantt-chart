@@ -1,0 +1,155 @@
+{
+  "repository": "https://github.com/cyberphone/json-canonicalization",
+  "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+  "license": "Apache-2.0",
+  "unmodifiedBytes": true,
+  "exception": "node source filename changed to .cjs for module loading; content unchanged",
+  "files": [
+    {
+      "upstreamPath": "LICENSE",
+      "localPath": "reference/LICENSE",
+      "sha256": "6821faaddedf2d78c95bb6d98b127e9e616097afd2f6bcc34389f000d13ab12d"
+    },
+    {
+      "upstreamPath": "node-es6/canonicalize.js",
+      "localPath": "reference/node/canonicalize.cjs",
+      "sha256": "f9f498b55c99eefe348c99018ddcfe08efa6f7ff96b9ba9dce4b7090b33c4438"
+    },
+    {
+      "upstreamPath": "dotnet/jsoncanonicalizer/JsonCanonicalizer.cs",
+      "localPath": "reference/dotnet/JsonCanonicalizer.cs",
+      "sha256": "234982a675b3d6ff12522bcbd823d3e6e0ccbe543029a6ff094da7401a844a29"
+    },
+    {
+      "upstreamPath": "dotnet/es6numberserializer/NumberCachedPowers.cs",
+      "localPath": "reference/dotnet/NumberCachedPowers.cs",
+      "sha256": "659174e3f8b2a3c69435538bbf30fa8781a584a209f1a962cd5514a8c0d1fd79"
+    },
+    {
+      "upstreamPath": "dotnet/es6numberserializer/NumberDiyFp.cs",
+      "localPath": "reference/dotnet/NumberDiyFp.cs",
+      "sha256": "be3a14af2fec6086f234e3cf06a90edb98cbdbef58447432485b3cac1684c3b5"
+    },
+    {
+      "upstreamPath": "dotnet/es6numberserializer/NumberDoubleHelper.cs",
+      "localPath": "reference/dotnet/NumberDoubleHelper.cs",
+      "sha256": "898c6ceee1025af51ba6abdd2111bc24e209857a23d53601edf699db9a1612df"
+    },
+    {
+      "upstreamPath": "dotnet/es6numberserializer/NumberDToA.cs",
+      "localPath": "reference/dotnet/NumberDToA.cs",
+      "sha256": "f6c215b6787efa3871cf581c08cd645520066704e5a78a9c02856d5c448688cb"
+    },
+    {
+      "upstreamPath": "dotnet/es6numberserializer/NumberFastDToA.cs",
+      "localPath": "reference/dotnet/NumberFastDToA.cs",
+      "sha256": "cbe35d5ed16acd05889d6fe9ffd052964cf06ffd831b13f21bfec61f6d548dc3"
+    },
+    {
+      "upstreamPath": "dotnet/es6numberserializer/NumberFastDToABuilder.cs",
+      "localPath": "reference/dotnet/NumberFastDToABuilder.cs",
+      "sha256": "82b39967c220a5bed069b36839a7d7993e907a668cc03b356939fd3f79b3742a"
+    },
+    {
+      "upstreamPath": "dotnet/es6numberserializer/NumberToJson.cs",
+      "localPath": "reference/dotnet/NumberToJson.cs",
+      "sha256": "aecd29efdaa1a193e43d5535d4efeb294314b5cbd436c70a8399b6040a0b0f6a"
+    },
+    {
+      "upstreamPath": "testdata/input/arrays.json",
+      "localPath": "fixtures/reference/input/arrays.json",
+      "sha256": "e503b6d71d1afa595b1c74b1016445c944cd89f90418066b23de1aeda7d17563"
+    },
+    {
+      "upstreamPath": "testdata/input/french.json",
+      "localPath": "fixtures/reference/input/french.json",
+      "sha256": "03676a951cd8753ac62589f72eb2105cc782c33425418cfe1d517c111f6e5d5a"
+    },
+    {
+      "upstreamPath": "testdata/input/structures.json",
+      "localPath": "fixtures/reference/input/structures.json",
+      "sha256": "d66893805be1784116af50af3110d08766c70a6b4aad93374723f72346e7aaa6"
+    },
+    {
+      "upstreamPath": "testdata/input/unicode.json",
+      "localPath": "fixtures/reference/input/unicode.json",
+      "sha256": "4621864e014d4a805a563f55b9ea20aba4a2d2dc09c7394f625496998c00702c"
+    },
+    {
+      "upstreamPath": "testdata/input/values.json",
+      "localPath": "fixtures/reference/input/values.json",
+      "sha256": "c4a041b503d6bc236036ef44db4dac499272f60fc22c40dc3b7a54870ba6f1c3"
+    },
+    {
+      "upstreamPath": "testdata/input/weird.json",
+      "localPath": "fixtures/reference/input/weird.json",
+      "sha256": "a3a905266bd4a49a969274ea69baa14ee0c4af0ead926d6fa2b7612b4af75387"
+    },
+    {
+      "upstreamPath": "testdata/output/arrays.json",
+      "localPath": "fixtures/reference/output/arrays.json",
+      "sha256": "099601b171cafed97c333f8878d68e7f8c8f795412adb34b2fdcf0e7c7beac42"
+    },
+    {
+      "upstreamPath": "testdata/output/french.json",
+      "localPath": "fixtures/reference/output/french.json",
+      "sha256": "d99d0ebdcb0033cb858cfa830ae46bc0fb3309413b271f1da828c89901a27ed5"
+    },
+    {
+      "upstreamPath": "testdata/output/structures.json",
+      "localPath": "fixtures/reference/output/structures.json",
+      "sha256": "605f65004ec2db7692522a0852c22f1c989e036d547e88963d1a3143cf3195d5"
+    },
+    {
+      "upstreamPath": "testdata/output/unicode.json",
+      "localPath": "fixtures/reference/output/unicode.json",
+      "sha256": "0d99aad92a125196ff887876643fd3206786a84ddce2cee52ba4ad256d2381d3"
+    },
+    {
+      "upstreamPath": "testdata/output/values.json",
+      "localPath": "fixtures/reference/output/values.json",
+      "sha256": "2d5e01a318d0f0879ab568c4be289c8b1f64ef8921a53c6277d5e069978baacb"
+    },
+    {
+      "upstreamPath": "testdata/output/weird.json",
+      "localPath": "fixtures/reference/output/weird.json",
+      "sha256": "6af595a9aa80110b964b4de3f82a05fa6ae7423005019bacfa2620dddc4e94d1"
+    },
+    {
+      "upstreamPath": "testdata/outhex/arrays.txt",
+      "localPath": "fixtures/reference/outhex/arrays.txt",
+      "sha256": "e306733ca0c4da9595ebde73ec072c295f0f9ef0ea4aafc4d267d4a04988ce51"
+    },
+    {
+      "upstreamPath": "testdata/outhex/french.txt",
+      "localPath": "fixtures/reference/outhex/french.txt",
+      "sha256": "f9b3bfd02f4edb3d0a490703153d836db5ef0a2090a9d3357f8c3797e12d4043"
+    },
+    {
+      "upstreamPath": "testdata/outhex/structures.txt",
+      "localPath": "fixtures/reference/outhex/structures.txt",
+      "sha256": "063ee2bc6fa3f93b2a131841315f5c6bf0ea7488cc128ed50725cabf5592627b"
+    },
+    {
+      "upstreamPath": "testdata/outhex/unicode.txt",
+      "localPath": "fixtures/reference/outhex/unicode.txt",
+      "sha256": "0471fea1ee0464e435a52510d2c187b216961a5e7e2665402ea9cb1cd04109ca"
+    },
+    {
+      "upstreamPath": "testdata/outhex/values.txt",
+      "localPath": "fixtures/reference/outhex/values.txt",
+      "sha256": "b8b802e82c7bead71a7841e27fce6458854eb72ffd0eaa51474dacdfbdf3ab64"
+    },
+    {
+      "upstreamPath": "testdata/outhex/weird.txt",
+      "localPath": "fixtures/reference/outhex/weird.txt",
+      "sha256": "1061953c7129537722f9abd9de321c787120489d09f34ba58065bd77ba9a84b6"
+    }
+  ],
+  "byteSource": "git show <pinned commit>:<path>, without checkout line-ending conversion",
+  "officialLicense": {
+    "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "localPath": "reference/APACHE-2.0.txt",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  }
+}

@@ -1,0 +1,4561 @@
+{
+  "qualificationOnly": true,
+  "recordedAtUTC": "2026-11-09T04:59:37.262Z",
+  "environment": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+    "logicalCpus": 32,
+    "totalRamBytes": 16425455616
+  },
+  "methodology": {
+    "warmups": 1,
+    "measuredFreshProcesses": 3,
+    "osCache": "Warm after fixture generation; no cold-disk claim",
+    "memory": "Fresh child process maxRSS plus sampled phase RSS/heap/external bytes; not browser peak",
+    "timing": "read/lexical scan/JSON.parse/selected shape checks/reference snapshot canonicalization/hash/full-file canonicalization; full schema validation absent",
+    "reference": "Pinned upstream Node ES6 sample; string-building allocations are implementation-specific"
+  },
+  "recipeHashes": {
+    "synthetic.mjs": "799c5d5b16c9288fe88e486f6fa1ea25539da4644476aedd6500d16751988ced",
+    "capacity.mjs": "9e1e85722e5437fb8f7c4844cdc3683b9b7a433455122c1e7de989eca1f39ff1",
+    "capacity-worker.mjs": "0a179ad4b7b0c588cb26cab1de45f6f13aaf492d84052b5a4fe4ad4495d92696",
+    "probe.mjs": "0d098b8152d39b3adab657ce0e3b5f62a66b5b292ee46d35d612429874728edf"
+  },
+  "rows": [
+    {
+      "options": {
+        "name": "class30",
+        "tasks": 30,
+        "cycles": 0,
+        "edits": 20,
+        "logs": 2,
+        "criteria": 3,
+        "text": 96
+      },
+      "generationMs": 173.87329999999997,
+      "sizes": {
+        "prettyFile": 363377,
+        "canonicalFile": 199653,
+        "canonicalSnapshot": 199343,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 2,
+          "origin": 150,
+          "current": 122053,
+          "originalBaseline": 13330,
+          "history": 63736
+        },
+        "currentSectionValues": {
+          "project": 178,
+          "tasks": 7241,
+          "nextTaskNumber": 2,
+          "manualOrder": 172,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 16530,
+          "actuals": 10036,
+          "workTracking": 18425,
+          "forecastSettings": 100,
+          "lifecycle": 32598,
+          "archivedDependencies": 6610,
+          "scopeReviews": 13709,
+          "working": 16233
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 30,
+        "active": 24,
+        "retired": 6,
+        "logs": 60,
+        "criteria": 90,
+        "lifecycleDecisions": 18,
+        "archivedDependencies": 24,
+        "scopeReviews": 2,
+        "historyEvents": 40
+      },
+      "scan": {
+        "bytes": 363377,
+        "maxDepth": 11,
+        "containers": 2245,
+        "arrayItems": 1392,
+        "stringCount": 10865,
+        "maxStringUnits": 119,
+        "numericTokens": 839
+      },
+      "inputSha256": "41b0ec972e695ce17d4012fe63e3324091818c9779ca614adc90455672f96f15",
+      "snapshotSha256": "4ddd92f68b207693096556eeaa52fb3fa637a8280695416e120a7965d1f12e13",
+      "timingSummary": {
+        "read": {
+          "min": 0.18780000000000285,
+          "median": 0.20199999999999818,
+          "max": 0.23679999999999524
+        },
+        "lexicalScan": {
+          "min": 6.959599999999995,
+          "median": 7.338999999999999,
+          "max": 7.725900000000003
+        },
+        "jsonParse": {
+          "min": 0.8201000000000036,
+          "median": 0.9558999999999997,
+          "max": 1.1034999999999968
+        },
+        "selectedShapeChecks": {
+          "min": 0.14029999999999632,
+          "median": 0.1664999999999992,
+          "max": 0.22769999999999868
+        },
+        "canonicalSnapshot": {
+          "min": 3.0105000000000004,
+          "median": 3.6141999999999967,
+          "max": 3.8355999999999995
+        },
+        "hash": {
+          "min": 0.6880000000000024,
+          "median": 0.7633999999999972,
+          "max": 0.8628999999999962
+        },
+        "canonicalFile": {
+          "min": 2.418199999999999,
+          "median": 2.492199999999997,
+          "max": 2.5243000000000038
+        }
+      },
+      "pipelineMs": {
+        "min": 14.947100000000006,
+        "median": 15.3506,
+        "max": 16.4696
+      },
+      "peakRssKiB": {
+        "min": 66304,
+        "median": 66520,
+        "max": 66588
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.23679999999999524,
+            "lexicalScan": 7.725900000000003,
+            "jsonParse": 0.9558999999999997,
+            "selectedShapeChecks": 0.1664999999999992,
+            "canonicalSnapshot": 3.8355999999999995,
+            "hash": 0.8628999999999962,
+            "canonicalFile": 2.492199999999997
+          },
+          "pipelineMs": 16.4696,
+          "peakRssKiB": 66588,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 59748352,
+              "heapTotal": 8118272,
+              "heapUsed": 5033400,
+              "external": 2709325,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 61730816,
+              "heapTotal": 8744960,
+              "heapUsed": 6393000,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 62148608,
+              "heapTotal": 11206656,
+              "heapUsed": 6178208,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 62173184,
+              "heapTotal": 11206656,
+              "heapUsed": 6198304,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 65499136,
+              "heapTotal": 16449536,
+              "heapUsed": 7798240,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "hash",
+              "rss": 66052096,
+              "heapTotal": 16650240,
+              "heapUsed": 8013920,
+              "external": 3108083,
+              "arrayBuffers": 905706
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 67698688,
+              "heapTotal": 16912384,
+              "heapUsed": 8613480,
+              "external": 3108083,
+              "arrayBuffers": 506988
+            }
+          ],
+          "sizes": {
+            "prettyFile": 363377,
+            "canonicalFile": 199653,
+            "canonicalSnapshot": 199343,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 122053,
+              "originalBaseline": 13330,
+              "history": 63736
+            },
+            "currentSectionValues": {
+              "project": 178,
+              "tasks": 7241,
+              "nextTaskNumber": 2,
+              "manualOrder": 172,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 16530,
+              "actuals": 10036,
+              "workTracking": 18425,
+              "forecastSettings": 100,
+              "lifecycle": 32598,
+              "archivedDependencies": 6610,
+              "scopeReviews": 13709,
+              "working": 16233
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 363377,
+            "maxDepth": 11,
+            "containers": 2245,
+            "arrayItems": 1392,
+            "stringCount": 10865,
+            "maxStringUnits": 119,
+            "numericTokens": 839
+          },
+          "counts": {
+            "tasks": 30,
+            "active": 24,
+            "retired": 6,
+            "logs": 60,
+            "criteria": 90,
+            "lifecycleDecisions": 18,
+            "archivedDependencies": 24,
+            "scopeReviews": 2,
+            "historyEvents": 40
+          },
+          "inputSha256": "41b0ec972e695ce17d4012fe63e3324091818c9779ca614adc90455672f96f15",
+          "snapshotSha256": "4ddd92f68b207693096556eeaa52fb3fa637a8280695416e120a7965d1f12e13",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.20199999999999818,
+            "lexicalScan": 7.338999999999999,
+            "jsonParse": 0.8201000000000036,
+            "selectedShapeChecks": 0.14029999999999632,
+            "canonicalSnapshot": 3.0105000000000004,
+            "hash": 0.7633999999999972,
+            "canonicalFile": 2.5243000000000038
+          },
+          "pipelineMs": 14.947100000000006,
+          "peakRssKiB": 66520,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 59805696,
+              "heapTotal": 8118272,
+              "heapUsed": 5033400,
+              "external": 2709325,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 61734912,
+              "heapTotal": 9007104,
+              "heapUsed": 6422416,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 62156800,
+              "heapTotal": 11468800,
+              "heapUsed": 6180536,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 62164992,
+              "heapTotal": 11468800,
+              "heapUsed": 6200632,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 65388544,
+              "heapTotal": 16711680,
+              "heapUsed": 7804464,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "hash",
+              "rss": 65933312,
+              "heapTotal": 16912384,
+              "heapUsed": 8020144,
+              "external": 3108083,
+              "arrayBuffers": 905706
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 67997696,
+              "heapTotal": 16912384,
+              "heapUsed": 8616792,
+              "external": 3108083,
+              "arrayBuffers": 706363
+            }
+          ],
+          "sizes": {
+            "prettyFile": 363377,
+            "canonicalFile": 199653,
+            "canonicalSnapshot": 199343,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 122053,
+              "originalBaseline": 13330,
+              "history": 63736
+            },
+            "currentSectionValues": {
+              "project": 178,
+              "tasks": 7241,
+              "nextTaskNumber": 2,
+              "manualOrder": 172,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 16530,
+              "actuals": 10036,
+              "workTracking": 18425,
+              "forecastSettings": 100,
+              "lifecycle": 32598,
+              "archivedDependencies": 6610,
+              "scopeReviews": 13709,
+              "working": 16233
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 363377,
+            "maxDepth": 11,
+            "containers": 2245,
+            "arrayItems": 1392,
+            "stringCount": 10865,
+            "maxStringUnits": 119,
+            "numericTokens": 839
+          },
+          "counts": {
+            "tasks": 30,
+            "active": 24,
+            "retired": 6,
+            "logs": 60,
+            "criteria": 90,
+            "lifecycleDecisions": 18,
+            "archivedDependencies": 24,
+            "scopeReviews": 2,
+            "historyEvents": 40
+          },
+          "inputSha256": "41b0ec972e695ce17d4012fe63e3324091818c9779ca614adc90455672f96f15",
+          "snapshotSha256": "4ddd92f68b207693096556eeaa52fb3fa637a8280695416e120a7965d1f12e13",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.18780000000000285,
+            "lexicalScan": 6.959599999999995,
+            "jsonParse": 1.1034999999999968,
+            "selectedShapeChecks": 0.22769999999999868,
+            "canonicalSnapshot": 3.6141999999999967,
+            "hash": 0.6880000000000024,
+            "canonicalFile": 2.418199999999999
+          },
+          "pipelineMs": 15.3506,
+          "peakRssKiB": 66304,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 59666432,
+              "heapTotal": 8118272,
+              "heapUsed": 5033400,
+              "external": 2709325,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 61558784,
+              "heapTotal": 8744960,
+              "heapUsed": 6423032,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 61972480,
+              "heapTotal": 11206656,
+              "heapUsed": 6180536,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 61992960,
+              "heapTotal": 11206656,
+              "heapUsed": 6200632,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 65191936,
+              "heapTotal": 16449536,
+              "heapUsed": 7800120,
+              "external": 2709365,
+              "arrayBuffers": 506988
+            },
+            {
+              "phase": "hash",
+              "rss": 65658880,
+              "heapTotal": 16650240,
+              "heapUsed": 8015800,
+              "external": 3108083,
+              "arrayBuffers": 905706
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 67788800,
+              "heapTotal": 16650240,
+              "heapUsed": 8548520,
+              "external": 3108083,
+              "arrayBuffers": 706363
+            }
+          ],
+          "sizes": {
+            "prettyFile": 363377,
+            "canonicalFile": 199653,
+            "canonicalSnapshot": 199343,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 122053,
+              "originalBaseline": 13330,
+              "history": 63736
+            },
+            "currentSectionValues": {
+              "project": 178,
+              "tasks": 7241,
+              "nextTaskNumber": 2,
+              "manualOrder": 172,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 16530,
+              "actuals": 10036,
+              "workTracking": 18425,
+              "forecastSettings": 100,
+              "lifecycle": 32598,
+              "archivedDependencies": 6610,
+              "scopeReviews": 13709,
+              "working": 16233
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 363377,
+            "maxDepth": 11,
+            "containers": 2245,
+            "arrayItems": 1392,
+            "stringCount": 10865,
+            "maxStringUnits": 119,
+            "numericTokens": 839
+          },
+          "counts": {
+            "tasks": 30,
+            "active": 24,
+            "retired": 6,
+            "logs": 60,
+            "criteria": 90,
+            "lifecycleDecisions": 18,
+            "archivedDependencies": 24,
+            "scopeReviews": 2,
+            "historyEvents": 40
+          },
+          "inputSha256": "41b0ec972e695ce17d4012fe63e3324091818c9779ca614adc90455672f96f15",
+          "snapshotSha256": "4ddd92f68b207693096556eeaa52fb3fa637a8280695416e120a7965d1f12e13",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    },
+    {
+      "options": {
+        "name": "class40",
+        "tasks": 40,
+        "cycles": 1,
+        "edits": 40,
+        "logs": 4,
+        "criteria": 4,
+        "text": 192
+      },
+      "generationMs": 65.12120000000004,
+      "sizes": {
+        "prettyFile": 827340,
+        "canonicalFile": 504852,
+        "canonicalSnapshot": 504542,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 2,
+          "origin": 150,
+          "current": 306099,
+          "originalBaseline": 21468,
+          "history": 176751
+        },
+        "currentSectionValues": {
+          "project": 178,
+          "tasks": 13813,
+          "nextTaskNumber": 2,
+          "manualOrder": 232,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 43851,
+          "actuals": 17744,
+          "workTracking": 64129,
+          "forecastSettings": 100,
+          "lifecycle": 96520,
+          "archivedDependencies": 11698,
+          "scopeReviews": 32126,
+          "working": 25487
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 40,
+        "active": 32,
+        "retired": 8,
+        "logs": 160,
+        "criteria": 160,
+        "lifecycleDecisions": 40,
+        "archivedDependencies": 40,
+        "scopeReviews": 4,
+        "historyEvents": 84
+      },
+      "scan": {
+        "bytes": 827340,
+        "maxDepth": 11,
+        "containers": 4231,
+        "arrayItems": 2716,
+        "stringCount": 21141,
+        "maxStringUnits": 215,
+        "numericTokens": 1549
+      },
+      "inputSha256": "9aabf318d66d3be9c1678dccceb2d936159a677df37fbcd51222fc2f743c3399",
+      "snapshotSha256": "e64ed8cb3efc675c285d6b51a2871b53957eb0c4a8463ea099113fd8fbd791ce",
+      "timingSummary": {
+        "read": {
+          "min": 0.2605999999999966,
+          "median": 0.30290000000000106,
+          "max": 0.38880000000000337
+        },
+        "lexicalScan": {
+          "min": 12.6815,
+          "median": 12.806799999999996,
+          "max": 13.491299999999995
+        },
+        "jsonParse": {
+          "min": 1.3491,
+          "median": 1.4033000000000015,
+          "max": 1.577300000000001
+        },
+        "selectedShapeChecks": {
+          "min": 0.18039999999999878,
+          "median": 0.18700000000000472,
+          "max": 0.2693000000000012
+        },
+        "canonicalSnapshot": {
+          "min": 5.126100000000001,
+          "median": 5.583599999999997,
+          "max": 5.800600000000003
+        },
+        "hash": {
+          "min": 1.2567999999999984,
+          "median": 1.2815000000000012,
+          "max": 1.3257000000000048
+        },
+        "canonicalFile": {
+          "min": 5.420700000000004,
+          "median": 5.643900000000002,
+          "max": 5.873900000000006
+        }
+      },
+      "pipelineMs": {
+        "min": 26.79,
+        "median": 27.4565,
+        "max": 28.505200000000002
+      },
+      "peakRssKiB": {
+        "min": 76384,
+        "median": 76456,
+        "max": 76792
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.2605999999999966,
+            "lexicalScan": 12.6815,
+            "jsonParse": 1.577300000000001,
+            "selectedShapeChecks": 0.2693000000000012,
+            "canonicalSnapshot": 5.126100000000001,
+            "hash": 1.2815000000000012,
+            "canonicalFile": 5.420700000000004
+          },
+          "pipelineMs": 26.79,
+          "peakRssKiB": 76792,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 60137472,
+              "heapTotal": 8118272,
+              "heapUsed": 5033400,
+              "external": 3173288,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 65212416,
+              "heapTotal": 11829248,
+              "heapUsed": 6360288,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 66736128,
+              "heapTotal": 12656640,
+              "heapUsed": 7870408,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 66400256,
+              "heapTotal": 12656640,
+              "heapUsed": 7895016,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 72851456,
+              "heapTotal": 17334272,
+              "heapUsed": 9850336,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "hash",
+              "rss": 75530240,
+              "heapTotal": 17842176,
+              "heapUsed": 10371216,
+              "external": 4182444,
+              "arrayBuffers": 1980067
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 76537856,
+              "heapTotal": 27017216,
+              "heapUsed": 11510640,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            }
+          ],
+          "sizes": {
+            "prettyFile": 827340,
+            "canonicalFile": 504852,
+            "canonicalSnapshot": 504542,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 306099,
+              "originalBaseline": 21468,
+              "history": 176751
+            },
+            "currentSectionValues": {
+              "project": 178,
+              "tasks": 13813,
+              "nextTaskNumber": 2,
+              "manualOrder": 232,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 43851,
+              "actuals": 17744,
+              "workTracking": 64129,
+              "forecastSettings": 100,
+              "lifecycle": 96520,
+              "archivedDependencies": 11698,
+              "scopeReviews": 32126,
+              "working": 25487
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 827340,
+            "maxDepth": 11,
+            "containers": 4231,
+            "arrayItems": 2716,
+            "stringCount": 21141,
+            "maxStringUnits": 215,
+            "numericTokens": 1549
+          },
+          "counts": {
+            "tasks": 40,
+            "active": 32,
+            "retired": 8,
+            "logs": 160,
+            "criteria": 160,
+            "lifecycleDecisions": 40,
+            "archivedDependencies": 40,
+            "scopeReviews": 4,
+            "historyEvents": 84
+          },
+          "inputSha256": "9aabf318d66d3be9c1678dccceb2d936159a677df37fbcd51222fc2f743c3399",
+          "snapshotSha256": "e64ed8cb3efc675c285d6b51a2871b53957eb0c4a8463ea099113fd8fbd791ce",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.30290000000000106,
+            "lexicalScan": 13.491299999999995,
+            "jsonParse": 1.4033000000000015,
+            "selectedShapeChecks": 0.18700000000000472,
+            "canonicalSnapshot": 5.800600000000003,
+            "hash": 1.2567999999999984,
+            "canonicalFile": 5.873900000000006
+          },
+          "pipelineMs": 28.505200000000002,
+          "peakRssKiB": 76456,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 60182528,
+              "heapTotal": 8118272,
+              "heapUsed": 5033472,
+              "external": 3173288,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 65028096,
+              "heapTotal": 11829248,
+              "heapUsed": 6362424,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 66437120,
+              "heapTotal": 12656640,
+              "heapUsed": 7872448,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 66535424,
+              "heapTotal": 12656640,
+              "heapUsed": 7897040,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 72966144,
+              "heapTotal": 17334272,
+              "heapUsed": 9860072,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "hash",
+              "rss": 75563008,
+              "heapTotal": 17842176,
+              "heapUsed": 10380952,
+              "external": 4182444,
+              "arrayBuffers": 1980067
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 75558912,
+              "heapTotal": 27017216,
+              "heapUsed": 11547048,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            }
+          ],
+          "sizes": {
+            "prettyFile": 827340,
+            "canonicalFile": 504852,
+            "canonicalSnapshot": 504542,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 306099,
+              "originalBaseline": 21468,
+              "history": 176751
+            },
+            "currentSectionValues": {
+              "project": 178,
+              "tasks": 13813,
+              "nextTaskNumber": 2,
+              "manualOrder": 232,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 43851,
+              "actuals": 17744,
+              "workTracking": 64129,
+              "forecastSettings": 100,
+              "lifecycle": 96520,
+              "archivedDependencies": 11698,
+              "scopeReviews": 32126,
+              "working": 25487
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 827340,
+            "maxDepth": 11,
+            "containers": 4231,
+            "arrayItems": 2716,
+            "stringCount": 21141,
+            "maxStringUnits": 215,
+            "numericTokens": 1549
+          },
+          "counts": {
+            "tasks": 40,
+            "active": 32,
+            "retired": 8,
+            "logs": 160,
+            "criteria": 160,
+            "lifecycleDecisions": 40,
+            "archivedDependencies": 40,
+            "scopeReviews": 4,
+            "historyEvents": 84
+          },
+          "inputSha256": "9aabf318d66d3be9c1678dccceb2d936159a677df37fbcd51222fc2f743c3399",
+          "snapshotSha256": "e64ed8cb3efc675c285d6b51a2871b53957eb0c4a8463ea099113fd8fbd791ce",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.38880000000000337,
+            "lexicalScan": 12.806799999999996,
+            "jsonParse": 1.3491,
+            "selectedShapeChecks": 0.18039999999999878,
+            "canonicalSnapshot": 5.583599999999997,
+            "hash": 1.3257000000000048,
+            "canonicalFile": 5.643900000000002
+          },
+          "pipelineMs": 27.4565,
+          "peakRssKiB": 76384,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 60194816,
+              "heapTotal": 8118272,
+              "heapUsed": 5033400,
+              "external": 3173288,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 64995328,
+              "heapTotal": 11829248,
+              "heapUsed": 6330936,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 66371584,
+              "heapTotal": 12656640,
+              "heapUsed": 7841200,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 66457600,
+              "heapTotal": 12656640,
+              "heapUsed": 7865784,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 72867840,
+              "heapTotal": 17334272,
+              "heapUsed": 9843112,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            },
+            {
+              "phase": "hash",
+              "rss": 75501568,
+              "heapTotal": 17842176,
+              "heapUsed": 10363992,
+              "external": 4182444,
+              "arrayBuffers": 1980067
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 76681216,
+              "heapTotal": 27017216,
+              "heapUsed": 11542720,
+              "external": 3173328,
+              "arrayBuffers": 970951
+            }
+          ],
+          "sizes": {
+            "prettyFile": 827340,
+            "canonicalFile": 504852,
+            "canonicalSnapshot": 504542,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 306099,
+              "originalBaseline": 21468,
+              "history": 176751
+            },
+            "currentSectionValues": {
+              "project": 178,
+              "tasks": 13813,
+              "nextTaskNumber": 2,
+              "manualOrder": 232,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 43851,
+              "actuals": 17744,
+              "workTracking": 64129,
+              "forecastSettings": 100,
+              "lifecycle": 96520,
+              "archivedDependencies": 11698,
+              "scopeReviews": 32126,
+              "working": 25487
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 827340,
+            "maxDepth": 11,
+            "containers": 4231,
+            "arrayItems": 2716,
+            "stringCount": 21141,
+            "maxStringUnits": 215,
+            "numericTokens": 1549
+          },
+          "counts": {
+            "tasks": 40,
+            "active": 32,
+            "retired": 8,
+            "logs": 160,
+            "criteria": 160,
+            "lifecycleDecisions": 40,
+            "archivedDependencies": 40,
+            "scopeReviews": 4,
+            "historyEvents": 84
+          },
+          "inputSha256": "9aabf318d66d3be9c1678dccceb2d936159a677df37fbcd51222fc2f743c3399",
+          "snapshotSha256": "e64ed8cb3efc675c285d6b51a2871b53957eb0c4a8463ea099113fd8fbd791ce",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    },
+    {
+      "options": {
+        "name": "class100",
+        "tasks": 100,
+        "cycles": 2,
+        "edits": 100,
+        "logs": 6,
+        "criteria": 5,
+        "text": 384
+      },
+      "generationMs": 124.12549999999987,
+      "sizes": {
+        "prettyFile": 3551755,
+        "canonicalFile": 2484691,
+        "canonicalSnapshot": 2484381,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 3,
+          "origin": 150,
+          "current": 1526790,
+          "originalBaseline": 72224,
+          "history": 885142
+        },
+        "currentSectionValues": {
+          "project": 180,
+          "tasks": 53787,
+          "nextTaskNumber": 3,
+          "manualOrder": 593,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 231364,
+          "actuals": 68733,
+          "workTracking": 355346,
+          "forecastSettings": 100,
+          "lifecycle": 548055,
+          "archivedDependencies": 44211,
+          "scopeReviews": 141891,
+          "working": 82308
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 100,
+        "active": 80,
+        "retired": 20,
+        "logs": 600,
+        "criteria": 500,
+        "lifecycleDecisions": 140,
+        "archivedDependencies": 120,
+        "scopeReviews": 6,
+        "historyEvents": 246
+      },
+      "scan": {
+        "bytes": 3551755,
+        "maxDepth": 11,
+        "containers": 13487,
+        "arrayItems": 8972,
+        "stringCount": 68789,
+        "maxStringUnits": 407,
+        "numericTokens": 4813
+      },
+      "inputSha256": "d3465c78ed499d2a6240e54300f87a641f0b4eedbfe4844c3c1eb35893544059",
+      "snapshotSha256": "2dcdb2f72b94ab1a20d018e0d423e263e0b4d94fa9c19f7bd0ba7599af282a76",
+      "timingSummary": {
+        "read": {
+          "min": 0.8609999999999971,
+          "median": 1.069100000000006,
+          "max": 1.1886999999999972
+        },
+        "lexicalScan": {
+          "min": 45.71560000000001,
+          "median": 46.14019999999999,
+          "max": 49.2334
+        },
+        "jsonParse": {
+          "min": 6.133600000000001,
+          "median": 6.331099999999992,
+          "max": 6.419700000000006
+        },
+        "selectedShapeChecks": {
+          "min": 0.2377999999999929,
+          "median": 0.2524000000000086,
+          "max": 0.305499999999995
+        },
+        "canonicalSnapshot": {
+          "min": 17.676599999999993,
+          "median": 20.230900000000005,
+          "max": 20.698999999999998
+        },
+        "hash": {
+          "min": 4.431000000000012,
+          "median": 4.637100000000004,
+          "max": 4.733999999999995
+        },
+        "canonicalFile": {
+          "min": 16.7975,
+          "median": 17.482699999999994,
+          "max": 22.472099999999983
+        }
+      },
+      "pipelineMs": {
+        "min": 92.2979,
+        "median": 99.75330000000002,
+        "max": 101.80309999999999
+      },
+      "peakRssKiB": {
+        "min": 100316,
+        "median": 100524,
+        "max": 100964
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.8609999999999971,
+            "lexicalScan": 45.71560000000001,
+            "jsonParse": 6.331099999999992,
+            "selectedShapeChecks": 0.2377999999999929,
+            "canonicalSnapshot": 17.676599999999993,
+            "hash": 4.431000000000012,
+            "canonicalFile": 16.7975
+          },
+          "pipelineMs": 92.2979,
+          "peakRssKiB": 100964,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 63029248,
+              "heapTotal": 8118272,
+              "heapUsed": 5033408,
+              "external": 5897703,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 68022272,
+              "heapTotal": 8904704,
+              "heapUsed": 5515040,
+              "external": 9449498,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 76148736,
+              "heapTotal": 17293312,
+              "heapUsed": 8200336,
+              "external": 13001253,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 76177408,
+              "heapTotal": 17293312,
+              "heapUsed": 8756904,
+              "external": 13001253,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 86851584,
+              "heapTotal": 30138368,
+              "heapUsed": 20088952,
+              "external": 5897743,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "hash",
+              "rss": 94330880,
+              "heapTotal": 32624640,
+              "heapUsed": 22592904,
+              "external": 10866537,
+              "arrayBuffers": 8664160
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 103383040,
+              "heapTotal": 49664000,
+              "heapUsed": 27618192,
+              "external": 5897743,
+              "arrayBuffers": 3695366
+            }
+          ],
+          "sizes": {
+            "prettyFile": 3551755,
+            "canonicalFile": 2484691,
+            "canonicalSnapshot": 2484381,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 1526790,
+              "originalBaseline": 72224,
+              "history": 885142
+            },
+            "currentSectionValues": {
+              "project": 180,
+              "tasks": 53787,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 231364,
+              "actuals": 68733,
+              "workTracking": 355346,
+              "forecastSettings": 100,
+              "lifecycle": 548055,
+              "archivedDependencies": 44211,
+              "scopeReviews": 141891,
+              "working": 82308
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 3551755,
+            "maxDepth": 11,
+            "containers": 13487,
+            "arrayItems": 8972,
+            "stringCount": 68789,
+            "maxStringUnits": 407,
+            "numericTokens": 4813
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 600,
+            "criteria": 500,
+            "lifecycleDecisions": 140,
+            "archivedDependencies": 120,
+            "scopeReviews": 6,
+            "historyEvents": 246
+          },
+          "inputSha256": "d3465c78ed499d2a6240e54300f87a641f0b4eedbfe4844c3c1eb35893544059",
+          "snapshotSha256": "2dcdb2f72b94ab1a20d018e0d423e263e0b4d94fa9c19f7bd0ba7599af282a76",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 1.069100000000006,
+            "lexicalScan": 49.2334,
+            "jsonParse": 6.419700000000006,
+            "selectedShapeChecks": 0.305499999999995,
+            "canonicalSnapshot": 20.230900000000005,
+            "hash": 4.733999999999995,
+            "canonicalFile": 17.482699999999994
+          },
+          "pipelineMs": 99.75330000000002,
+          "peakRssKiB": 100316,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 63016960,
+              "heapTotal": 8380416,
+              "heapUsed": 5033408,
+              "external": 5897703,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 68104192,
+              "heapTotal": 8904704,
+              "heapUsed": 5431560,
+              "external": 9449498,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 74645504,
+              "heapTotal": 12050432,
+              "heapUsed": 8186600,
+              "external": 13001253,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 74711040,
+              "heapTotal": 12050432,
+              "heapUsed": 8843088,
+              "external": 13001253,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 86896640,
+              "heapTotal": 29614080,
+              "heapUsed": 20395000,
+              "external": 5897743,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "hash",
+              "rss": 94388224,
+              "heapTotal": 32100352,
+              "heapUsed": 22898952,
+              "external": 10866537,
+              "arrayBuffers": 8664160
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 102719488,
+              "heapTotal": 48877568,
+              "heapUsed": 27518528,
+              "external": 5897743,
+              "arrayBuffers": 3695366
+            }
+          ],
+          "sizes": {
+            "prettyFile": 3551755,
+            "canonicalFile": 2484691,
+            "canonicalSnapshot": 2484381,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 1526790,
+              "originalBaseline": 72224,
+              "history": 885142
+            },
+            "currentSectionValues": {
+              "project": 180,
+              "tasks": 53787,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 231364,
+              "actuals": 68733,
+              "workTracking": 355346,
+              "forecastSettings": 100,
+              "lifecycle": 548055,
+              "archivedDependencies": 44211,
+              "scopeReviews": 141891,
+              "working": 82308
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 3551755,
+            "maxDepth": 11,
+            "containers": 13487,
+            "arrayItems": 8972,
+            "stringCount": 68789,
+            "maxStringUnits": 407,
+            "numericTokens": 4813
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 600,
+            "criteria": 500,
+            "lifecycleDecisions": 140,
+            "archivedDependencies": 120,
+            "scopeReviews": 6,
+            "historyEvents": 246
+          },
+          "inputSha256": "d3465c78ed499d2a6240e54300f87a641f0b4eedbfe4844c3c1eb35893544059",
+          "snapshotSha256": "2dcdb2f72b94ab1a20d018e0d423e263e0b4d94fa9c19f7bd0ba7599af282a76",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 1.1886999999999972,
+            "lexicalScan": 46.14019999999999,
+            "jsonParse": 6.133600000000001,
+            "selectedShapeChecks": 0.2524000000000086,
+            "canonicalSnapshot": 20.698999999999998,
+            "hash": 4.637100000000004,
+            "canonicalFile": 22.472099999999983
+          },
+          "pipelineMs": 101.80309999999999,
+          "peakRssKiB": 100524,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 63107072,
+              "heapTotal": 8118272,
+              "heapUsed": 5033408,
+              "external": 5897703,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 68141056,
+              "heapTotal": 8904704,
+              "heapUsed": 5414720,
+              "external": 9449498,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 74670080,
+              "heapTotal": 12050432,
+              "heapUsed": 8200648,
+              "external": 13001253,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 74821632,
+              "heapTotal": 12050432,
+              "heapUsed": 8700864,
+              "external": 13001253,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 86605824,
+              "heapTotal": 29876224,
+              "heapUsed": 20167536,
+              "external": 5897743,
+              "arrayBuffers": 3695366
+            },
+            {
+              "phase": "hash",
+              "rss": 94076928,
+              "heapTotal": 32362496,
+              "heapUsed": 22671488,
+              "external": 10866537,
+              "arrayBuffers": 8664160
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 102928384,
+              "heapTotal": 49401856,
+              "heapUsed": 27573528,
+              "external": 5897743,
+              "arrayBuffers": 3695366
+            }
+          ],
+          "sizes": {
+            "prettyFile": 3551755,
+            "canonicalFile": 2484691,
+            "canonicalSnapshot": 2484381,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 1526790,
+              "originalBaseline": 72224,
+              "history": 885142
+            },
+            "currentSectionValues": {
+              "project": 180,
+              "tasks": 53787,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 231364,
+              "actuals": 68733,
+              "workTracking": 355346,
+              "forecastSettings": 100,
+              "lifecycle": 548055,
+              "archivedDependencies": 44211,
+              "scopeReviews": 141891,
+              "working": 82308
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 3551755,
+            "maxDepth": 11,
+            "containers": 13487,
+            "arrayItems": 8972,
+            "stringCount": 68789,
+            "maxStringUnits": 407,
+            "numericTokens": 4813
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 600,
+            "criteria": 500,
+            "lifecycleDecisions": 140,
+            "archivedDependencies": 120,
+            "scopeReviews": 6,
+            "historyEvents": 246
+          },
+          "inputSha256": "d3465c78ed499d2a6240e54300f87a641f0b4eedbfe4844c3c1eb35893544059",
+          "snapshotSha256": "2dcdb2f72b94ab1a20d018e0d423e263e0b4d94fa9c19f7bd0ba7599af282a76",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    },
+    {
+      "options": {
+        "name": "stress300",
+        "tasks": 300,
+        "cycles": 4,
+        "edits": 300,
+        "logs": 8,
+        "criteria": 6,
+        "text": 500
+      },
+      "generationMs": 263.5131000000001,
+      "sizes": {
+        "prettyFile": 18053092,
+        "canonicalFile": 13357252,
+        "canonicalSnapshot": 13356942,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 3,
+          "origin": 150,
+          "current": 7957575,
+          "originalBaseline": 251867,
+          "history": 5147275
+        },
+        "currentSectionValues": {
+          "project": 182,
+          "tasks": 196987,
+          "nextTaskNumber": 3,
+          "manualOrder": 1993,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 1015776,
+          "actuals": 270711,
+          "workTracking": 1702514,
+          "forecastSettings": 100,
+          "lifecycle": 3435493,
+          "archivedDependencies": 228155,
+          "scopeReviews": 823071,
+          "working": 282371
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 300,
+        "active": 240,
+        "retired": 60,
+        "logs": 2400,
+        "criteria": 1800,
+        "lifecycleDecisions": 660,
+        "archivedDependencies": 480,
+        "scopeReviews": 10,
+        "historyEvents": 970
+      },
+      "scan": {
+        "bytes": 18053092,
+        "maxDepth": 11,
+        "containers": 57727,
+        "arrayItems": 39340,
+        "stringCount": 294021,
+        "maxStringUnits": 524,
+        "numericTokens": 19837
+      },
+      "inputSha256": "efd73f67b85d9fc2f676d852eb0dd9e9994469b7dc8f627e201ad461dc12e73f",
+      "snapshotSha256": "73706b93425237d2b05dc529495044459c1746216a6ee880474f380d11fcb53b",
+      "timingSummary": {
+        "read": {
+          "min": 4.6004000000000005,
+          "median": 4.7729,
+          "max": 5.070799999999998
+        },
+        "lexicalScan": {
+          "min": 191.49349999999998,
+          "median": 195.54219999999998,
+          "max": 198.60770000000002
+        },
+        "jsonParse": {
+          "min": 31.511000000000024,
+          "median": 32.06680000000003,
+          "max": 32.31790000000001
+        },
+        "selectedShapeChecks": {
+          "min": 0.47790000000003374,
+          "median": 0.480700000000013,
+          "max": 0.5742999999999938
+        },
+        "canonicalSnapshot": {
+          "min": 86.49779999999998,
+          "median": 94.11920000000003,
+          "max": 95.24680000000001
+        },
+        "hash": {
+          "min": 22.286699999999996,
+          "median": 22.9572,
+          "max": 25.18720000000002
+        },
+        "canonicalFile": {
+          "min": 65.59409999999997,
+          "median": 73.25319999999999,
+          "max": 74.05100000000004
+        }
+      },
+      "pipelineMs": {
+        "min": 410.6227,
+        "median": 420.2582,
+        "max": 426.8824
+      },
+      "peakRssKiB": {
+        "min": 256848,
+        "median": 302008,
+        "max": 302208
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 4.7729,
+            "lexicalScan": 191.49349999999998,
+            "jsonParse": 31.511000000000024,
+            "selectedShapeChecks": 0.5742999999999938,
+            "canonicalSnapshot": 95.24680000000001,
+            "hash": 22.286699999999996,
+            "canonicalFile": 74.05100000000004
+          },
+          "pipelineMs": 420.2582,
+          "peakRssKiB": 302208,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 77516800,
+              "heapTotal": 8118272,
+              "heapUsed": 5033408,
+              "external": 20399040,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 97263616,
+              "heapTotal": 8380416,
+              "heapUsed": 5496888,
+              "external": 38452172,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 97202176,
+              "heapTotal": 38264832,
+              "heapUsed": 20218160,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 97214464,
+              "heapTotal": 38264832,
+              "heapUsed": 20431616,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 193871872,
+              "heapTotal": 185589760,
+              "heapUsed": 70631208,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "hash",
+              "rss": 233951232,
+              "heapTotal": 198946816,
+              "heapUsed": 84004488,
+              "external": 47112996,
+              "arrayBuffers": 44910619
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 309456896,
+              "heapTotal": 213626880,
+              "heapUsed": 139265688,
+              "external": 47112996,
+              "arrayBuffers": 44910619
+            }
+          ],
+          "sizes": {
+            "prettyFile": 18053092,
+            "canonicalFile": 13357252,
+            "canonicalSnapshot": 13356942,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 7957575,
+              "originalBaseline": 251867,
+              "history": 5147275
+            },
+            "currentSectionValues": {
+              "project": 182,
+              "tasks": 196987,
+              "nextTaskNumber": 3,
+              "manualOrder": 1993,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 1015776,
+              "actuals": 270711,
+              "workTracking": 1702514,
+              "forecastSettings": 100,
+              "lifecycle": 3435493,
+              "archivedDependencies": 228155,
+              "scopeReviews": 823071,
+              "working": 282371
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 18053092,
+            "maxDepth": 11,
+            "containers": 57727,
+            "arrayItems": 39340,
+            "stringCount": 294021,
+            "maxStringUnits": 524,
+            "numericTokens": 19837
+          },
+          "counts": {
+            "tasks": 300,
+            "active": 240,
+            "retired": 60,
+            "logs": 2400,
+            "criteria": 1800,
+            "lifecycleDecisions": 660,
+            "archivedDependencies": 480,
+            "scopeReviews": 10,
+            "historyEvents": 970
+          },
+          "inputSha256": "efd73f67b85d9fc2f676d852eb0dd9e9994469b7dc8f627e201ad461dc12e73f",
+          "snapshotSha256": "73706b93425237d2b05dc529495044459c1746216a6ee880474f380d11fcb53b",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 4.6004000000000005,
+            "lexicalScan": 195.54219999999998,
+            "jsonParse": 32.31790000000001,
+            "selectedShapeChecks": 0.47790000000003374,
+            "canonicalSnapshot": 86.49779999999998,
+            "hash": 25.18720000000002,
+            "canonicalFile": 65.59409999999997
+          },
+          "pipelineMs": 410.6227,
+          "peakRssKiB": 256848,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 77578240,
+              "heapTotal": 7856128,
+              "heapUsed": 5033408,
+              "external": 20399040,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 97296384,
+              "heapTotal": 8380416,
+              "heapUsed": 5549312,
+              "external": 38452172,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 98095104,
+              "heapTotal": 55042048,
+              "heapUsed": 20217944,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 98111488,
+              "heapTotal": 55042048,
+              "heapUsed": 20432392,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 188944384,
+              "heapTotal": 180871168,
+              "heapUsed": 77265760,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "hash",
+              "rss": 229220352,
+              "heapTotal": 194228224,
+              "heapUsed": 90639296,
+              "external": 47112996,
+              "arrayBuffers": 44910619
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 263008256,
+              "heapTotal": 169848832,
+              "heapUsed": 95038160,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            }
+          ],
+          "sizes": {
+            "prettyFile": 18053092,
+            "canonicalFile": 13357252,
+            "canonicalSnapshot": 13356942,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 7957575,
+              "originalBaseline": 251867,
+              "history": 5147275
+            },
+            "currentSectionValues": {
+              "project": 182,
+              "tasks": 196987,
+              "nextTaskNumber": 3,
+              "manualOrder": 1993,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 1015776,
+              "actuals": 270711,
+              "workTracking": 1702514,
+              "forecastSettings": 100,
+              "lifecycle": 3435493,
+              "archivedDependencies": 228155,
+              "scopeReviews": 823071,
+              "working": 282371
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 18053092,
+            "maxDepth": 11,
+            "containers": 57727,
+            "arrayItems": 39340,
+            "stringCount": 294021,
+            "maxStringUnits": 524,
+            "numericTokens": 19837
+          },
+          "counts": {
+            "tasks": 300,
+            "active": 240,
+            "retired": 60,
+            "logs": 2400,
+            "criteria": 1800,
+            "lifecycleDecisions": 660,
+            "archivedDependencies": 480,
+            "scopeReviews": 10,
+            "historyEvents": 970
+          },
+          "inputSha256": "efd73f67b85d9fc2f676d852eb0dd9e9994469b7dc8f627e201ad461dc12e73f",
+          "snapshotSha256": "73706b93425237d2b05dc529495044459c1746216a6ee880474f380d11fcb53b",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 5.070799999999998,
+            "lexicalScan": 198.60770000000002,
+            "jsonParse": 32.06680000000003,
+            "selectedShapeChecks": 0.480700000000013,
+            "canonicalSnapshot": 94.11920000000003,
+            "hash": 22.9572,
+            "canonicalFile": 73.25319999999999
+          },
+          "pipelineMs": 426.8824,
+          "peakRssKiB": 302008,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 77549568,
+              "heapTotal": 8118272,
+              "heapUsed": 5033408,
+              "external": 20399040,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 97366016,
+              "heapTotal": 8380416,
+              "heapUsed": 5433688,
+              "external": 38452172,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 97431552,
+              "heapTotal": 38264832,
+              "heapUsed": 20218160,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 97439744,
+              "heapTotal": 38264832,
+              "heapUsed": 20431616,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 193970176,
+              "heapTotal": 185589760,
+              "heapUsed": 70635888,
+              "external": 20399080,
+              "arrayBuffers": 18196703
+            },
+            {
+              "phase": "hash",
+              "rss": 234049536,
+              "heapTotal": 198946816,
+              "heapUsed": 84009168,
+              "external": 47112996,
+              "arrayBuffers": 44910619
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 309252096,
+              "heapTotal": 213626880,
+              "heapUsed": 139284416,
+              "external": 47112996,
+              "arrayBuffers": 44910619
+            }
+          ],
+          "sizes": {
+            "prettyFile": 18053092,
+            "canonicalFile": 13357252,
+            "canonicalSnapshot": 13356942,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 7957575,
+              "originalBaseline": 251867,
+              "history": 5147275
+            },
+            "currentSectionValues": {
+              "project": 182,
+              "tasks": 196987,
+              "nextTaskNumber": 3,
+              "manualOrder": 1993,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 1015776,
+              "actuals": 270711,
+              "workTracking": 1702514,
+              "forecastSettings": 100,
+              "lifecycle": 3435493,
+              "archivedDependencies": 228155,
+              "scopeReviews": 823071,
+              "working": 282371
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 18053092,
+            "maxDepth": 11,
+            "containers": 57727,
+            "arrayItems": 39340,
+            "stringCount": 294021,
+            "maxStringUnits": 524,
+            "numericTokens": 19837
+          },
+          "counts": {
+            "tasks": 300,
+            "active": 240,
+            "retired": 60,
+            "logs": 2400,
+            "criteria": 1800,
+            "lifecycleDecisions": 660,
+            "archivedDependencies": 480,
+            "scopeReviews": 10,
+            "historyEvents": 970
+          },
+          "inputSha256": "efd73f67b85d9fc2f676d852eb0dd9e9994469b7dc8f627e201ad461dc12e73f",
+          "snapshotSha256": "73706b93425237d2b05dc529495044459c1746216a6ee880474f380d11fcb53b",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    },
+    {
+      "options": {
+        "name": "stress1000",
+        "tasks": 1000,
+        "cycles": 8,
+        "edits": 1000,
+        "logs": 10,
+        "criteria": 8,
+        "text": 500
+      },
+      "generationMs": 1449.1264999999994,
+      "sizes": {
+        "prettyFile": 105559899,
+        "canonicalFile": 79061587,
+        "canonicalSnapshot": 79061277,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 4,
+          "origin": 150,
+          "current": 44750109,
+          "originalBaseline": 840015,
+          "history": 33470927
+        },
+        "currentSectionValues": {
+          "project": 184,
+          "tasks": 657589,
+          "nextTaskNumber": 4,
+          "manualOrder": 6894,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 4494909,
+          "actuals": 1124208,
+          "workTracking": 7096803,
+          "forecastSettings": 100,
+          "lifecycle": 24093462,
+          "archivedDependencies": 1303484,
+          "scopeReviews": 5029575,
+          "working": 942678
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 1000,
+        "active": 800,
+        "retired": 200,
+        "logs": 10000,
+        "criteria": 8000,
+        "lifecycleDecisions": 3800,
+        "archivedDependencies": 2400,
+        "scopeReviews": 18,
+        "historyEvents": 4818
+      },
+      "scan": {
+        "bytes": 105559899,
+        "maxDepth": 11,
+        "containers": 316407,
+        "arrayItems": 221856,
+        "stringCount": 1586945,
+        "maxStringUnits": 524,
+        "numericTokens": 100745
+      },
+      "inputSha256": "f39f132cefb505450cfe83594cb54d95f9c3e702c72067d013cf9dbdc458e512",
+      "snapshotSha256": "d1f7ab5dbdf44c51a83d69ae3e15e337d92edf960908ae04540a0b58fd00b3f8",
+      "timingSummary": {
+        "read": {
+          "min": 29.859299999999998,
+          "median": 30.026900000000005,
+          "max": 30.907900000000005
+        },
+        "lexicalScan": {
+          "min": 994.806,
+          "median": 1020.9834,
+          "max": 1025.194
+        },
+        "jsonParse": {
+          "min": 170.30960000000005,
+          "median": 170.5039999999999,
+          "max": 182.4411
+        },
+        "selectedShapeChecks": {
+          "min": 1.4184999999999945,
+          "median": 1.4600000000000364,
+          "max": 1.4667000000001735
+        },
+        "canonicalSnapshot": {
+          "min": 477.7268999999999,
+          "median": 489.2572,
+          "max": 511.1643999999999
+        },
+        "hash": {
+          "min": 130.90920000000006,
+          "median": 139.48849999999993,
+          "max": 140.15639999999985
+        },
+        "canonicalFile": {
+          "min": 415.7372999999998,
+          "median": 423.99850000000015,
+          "max": 426.53909999999996
+        }
+      },
+      "pipelineMs": {
+        "min": 2264.3427,
+        "median": 2268.7571999999996,
+        "max": 2285.5625
+      },
+      "peakRssKiB": {
+        "min": 829860,
+        "median": 830544,
+        "max": 852044
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 29.859299999999998,
+            "lexicalScan": 1020.9834,
+            "jsonParse": 170.5039999999999,
+            "selectedShapeChecks": 1.4600000000000364,
+            "canonicalSnapshot": 477.7268999999999,
+            "hash": 140.15639999999985,
+            "canonicalFile": 426.53909999999996
+          },
+          "pipelineMs": 2268.7571999999996,
+          "peakRssKiB": 829860,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 165191680,
+              "heapTotal": 8118272,
+              "heapUsed": 5033400,
+              "external": 107905847,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 275353600,
+              "heapTotal": 10739712,
+              "heapUsed": 6878800,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 421826560,
+              "heapTotal": 219144192,
+              "heapUsed": 93225720,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 421855232,
+              "heapTotal": 219144192,
+              "heapUsed": 94154520,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 602456064,
+              "heapTotal": 429121536,
+              "heapUsed": 360392640,
+              "external": 107905887,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "hash",
+              "rss": 838864896,
+              "heapTotal": 309481472,
+              "heapUsed": 171409016,
+              "external": 266028473,
+              "arrayBuffers": 263826096
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 849768448,
+              "heapTotal": 521293824,
+              "heapUsed": 429675336,
+              "external": 266028473,
+              "arrayBuffers": 263826096
+            }
+          ],
+          "sizes": {
+            "prettyFile": 105559899,
+            "canonicalFile": 79061587,
+            "canonicalSnapshot": 79061277,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 4,
+              "origin": 150,
+              "current": 44750109,
+              "originalBaseline": 840015,
+              "history": 33470927
+            },
+            "currentSectionValues": {
+              "project": 184,
+              "tasks": 657589,
+              "nextTaskNumber": 4,
+              "manualOrder": 6894,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 4494909,
+              "actuals": 1124208,
+              "workTracking": 7096803,
+              "forecastSettings": 100,
+              "lifecycle": 24093462,
+              "archivedDependencies": 1303484,
+              "scopeReviews": 5029575,
+              "working": 942678
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 105559899,
+            "maxDepth": 11,
+            "containers": 316407,
+            "arrayItems": 221856,
+            "stringCount": 1586945,
+            "maxStringUnits": 524,
+            "numericTokens": 100745
+          },
+          "counts": {
+            "tasks": 1000,
+            "active": 800,
+            "retired": 200,
+            "logs": 10000,
+            "criteria": 8000,
+            "lifecycleDecisions": 3800,
+            "archivedDependencies": 2400,
+            "scopeReviews": 18,
+            "historyEvents": 4818
+          },
+          "inputSha256": "f39f132cefb505450cfe83594cb54d95f9c3e702c72067d013cf9dbdc458e512",
+          "snapshotSha256": "d1f7ab5dbdf44c51a83d69ae3e15e337d92edf960908ae04540a0b58fd00b3f8",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 30.026900000000005,
+            "lexicalScan": 994.806,
+            "jsonParse": 170.30960000000005,
+            "selectedShapeChecks": 1.4184999999999945,
+            "canonicalSnapshot": 511.1643999999999,
+            "hash": 130.90920000000006,
+            "canonicalFile": 423.99850000000015
+          },
+          "pipelineMs": 2264.3427,
+          "peakRssKiB": 830544,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 165257216,
+              "heapTotal": 8118272,
+              "heapUsed": 5033472,
+              "external": 107905847,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 275406848,
+              "heapTotal": 11001856,
+              "heapUsed": 5864992,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 425361408,
+              "heapTotal": 222552064,
+              "heapUsed": 93227496,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 425373696,
+              "heapTotal": 222552064,
+              "heapUsed": 94102520,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 601243648,
+              "heapTotal": 443801600,
+              "heapUsed": 341495976,
+              "external": 107905887,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "hash",
+              "rss": 837632000,
+              "heapTotal": 309743616,
+              "heapUsed": 171409520,
+              "external": 266028473,
+              "arrayBuffers": 263826096
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 850460672,
+              "heapTotal": 521555968,
+              "heapUsed": 429710888,
+              "external": 266028473,
+              "arrayBuffers": 263826096
+            }
+          ],
+          "sizes": {
+            "prettyFile": 105559899,
+            "canonicalFile": 79061587,
+            "canonicalSnapshot": 79061277,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 4,
+              "origin": 150,
+              "current": 44750109,
+              "originalBaseline": 840015,
+              "history": 33470927
+            },
+            "currentSectionValues": {
+              "project": 184,
+              "tasks": 657589,
+              "nextTaskNumber": 4,
+              "manualOrder": 6894,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 4494909,
+              "actuals": 1124208,
+              "workTracking": 7096803,
+              "forecastSettings": 100,
+              "lifecycle": 24093462,
+              "archivedDependencies": 1303484,
+              "scopeReviews": 5029575,
+              "working": 942678
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 105559899,
+            "maxDepth": 11,
+            "containers": 316407,
+            "arrayItems": 221856,
+            "stringCount": 1586945,
+            "maxStringUnits": 524,
+            "numericTokens": 100745
+          },
+          "counts": {
+            "tasks": 1000,
+            "active": 800,
+            "retired": 200,
+            "logs": 10000,
+            "criteria": 8000,
+            "lifecycleDecisions": 3800,
+            "archivedDependencies": 2400,
+            "scopeReviews": 18,
+            "historyEvents": 4818
+          },
+          "inputSha256": "f39f132cefb505450cfe83594cb54d95f9c3e702c72067d013cf9dbdc458e512",
+          "snapshotSha256": "d1f7ab5dbdf44c51a83d69ae3e15e337d92edf960908ae04540a0b58fd00b3f8",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 30.907900000000005,
+            "lexicalScan": 1025.194,
+            "jsonParse": 182.4411,
+            "selectedShapeChecks": 1.4667000000001735,
+            "canonicalSnapshot": 489.2572,
+            "hash": 139.48849999999993,
+            "canonicalFile": 415.7372999999998
+          },
+          "pipelineMs": 2285.5625,
+          "peakRssKiB": 852044,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 165089280,
+              "heapTotal": 8118272,
+              "heapUsed": 5033400,
+              "external": 107905847,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 275423232,
+              "heapTotal": 11001856,
+              "heapUsed": 5851168,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 425648128,
+              "heapTotal": 222552064,
+              "heapUsed": 93227904,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 425656320,
+              "heapTotal": 222552064,
+              "heapUsed": 94104408,
+              "external": 213465786,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 633896960,
+              "heapTotal": 454025216,
+              "heapUsed": 366999832,
+              "external": 107905887,
+              "arrayBuffers": 105703510
+            },
+            {
+              "phase": "hash",
+              "rss": 870223872,
+              "heapTotal": 309481472,
+              "heapUsed": 171409016,
+              "external": 266028473,
+              "arrayBuffers": 263826096
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 871145472,
+              "heapTotal": 521293824,
+              "heapUsed": 429682736,
+              "external": 266028473,
+              "arrayBuffers": 263826096
+            }
+          ],
+          "sizes": {
+            "prettyFile": 105559899,
+            "canonicalFile": 79061587,
+            "canonicalSnapshot": 79061277,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 4,
+              "origin": 150,
+              "current": 44750109,
+              "originalBaseline": 840015,
+              "history": 33470927
+            },
+            "currentSectionValues": {
+              "project": 184,
+              "tasks": 657589,
+              "nextTaskNumber": 4,
+              "manualOrder": 6894,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 4494909,
+              "actuals": 1124208,
+              "workTracking": 7096803,
+              "forecastSettings": 100,
+              "lifecycle": 24093462,
+              "archivedDependencies": 1303484,
+              "scopeReviews": 5029575,
+              "working": 942678
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 105559899,
+            "maxDepth": 11,
+            "containers": 316407,
+            "arrayItems": 221856,
+            "stringCount": 1586945,
+            "maxStringUnits": 524,
+            "numericTokens": 100745
+          },
+          "counts": {
+            "tasks": 1000,
+            "active": 800,
+            "retired": 200,
+            "logs": 10000,
+            "criteria": 8000,
+            "lifecycleDecisions": 3800,
+            "archivedDependencies": 2400,
+            "scopeReviews": 18,
+            "historyEvents": 4818
+          },
+          "inputSha256": "f39f132cefb505450cfe83594cb54d95f9c3e702c72067d013cf9dbdc458e512",
+          "snapshotSha256": "d1f7ab5dbdf44c51a83d69ae3e15e337d92edf960908ae04540a0b58fd00b3f8",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    },
+    {
+      "options": {
+        "name": "growth100-c0",
+        "tasks": 100,
+        "cycles": 0,
+        "edits": 0,
+        "logs": 4,
+        "criteria": 4,
+        "text": 500
+      },
+      "generationMs": 113.060300000001,
+      "sizes": {
+        "prettyFile": 1983535,
+        "canonicalFile": 1415047,
+        "canonicalSnapshot": 1414737,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 1,
+          "origin": 150,
+          "current": 1030900,
+          "originalBaseline": 83836,
+          "history": 299778
+        },
+        "currentSectionValues": {
+          "project": 188,
+          "tasks": 63097,
+          "nextTaskNumber": 3,
+          "manualOrder": 593,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 227592,
+          "actuals": 67995,
+          "workTracking": 283578,
+          "forecastSettings": 100,
+          "lifecycle": 236697,
+          "archivedDependencies": 22107,
+          "scopeReviews": 43293,
+          "working": 85438
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 100,
+        "active": 80,
+        "retired": 20,
+        "logs": 400,
+        "criteria": 400,
+        "lifecycleDecisions": 60,
+        "archivedDependencies": 80,
+        "scopeReviews": 2,
+        "historyEvents": 62
+      },
+      "scan": {
+        "bytes": 1983535,
+        "maxDepth": 11,
+        "containers": 7387,
+        "arrayItems": 4824,
+        "stringCount": 38057,
+        "maxStringUnits": 500,
+        "numericTokens": 2749
+      },
+      "inputSha256": "bf633df2652982ce8beebbcce20767f2dbcea0c12540cac27c78285df53adc9e",
+      "snapshotSha256": "77b44da6b128240ed2dbec00e409ce267583ae47721aedd9a6a6952f26931155",
+      "timingSummary": {
+        "read": {
+          "min": 0.48100000000000165,
+          "median": 0.6372,
+          "max": 0.6622000000000057
+        },
+        "lexicalScan": {
+          "min": 27.378300000000003,
+          "median": 28.64430000000001,
+          "max": 29.7498
+        },
+        "jsonParse": {
+          "min": 3.069900000000004,
+          "median": 3.5585999999999984,
+          "max": 3.6248000000000076
+        },
+        "selectedShapeChecks": {
+          "min": 0.23149999999999693,
+          "median": 0.24269999999999925,
+          "max": 0.2441999999999922
+        },
+        "canonicalSnapshot": {
+          "min": 11.448999999999998,
+          "median": 12.211200000000005,
+          "max": 13.505400000000009
+        },
+        "hash": {
+          "min": 3.247799999999998,
+          "median": 3.6396000000000015,
+          "max": 3.647200000000012
+        },
+        "canonicalFile": {
+          "min": 10.8082,
+          "median": 10.924999999999997,
+          "max": 11.68350000000001
+        }
+      },
+      "pipelineMs": {
+        "min": 58.5245,
+        "median": 59.4369,
+        "max": 62.3426
+      },
+      "peakRssKiB": {
+        "min": 88084,
+        "median": 88208,
+        "max": 88268
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.6622000000000057,
+            "lexicalScan": 28.64430000000001,
+            "jsonParse": 3.6248000000000076,
+            "selectedShapeChecks": 0.23149999999999693,
+            "canonicalSnapshot": 11.448999999999998,
+            "hash": 3.647200000000012,
+            "canonicalFile": 10.924999999999997
+          },
+          "pipelineMs": 59.4369,
+          "peakRssKiB": 88268,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 61710336,
+              "heapTotal": 8118272,
+              "heapUsed": 5033416,
+              "external": 4329483,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 68894720,
+              "heapTotal": 8904704,
+              "heapUsed": 5715616,
+              "external": 6313058,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 71426048,
+              "heapTotal": 11526144,
+              "heapUsed": 6904552,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 71602176,
+              "heapTotal": 11526144,
+              "heapUsed": 7372512,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 81399808,
+              "heapTotal": 27516928,
+              "heapUsed": 14725424,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "hash",
+              "rss": 83574784,
+              "heapTotal": 28934144,
+              "heapUsed": 16199480,
+              "external": 11126099,
+              "arrayBuffers": 4956652
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 90374144,
+              "heapTotal": 30507008,
+              "heapUsed": 17531560,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            }
+          ],
+          "sizes": {
+            "prettyFile": 1983535,
+            "canonicalFile": 1415047,
+            "canonicalSnapshot": 1414737,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 1,
+              "origin": 150,
+              "current": 1030900,
+              "originalBaseline": 83836,
+              "history": 299778
+            },
+            "currentSectionValues": {
+              "project": 188,
+              "tasks": 63097,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 236697,
+              "archivedDependencies": 22107,
+              "scopeReviews": 43293,
+              "working": 85438
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 1983535,
+            "maxDepth": 11,
+            "containers": 7387,
+            "arrayItems": 4824,
+            "stringCount": 38057,
+            "maxStringUnits": 500,
+            "numericTokens": 2749
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 60,
+            "archivedDependencies": 80,
+            "scopeReviews": 2,
+            "historyEvents": 62
+          },
+          "inputSha256": "bf633df2652982ce8beebbcce20767f2dbcea0c12540cac27c78285df53adc9e",
+          "snapshotSha256": "77b44da6b128240ed2dbec00e409ce267583ae47721aedd9a6a6952f26931155",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.6372,
+            "lexicalScan": 29.7498,
+            "jsonParse": 3.069900000000004,
+            "selectedShapeChecks": 0.24269999999999925,
+            "canonicalSnapshot": 13.505400000000009,
+            "hash": 3.247799999999998,
+            "canonicalFile": 11.68350000000001
+          },
+          "pipelineMs": 62.3426,
+          "peakRssKiB": 88084,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 61542400,
+              "heapTotal": 7856128,
+              "heapUsed": 5033416,
+              "external": 4329483,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 67846144,
+              "heapTotal": 8904704,
+              "heapUsed": 5743168,
+              "external": 6313058,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 71991296,
+              "heapTotal": 11526144,
+              "heapUsed": 6916792,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 72093696,
+              "heapTotal": 11526144,
+              "heapUsed": 7525840,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 81018880,
+              "heapTotal": 27516928,
+              "heapUsed": 14738128,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "hash",
+              "rss": 83599360,
+              "heapTotal": 28934144,
+              "heapUsed": 16212184,
+              "external": 11126099,
+              "arrayBuffers": 4956652
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 90161152,
+              "heapTotal": 31555584,
+              "heapUsed": 21570368,
+              "external": 7159029,
+              "arrayBuffers": 4956652
+            }
+          ],
+          "sizes": {
+            "prettyFile": 1983535,
+            "canonicalFile": 1415047,
+            "canonicalSnapshot": 1414737,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 1,
+              "origin": 150,
+              "current": 1030900,
+              "originalBaseline": 83836,
+              "history": 299778
+            },
+            "currentSectionValues": {
+              "project": 188,
+              "tasks": 63097,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 236697,
+              "archivedDependencies": 22107,
+              "scopeReviews": 43293,
+              "working": 85438
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 1983535,
+            "maxDepth": 11,
+            "containers": 7387,
+            "arrayItems": 4824,
+            "stringCount": 38057,
+            "maxStringUnits": 500,
+            "numericTokens": 2749
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 60,
+            "archivedDependencies": 80,
+            "scopeReviews": 2,
+            "historyEvents": 62
+          },
+          "inputSha256": "bf633df2652982ce8beebbcce20767f2dbcea0c12540cac27c78285df53adc9e",
+          "snapshotSha256": "77b44da6b128240ed2dbec00e409ce267583ae47721aedd9a6a6952f26931155",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 0.48100000000000165,
+            "lexicalScan": 27.378300000000003,
+            "jsonParse": 3.5585999999999984,
+            "selectedShapeChecks": 0.2441999999999922,
+            "canonicalSnapshot": 12.211200000000005,
+            "hash": 3.6396000000000015,
+            "canonicalFile": 10.8082
+          },
+          "pipelineMs": 58.5245,
+          "peakRssKiB": 88208,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 61562880,
+              "heapTotal": 8118272,
+              "heapUsed": 5033416,
+              "external": 4329483,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 66494464,
+              "heapTotal": 8904704,
+              "heapUsed": 5768280,
+              "external": 6313058,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 72032256,
+              "heapTotal": 11526144,
+              "heapUsed": 6916352,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 72196096,
+              "heapTotal": 11526144,
+              "heapUsed": 7479704,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 81014784,
+              "heapTotal": 28041216,
+              "heapUsed": 14754392,
+              "external": 8296593,
+              "arrayBuffers": 2127146
+            },
+            {
+              "phase": "hash",
+              "rss": 83693568,
+              "heapTotal": 29458432,
+              "heapUsed": 16228448,
+              "external": 11126099,
+              "arrayBuffers": 4956652
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 90292224,
+              "heapTotal": 48594944,
+              "heapUsed": 21481240,
+              "external": 7159029,
+              "arrayBuffers": 4956652
+            }
+          ],
+          "sizes": {
+            "prettyFile": 1983535,
+            "canonicalFile": 1415047,
+            "canonicalSnapshot": 1414737,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 1,
+              "origin": 150,
+              "current": 1030900,
+              "originalBaseline": 83836,
+              "history": 299778
+            },
+            "currentSectionValues": {
+              "project": 188,
+              "tasks": 63097,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 236697,
+              "archivedDependencies": 22107,
+              "scopeReviews": 43293,
+              "working": 85438
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 1983535,
+            "maxDepth": 11,
+            "containers": 7387,
+            "arrayItems": 4824,
+            "stringCount": 38057,
+            "maxStringUnits": 500,
+            "numericTokens": 2749
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 60,
+            "archivedDependencies": 80,
+            "scopeReviews": 2,
+            "historyEvents": 62
+          },
+          "inputSha256": "bf633df2652982ce8beebbcce20767f2dbcea0c12540cac27c78285df53adc9e",
+          "snapshotSha256": "77b44da6b128240ed2dbec00e409ce267583ae47721aedd9a6a6952f26931155",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    },
+    {
+      "options": {
+        "name": "growth100-c5",
+        "tasks": 100,
+        "cycles": 5,
+        "edits": 50,
+        "logs": 4,
+        "criteria": 4,
+        "text": 500
+      },
+      "generationMs": 142.27119999999923,
+      "sizes": {
+        "prettyFile": 5570118,
+        "canonicalFile": 3986490,
+        "canonicalSnapshot": 3986180,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 2,
+          "origin": 150,
+          "current": 2230612,
+          "originalBaseline": 83836,
+          "history": 1671508
+        },
+        "currentSectionValues": {
+          "project": 188,
+          "tasks": 64237,
+          "nextTaskNumber": 3,
+          "manualOrder": 593,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 227592,
+          "actuals": 67995,
+          "workTracking": 283578,
+          "forecastSettings": 100,
+          "lifecycle": 1065551,
+          "archivedDependencies": 89127,
+          "scopeReviews": 337452,
+          "working": 93977
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 100,
+        "active": 80,
+        "retired": 20,
+        "logs": 400,
+        "criteria": 400,
+        "lifecycleDecisions": 260,
+        "archivedDependencies": 180,
+        "scopeReviews": 12,
+        "historyEvents": 322
+      },
+      "scan": {
+        "bytes": 5570118,
+        "maxDepth": 11,
+        "containers": 20137,
+        "arrayItems": 13094,
+        "stringCount": 97387,
+        "maxStringUnits": 523,
+        "numericTokens": 7009
+      },
+      "inputSha256": "0d160a73b2b13a5dc3aa917db7f29e72108489afe961bcee7bc8a8b4daa1ca9d",
+      "snapshotSha256": "fafa2b572e9a16062b76fc5071e693e4f73f1bbd80a4ff3b72e3133cac9fbd6f",
+      "timingSummary": {
+        "read": {
+          "min": 1.4515999999999991,
+          "median": 1.5801999999999978,
+          "max": 2.1751000000000005
+        },
+        "lexicalScan": {
+          "min": 67.94470000000001,
+          "median": 68.8391,
+          "max": 69.1486
+        },
+        "jsonParse": {
+          "min": 8.750299999999996,
+          "median": 8.829999999999998,
+          "max": 9.328000000000003
+        },
+        "selectedShapeChecks": {
+          "min": 0.263300000000001,
+          "median": 0.2879999999999967,
+          "max": 0.3003000000000071
+        },
+        "canonicalSnapshot": {
+          "min": 27.62469999999999,
+          "median": 28.24770000000001,
+          "max": 33.00670000000001
+        },
+        "hash": {
+          "min": 7.063299999999998,
+          "median": 7.911699999999996,
+          "max": 8.532100000000014
+        },
+        "canonicalFile": {
+          "min": 25.6618,
+          "median": 28.512100000000004,
+          "max": 29.465299999999985
+        }
+      },
+      "pipelineMs": {
+        "min": 144.43959999999998,
+        "median": 145.5066,
+        "max": 145.9374
+      },
+      "peakRssKiB": {
+        "min": 120900,
+        "median": 121752,
+        "max": 121880
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 1.4515999999999991,
+            "lexicalScan": 68.8391,
+            "jsonParse": 9.328000000000003,
+            "selectedShapeChecks": 0.3003000000000071,
+            "canonicalSnapshot": 28.24770000000001,
+            "hash": 8.532100000000014,
+            "canonicalFile": 28.512100000000004
+          },
+          "pipelineMs": 145.5066,
+          "peakRssKiB": 121752,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 65077248,
+              "heapTotal": 7856128,
+              "heapUsed": 5033416,
+              "external": 7916066,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 72208384,
+              "heapTotal": 8380416,
+              "heapUsed": 6185096,
+              "external": 13486224,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 82604032,
+              "heapTotal": 17031168,
+              "heapUsed": 9849840,
+              "external": 19056342,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 82661376,
+              "heapTotal": 17031168,
+              "heapUsed": 10267256,
+              "external": 19056342,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 99893248,
+              "heapTotal": 51109888,
+              "heapUsed": 30879064,
+              "external": 7916106,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "hash",
+              "rss": 111931392,
+              "heapTotal": 55099392,
+              "heapUsed": 34884816,
+              "external": 15888498,
+              "arrayBuffers": 13686121
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 124669952,
+              "heapTotal": 96780288,
+              "heapUsed": 37489064,
+              "external": 7916106,
+              "arrayBuffers": 5713729
+            }
+          ],
+          "sizes": {
+            "prettyFile": 5570118,
+            "canonicalFile": 3986490,
+            "canonicalSnapshot": 3986180,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 2230612,
+              "originalBaseline": 83836,
+              "history": 1671508
+            },
+            "currentSectionValues": {
+              "project": 188,
+              "tasks": 64237,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 1065551,
+              "archivedDependencies": 89127,
+              "scopeReviews": 337452,
+              "working": 93977
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 5570118,
+            "maxDepth": 11,
+            "containers": 20137,
+            "arrayItems": 13094,
+            "stringCount": 97387,
+            "maxStringUnits": 523,
+            "numericTokens": 7009
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 260,
+            "archivedDependencies": 180,
+            "scopeReviews": 12,
+            "historyEvents": 322
+          },
+          "inputSha256": "0d160a73b2b13a5dc3aa917db7f29e72108489afe961bcee7bc8a8b4daa1ca9d",
+          "snapshotSha256": "fafa2b572e9a16062b76fc5071e693e4f73f1bbd80a4ff3b72e3133cac9fbd6f",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 1.5801999999999978,
+            "lexicalScan": 69.1486,
+            "jsonParse": 8.829999999999998,
+            "selectedShapeChecks": 0.263300000000001,
+            "canonicalSnapshot": 33.00670000000001,
+            "hash": 7.063299999999998,
+            "canonicalFile": 25.6618
+          },
+          "pipelineMs": 145.9374,
+          "peakRssKiB": 120900,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 65150976,
+              "heapTotal": 8118272,
+              "heapUsed": 5033416,
+              "external": 7916066,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 72077312,
+              "heapTotal": 8904704,
+              "heapUsed": 6168200,
+              "external": 13486224,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 82460672,
+              "heapTotal": 17555456,
+              "heapUsed": 9836144,
+              "external": 19056342,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 82509824,
+              "heapTotal": 17555456,
+              "heapUsed": 10421016,
+              "external": 19056342,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 102973440,
+              "heapTotal": 52158464,
+              "heapUsed": 24559232,
+              "external": 7916106,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "hash",
+              "rss": 114954240,
+              "heapTotal": 56147968,
+              "heapUsed": 28564984,
+              "external": 15888498,
+              "arrayBuffers": 13686121
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 120995840,
+              "heapTotal": 93896704,
+              "heapUsed": 41498536,
+              "external": 7916106,
+              "arrayBuffers": 5713729
+            }
+          ],
+          "sizes": {
+            "prettyFile": 5570118,
+            "canonicalFile": 3986490,
+            "canonicalSnapshot": 3986180,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 2230612,
+              "originalBaseline": 83836,
+              "history": 1671508
+            },
+            "currentSectionValues": {
+              "project": 188,
+              "tasks": 64237,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 1065551,
+              "archivedDependencies": 89127,
+              "scopeReviews": 337452,
+              "working": 93977
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 5570118,
+            "maxDepth": 11,
+            "containers": 20137,
+            "arrayItems": 13094,
+            "stringCount": 97387,
+            "maxStringUnits": 523,
+            "numericTokens": 7009
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 260,
+            "archivedDependencies": 180,
+            "scopeReviews": 12,
+            "historyEvents": 322
+          },
+          "inputSha256": "0d160a73b2b13a5dc3aa917db7f29e72108489afe961bcee7bc8a8b4daa1ca9d",
+          "snapshotSha256": "fafa2b572e9a16062b76fc5071e693e4f73f1bbd80a4ff3b72e3133cac9fbd6f",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 2.1751000000000005,
+            "lexicalScan": 67.94470000000001,
+            "jsonParse": 8.750299999999996,
+            "selectedShapeChecks": 0.2879999999999967,
+            "canonicalSnapshot": 27.62469999999999,
+            "hash": 7.911699999999996,
+            "canonicalFile": 29.465299999999985
+          },
+          "pipelineMs": 144.43959999999998,
+          "peakRssKiB": 121880,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 65142784,
+              "heapTotal": 7856128,
+              "heapUsed": 5033416,
+              "external": 7916066,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 71962624,
+              "heapTotal": 8380416,
+              "heapUsed": 6177256,
+              "external": 13486224,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 82493440,
+              "heapTotal": 17031168,
+              "heapUsed": 9849320,
+              "external": 19056342,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 82628608,
+              "heapTotal": 17031168,
+              "heapUsed": 9924208,
+              "external": 19056342,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 99672064,
+              "heapTotal": 51372032,
+              "heapUsed": 30768608,
+              "external": 7916106,
+              "arrayBuffers": 5713729
+            },
+            {
+              "phase": "hash",
+              "rss": 111640576,
+              "heapTotal": 55361536,
+              "heapUsed": 34774360,
+              "external": 15888498,
+              "arrayBuffers": 13686121
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 124801024,
+              "heapTotal": 97042432,
+              "heapUsed": 37585648,
+              "external": 7916106,
+              "arrayBuffers": 5713729
+            }
+          ],
+          "sizes": {
+            "prettyFile": 5570118,
+            "canonicalFile": 3986490,
+            "canonicalSnapshot": 3986180,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 2,
+              "origin": 150,
+              "current": 2230612,
+              "originalBaseline": 83836,
+              "history": 1671508
+            },
+            "currentSectionValues": {
+              "project": 188,
+              "tasks": 64237,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 1065551,
+              "archivedDependencies": 89127,
+              "scopeReviews": 337452,
+              "working": 93977
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 5570118,
+            "maxDepth": 11,
+            "containers": 20137,
+            "arrayItems": 13094,
+            "stringCount": 97387,
+            "maxStringUnits": 523,
+            "numericTokens": 7009
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 260,
+            "archivedDependencies": 180,
+            "scopeReviews": 12,
+            "historyEvents": 322
+          },
+          "inputSha256": "0d160a73b2b13a5dc3aa917db7f29e72108489afe961bcee7bc8a8b4daa1ca9d",
+          "snapshotSha256": "fafa2b572e9a16062b76fc5071e693e4f73f1bbd80a4ff3b72e3133cac9fbd6f",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    },
+    {
+      "options": {
+        "name": "growth100-c20",
+        "tasks": 100,
+        "cycles": 20,
+        "edits": 200,
+        "logs": 4,
+        "criteria": 4,
+        "text": 500
+      },
+      "generationMs": 236.1291999999994,
+      "sizes": {
+        "prettyFile": 16305498,
+        "canonicalFile": 11676450,
+        "canonicalSnapshot": 11676140,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 3,
+          "origin": 150,
+          "current": 5803781,
+          "originalBaseline": 83839,
+          "history": 5788295
+        },
+        "currentSectionValues": {
+          "project": 190,
+          "tasks": 65497,
+          "nextTaskNumber": 3,
+          "manualOrder": 593,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 227592,
+          "actuals": 67995,
+          "workTracking": 283578,
+          "forecastSettings": 100,
+          "lifecycle": 3552761,
+          "archivedDependencies": 290907,
+          "scopeReviews": 1220367,
+          "working": 93979
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 100,
+        "active": 80,
+        "retired": 20,
+        "logs": 400,
+        "criteria": 400,
+        "lifecycleDecisions": 860,
+        "archivedDependencies": 480,
+        "scopeReviews": 42,
+        "historyEvents": 1102
+      },
+      "scan": {
+        "bytes": 16305498,
+        "maxDepth": 11,
+        "containers": 58387,
+        "arrayItems": 37904,
+        "stringCount": 275377,
+        "maxStringUnits": 524,
+        "numericTokens": 19789
+      },
+      "inputSha256": "cfb7d710a81dc1bbd04d7e502778e57209836459110344b3b80d7e1922c78ba4",
+      "snapshotSha256": "48b08286e4e667eea33b4b796957f94a5883d84bbe4cd86e28ae3145789f359e",
+      "timingSummary": {
+        "read": {
+          "min": 4.555300000000003,
+          "median": 4.7485,
+          "max": 4.768199999999993
+        },
+        "lexicalScan": {
+          "min": 177.00109999999998,
+          "median": 177.4776,
+          "max": 184.5072
+        },
+        "jsonParse": {
+          "min": 29.6507,
+          "median": 30.967400000000026,
+          "max": 31.101
+        },
+        "selectedShapeChecks": {
+          "min": 0.28470000000001505,
+          "median": 0.30000000000001137,
+          "max": 0.32389999999998054
+        },
+        "canonicalSnapshot": {
+          "min": 85.98839999999998,
+          "median": 93.81729999999999,
+          "max": 96.66960000000003
+        },
+        "hash": {
+          "min": 20.255299999999977,
+          "median": 20.5967,
+          "max": 24.36579999999998
+        },
+        "canonicalFile": {
+          "min": 60.1576,
+          "median": 67.19660000000005,
+          "max": 72.97319999999996
+        }
+      },
+      "pipelineMs": {
+        "min": 383.8146,
+        "median": 402.23629999999997,
+        "max": 402.7499
+      },
+      "peakRssKiB": {
+        "min": 251096,
+        "median": 270052,
+        "max": 284404
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 4.555300000000003,
+            "lexicalScan": 177.00109999999998,
+            "jsonParse": 31.101,
+            "selectedShapeChecks": 0.28470000000001505,
+            "canonicalSnapshot": 85.98839999999998,
+            "hash": 24.36579999999998,
+            "canonicalFile": 60.1576
+          },
+          "pipelineMs": 383.8146,
+          "peakRssKiB": 270052,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 75931648,
+              "heapTotal": 8118272,
+              "heapUsed": 5033416,
+              "external": 18651446,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 93728768,
+              "heapTotal": 8380416,
+              "heapUsed": 6194688,
+              "external": 34956984,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 93798400,
+              "heapTotal": 36691968,
+              "heapUsed": 18292208,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 93806592,
+              "heapTotal": 36691968,
+              "heapUsed": 18421160,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 186650624,
+              "heapTotal": 180346880,
+              "heapUsed": 65269464,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "hash",
+              "rss": 221925376,
+              "heapTotal": 166858752,
+              "heapUsed": 30014560,
+              "external": 42003798,
+              "arrayBuffers": 39801421
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 276529152,
+              "heapTotal": 167120896,
+              "heapUsed": 85517576,
+              "external": 42003798,
+              "arrayBuffers": 39801421
+            }
+          ],
+          "sizes": {
+            "prettyFile": 16305498,
+            "canonicalFile": 11676450,
+            "canonicalSnapshot": 11676140,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 5803781,
+              "originalBaseline": 83839,
+              "history": 5788295
+            },
+            "currentSectionValues": {
+              "project": 190,
+              "tasks": 65497,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 3552761,
+              "archivedDependencies": 290907,
+              "scopeReviews": 1220367,
+              "working": 93979
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 16305498,
+            "maxDepth": 11,
+            "containers": 58387,
+            "arrayItems": 37904,
+            "stringCount": 275377,
+            "maxStringUnits": 524,
+            "numericTokens": 19789
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 860,
+            "archivedDependencies": 480,
+            "scopeReviews": 42,
+            "historyEvents": 1102
+          },
+          "inputSha256": "cfb7d710a81dc1bbd04d7e502778e57209836459110344b3b80d7e1922c78ba4",
+          "snapshotSha256": "48b08286e4e667eea33b4b796957f94a5883d84bbe4cd86e28ae3145789f359e",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 4.768199999999993,
+            "lexicalScan": 184.5072,
+            "jsonParse": 30.967400000000026,
+            "selectedShapeChecks": 0.32389999999998054,
+            "canonicalSnapshot": 93.81729999999999,
+            "hash": 20.255299999999977,
+            "canonicalFile": 67.19660000000005
+          },
+          "pipelineMs": 402.23629999999997,
+          "peakRssKiB": 251096,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 75825152,
+              "heapTotal": 8118272,
+              "heapUsed": 5033416,
+              "external": 18651446,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 93581312,
+              "heapTotal": 8380416,
+              "heapUsed": 6248984,
+              "external": 34956984,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 93413376,
+              "heapTotal": 36429824,
+              "heapUsed": 18308856,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 93437952,
+              "heapTotal": 36429824,
+              "heapUsed": 18436816,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 188915712,
+              "heapTotal": 182968320,
+              "heapUsed": 62036944,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "hash",
+              "rss": 223956992,
+              "heapTotal": 194646016,
+              "heapUsed": 73729424,
+              "external": 42003798,
+              "arrayBuffers": 39801421
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 233971712,
+              "heapTotal": 193073152,
+              "heapUsed": 87654416,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            }
+          ],
+          "sizes": {
+            "prettyFile": 16305498,
+            "canonicalFile": 11676450,
+            "canonicalSnapshot": 11676140,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 5803781,
+              "originalBaseline": 83839,
+              "history": 5788295
+            },
+            "currentSectionValues": {
+              "project": 190,
+              "tasks": 65497,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 3552761,
+              "archivedDependencies": 290907,
+              "scopeReviews": 1220367,
+              "working": 93979
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 16305498,
+            "maxDepth": 11,
+            "containers": 58387,
+            "arrayItems": 37904,
+            "stringCount": 275377,
+            "maxStringUnits": 524,
+            "numericTokens": 19789
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 860,
+            "archivedDependencies": 480,
+            "scopeReviews": 42,
+            "historyEvents": 1102
+          },
+          "inputSha256": "cfb7d710a81dc1bbd04d7e502778e57209836459110344b3b80d7e1922c78ba4",
+          "snapshotSha256": "48b08286e4e667eea33b4b796957f94a5883d84bbe4cd86e28ae3145789f359e",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 4.7485,
+            "lexicalScan": 177.4776,
+            "jsonParse": 29.6507,
+            "selectedShapeChecks": 0.30000000000001137,
+            "canonicalSnapshot": 96.66960000000003,
+            "hash": 20.5967,
+            "canonicalFile": 72.97319999999996
+          },
+          "pipelineMs": 402.7499,
+          "peakRssKiB": 284404,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 76013568,
+              "heapTotal": 8380416,
+              "heapUsed": 5033416,
+              "external": 18651446,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 94003200,
+              "heapTotal": 8380416,
+              "heapUsed": 6234984,
+              "external": 34956984,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 93896704,
+              "heapTotal": 36429824,
+              "heapUsed": 18306304,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 93904896,
+              "heapTotal": 36429824,
+              "heapUsed": 18434264,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 189558784,
+              "heapTotal": 183230464,
+              "heapUsed": 62042280,
+              "external": 18651486,
+              "arrayBuffers": 16449109
+            },
+            {
+              "phase": "hash",
+              "rss": 224600064,
+              "heapTotal": 194908160,
+              "heapUsed": 73734760,
+              "external": 42003798,
+              "arrayBuffers": 39801421
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 291225600,
+              "heapTotal": 206442496,
+              "heapUsed": 126196840,
+              "external": 42003798,
+              "arrayBuffers": 39801421
+            }
+          ],
+          "sizes": {
+            "prettyFile": 16305498,
+            "canonicalFile": 11676450,
+            "canonicalSnapshot": 11676140,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 5803781,
+              "originalBaseline": 83839,
+              "history": 5788295
+            },
+            "currentSectionValues": {
+              "project": 190,
+              "tasks": 65497,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 3552761,
+              "archivedDependencies": 290907,
+              "scopeReviews": 1220367,
+              "working": 93979
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 16305498,
+            "maxDepth": 11,
+            "containers": 58387,
+            "arrayItems": 37904,
+            "stringCount": 275377,
+            "maxStringUnits": 524,
+            "numericTokens": 19789
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 860,
+            "archivedDependencies": 480,
+            "scopeReviews": 42,
+            "historyEvents": 1102
+          },
+          "inputSha256": "cfb7d710a81dc1bbd04d7e502778e57209836459110344b3b80d7e1922c78ba4",
+          "snapshotSha256": "48b08286e4e667eea33b4b796957f94a5883d84bbe4cd86e28ae3145789f359e",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    },
+    {
+      "options": {
+        "name": "growth100-c50",
+        "tasks": 100,
+        "cycles": 50,
+        "edits": 500,
+        "logs": 4,
+        "criteria": 4,
+        "text": 500
+      },
+      "generationMs": 508.4382000000005,
+      "sizes": {
+        "prettyFile": 37777188,
+        "canonicalFile": 27057300,
+        "canonicalSnapshot": 27056990,
+        "fileEnvelopeOverhead": 310,
+        "rootSections": {
+          "logicalRevision": 3,
+          "origin": 150,
+          "current": 12948536,
+          "originalBaseline": 83839,
+          "history": 14024390
+        },
+        "currentSectionValues": {
+          "project": 190,
+          "tasks": 65497,
+          "nextTaskNumber": 3,
+          "manualOrder": 593,
+          "sortMode": 8,
+          "duplicateOrigins": 2,
+          "progress": 227592,
+          "actuals": 67995,
+          "workTracking": 283578,
+          "forecastSettings": 100,
+          "lifecycle": 8527801,
+          "archivedDependencies": 694627,
+          "scopeReviews": 2986301,
+          "working": 94040
+        },
+        "currentFramingOverhead": 209
+      },
+      "counts": {
+        "tasks": 100,
+        "active": 80,
+        "retired": 20,
+        "logs": 400,
+        "criteria": 400,
+        "lifecycleDecisions": 2060,
+        "archivedDependencies": 1080,
+        "scopeReviews": 102,
+        "historyEvents": 2662
+      },
+      "scan": {
+        "bytes": 37777188,
+        "maxDepth": 11,
+        "containers": 134887,
+        "arrayItems": 87524,
+        "stringCount": 631357,
+        "maxStringUnits": 524,
+        "numericTokens": 45349
+      },
+      "inputSha256": "ff8bb90b31e7e45918fa3508167070054ccd5b1811f25a9b327da996084368fe",
+      "snapshotSha256": "e3b6a26b626d6e0a54aed53e0092153e93fd73bd174dcee419da7e4eee4f1b24",
+      "timingSummary": {
+        "read": {
+          "min": 10.011800000000001,
+          "median": 10.087800000000001,
+          "max": 11.494100000000003
+        },
+        "lexicalScan": {
+          "min": 395.6102,
+          "median": 395.8694,
+          "max": 406.83590000000004
+        },
+        "jsonParse": {
+          "min": 58.9144,
+          "median": 59.57779999999997,
+          "max": 60.60640000000001
+        },
+        "selectedShapeChecks": {
+          "min": 0.4148999999999887,
+          "median": 3.692899999999952,
+          "max": 4.351999999999975
+        },
+        "canonicalSnapshot": {
+          "min": 191.16070000000002,
+          "median": 202.46770000000004,
+          "max": 205.00150000000008
+        },
+        "hash": {
+          "min": 47.38599999999997,
+          "median": 48.09659999999997,
+          "max": 50.28409999999997
+        },
+        "canonicalFile": {
+          "min": 171.88440000000003,
+          "median": 174.08550000000002,
+          "max": 181.91290000000004
+        }
+      },
+      "pipelineMs": {
+        "min": 892.6917000000001,
+        "median": 895.7244000000001,
+        "max": 902.5503
+      },
+      "peakRssKiB": {
+        "min": 419360,
+        "median": 432992,
+        "max": 434060
+      },
+      "runs": [
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 11.494100000000003,
+            "lexicalScan": 395.8694,
+            "jsonParse": 58.9144,
+            "selectedShapeChecks": 4.351999999999975,
+            "canonicalSnapshot": 202.46770000000004,
+            "hash": 48.09659999999997,
+            "canonicalFile": 174.08550000000002
+          },
+          "pipelineMs": 895.7244000000001,
+          "peakRssKiB": 432992,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 97329152,
+              "heapTotal": 8118272,
+              "heapUsed": 5033416,
+              "external": 40123136,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 138829824,
+              "heapTotal": 10477568,
+              "heapUsed": 6152768,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 175034368,
+              "heapTotal": 53993472,
+              "heapUsed": 35690368,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 183783424,
+              "heapTotal": 62119936,
+              "heapUsed": 35917128,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 335355904,
+              "heapTotal": 257679360,
+              "heapUsed": 139972504,
+              "external": 40123176,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "hash",
+              "rss": 416534528,
+              "heapTotal": 284737536,
+              "heapUsed": 167049064,
+              "external": 94237188,
+              "arrayBuffers": 92034811
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 443379712,
+              "heapTotal": 345554944,
+              "heapUsed": 257291216,
+              "external": 40123176,
+              "arrayBuffers": 37920799
+            }
+          ],
+          "sizes": {
+            "prettyFile": 37777188,
+            "canonicalFile": 27057300,
+            "canonicalSnapshot": 27056990,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 12948536,
+              "originalBaseline": 83839,
+              "history": 14024390
+            },
+            "currentSectionValues": {
+              "project": 190,
+              "tasks": 65497,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 8527801,
+              "archivedDependencies": 694627,
+              "scopeReviews": 2986301,
+              "working": 94040
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 37777188,
+            "maxDepth": 11,
+            "containers": 134887,
+            "arrayItems": 87524,
+            "stringCount": 631357,
+            "maxStringUnits": 524,
+            "numericTokens": 45349
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 2060,
+            "archivedDependencies": 1080,
+            "scopeReviews": 102,
+            "historyEvents": 2662
+          },
+          "inputSha256": "ff8bb90b31e7e45918fa3508167070054ccd5b1811f25a9b327da996084368fe",
+          "snapshotSha256": "e3b6a26b626d6e0a54aed53e0092153e93fd73bd174dcee419da7e4eee4f1b24",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 10.011800000000001,
+            "lexicalScan": 406.83590000000004,
+            "jsonParse": 60.60640000000001,
+            "selectedShapeChecks": 0.4148999999999887,
+            "canonicalSnapshot": 205.00150000000008,
+            "hash": 47.38599999999997,
+            "canonicalFile": 171.88440000000003
+          },
+          "pipelineMs": 902.5503,
+          "peakRssKiB": 434060,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 97456128,
+              "heapTotal": 8118272,
+              "heapUsed": 5033560,
+              "external": 40123136,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 138768384,
+              "heapTotal": 10477568,
+              "heapUsed": 7178664,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 183316480,
+              "heapTotal": 61595648,
+              "heapUsed": 35685144,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 183554048,
+              "heapTotal": 61595648,
+              "heapUsed": 35940360,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 335781888,
+              "heapTotal": 258203648,
+              "heapUsed": 139282600,
+              "external": 40123176,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "hash",
+              "rss": 416956416,
+              "heapTotal": 285261824,
+              "heapUsed": 166359160,
+              "external": 94237188,
+              "arrayBuffers": 92034811
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 444473344,
+              "heapTotal": 346341376,
+              "heapUsed": 257448264,
+              "external": 40123176,
+              "arrayBuffers": 37920799
+            }
+          ],
+          "sizes": {
+            "prettyFile": 37777188,
+            "canonicalFile": 27057300,
+            "canonicalSnapshot": 27056990,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 12948536,
+              "originalBaseline": 83839,
+              "history": 14024390
+            },
+            "currentSectionValues": {
+              "project": 190,
+              "tasks": 65497,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 8527801,
+              "archivedDependencies": 694627,
+              "scopeReviews": 2986301,
+              "working": 94040
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 37777188,
+            "maxDepth": 11,
+            "containers": 134887,
+            "arrayItems": 87524,
+            "stringCount": 631357,
+            "maxStringUnits": 524,
+            "numericTokens": 45349
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 2060,
+            "archivedDependencies": 1080,
+            "scopeReviews": 102,
+            "historyEvents": 2662
+          },
+          "inputSha256": "ff8bb90b31e7e45918fa3508167070054ccd5b1811f25a9b327da996084368fe",
+          "snapshotSha256": "e3b6a26b626d6e0a54aed53e0092153e93fd73bd174dcee419da7e4eee4f1b24",
+          "fullSchemaValidationMeasured": false
+        },
+        {
+          "qualificationOnly": true,
+          "timings": {
+            "read": 10.087800000000001,
+            "lexicalScan": 395.6102,
+            "jsonParse": 59.57779999999997,
+            "selectedShapeChecks": 3.692899999999952,
+            "canonicalSnapshot": 191.16070000000002,
+            "hash": 50.28409999999997,
+            "canonicalFile": 181.91290000000004
+          },
+          "pipelineMs": 892.6917000000001,
+          "peakRssKiB": 419360,
+          "memorySamples": [
+            {
+              "phase": "read",
+              "rss": 97476608,
+              "heapTotal": 7856128,
+              "heapUsed": 5033488,
+              "external": 40123136,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "lexicalScan",
+              "rss": 138915840,
+              "heapTotal": 10477568,
+              "heapUsed": 6183904,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "jsonParse",
+              "rss": 175009792,
+              "heapTotal": 53731328,
+              "heapUsed": 35641288,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "selectedShapeChecks",
+              "rss": 183742464,
+              "heapTotal": 62119936,
+              "heapUsed": 35904448,
+              "external": 77900364,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "canonicalSnapshot",
+              "rss": 328273920,
+              "heapTotal": 232251392,
+              "heapUsed": 148953992,
+              "external": 40123176,
+              "arrayBuffers": 37920799
+            },
+            {
+              "phase": "hash",
+              "rss": 409456640,
+              "heapTotal": 259309568,
+              "heapUsed": 176030552,
+              "external": 94237188,
+              "arrayBuffers": 92034811
+            },
+            {
+              "phase": "canonicalFile",
+              "rss": 429420544,
+              "heapTotal": 331399168,
+              "heapUsed": 219911520,
+              "external": 40123176,
+              "arrayBuffers": 37920799
+            }
+          ],
+          "sizes": {
+            "prettyFile": 37777188,
+            "canonicalFile": 27057300,
+            "canonicalSnapshot": 27056990,
+            "fileEnvelopeOverhead": 310,
+            "rootSections": {
+              "logicalRevision": 3,
+              "origin": 150,
+              "current": 12948536,
+              "originalBaseline": 83839,
+              "history": 14024390
+            },
+            "currentSectionValues": {
+              "project": 190,
+              "tasks": 65497,
+              "nextTaskNumber": 3,
+              "manualOrder": 593,
+              "sortMode": 8,
+              "duplicateOrigins": 2,
+              "progress": 227592,
+              "actuals": 67995,
+              "workTracking": 283578,
+              "forecastSettings": 100,
+              "lifecycle": 8527801,
+              "archivedDependencies": 694627,
+              "scopeReviews": 2986301,
+              "working": 94040
+            },
+            "currentFramingOverhead": 209
+          },
+          "scan": {
+            "bytes": 37777188,
+            "maxDepth": 11,
+            "containers": 134887,
+            "arrayItems": 87524,
+            "stringCount": 631357,
+            "maxStringUnits": 524,
+            "numericTokens": 45349
+          },
+          "counts": {
+            "tasks": 100,
+            "active": 80,
+            "retired": 20,
+            "logs": 400,
+            "criteria": 400,
+            "lifecycleDecisions": 2060,
+            "archivedDependencies": 1080,
+            "scopeReviews": 102,
+            "historyEvents": 2662
+          },
+          "inputSha256": "ff8bb90b31e7e45918fa3508167070054ccd5b1811f25a9b327da996084368fe",
+          "snapshotSha256": "e3b6a26b626d6e0a54aed53e0092153e93fd73bd174dcee419da7e4eee4f1b24",
+          "fullSchemaValidationMeasured": false
+        }
+      ]
+    }
+  ],
+  "boundaryChecks": [
+    {
+      "id": "bytes-10485759",
+      "kind": "Valid project JSON plus trailing whitespace; lexical/resource probe only",
+      "bytes": 10485759,
+      "inputSha256": "26d05b435d7e23ed4396e2ebad3376fc6eb25f35b3a42f76fdd93b65029bc0ba",
+      "expected": "Pass",
+      "actual": "Pass",
+      "rawBytesUnchanged": true
+    },
+    {
+      "id": "bytes-10485760",
+      "kind": "Valid project JSON plus trailing whitespace; lexical/resource probe only",
+      "bytes": 10485760,
+      "inputSha256": "9c1d5c1400c3d792cd774d091e0b9b22cc35b545e7be212de1e41359b9628a5b",
+      "expected": "Pass",
+      "actual": "Pass",
+      "rawBytesUnchanged": true
+    },
+    {
+      "id": "bytes-10485761",
+      "kind": "Valid project JSON plus trailing whitespace; lexical/resource probe only",
+      "bytes": 10485761,
+      "inputSha256": "bb7fb151230034267c3339de0de1c831b82e7bd2e1550f688d1e2eb5f31327f2",
+      "expected": "FileTooLarge",
+      "actual": "FileTooLarge",
+      "rawBytesUnchanged": true
+    },
+    {
+      "id": "depth-63",
+      "kind": "Schema-free nested array probe, not a valid project",
+      "depth": 63,
+      "inputSha256": "e7ff91611efa1af617b1716c090cf9c96823fc740d0fe853765281802994d47b",
+      "expected": "Pass",
+      "actual": "Pass",
+      "observedDepth": 63
+    },
+    {
+      "id": "depth-64",
+      "kind": "Schema-free nested array probe, not a valid project",
+      "depth": 64,
+      "inputSha256": "90446a22034badcd5eaf4de52f6f1572f844d27acfffb38bbdc8fa1a34e65429",
+      "expected": "Pass",
+      "actual": "Pass",
+      "observedDepth": 64
+    },
+    {
+      "id": "depth-65",
+      "kind": "Schema-free nested array probe, not a valid project",
+      "depth": 65,
+      "inputSha256": "7c08cf6ec587ddae9d57898dd0f4ec518c2ae13a6328e97932bfd9f4f38e6fe0",
+      "expected": "NestingTooDeep",
+      "actual": "NestingTooDeep",
+      "observedDepth": null
+    },
+    {
+      "id": "large-flat-array",
+      "kind": "Schema-free structural stress, not domain acceptance",
+      "bytes": 588891,
+      "inputSha256": "ef440f29f9463eac65fda8b2e1214628852802516a2b06ae1a1b020743b78a20",
+      "scan": {
+        "bytes": 588891,
+        "maxDepth": 1,
+        "containers": 1,
+        "arrayItems": 100000,
+        "stringCount": 0,
+        "maxStringUnits": 0,
+        "numericTokens": 100000
+      },
+      "expected": {
+        "depth": 1,
+        "items": 100000
+      },
+      "actual": "Pass"
+    },
+    {
+      "id": "large-flat-string",
+      "kind": "Schema-free structural stress, not domain acceptance",
+      "bytes": 8388622,
+      "inputSha256": "54b261fba075759a37ef9c631434c1a37266ec440077692f52f3492f357bb241",
+      "scan": {
+        "bytes": 8388622,
+        "maxDepth": 1,
+        "containers": 1,
+        "arrayItems": 0,
+        "stringCount": 2,
+        "maxStringUnits": 8388608,
+        "numericTokens": 0
+      },
+      "expected": {
+        "depth": 1,
+        "units": 8388608
+      },
+      "actual": "Pass"
+    },
+    {
+      "id": "many-unique-ids",
+      "kind": "Schema-free structural stress, not domain acceptance",
+      "bytes": 1088931,
+      "inputSha256": "4559da70d70cc66045808f348a4150a84b4e28bdd5fdef5bbce3fa2cab83bfd6",
+      "scan": {
+        "bytes": 1088931,
+        "maxDepth": 2,
+        "containers": 2,
+        "arrayItems": 100000,
+        "stringCount": 100002,
+        "maxStringUnits": 12,
+        "numericTokens": 1
+      },
+      "expected": {
+        "depth": 2,
+        "items": 100000
+      },
+      "actual": "Pass"
+    }
+  ],
+  "proposedNotExecuted": [
+    "Production format6 reader rejection retains accepted project/ref/baseline",
+    "Full semantic/lifecycle/correction validation timings",
+    "UI responsiveness, async cancellation and mobile/managed-browser memory",
+    "Physical storage quota, DBMS limits and real save atomicity"
+  ],
+  "syntheticOutputsNotCommitted": true,
+  "crossRuntimeCapacityHashes": [
+    {
+      "name": "class30",
+      "nodeExpected": "4ddd92f68b207693096556eeaa52fb3fa637a8280695416e120a7965d1f12e13",
+      "dotnetActual": "4ddd92f68b207693096556eeaa52fb3fa637a8280695416e120a7965d1f12e13",
+      "canonicalSnapshotBytes": 199343,
+      "match": true
+    },
+    {
+      "name": "class40",
+      "nodeExpected": "e64ed8cb3efc675c285d6b51a2871b53957eb0c4a8463ea099113fd8fbd791ce",
+      "dotnetActual": "e64ed8cb3efc675c285d6b51a2871b53957eb0c4a8463ea099113fd8fbd791ce",
+      "canonicalSnapshotBytes": 504542,
+      "match": true
+    }
+  ]
+}

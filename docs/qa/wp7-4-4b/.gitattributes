@@ -1,0 +1,5 @@
+# Reproducible recipe hashes; preserve reference, golden fixture and evidence bytes.
+* text eol=lf
+reference/** -text
+fixtures/** -text
+evidence/** -text

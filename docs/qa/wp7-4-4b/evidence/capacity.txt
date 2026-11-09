@@ -1,0 +1,10 @@
+class30: pretty=363377 canonical=199653; pipeline median=15.2ms
+class40: pretty=827340 canonical=504852; pipeline median=28.9ms
+class100: pretty=3551755 canonical=2484691; pipeline median=97.1ms
+stress300: pretty=18053092 canonical=13357252; pipeline median=405.0ms
+stress1000: pretty=105559899 canonical=79061587; pipeline median=2330.1ms
+growth100-c0: pretty=1983535 canonical=1415047; pipeline median=58.4ms
+growth100-c5: pretty=5570118 canonical=3986490; pipeline median=152.8ms
+growth100-c20: pretty=16305498 canonical=11676450; pipeline median=388.5ms
+growth100-c50: pretty=37777188 canonical=27057300; pipeline median=888.6ms
+PASS: 9 synthetic families x 3 measured runs; 9 lexical/resource/structural boundary checks.

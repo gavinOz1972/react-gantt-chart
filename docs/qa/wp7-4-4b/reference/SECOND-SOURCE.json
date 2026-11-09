@@ -1,0 +1,24 @@
+{
+  "repository": "https://github.com/erdtman/canonicalize",
+  "commit": "31fb117afde3ef305b2e1d99bde539bf6300bc62",
+  "version": "5.1.0",
+  "files": [
+    {
+      "upstreamPath": "lib/canonicalize.js",
+      "localPath": "node/canonicalize-5.1.mjs",
+      "sha256": "c1d0195af2a0748454b06af8f218e5c90415c19d39154d0058fee8229c12d859"
+    },
+    {
+      "upstreamPath": "LICENSE",
+      "localPath": "node/erdtman-LICENSE.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "upstreamPath": "package.json",
+      "localPath": "node/upstream-package.json",
+      "sha256": "ca7454aac0f76429b5d56bbc3bd61fa706fb1088a19f45d64cf38e055fbf4670"
+    }
+  ],
+  "qualificationOnly": true,
+  "contentUnmodified": true
+}

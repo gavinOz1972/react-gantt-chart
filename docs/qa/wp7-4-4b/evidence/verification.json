@@ -1,0 +1,77 @@
+{
+  "qualificationOnly": true,
+  "clientDate": "2026-11-08",
+  "timezone": "America/Regina",
+  "branch": "feature/wp7-stabilization",
+  "sourceBase": "4129c53d5e2f279810d31dc1f28d244e9d8c9344",
+  "request": {
+    "file": "Bugsys_WP7_4_4b_Format6_Qualification.docx",
+    "sha256": "12167e6a20a37be1a40c95c229fe6b1ca29b4d262cf006d2e1597b9d87d60f55"
+  },
+  "protectedRefsVerifiedBeforeDelivery": {
+    "main": "a6a1c32c22a2bf074b161e52d523443602843dd7",
+    "v1.0-pre-progress": {
+      "tagObject": "a4157bc84392c770c27111da58d779948b110a56",
+      "peeled": "abb85011dafc9fb0876953e3132880e025ef65da"
+    },
+    "v1.1-pre-stabilization": {
+      "tagObject": "134305f2205eb993ab76672c2d2469d48d91a609",
+      "peeled": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+    }
+  },
+  "checks": {
+    "dotnetBuild": {
+      "exitCode": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    "canonical": {
+      "independentVectors": 37,
+      "assertions": 358,
+      "referenceObservations": 2,
+      "exitCode": 0
+    },
+    "capacity": {
+      "families": 9,
+      "measuredFreshProcesses": 27,
+      "warmups": 9,
+      "boundaryChecks": 9,
+      "crossRuntimeSyntheticSnapshots": 2,
+      "exitCode": 0
+    },
+    "existingApplication": {
+      "lint": true,
+      "typecheck": true,
+      "unitComponentTests": 625,
+      "testFiles": 37,
+      "build": true,
+      "chromiumBrowserCases": 223,
+      "nativeExitCode": 0
+    },
+    "scope": {
+      "productionChanges": false,
+      "qualificationImportsInApplication": 0,
+      "assetBytesIdentical": true,
+      "existingEditsPreserved": true
+    }
+  },
+  "dispositions": {
+    "F04": "Recommend approval of exact current algorithm, prefix and scope; reference-adoption conditions remain",
+    "F08": "Conditionally recommend configurable initial 10 MiB raw input / depth 64; native full-validation and preservation checks remain",
+    "F09": "Accepted in principle for design qualification only",
+    "R07Final": false
+  },
+  "notExecuted": [
+    "Production format 6 codec or semantic validation",
+    "Accepted project/ref/baseline preservation through a real format 6 reader",
+    "Browser/mobile resource cost of new codec",
+    "Physical storage adapters, quota or transaction behavior"
+  ],
+  "evidenceHashes": {
+    "canonical-results.json": "e3d153add38ca7c845b44c0a28ce760da6262f4bf00767c8b5e431495f8c20e7",
+    "capacity-results.json": "6377fb3d3574a12e24e973e92c7fd6211a1337fbe9d1042ab34ede27e8f30f02",
+    "check.txt": "b652ecb79a31472e81885b4504edadb31c7cf10c33b97463bbdf54ca61c4cec1",
+    "browser-all.txt": "94c6f1d47cafc24d3b83a35f66f894be60a11433eee760dda778a5510dda0525",
+    "dotnet-build.txt": "1b5af5da02a1e2d03396d6f43707ceb182a8e832a5f7db7ba8194d8fef692dfc"
+  }
+}

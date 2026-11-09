@@ -1,0 +1,788 @@
+{
+  "runtime": ".NET 10.0.11",
+  "results": [
+    {
+      "id": "upstream-arrays",
+      "canonicalHex": "5b35362c7b2231223a5b5d2c223130223a6e756c6c2c2264223a747275657d5d",
+      "rawSha256": "099601b171cafed97c333f8878d68e7f8c8f795412adb34b2fdcf0e7c7beac42",
+      "prefixedSha256": "8c449f2a9c376736e196a3ebab2cf2abbc1facb7d60764f705878dde309b881b",
+      "error": null
+    },
+    {
+      "id": "upstream-french",
+      "canonicalHex": "7b227065616368223a225468697320736f7274696e67206f72646572222c2270c3a96368c3a9223a2269732077726f6e67206163636f7264696e6720746f204672656e6368222c2270c3aa636865223a226275742063616e6f6e6963616c697a6174696f6e204d555354222c2273696e223a2269676e6f7265206c6f63616c65227d",
+      "rawSha256": "d99d0ebdcb0033cb858cfa830ae46bc0fb3309413b271f1da828c89901a27ed5",
+      "prefixedSha256": "aca63b4caccc42255c911470aee3d86241666d4b7d311694a61c8be5b1169291",
+      "error": null
+    },
+    {
+      "id": "upstream-structures",
+      "canonicalHex": "7b22223a22656d707479222c2231223a7b225c6e223a35362c2266223a7b2246223a352c2266223a226869227d7d2c223130223a7b7d2c22313131223a5b7b2245223a226e6f222c2265223a22796573227d5d2c2241223a7b7d2c2261223a7b7d7d",
+      "rawSha256": "605f65004ec2db7692522a0852c22f1c989e036d547e88963d1a3143cf3195d5",
+      "prefixedSha256": "5b6f1f12b24c774386936088951237fe713a5f802a315fb57273cd22470d2dcb",
+      "error": null
+    },
+    {
+      "id": "upstream-unicode",
+      "canonicalHex": "7b22556e6e6f726d616c697a656420556e69636f6465223a2241cc8a227d",
+      "rawSha256": "0d99aad92a125196ff887876643fd3206786a84ddce2cee52ba4ad256d2381d3",
+      "prefixedSha256": "32059bc2b88195c7b80bcb0da3bcbfe50523cd1acdb4d67939e746bb7c1a072a",
+      "error": null
+    },
+    {
+      "id": "upstream-values",
+      "canonicalHex": "7b226c69746572616c73223a5b6e756c6c2c747275652c66616c73655d2c226e756d62657273223a5b3333333333333333332e333333333333332c31652b33302c342e352c302e3030322c31652d32375d2c22737472696e67223a22e282ac245c75303030665c6e4127425c225c5c5c5c5c222f227d",
+      "rawSha256": "2d5e01a318d0f0879ab568c4be289c8b1f64ef8921a53c6277d5e069978baacb",
+      "prefixedSha256": "9132150a2a8f4fcaef939caa2a33ef76917187b4c3b72053d708662f4966e986",
+      "error": null
+    },
+    {
+      "id": "upstream-weird",
+      "canonicalHex": "7b225c6e223a224e65776c696e65222c225c72223a2243617272696167652052657475726e222c2231223a224f6e65222c223c2f7363726970743e223a2242726f77736572204368616c6c656e6765222c22c280223a22436f6e74726f6c7f222c22c3b6223a224c6174696e20536d616c6c204c6574746572204f205769746820446961657265736973222c22e282ac223a224575726f205369676e222c22f09f9882223a22536d696c6579222c22efacb3223a22486562726577204c65747465722044616c6574205769746820446167657368227d",
+      "rawSha256": "6af595a9aa80110b964b4de3f82a05fa6ae7423005019bacfa2620dddc4e94d1",
+      "prefixedSha256": "c661cdd872db71c142c97dfa39928e1243699a3c2d1e75b7f81889d43fddbe7d",
+      "error": null
+    },
+    {
+      "id": "utf16-non-bmp",
+      "canonicalHex": "7b2261223a7b2261223a312c227a223a307d2c22f09f9880223a22737570706c656d656e74617279222c22ee8080223a22626d70227d",
+      "rawSha256": "d70e2ac020515058176c07ff80f0abbb1fa133a95e5c8a9297e4f6e87d7f41f0",
+      "prefixedSha256": "03b9d224f7dcd017068f5d79fd80a59f63f4687cce599150c7b2ffb335065a32",
+      "error": null
+    },
+    {
+      "id": "empty",
+      "canonicalHex": "7b2261223a7b7d2c226e223a6e756c6c2c227a223a5b5d7d",
+      "rawSha256": "e59af4070b7445867b689f3ad908f8606de508850dcae19fd04a343df6d5ab49",
+      "prefixedSha256": "9d7c6f1a55d5d1a84aca631acc092c073f6dfbf52db3800c36cea144c14b3172",
+      "error": null
+    },
+    {
+      "id": "tojson-data-member",
+      "canonicalHex": "7b2261223a322c22746f4a534f4e223a312c227a223a317d",
+      "rawSha256": "730757c34e3082e1853849d7bd4c00bf2e2b253fc10f9b7d7157e5a0c640d11a",
+      "prefixedSha256": "872087ebac19f6537f7b841637f2fb6b980d94fd2a8143c13231b77dc7f2314d",
+      "error": null
+    },
+    {
+      "id": "nfc",
+      "canonicalHex": "7b2273223a22c3a9227d",
+      "rawSha256": "86028b41ba792eaf82aa26a45b218f6734f7f1096a86f1746c8296e088a0ccb4",
+      "prefixedSha256": "3ffc1d57af26b7da86ccb132ba98a113344420b56dbcc26e245f35d3f2447320",
+      "error": null
+    },
+    {
+      "id": "nfd",
+      "canonicalHex": "7b2273223a2265cc81227d",
+      "rawSha256": "1fc0bd7cc93fca8092a2041d7d01842876422aa7e2838acf42c14578e9f2be05",
+      "prefixedSha256": "c002c53eb156ccd1f730249e73c36f7a037492340426d5756fc5d5d8cc70aeb3",
+      "error": null
+    },
+    {
+      "id": "escapes",
+      "canonicalHex": "7b2273223a225c75303030305c625c745c6e5c665c725c225c5c2ff09f9880227d",
+      "rawSha256": "95437bbda3a85ce6792b7459b7ec823f10bdd9f10f438eb455a751b4fcef08a1",
+      "prefixedSha256": "28a85df2543756a81f348af2059eb338e8e4a87737f97e42803532e80541cf3a",
+      "error": null
+    },
+    {
+      "id": "array-order",
+      "canonicalHex": "7b2261223a5b5d2c2262223a5b332c312c7b2261223a322c227a223a307d5d7d",
+      "rawSha256": "ab05972014419cabf9b868717368a290acae38c7f7f9b6c54635157250a821e9",
+      "prefixedSha256": "ddf3603c2a0fd007c453a9163bc0f7ccc43a1246883ae132b5c28e65779a117d",
+      "error": null
+    },
+    {
+      "id": "rfc-number-0000000000000000",
+      "canonicalHex": "7b226e223a307d",
+      "rawSha256": "f3013f933b9fb80ab6d995e7ad9da36f683837ba1d81e950c943d40111eac2f0",
+      "prefixedSha256": "9cb985decc56a3fa131f5de3de7a2efccd6909ca52b2018856f24d62658a3fef",
+      "error": null
+    },
+    {
+      "id": "rfc-number-8000000000000000",
+      "canonicalHex": "7b226e223a307d",
+      "rawSha256": "f3013f933b9fb80ab6d995e7ad9da36f683837ba1d81e950c943d40111eac2f0",
+      "prefixedSha256": "9cb985decc56a3fa131f5de3de7a2efccd6909ca52b2018856f24d62658a3fef",
+      "error": null
+    },
+    {
+      "id": "rfc-number-0000000000000001",
+      "canonicalHex": "7b226e223a35652d3332347d",
+      "rawSha256": "cf4df7d2834198d284947133d3ec7a66f3d94e8d447cac6a0783324211b36d43",
+      "prefixedSha256": "c54957219b4f404689318bd70b357ded484f3e99636d0518c40f3fe69cf3488e",
+      "error": null
+    },
+    {
+      "id": "rfc-number-8000000000000001",
+      "canonicalHex": "7b226e223a2d35652d3332347d",
+      "rawSha256": "db93947692a55593072b514da386faf1a8c7dc6c49f2d037ac7d9c0f89d5956a",
+      "prefixedSha256": "0fb94669f02b2fa500eaca36313fdfc00939ee3ae80a4e1b0efc5cf01c91710a",
+      "error": null
+    },
+    {
+      "id": "rfc-number-7fefffffffffffff",
+      "canonicalHex": "7b226e223a312e37393736393331333438363233313537652b3330387d",
+      "rawSha256": "9599e0f9672bfa5d654b432fa5f9b7ee04f35c607b3a3ff01ce97b070f8f2648",
+      "prefixedSha256": "a562149ef1b5d509e79215134f610181ae24f1df64655e9deca1a03108453842",
+      "error": null
+    },
+    {
+      "id": "rfc-number-ffefffffffffffff",
+      "canonicalHex": "7b226e223a2d312e37393736393331333438363233313537652b3330387d",
+      "rawSha256": "f1ab4b1ad58d11c148ebb64cc86506290ab42b198162ffd4e1d2f1772d8c3a4b",
+      "prefixedSha256": "46e6bf786be33ae2d54e8135314c1cd19e3b8ba6ad90febb42a7a082fae6fd43",
+      "error": null
+    },
+    {
+      "id": "rfc-number-4340000000000000",
+      "canonicalHex": "7b226e223a393030373139393235343734303939327d",
+      "rawSha256": "66c87d9cb3014e05a11baa97df62282d89d425f22ee15816577c84534e2ef1bb",
+      "prefixedSha256": "725f4db3f70a51c761916438225df83045baab6c8f04a17ef4fad64e4d381cc1",
+      "error": null
+    },
+    {
+      "id": "rfc-number-c340000000000000",
+      "canonicalHex": "7b226e223a2d393030373139393235343734303939327d",
+      "rawSha256": "b05a958438727696a33ea9f819b69ca4ea39b5ee89f0f80a61d5f813875f9734",
+      "prefixedSha256": "a0c94e29def0e9e393d41f44e3d175ac51b541d30e92864f120f19702bea455e",
+      "error": null
+    },
+    {
+      "id": "rfc-number-4430000000000000",
+      "canonicalHex": "7b226e223a3239353134373930353137393335323833303030307d",
+      "rawSha256": "325cc4ff312eeb1384e130b9072cebd2eca9ad95e621fb017b1ffcc161ebf477",
+      "prefixedSha256": "8f4680a8d0206e33b844f75cd4ccaaa3fc850caefeb677789e66e1fe762f099b",
+      "error": null
+    },
+    {
+      "id": "rfc-number-44b52d02c7e14af5",
+      "canonicalHex": "7b226e223a392e393939393939393939393939393937652b32327d",
+      "rawSha256": "491b1f5976bc87bb471c8095f795c7d51065b16440ccd6dec5c16a28db4f93dc",
+      "prefixedSha256": "91bcd592e0ce26ae5604b823c6a6e246161d35734cbeef5cd4526e0314a9ec27",
+      "error": null
+    },
+    {
+      "id": "rfc-number-44b52d02c7e14af6",
+      "canonicalHex": "7b226e223a31652b32337d",
+      "rawSha256": "f8acd93b4d43262e8d22f393b3fc172b2608154644f68bd2295239d62451edef",
+      "prefixedSha256": "6243c68f6ddfc17fcfb81b3a66c8c5154e9bc7042ef969d6f043e7704438d7eb",
+      "error": null
+    },
+    {
+      "id": "rfc-number-44b52d02c7e14af7",
+      "canonicalHex": "7b226e223a312e30303030303030303030303030303031652b32337d",
+      "rawSha256": "7dbb03dffbdbc82effa56050f04ba388db0e16d0084dbe69012440341b65e5a8",
+      "prefixedSha256": "cc17a5bdc2840a3e796497a56cff563b7c0f1635acf7493fedb12b3facb88d15",
+      "error": null
+    },
+    {
+      "id": "rfc-number-444b1ae4d6e2ef4e",
+      "canonicalHex": "7b226e223a3939393939393939393939393939393730303030307d",
+      "rawSha256": "0a3c0de48065cb644319c57ce0af93c2ef88d1f8d9f228be26bb4831391d0021",
+      "prefixedSha256": "ab22b74ad8d7fac23fdc7948033f2087fa5923cbab3b44593a94e98d9f3984fe",
+      "error": null
+    },
+    {
+      "id": "rfc-number-444b1ae4d6e2ef4f",
+      "canonicalHex": "7b226e223a3939393939393939393939393939393930303030307d",
+      "rawSha256": "8e51b9a1b33e4815dbf02451cf409338b6c2e4eaa3399f5fa0b72d162e48dd6e",
+      "prefixedSha256": "a50f94dc88ceee714055eb1bd781cfb9212a891a05bf15ac956c72ab7f8da616",
+      "error": null
+    },
+    {
+      "id": "rfc-number-444b1ae4d6e2ef50",
+      "canonicalHex": "7b226e223a31652b32317d",
+      "rawSha256": "f1ee2b60ee95a3170fdc07a577e5f3514ced26867443d69da265acadead81007",
+      "prefixedSha256": "b6fb0378b32bbfe515251a4fa9c2211661c890f48dadd8526506b0fb57563599",
+      "error": null
+    },
+    {
+      "id": "rfc-number-3eb0c6f7a0b5ed8c",
+      "canonicalHex": "7b226e223a392e393939393939393939393939393937652d377d",
+      "rawSha256": "ea0486d765f0e78e3cfd35b0da15c67c6c5f7aefde4dd5bc17ad8b8e95880a1f",
+      "prefixedSha256": "c268250d700d06b915d8a39cad0d62cde560af349ef7b085ac330fa2ac369b96",
+      "error": null
+    },
+    {
+      "id": "rfc-number-3eb0c6f7a0b5ed8d",
+      "canonicalHex": "7b226e223a302e3030303030317d",
+      "rawSha256": "28343867a0be00aee19f81aa90cfd6c646878b9303fa15410d16bfd3f8894578",
+      "prefixedSha256": "502cac2275e12c5b3b8b8543403032ab480c750f7c3a27abf3a85c2768a86910",
+      "error": null
+    },
+    {
+      "id": "rfc-number-41b3de4355555553",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333327d",
+      "rawSha256": "1e2e5158c5181c3fdce46fb33314ecd3d0d65aa634f728cbf0263dccef9da48a",
+      "prefixedSha256": "b2b73edd42d2898a8471b0b53fe58aeab3cbce290f21c0a02662182cb54287e4",
+      "error": null
+    },
+    {
+      "id": "rfc-number-41b3de4355555554",
+      "canonicalHex": "7b226e223a3333333333333333332e33333333333332357d",
+      "rawSha256": "ac4d04fb830b0f5f3c69cbabe1f395fa6461c293693aaac69e31a68d442aefd7",
+      "prefixedSha256": "9bbea1f7f62d346a8928d05a025bf2abf16c8325c6233cf0137cb9f2288dd9f2",
+      "error": null
+    },
+    {
+      "id": "rfc-number-41b3de4355555555",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333337d",
+      "rawSha256": "8e1aa496328ac7acbd045b34464ae11d72d8b525c355b85099382ffcb499143b",
+      "prefixedSha256": "6c6c0a5da17883a88da8bacd561652123b23f512871ab3e28cb55c9974ccd113",
+      "error": null
+    },
+    {
+      "id": "rfc-number-41b3de4355555556",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333347d",
+      "rawSha256": "3c8fb0b18feffd17c168b36aef586b8984d28808e4ef73f3e3b467085c079972",
+      "prefixedSha256": "9fc61b5896a7d91e44f3429c3c79c022f1c431e85be499a8bf1121c082314ecd",
+      "error": null
+    },
+    {
+      "id": "rfc-number-41b3de4355555557",
+      "canonicalHex": "7b226e223a3333333333333333332e33333333333334337d",
+      "rawSha256": "3bec5b8b8e554841ebdf6460208c624df5fc1674a82a8bf97e0577dbb209cae7",
+      "prefixedSha256": "5b542050f7a2c0d1417cee145b0359775ba5e496cfecda71fee1c6198c6df58c",
+      "error": null
+    },
+    {
+      "id": "rfc-number-becbf647612f3696",
+      "canonicalHex": "7b226e223a2d302e303030303033333333333333333333333333333333337d",
+      "rawSha256": "aae32db884750318e6c338f99586e0d862246d45ad53aafbd7e83dcdd037f8b3",
+      "prefixedSha256": "1068c5aeefe2a0f4d6db838988a938b0d1978fec8b61956592e8008c7a39ed99",
+      "error": null
+    },
+    {
+      "id": "rfc-number-43143ff3c1cb0959",
+      "canonicalHex": "7b226e223a313432343935333932333738313230362e327d",
+      "rawSha256": "c620a6071bc4870e99e38aeff2dbb0ae03cb7d525d60f0cad1b1abcb5bfafe05",
+      "prefixedSha256": "eacf1b138cf0e8f6514041731bc4f61c450170e8ada3ec7e1911d56320bd7d3b",
+      "error": null
+    },
+    {
+      "id": "hash-expected-upstream-arrays",
+      "canonicalHex": "5b35362c7b2231223a5b5d2c223130223a6e756c6c2c2264223a747275657d5d",
+      "rawSha256": "099601b171cafed97c333f8878d68e7f8c8f795412adb34b2fdcf0e7c7beac42",
+      "prefixedSha256": "8c449f2a9c376736e196a3ebab2cf2abbc1facb7d60764f705878dde309b881b",
+      "error": null
+    },
+    {
+      "id": "hash-expected-upstream-french",
+      "canonicalHex": "7b227065616368223a225468697320736f7274696e67206f72646572222c2270c3a96368c3a9223a2269732077726f6e67206163636f7264696e6720746f204672656e6368222c2270c3aa636865223a226275742063616e6f6e6963616c697a6174696f6e204d555354222c2273696e223a2269676e6f7265206c6f63616c65227d",
+      "rawSha256": "d99d0ebdcb0033cb858cfa830ae46bc0fb3309413b271f1da828c89901a27ed5",
+      "prefixedSha256": "aca63b4caccc42255c911470aee3d86241666d4b7d311694a61c8be5b1169291",
+      "error": null
+    },
+    {
+      "id": "hash-expected-upstream-structures",
+      "canonicalHex": "7b22223a22656d707479222c2231223a7b225c6e223a35362c2266223a7b2246223a352c2266223a226869227d7d2c223130223a7b7d2c22313131223a5b7b2245223a226e6f222c2265223a22796573227d5d2c2241223a7b7d2c2261223a7b7d7d",
+      "rawSha256": "605f65004ec2db7692522a0852c22f1c989e036d547e88963d1a3143cf3195d5",
+      "prefixedSha256": "5b6f1f12b24c774386936088951237fe713a5f802a315fb57273cd22470d2dcb",
+      "error": null
+    },
+    {
+      "id": "hash-expected-upstream-unicode",
+      "canonicalHex": "7b22556e6e6f726d616c697a656420556e69636f6465223a2241cc8a227d",
+      "rawSha256": "0d99aad92a125196ff887876643fd3206786a84ddce2cee52ba4ad256d2381d3",
+      "prefixedSha256": "32059bc2b88195c7b80bcb0da3bcbfe50523cd1acdb4d67939e746bb7c1a072a",
+      "error": null
+    },
+    {
+      "id": "hash-expected-upstream-values",
+      "canonicalHex": "7b226c69746572616c73223a5b6e756c6c2c747275652c66616c73655d2c226e756d62657273223a5b3333333333333333332e333333333333332c31652b33302c342e352c302e3030322c31652d32375d2c22737472696e67223a22e282ac245c75303030665c6e4127425c225c5c5c5c5c222f227d",
+      "rawSha256": "2d5e01a318d0f0879ab568c4be289c8b1f64ef8921a53c6277d5e069978baacb",
+      "prefixedSha256": "9132150a2a8f4fcaef939caa2a33ef76917187b4c3b72053d708662f4966e986",
+      "error": null
+    },
+    {
+      "id": "hash-expected-upstream-weird",
+      "canonicalHex": "7b225c6e223a224e65776c696e65222c225c72223a2243617272696167652052657475726e222c2231223a224f6e65222c223c2f7363726970743e223a2242726f77736572204368616c6c656e6765222c22c280223a22436f6e74726f6c7f222c22c3b6223a224c6174696e20536d616c6c204c6574746572204f205769746820446961657265736973222c22e282ac223a224575726f205369676e222c22f09f9882223a22536d696c6579222c22efacb3223a22486562726577204c65747465722044616c6574205769746820446167657368227d",
+      "rawSha256": "6af595a9aa80110b964b4de3f82a05fa6ae7423005019bacfa2620dddc4e94d1",
+      "prefixedSha256": "c661cdd872db71c142c97dfa39928e1243699a3c2d1e75b7f81889d43fddbe7d",
+      "error": null
+    },
+    {
+      "id": "hash-expected-utf16-non-bmp",
+      "canonicalHex": "7b2261223a7b2261223a312c227a223a307d2c22f09f9880223a22737570706c656d656e74617279222c22ee8080223a22626d70227d",
+      "rawSha256": "d70e2ac020515058176c07ff80f0abbb1fa133a95e5c8a9297e4f6e87d7f41f0",
+      "prefixedSha256": "03b9d224f7dcd017068f5d79fd80a59f63f4687cce599150c7b2ffb335065a32",
+      "error": null
+    },
+    {
+      "id": "hash-expected-empty",
+      "canonicalHex": "7b2261223a7b7d2c226e223a6e756c6c2c227a223a5b5d7d",
+      "rawSha256": "e59af4070b7445867b689f3ad908f8606de508850dcae19fd04a343df6d5ab49",
+      "prefixedSha256": "9d7c6f1a55d5d1a84aca631acc092c073f6dfbf52db3800c36cea144c14b3172",
+      "error": null
+    },
+    {
+      "id": "hash-expected-tojson-data-member",
+      "canonicalHex": "7b2261223a322c22746f4a534f4e223a312c227a223a317d",
+      "rawSha256": "730757c34e3082e1853849d7bd4c00bf2e2b253fc10f9b7d7157e5a0c640d11a",
+      "prefixedSha256": "872087ebac19f6537f7b841637f2fb6b980d94fd2a8143c13231b77dc7f2314d",
+      "error": null
+    },
+    {
+      "id": "hash-expected-nfc",
+      "canonicalHex": "7b2273223a22c3a9227d",
+      "rawSha256": "86028b41ba792eaf82aa26a45b218f6734f7f1096a86f1746c8296e088a0ccb4",
+      "prefixedSha256": "3ffc1d57af26b7da86ccb132ba98a113344420b56dbcc26e245f35d3f2447320",
+      "error": null
+    },
+    {
+      "id": "hash-expected-nfd",
+      "canonicalHex": "7b2273223a2265cc81227d",
+      "rawSha256": "1fc0bd7cc93fca8092a2041d7d01842876422aa7e2838acf42c14578e9f2be05",
+      "prefixedSha256": "c002c53eb156ccd1f730249e73c36f7a037492340426d5756fc5d5d8cc70aeb3",
+      "error": null
+    },
+    {
+      "id": "hash-expected-escapes",
+      "canonicalHex": "7b2273223a225c75303030305c625c745c6e5c665c725c225c5c2ff09f9880227d",
+      "rawSha256": "95437bbda3a85ce6792b7459b7ec823f10bdd9f10f438eb455a751b4fcef08a1",
+      "prefixedSha256": "28a85df2543756a81f348af2059eb338e8e4a87737f97e42803532e80541cf3a",
+      "error": null
+    },
+    {
+      "id": "hash-expected-array-order",
+      "canonicalHex": "7b2261223a5b5d2c2262223a5b332c312c7b2261223a322c227a223a307d5d7d",
+      "rawSha256": "ab05972014419cabf9b868717368a290acae38c7f7f9b6c54635157250a821e9",
+      "prefixedSha256": "ddf3603c2a0fd007c453a9163bc0f7ccc43a1246883ae132b5c28e65779a117d",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-0000000000000000",
+      "canonicalHex": "7b226e223a307d",
+      "rawSha256": "f3013f933b9fb80ab6d995e7ad9da36f683837ba1d81e950c943d40111eac2f0",
+      "prefixedSha256": "9cb985decc56a3fa131f5de3de7a2efccd6909ca52b2018856f24d62658a3fef",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-8000000000000000",
+      "canonicalHex": "7b226e223a307d",
+      "rawSha256": "f3013f933b9fb80ab6d995e7ad9da36f683837ba1d81e950c943d40111eac2f0",
+      "prefixedSha256": "9cb985decc56a3fa131f5de3de7a2efccd6909ca52b2018856f24d62658a3fef",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-0000000000000001",
+      "canonicalHex": "7b226e223a35652d3332347d",
+      "rawSha256": "cf4df7d2834198d284947133d3ec7a66f3d94e8d447cac6a0783324211b36d43",
+      "prefixedSha256": "c54957219b4f404689318bd70b357ded484f3e99636d0518c40f3fe69cf3488e",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-8000000000000001",
+      "canonicalHex": "7b226e223a2d35652d3332347d",
+      "rawSha256": "db93947692a55593072b514da386faf1a8c7dc6c49f2d037ac7d9c0f89d5956a",
+      "prefixedSha256": "0fb94669f02b2fa500eaca36313fdfc00939ee3ae80a4e1b0efc5cf01c91710a",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-7fefffffffffffff",
+      "canonicalHex": "7b226e223a312e37393736393331333438363233313537652b3330387d",
+      "rawSha256": "9599e0f9672bfa5d654b432fa5f9b7ee04f35c607b3a3ff01ce97b070f8f2648",
+      "prefixedSha256": "a562149ef1b5d509e79215134f610181ae24f1df64655e9deca1a03108453842",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-ffefffffffffffff",
+      "canonicalHex": "7b226e223a2d312e37393736393331333438363233313537652b3330387d",
+      "rawSha256": "f1ab4b1ad58d11c148ebb64cc86506290ab42b198162ffd4e1d2f1772d8c3a4b",
+      "prefixedSha256": "46e6bf786be33ae2d54e8135314c1cd19e3b8ba6ad90febb42a7a082fae6fd43",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-4340000000000000",
+      "canonicalHex": "7b226e223a393030373139393235343734303939327d",
+      "rawSha256": "66c87d9cb3014e05a11baa97df62282d89d425f22ee15816577c84534e2ef1bb",
+      "prefixedSha256": "725f4db3f70a51c761916438225df83045baab6c8f04a17ef4fad64e4d381cc1",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-c340000000000000",
+      "canonicalHex": "7b226e223a2d393030373139393235343734303939327d",
+      "rawSha256": "b05a958438727696a33ea9f819b69ca4ea39b5ee89f0f80a61d5f813875f9734",
+      "prefixedSha256": "a0c94e29def0e9e393d41f44e3d175ac51b541d30e92864f120f19702bea455e",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-4430000000000000",
+      "canonicalHex": "7b226e223a3239353134373930353137393335323833303030307d",
+      "rawSha256": "325cc4ff312eeb1384e130b9072cebd2eca9ad95e621fb017b1ffcc161ebf477",
+      "prefixedSha256": "8f4680a8d0206e33b844f75cd4ccaaa3fc850caefeb677789e66e1fe762f099b",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-44b52d02c7e14af5",
+      "canonicalHex": "7b226e223a392e393939393939393939393939393937652b32327d",
+      "rawSha256": "491b1f5976bc87bb471c8095f795c7d51065b16440ccd6dec5c16a28db4f93dc",
+      "prefixedSha256": "91bcd592e0ce26ae5604b823c6a6e246161d35734cbeef5cd4526e0314a9ec27",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-44b52d02c7e14af6",
+      "canonicalHex": "7b226e223a31652b32337d",
+      "rawSha256": "f8acd93b4d43262e8d22f393b3fc172b2608154644f68bd2295239d62451edef",
+      "prefixedSha256": "6243c68f6ddfc17fcfb81b3a66c8c5154e9bc7042ef969d6f043e7704438d7eb",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-44b52d02c7e14af7",
+      "canonicalHex": "7b226e223a312e30303030303030303030303030303031652b32337d",
+      "rawSha256": "7dbb03dffbdbc82effa56050f04ba388db0e16d0084dbe69012440341b65e5a8",
+      "prefixedSha256": "cc17a5bdc2840a3e796497a56cff563b7c0f1635acf7493fedb12b3facb88d15",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-444b1ae4d6e2ef4e",
+      "canonicalHex": "7b226e223a3939393939393939393939393939393730303030307d",
+      "rawSha256": "0a3c0de48065cb644319c57ce0af93c2ef88d1f8d9f228be26bb4831391d0021",
+      "prefixedSha256": "ab22b74ad8d7fac23fdc7948033f2087fa5923cbab3b44593a94e98d9f3984fe",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-444b1ae4d6e2ef4f",
+      "canonicalHex": "7b226e223a3939393939393939393939393939393930303030307d",
+      "rawSha256": "8e51b9a1b33e4815dbf02451cf409338b6c2e4eaa3399f5fa0b72d162e48dd6e",
+      "prefixedSha256": "a50f94dc88ceee714055eb1bd781cfb9212a891a05bf15ac956c72ab7f8da616",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-444b1ae4d6e2ef50",
+      "canonicalHex": "7b226e223a31652b32317d",
+      "rawSha256": "f1ee2b60ee95a3170fdc07a577e5f3514ced26867443d69da265acadead81007",
+      "prefixedSha256": "b6fb0378b32bbfe515251a4fa9c2211661c890f48dadd8526506b0fb57563599",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-3eb0c6f7a0b5ed8c",
+      "canonicalHex": "7b226e223a392e393939393939393939393939393937652d377d",
+      "rawSha256": "ea0486d765f0e78e3cfd35b0da15c67c6c5f7aefde4dd5bc17ad8b8e95880a1f",
+      "prefixedSha256": "c268250d700d06b915d8a39cad0d62cde560af349ef7b085ac330fa2ac369b96",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-3eb0c6f7a0b5ed8d",
+      "canonicalHex": "7b226e223a302e3030303030317d",
+      "rawSha256": "28343867a0be00aee19f81aa90cfd6c646878b9303fa15410d16bfd3f8894578",
+      "prefixedSha256": "502cac2275e12c5b3b8b8543403032ab480c750f7c3a27abf3a85c2768a86910",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-41b3de4355555553",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333327d",
+      "rawSha256": "1e2e5158c5181c3fdce46fb33314ecd3d0d65aa634f728cbf0263dccef9da48a",
+      "prefixedSha256": "b2b73edd42d2898a8471b0b53fe58aeab3cbce290f21c0a02662182cb54287e4",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-41b3de4355555554",
+      "canonicalHex": "7b226e223a3333333333333333332e33333333333332357d",
+      "rawSha256": "ac4d04fb830b0f5f3c69cbabe1f395fa6461c293693aaac69e31a68d442aefd7",
+      "prefixedSha256": "9bbea1f7f62d346a8928d05a025bf2abf16c8325c6233cf0137cb9f2288dd9f2",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-41b3de4355555555",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333337d",
+      "rawSha256": "8e1aa496328ac7acbd045b34464ae11d72d8b525c355b85099382ffcb499143b",
+      "prefixedSha256": "6c6c0a5da17883a88da8bacd561652123b23f512871ab3e28cb55c9974ccd113",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-41b3de4355555556",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333347d",
+      "rawSha256": "3c8fb0b18feffd17c168b36aef586b8984d28808e4ef73f3e3b467085c079972",
+      "prefixedSha256": "9fc61b5896a7d91e44f3429c3c79c022f1c431e85be499a8bf1121c082314ecd",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-41b3de4355555557",
+      "canonicalHex": "7b226e223a3333333333333333332e33333333333334337d",
+      "rawSha256": "3bec5b8b8e554841ebdf6460208c624df5fc1674a82a8bf97e0577dbb209cae7",
+      "prefixedSha256": "5b542050f7a2c0d1417cee145b0359775ba5e496cfecda71fee1c6198c6df58c",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-becbf647612f3696",
+      "canonicalHex": "7b226e223a2d302e303030303033333333333333333333333333333333337d",
+      "rawSha256": "aae32db884750318e6c338f99586e0d862246d45ad53aafbd7e83dcdd037f8b3",
+      "prefixedSha256": "1068c5aeefe2a0f4d6db838988a938b0d1978fec8b61956592e8008c7a39ed99",
+      "error": null
+    },
+    {
+      "id": "hash-expected-rfc-number-43143ff3c1cb0959",
+      "canonicalHex": "7b226e223a313432343935333932333738313230362e327d",
+      "rawSha256": "c620a6071bc4870e99e38aeff2dbb0ae03cb7d525d60f0cad1b1abcb5bfafe05",
+      "prefixedSha256": "eacf1b138cf0e8f6514041731bc4f61c450170e8ada3ec7e1911d56320bd7d3b",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-0000000000000000",
+      "canonicalHex": "7b226e223a307d",
+      "rawSha256": "f3013f933b9fb80ab6d995e7ad9da36f683837ba1d81e950c943d40111eac2f0",
+      "prefixedSha256": "9cb985decc56a3fa131f5de3de7a2efccd6909ca52b2018856f24d62658a3fef",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-8000000000000000",
+      "canonicalHex": "7b226e223a307d",
+      "rawSha256": "f3013f933b9fb80ab6d995e7ad9da36f683837ba1d81e950c943d40111eac2f0",
+      "prefixedSha256": "9cb985decc56a3fa131f5de3de7a2efccd6909ca52b2018856f24d62658a3fef",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-0000000000000001",
+      "canonicalHex": "7b226e223a35652d3332347d",
+      "rawSha256": "cf4df7d2834198d284947133d3ec7a66f3d94e8d447cac6a0783324211b36d43",
+      "prefixedSha256": "c54957219b4f404689318bd70b357ded484f3e99636d0518c40f3fe69cf3488e",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-8000000000000001",
+      "canonicalHex": "7b226e223a2d35652d3332347d",
+      "rawSha256": "db93947692a55593072b514da386faf1a8c7dc6c49f2d037ac7d9c0f89d5956a",
+      "prefixedSha256": "0fb94669f02b2fa500eaca36313fdfc00939ee3ae80a4e1b0efc5cf01c91710a",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-7fefffffffffffff",
+      "canonicalHex": "7b226e223a312e37393736393331333438363233313537652b3330387d",
+      "rawSha256": "9599e0f9672bfa5d654b432fa5f9b7ee04f35c607b3a3ff01ce97b070f8f2648",
+      "prefixedSha256": "a562149ef1b5d509e79215134f610181ae24f1df64655e9deca1a03108453842",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-ffefffffffffffff",
+      "canonicalHex": "7b226e223a2d312e37393736393331333438363233313537652b3330387d",
+      "rawSha256": "f1ab4b1ad58d11c148ebb64cc86506290ab42b198162ffd4e1d2f1772d8c3a4b",
+      "prefixedSha256": "46e6bf786be33ae2d54e8135314c1cd19e3b8ba6ad90febb42a7a082fae6fd43",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-4340000000000000",
+      "canonicalHex": "7b226e223a393030373139393235343734303939327d",
+      "rawSha256": "66c87d9cb3014e05a11baa97df62282d89d425f22ee15816577c84534e2ef1bb",
+      "prefixedSha256": "725f4db3f70a51c761916438225df83045baab6c8f04a17ef4fad64e4d381cc1",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-c340000000000000",
+      "canonicalHex": "7b226e223a2d393030373139393235343734303939327d",
+      "rawSha256": "b05a958438727696a33ea9f819b69ca4ea39b5ee89f0f80a61d5f813875f9734",
+      "prefixedSha256": "a0c94e29def0e9e393d41f44e3d175ac51b541d30e92864f120f19702bea455e",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-4430000000000000",
+      "canonicalHex": "7b226e223a3239353134373930353137393335323833303030307d",
+      "rawSha256": "325cc4ff312eeb1384e130b9072cebd2eca9ad95e621fb017b1ffcc161ebf477",
+      "prefixedSha256": "8f4680a8d0206e33b844f75cd4ccaaa3fc850caefeb677789e66e1fe762f099b",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-44b52d02c7e14af5",
+      "canonicalHex": "7b226e223a392e393939393939393939393939393937652b32327d",
+      "rawSha256": "491b1f5976bc87bb471c8095f795c7d51065b16440ccd6dec5c16a28db4f93dc",
+      "prefixedSha256": "91bcd592e0ce26ae5604b823c6a6e246161d35734cbeef5cd4526e0314a9ec27",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-44b52d02c7e14af6",
+      "canonicalHex": "7b226e223a31652b32337d",
+      "rawSha256": "f8acd93b4d43262e8d22f393b3fc172b2608154644f68bd2295239d62451edef",
+      "prefixedSha256": "6243c68f6ddfc17fcfb81b3a66c8c5154e9bc7042ef969d6f043e7704438d7eb",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-44b52d02c7e14af7",
+      "canonicalHex": "7b226e223a312e30303030303030303030303030303031652b32337d",
+      "rawSha256": "7dbb03dffbdbc82effa56050f04ba388db0e16d0084dbe69012440341b65e5a8",
+      "prefixedSha256": "cc17a5bdc2840a3e796497a56cff563b7c0f1635acf7493fedb12b3facb88d15",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-444b1ae4d6e2ef4e",
+      "canonicalHex": "7b226e223a3939393939393939393939393939393730303030307d",
+      "rawSha256": "0a3c0de48065cb644319c57ce0af93c2ef88d1f8d9f228be26bb4831391d0021",
+      "prefixedSha256": "ab22b74ad8d7fac23fdc7948033f2087fa5923cbab3b44593a94e98d9f3984fe",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-444b1ae4d6e2ef4f",
+      "canonicalHex": "7b226e223a3939393939393939393939393939393930303030307d",
+      "rawSha256": "8e51b9a1b33e4815dbf02451cf409338b6c2e4eaa3399f5fa0b72d162e48dd6e",
+      "prefixedSha256": "a50f94dc88ceee714055eb1bd781cfb9212a891a05bf15ac956c72ab7f8da616",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-444b1ae4d6e2ef50",
+      "canonicalHex": "7b226e223a31652b32317d",
+      "rawSha256": "f1ee2b60ee95a3170fdc07a577e5f3514ced26867443d69da265acadead81007",
+      "prefixedSha256": "b6fb0378b32bbfe515251a4fa9c2211661c890f48dadd8526506b0fb57563599",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-3eb0c6f7a0b5ed8c",
+      "canonicalHex": "7b226e223a392e393939393939393939393939393937652d377d",
+      "rawSha256": "ea0486d765f0e78e3cfd35b0da15c67c6c5f7aefde4dd5bc17ad8b8e95880a1f",
+      "prefixedSha256": "c268250d700d06b915d8a39cad0d62cde560af349ef7b085ac330fa2ac369b96",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-3eb0c6f7a0b5ed8d",
+      "canonicalHex": "7b226e223a302e3030303030317d",
+      "rawSha256": "28343867a0be00aee19f81aa90cfd6c646878b9303fa15410d16bfd3f8894578",
+      "prefixedSha256": "502cac2275e12c5b3b8b8543403032ab480c750f7c3a27abf3a85c2768a86910",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-41b3de4355555553",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333327d",
+      "rawSha256": "1e2e5158c5181c3fdce46fb33314ecd3d0d65aa634f728cbf0263dccef9da48a",
+      "prefixedSha256": "b2b73edd42d2898a8471b0b53fe58aeab3cbce290f21c0a02662182cb54287e4",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-41b3de4355555554",
+      "canonicalHex": "7b226e223a3333333333333333332e33333333333332357d",
+      "rawSha256": "ac4d04fb830b0f5f3c69cbabe1f395fa6461c293693aaac69e31a68d442aefd7",
+      "prefixedSha256": "9bbea1f7f62d346a8928d05a025bf2abf16c8325c6233cf0137cb9f2288dd9f2",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-41b3de4355555555",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333337d",
+      "rawSha256": "8e1aa496328ac7acbd045b34464ae11d72d8b525c355b85099382ffcb499143b",
+      "prefixedSha256": "6c6c0a5da17883a88da8bacd561652123b23f512871ab3e28cb55c9974ccd113",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-41b3de4355555556",
+      "canonicalHex": "7b226e223a3333333333333333332e333333333333347d",
+      "rawSha256": "3c8fb0b18feffd17c168b36aef586b8984d28808e4ef73f3e3b467085c079972",
+      "prefixedSha256": "9fc61b5896a7d91e44f3429c3c79c022f1c431e85be499a8bf1121c082314ecd",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-41b3de4355555557",
+      "canonicalHex": "7b226e223a3333333333333333332e33333333333334337d",
+      "rawSha256": "3bec5b8b8e554841ebdf6460208c624df5fc1674a82a8bf97e0577dbb209cae7",
+      "prefixedSha256": "5b542050f7a2c0d1417cee145b0359775ba5e496cfecda71fee1c6198c6df58c",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-becbf647612f3696",
+      "canonicalHex": "7b226e223a2d302e303030303033333333333333333333333333333333337d",
+      "rawSha256": "aae32db884750318e6c338f99586e0d862246d45ad53aafbd7e83dcdd037f8b3",
+      "prefixedSha256": "1068c5aeefe2a0f4d6db838988a938b0d1978fec8b61956592e8008c7a39ed99",
+      "error": null
+    },
+    {
+      "id": "parse-rfc-number-43143ff3c1cb0959",
+      "canonicalHex": "7b226e223a313432343935333932333738313230362e327d",
+      "rawSha256": "c620a6071bc4870e99e38aeff2dbb0ae03cb7d525d60f0cad1b1abcb5bfafe05",
+      "prefixedSha256": "eacf1b138cf0e8f6514041731bc4f61c450170e8ada3ec7e1911d56320bd7d3b",
+      "error": null
+    },
+    {
+      "id": "raw-duplicate-root",
+      "error": "ArgumentException",
+      "message": "An item with the same key has already been added. Key: [a, 2]"
+    },
+    {
+      "id": "raw-duplicate-nested",
+      "error": "ArgumentException",
+      "message": "An item with the same key has already been added. Key: [x, 2]"
+    },
+    {
+      "id": "raw-duplicate-escaped",
+      "error": "ArgumentException",
+      "message": "An item with the same key has already been added. Key: [a, 2]"
+    },
+    {
+      "id": "raw-duplicate-nested-array",
+      "error": "ArgumentException",
+      "message": "An item with the same key has already been added. Key: [a, 2]"
+    },
+    {
+      "id": "raw-unpaired-high",
+      "error": "EncoderFallbackException",
+      "message": "Unable to translate Unicode character \\\\uD800 at index 6 to specified code page."
+    },
+    {
+      "id": "raw-unpaired-low",
+      "error": "EncoderFallbackException",
+      "message": "Unable to translate Unicode character \\\\uDC00 at index 6 to specified code page."
+    },
+    {
+      "id": "raw-unpaired-key",
+      "error": "EncoderFallbackException",
+      "message": "Unable to translate Unicode character \\\\uD800 at index 2 to specified code page."
+    },
+    {
+      "id": "raw-bad-utf8",
+      "error": "DecoderFallbackException",
+      "message": "Unable to translate bytes [C3] at index 6 from specified code page to Unicode."
+    },
+    {
+      "id": "raw-overlong-utf8",
+      "error": "DecoderFallbackException",
+      "message": "Unable to translate bytes [C0] at index 6 from specified code page to Unicode."
+    },
+    {
+      "id": "raw-utf8-surrogate",
+      "error": "DecoderFallbackException",
+      "message": "Unable to translate bytes [ED] at index 6 from specified code page to Unicode."
+    },
+    {
+      "id": "raw-bom",
+      "error": "IOException",
+      "message": "Expected \u0027{\u0027 but got \u0027\uFEFF\u0027"
+    },
+    {
+      "id": "raw-overflow-number",
+      "error": "ArgumentException",
+      "message": "NaN/Infinity are not permitted in JSON"
+    },
+    {
+      "id": "raw-nan-token",
+      "error": "IOException",
+      "message": "Unrecognized or malformed JSON token: NaN"
+    },
+    {
+      "id": "raw-infinity-token",
+      "error": "IOException",
+      "message": "Unrecognized or malformed JSON token: Infinity"
+    },
+    {
+      "id": "raw-trailing-comma",
+      "error": "IOException",
+      "message": "Expected \u0027\u0022\u0027 but got \u0027}\u0027"
+    },
+    {
+      "id": "raw-leading-zero",
+      "canonicalHex": "7b2261223a317d",
+      "rawSha256": "015abd7f5cc57a2dd94b7590f04ad8084273905ee33ec5cebeae62276a97f862",
+      "prefixedSha256": "913482d60e3b7f43ed3fdf039f9ebdd2028ba6a89e203199dff6fe5a434303a1",
+      "error": null
+    },
+    {
+      "id": "nonfinite-7fffffffffffffff",
+      "error": "ArgumentException",
+      "message": "NaN/Infinity are not permitted in JSON"
+    },
+    {
+      "id": "nonfinite-7ff0000000000000",
+      "error": "ArgumentException",
+      "message": "NaN/Infinity are not permitted in JSON"
+    },
+    {
+      "id": "nonfinite-fff0000000000000",
+      "error": "ArgumentException",
+      "message": "NaN/Infinity are not permitted in JSON"
+    }
+  ]
+}
