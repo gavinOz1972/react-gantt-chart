@@ -1,0 +1,54 @@
+{
+  "assessmentOnly": true,
+  "clientDate": "2026-11-09",
+  "timezone": "America/Regina",
+  "branch": "feature/wp7-stabilization",
+  "sourceBase": "1b35da8ed7e4d113557b992d7abe7a1a0c316e6d",
+  "request": {
+    "file": "Bugsys_WP7_4_4c_Historical_Storage_Assessment.docx",
+    "sha256": "5ce9cbc00137917884c781f7d1156aa5d41848dbca6ea8038eff66d0cf0d2c05"
+  },
+  "protectedRefsVerifiedBeforeDelivery": {
+    "main": "a6a1c32c22a2bf074b161e52d523443602843dd7",
+    "v1.0-pre-progress": {
+      "tagObject": "a4157bc84392c770c27111da58d779948b110a56",
+      "peeled": "abb85011dafc9fb0876953e3132880e025ef65da"
+    },
+    "v1.1-pre-stabilization": {
+      "tagObject": "134305f2205eb993ab76672c2d2469d48d91a609",
+      "peeled": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+    }
+  },
+  "checks": {
+    "application": {
+      "lint": true,
+      "typecheck": true,
+      "unitComponentTests": 625,
+      "testFiles": 37,
+      "build": true,
+      "chromiumBrowserCases": 223,
+      "nativeBrowserExitCode": 0,
+      "isolatedBuildExitCode": 0
+    },
+    "research": {
+      "scenarios": 11,
+      "measuredFreshProcesses": 165,
+      "warmups": 55,
+      "assertions": 1180,
+      "exitCode": 0,
+      "fullDomainValidation": false,
+      "physicalStorageOrConcurrencyTested": false
+    }
+  },
+  "recommendation": "Staged A semantic/export boundary with separately scoped purpose-based operational and paged immutable-history capability; no mandatory replay/checkpoints",
+  "R07Final": false,
+  "productionImplementationAuthorized": false,
+  "evidenceHashes": {
+    "measurements.json": "061f247afd8a8fe4041e89c049f9b59f5811ae9be3699b7e51160cb365ef1081",
+    "check.txt": "3c949c209119d62688d0af5725d329b9553546e0b2f2830604cffca51b40a9d8",
+    "browser-all.txt": "b57060d5840b996d80d3d5cf001a16f1afac4e014c1d8b62cb8a786cfc1e269e",
+    "build-isolated.txt": "d72896f5a3beb7cd94292d568c3534e4093f7f577655c61e223136e3c7f82eed",
+    "measure.txt": "264d9d21ac94055d55a791a51570cf07b38ffaae0815168d7dd6581548ce117b",
+    "final-checks.txt": "941b049afe62be71373f766dfd963125e0cde9e50f056214416bf34666d91887"
+  }
+}

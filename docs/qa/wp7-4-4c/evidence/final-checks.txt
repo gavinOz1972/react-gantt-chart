@@ -1,0 +1,9 @@
+
+> react-gantt-chart@0.0.0 lint
+> eslint .
+
+Syntax passed: audit.mjs
+Syntax passed: dense.mjs
+Syntax passed: illustrations.mjs
+Syntax passed: measure.mjs
+Syntax passed: worker.mjs
