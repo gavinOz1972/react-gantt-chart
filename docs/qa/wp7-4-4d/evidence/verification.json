@@ -1,0 +1,68 @@
+{
+  "documentationOnly": true,
+  "clientDate": "2026-11-09",
+  "timezone": "America/Regina",
+  "branch": "feature/wp7-stabilization",
+  "sourceBase": "c967d0c8417d263cccdc3c6b5472036199bbcdcd",
+  "request": {
+    "filename": "Bugsys_WP7_4_4d_Historical_Architecture_Contract_Consolidation.docx",
+    "sha256": "18d6be76b41b965de4a0b47d3ae403f0f0cec2d8666dfc0dc6a222e95dc556e2"
+  },
+  "authority": {
+    "WP744cAssessment": "Owner accepted by WP7.4.4d source",
+    "D01": "Approved direction",
+    "D02": "Approved provisional policy and qualified-route prerequisite",
+    "D03": "Approved near-term reporting scope, no mandatory exact replay",
+    "D04": "Approved additive capability proposal direction",
+    "D05": "Approved separately scoped archival design, no provider selected",
+    "R07Final": false
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+    "logicalCpus": 32
+  },
+  "checks": {
+    "check": {
+      "exitCode": 0,
+      "unitComponentTests": 625,
+      "testFiles": 37,
+      "lint": true,
+      "typecheck": true,
+      "build": true,
+      "execution": "isolated git archive of starting source HEAD"
+    },
+    "browser": {
+      "nativeExitCode": 0,
+      "chromiumCases": 223,
+      "duration": "2.6 minutes",
+      "ownedPort": 4173
+    },
+    "finalLint": {
+      "exitCode": 0
+    },
+    "newRuntimeConformanceCases": 0,
+    "newResearchMeasurements": 0,
+    "productionImplementation": false
+  },
+  "protectedRefsVerifiedBeforeDelivery": {
+    "main": "a6a1c32c22a2bf074b161e52d523443602843dd7",
+    "v1.0-pre-progress": {
+      "tagObject": "a4157bc84392c770c27111da58d779948b110a56",
+      "peeled": "abb85011dafc9fb0876953e3132880e025ef65da"
+    },
+    "v1.1-pre-stabilization": {
+      "tagObject": "134305f2205eb993ab76672c2d2469d48d91a609",
+      "peeled": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+    }
+  },
+  "evidenceHashes": {
+    "check.txt": "41f4705fe365fd92530714776ef3d626e2a84d8d39d7ab09d98f1af65b53c7da",
+    "browser-all.txt": "44407ef600975d2b49081d71eb20922f175410ca3b7a403b90ba2f4b08e35ffc",
+    "final-lint.txt": "00c7c66141cea6a20e73b5b6006ff6ad9355318367532d66516173845ff4c718"
+  }
+}
