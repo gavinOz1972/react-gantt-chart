@@ -1,0 +1,11 @@
+.selected-task-history { border-top: 1px solid #dce4ec; margin-top: 22px; padding-top: 16px; min-width: 0; }
+.selected-history-content { margin-top: 14px; min-width: 0; }
+.selected-history-content > button { margin: 8px 8px 0 0; }
+.selected-history-rows { padding-left: 22px; }
+.selected-history-rows > li { padding: 12px 0; border-bottom: 1px solid #dce4ec; }
+.selected-history-rows dl { margin: 10px 0; }
+.selected-history-rows dl > div { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.selected-history-rows dt { font-weight: 600; color: #52657b; margin: 0; }
+.selected-history-rows dd { margin: 0; }
+.selected-history-content p, .selected-history-content li, .selected-history-content dd { white-space: pre-wrap; overflow-wrap: anywhere; }
+.history-coverage { padding: 10px; background: #f2f6fa; border-left: 3px solid #728ba4; }

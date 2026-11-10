@@ -1,0 +1,7 @@
+{
+  "base": "678013e5ac57ba2efec5775ea1a780c5198d3932",
+  "method": "Original TaskStatusPanel from isolated Git archive plus synthetic fixture producer only; no new UI or reader in capture source",
+  "fixtureSha256": "e71f11d64c6c070e964f13b5ffce6432bc5d86a5a4e253969dd4fc7fa0337a3c",
+  "originalPanelSha256": "f787c5fe87039c3941fc245a8f85fb2f57758d9b8a05284db091fd485fbe19d7",
+  "htmlSha256": "deb72da279f2c6b78f9dfffc1f1ac06dbbc2727b4a7c7fa9985a9539de6f73b7"
+}

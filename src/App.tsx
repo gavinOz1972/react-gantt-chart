@@ -421,6 +421,7 @@ function App() {
       {selectedForecast && !forecastDraft && <TaskForecastSummary task={selectedForecast} />}
       {newSinceBaseline && <p className="muted">New since baseline: this permanent task ID has no originally approved dates.</p>}
       <TaskStatusPanel key={`status-${documentEpoch}`} task={selectedCurrentTask} tracking={taskProgress} disabled={!!editor || inlineDrafts.size > 0 || workDraft || !!quickRemaining || definitionDraft || !!statusPrompt || forecastDraft || !result.ok || projectDirty} statusDisabled={statusBlocked}
+        historyContext={{ resourceId: `${project.projectId}:${documentEpoch}`, formatVersion: legacySource?.schemaVersion ?? 5, tasks }}
         health={selectedTaskId ? health.tasks.get(selectedTaskId) : undefined} onRequest={requestStatus} onCriteria={commitCriteria} onDraftChange={setCriteriaDraft} onSelect={setSelectedTaskId} />
       <TaskWorkPanel key={`work-${documentEpoch}`} task={selectedCurrentTask} tracking={workTracking} baseline={baseline} complete={selectedComplete} disabled={!!editor || inlineDrafts.size > 0 || !result.ok || projectDirty || !!quickRemaining || progressDraft}
         onChange={commitWork} onDraftChange={setWorkDraft} onSelect={setSelectedTaskId} />

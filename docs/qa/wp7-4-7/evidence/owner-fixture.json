@@ -1,0 +1,1818 @@
+{
+  "format": "react-gantt-chart",
+  "schemaVersion": 5,
+  "savedAt": "2026-11-10T15:00:00.000Z",
+  "createdBy": "React Gantt Chart",
+  "project": {
+    "projectId": "WP747-HISTORY",
+    "name": "Selected history review",
+    "projectStartDate": "2026-11-02",
+    "targetEndDate": "2027-03-01",
+    "workingWeekdays": [
+      1,
+      4,
+      5
+    ],
+    "workingHoursPerDay": 3
+  },
+  "tasks": [
+    {
+      "taskId": "T1",
+      "name": "History task 1",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T2",
+      "name": "History task 2",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T3",
+      "name": "History task 3",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T4",
+      "name": "History task 4",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T5",
+      "name": "History task 5",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T6",
+      "name": "History task 6",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T7",
+      "name": "History task 7",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T8",
+      "name": "History task 8",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T9",
+      "name": "History task 9",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T10",
+      "name": "History task 10",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T11",
+      "name": "History task 11",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T12",
+      "name": "History task 12",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T13",
+      "name": "History task 13",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T14",
+      "name": "History task 14",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T15",
+      "name": "History task 15",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T16",
+      "name": "History task 16",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T17",
+      "name": "History task 17",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T18",
+      "name": "History task 18",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T19",
+      "name": "History task 19",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T20",
+      "name": "History task 20",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T21",
+      "name": "History task 21",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T22",
+      "name": "History task 22",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T23",
+      "name": "History task 23",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T24",
+      "name": "History task 24",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T25",
+      "name": "History task 25",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T26",
+      "name": "History task 26",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T27",
+      "name": "History task 27",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T28",
+      "name": "History task 28",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T29",
+      "name": "History task 29",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T30",
+      "name": "History task 30",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T31",
+      "name": "History task 31",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T32",
+      "name": "History task 32",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T33",
+      "name": "History task 33",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T34",
+      "name": "History task 34",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T35",
+      "name": "History task 35",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T36",
+      "name": "History task 36",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T37",
+      "name": "History task 37",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T38",
+      "name": "History task 38",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T39",
+      "name": "History task 39",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    },
+    {
+      "taskId": "T40",
+      "name": "History task 40",
+      "description": "Synthetic owner test",
+      "durationHours": 5,
+      "predecessorTaskIds": [],
+      "independentStartMode": "DEFAULT"
+    }
+  ],
+  "nextTaskNumber": 41,
+  "manualOrder": [
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6",
+    "T7",
+    "T8",
+    "T9",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T24",
+    "T25",
+    "T26",
+    "T27",
+    "T28",
+    "T29",
+    "T30",
+    "T31",
+    "T32",
+    "T33",
+    "T34",
+    "T35",
+    "T36",
+    "T37",
+    "T38",
+    "T39",
+    "T40"
+  ],
+  "sortMode": "manual",
+  "duplicateOrigins": {},
+  "baseline": {
+    "project": {
+      "projectId": "WP747-HISTORY",
+      "name": "Selected history review",
+      "projectStartDate": "2026-11-02",
+      "targetEndDate": "2027-03-01",
+      "workingWeekdays": [
+        1,
+        4,
+        5
+      ],
+      "workingHoursPerDay": 3
+    },
+    "tasks": [
+      {
+        "taskId": "T1",
+        "name": "History task 1",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T2",
+        "name": "History task 2",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T3",
+        "name": "History task 3",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T4",
+        "name": "History task 4",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T5",
+        "name": "History task 5",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T6",
+        "name": "History task 6",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T7",
+        "name": "History task 7",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T8",
+        "name": "History task 8",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T9",
+        "name": "History task 9",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T10",
+        "name": "History task 10",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T11",
+        "name": "History task 11",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T12",
+        "name": "History task 12",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T13",
+        "name": "History task 13",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T14",
+        "name": "History task 14",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T15",
+        "name": "History task 15",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T16",
+        "name": "History task 16",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T17",
+        "name": "History task 17",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T18",
+        "name": "History task 18",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T19",
+        "name": "History task 19",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T20",
+        "name": "History task 20",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T21",
+        "name": "History task 21",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T22",
+        "name": "History task 22",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T23",
+        "name": "History task 23",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T24",
+        "name": "History task 24",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T25",
+        "name": "History task 25",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T26",
+        "name": "History task 26",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T27",
+        "name": "History task 27",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T28",
+        "name": "History task 28",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T29",
+        "name": "History task 29",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T30",
+        "name": "History task 30",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T31",
+        "name": "History task 31",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T32",
+        "name": "History task 32",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T33",
+        "name": "History task 33",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T34",
+        "name": "History task 34",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T35",
+        "name": "History task 35",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T36",
+        "name": "History task 36",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T37",
+        "name": "History task 37",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T38",
+        "name": "History task 38",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T39",
+        "name": "History task 39",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      },
+      {
+        "taskId": "T40",
+        "name": "History task 40",
+        "description": "Synthetic owner test",
+        "durationHours": 5,
+        "predecessorTaskIds": [],
+        "independentStartMode": "DEFAULT"
+      }
+    ],
+    "nextTaskNumber": 41,
+    "manualOrder": [
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7",
+      "T8",
+      "T9",
+      "T10",
+      "T11",
+      "T12",
+      "T13",
+      "T14",
+      "T15",
+      "T16",
+      "T17",
+      "T18",
+      "T19",
+      "T20",
+      "T21",
+      "T22",
+      "T23",
+      "T24",
+      "T25",
+      "T26",
+      "T27",
+      "T28",
+      "T29",
+      "T30",
+      "T31",
+      "T32",
+      "T33",
+      "T34",
+      "T35",
+      "T36",
+      "T37",
+      "T38",
+      "T39",
+      "T40"
+    ],
+    "sortMode": "manual",
+    "duplicateOrigins": {},
+    "schemaVersion": 1,
+    "baselineId": "B-WP747",
+    "establishedAt": "2026-11-02T14:00:00.000Z",
+    "schedule": {
+      "tasks": [
+        {
+          "taskId": "T1",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T10",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T11",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T12",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T13",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T14",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T15",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T16",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T17",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T18",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T19",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T2",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T20",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T21",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T22",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T23",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T24",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T25",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T26",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T27",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T28",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T29",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T3",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T30",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T31",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T32",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T33",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T34",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T35",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T36",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T37",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T38",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T39",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T4",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T40",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T5",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T6",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T7",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T8",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        },
+        {
+          "taskId": "T9",
+          "predecessorTaskIds": [],
+          "startSlot": {
+            "date": "2026-11-02",
+            "hour": 1
+          },
+          "finishBoundary": {
+            "date": "2026-11-05",
+            "afterHour": 2
+          },
+          "startDate": "2026-11-02",
+          "finishDate": "2026-11-05"
+        }
+      ],
+      "projectCompletion": {
+        "date": "2026-11-05",
+        "afterHour": 2
+      }
+    }
+  },
+  "taskProgress": {
+    "schemaVersion": 1,
+    "definitionOfDone": "Original <guidance> & wording.",
+    "tasks": {
+      "T1": {
+        "status": "In Progress",
+        "criteria": [
+          {
+            "criterionId": "C1",
+            "text": "Deliverable <reviewed> & accepted",
+            "checked": true
+          }
+        ]
+      },
+      "T2": {
+        "status": "Blocked",
+        "criteria": [],
+        "blockedReason": "Waiting <on review> & evidence."
+      }
+    },
+    "events": [
+      {
+        "eventId": "H-1",
+        "taskId": "T1",
+        "fromStatus": "Not Started",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-2",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-3",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-4",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-5",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-6",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-7",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-8",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-9",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-10",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-11",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-12",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-13",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-14",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-15",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-16",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-17",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-18",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-19",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-20",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-21",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-22",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-23",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-24",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-25",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-26",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-27",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-28",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-29",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-30",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-31",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-32",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-33",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-34",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-35",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-36",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-37",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-38",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-39",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-40",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-41",
+        "taskId": "T1",
+        "fromStatus": "Blocked",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-42",
+        "taskId": "T1",
+        "fromStatus": "In Progress",
+        "toStatus": "Complete",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "note": "Literal <img src=x onerror=alert(1)> & note.",
+        "criteriaSnapshot": [
+          {
+            "criterionId": "C1",
+            "text": "Deliverable <reviewed> & accepted",
+            "checked": true
+          }
+        ],
+        "completionAcknowledged": true,
+        "definitionOfDone": "Original <guidance> & wording.",
+        "committedFinishDateAtCompletion": "2026-11-05"
+      },
+      {
+        "eventId": "H-43",
+        "taskId": "T1",
+        "fromStatus": "Complete",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      },
+      {
+        "eventId": "H-44",
+        "taskId": "T2",
+        "fromStatus": "Not Started",
+        "toStatus": "In Progress",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z"
+      },
+      {
+        "eventId": "H-45",
+        "taskId": "T2",
+        "fromStatus": "In Progress",
+        "toStatus": "Blocked",
+        "date": "2026-11-05",
+        "recordedAt": "2026-11-09T15:00:00.000Z",
+        "reason": "Waiting <on review> & evidence."
+      }
+    ]
+  },
+  "workTracking": {
+    "schemaVersion": 1,
+    "remainingHours": {
+      "T1": 5,
+      "T2": 5,
+      "T3": 5,
+      "T4": 5,
+      "T5": 5,
+      "T6": 5,
+      "T7": 5,
+      "T8": 5,
+      "T9": 5,
+      "T10": 5,
+      "T11": 5,
+      "T12": 5,
+      "T13": 5,
+      "T14": 5,
+      "T15": 5,
+      "T16": 5,
+      "T17": 5,
+      "T18": 5,
+      "T19": 5,
+      "T20": 5,
+      "T21": 5,
+      "T22": 5,
+      "T23": 5,
+      "T24": 5,
+      "T25": 5,
+      "T26": 5,
+      "T27": 5,
+      "T28": 5,
+      "T29": 5,
+      "T30": 5,
+      "T31": 5,
+      "T32": 5,
+      "T33": 5,
+      "T34": 5,
+      "T35": 5,
+      "T36": 5,
+      "T37": 5,
+      "T38": 5,
+      "T39": 5,
+      "T40": 5
+    },
+    "entries": [
+      {
+        "entryId": "W-WP747",
+        "taskId": "T1",
+        "workDate": "2026-11-05",
+        "contributor": "Synthetic reviewer",
+        "hours": 1.5,
+        "description": "Optional recorded work",
+        "createdAt": "2026-11-09T15:00:00.000Z",
+        "updatedAt": "2026-11-09T15:00:00.000Z"
+      }
+    ]
+  },
+  "forecastSettings": {
+    "schemaVersion": 1,
+    "enabled": true,
+    "classHoursPerStudent": 4,
+    "homeworkHoursPerStudent": 2,
+    "teamSize": 4,
+    "asOfDate": "2026-11-09"
+  }
+}

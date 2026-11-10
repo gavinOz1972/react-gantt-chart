@@ -1,18 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { TaskInput } from '../../domain'
 import { latestCompletion, progressForTask } from '../../progress/taskProgress'
 import type { CompletionCriterion, ProgressTracking, TaskStatus } from '../../progress/taskProgress'
 import { TaskStatusControl } from './TaskStatusControl'
 import type { TaskHealth } from '../../progress/healthPresentation'
 import { TaskHealthBadge } from './HealthBadge'
+import { LegacyTaskHistory } from './LegacyTaskHistory'
+import { SelectedTaskHistory } from './SelectedTaskHistory'
+import { createLoadedTaskHistoryReader } from '../../history/selectedTaskHistory'
+import { selectedTaskHistoryEnabled } from '../../history/featureFlag'
 
 interface CriterionDraft { criterionId?: string; text: string; error?: string }
-export function TaskStatusPanel({ task, tracking, disabled, statusDisabled, onRequest, onCriteria, onDraftChange, onSelect, health }: {
+export function TaskStatusPanel({ task, tracking, disabled, statusDisabled, onRequest, onCriteria, onDraftChange, onSelect, health, historyContext }: {
   task?: TaskInput; tracking: ProgressTracking; disabled: boolean; statusDisabled: boolean
   onRequest: (task: TaskInput, target: TaskStatus, trigger: HTMLElement) => void
   onCriteria: (taskId: string, criteria: readonly CompletionCriterion[]) => string | undefined
   onDraftChange: (dirty: boolean) => void; onSelect: (id: string) => void
   health?: TaskHealth
+  historyContext?: { resourceId: string; formatVersion: 1 | 2 | 3 | 4 | 5; tasks: readonly TaskInput[] }
 }) {
   const [drafts, setDrafts] = useState<Record<string, CriterionDraft>>({})
   const [notice, setNotice] = useState('')
@@ -21,7 +26,11 @@ export function TaskStatusPanel({ task, tracking, disabled, statusDisabled, onRe
   const current = task ? progressForTask(tracking, task.taskId) : undefined
   const draft = task && Object.hasOwn(drafts, task.taskId) ? drafts[task.taskId] : undefined
   const completion = task ? latestCompletion(tracking, task.taskId) : undefined
-  const events = tracking.events.filter(event => event.taskId === task?.taskId)
+  const historyEnabled = selectedTaskHistoryEnabled()
+  const resourceId = historyContext?.resourceId, formatVersion = historyContext?.formatVersion, historyTasks = historyContext?.tasks
+  const historyReader = useMemo(() => historyEnabled && resourceId && formatVersion && historyTasks
+    ? createLoadedTaskHistoryReader({ resourceId, formatVersion, taskIds: historyTasks.map(t => t.taskId), tracking }) : undefined,
+  [historyEnabled, resourceId, formatVersion, historyTasks, tracking])
   function cancel() { if (task) setDrafts(previous => Object.fromEntries(Object.entries(previous).filter(([id]) => id !== task.taskId))) }
   function update(items: readonly CompletionCriterion[]) { if (!task) return; const problem = onCriteria(task.taskId, items); setNotice(problem ?? 'Completion checklist updated.'); return problem }
   function save() {
@@ -56,17 +65,8 @@ export function TaskStatusPanel({ task, tracking, disabled, statusDisabled, onRe
           <div className="form-actions"><button type="submit" disabled={disabled}>Save criterion</button><button type="button" className="quiet" onClick={cancel}>Cancel criterion</button></div>
           {draft.error && <p role="alert" className="field-error">{draft.error}</p>}
         </form>}
-      <details className="status-history"><summary>Transition history ({events.length})</summary>
-        <p className="muted">Read-only records of deliberate decisions. These local records do not verify identity or provide a tamper-proof audit trail.</p>
-        {!events.length ? <p>No status events recorded.</p> : <ol>{[...events].reverse().map(event => <li key={event.eventId} data-status-event={event.eventId}>
-          <strong><time dateTime={event.date}>{event.date}</time> · {event.fromStatus} → {event.toStatus}</strong>
-          {event.reason && <p>Reason: {event.reason}</p>}{event.note && <p>Note / evidence: {event.note}</p>}
-          {event.committedFinishDateAtCompletion && <p>Committed finish at completion: {event.committedFinishDateAtCompletion}</p>}
-          {event.criteriaSnapshot && <><p>Completion criteria attested:</p>{event.criteriaSnapshot.length ? <ul>{event.criteriaSnapshot.map(item => <li key={item.criterionId}>{item.text} — satisfied</li>)}</ul> : <p>No formal criteria were recorded; explicitly acknowledged at completion.</p>}
-            {event.definitionOfDone && <p>Project guidance at completion: {event.definitionOfDone}</p>}</>}
-          <small>Event {event.eventId} · Recorded {event.recordedAt}</small>
-        </li>)}</ol>}
-      </details>
+      {historyReader ? <SelectedTaskHistory key={`${resourceId}:${task.taskId}`} taskId={task.taskId} reader={historyReader} fallback={<LegacyTaskHistory taskId={task.taskId} tracking={tracking} open />} />
+        : <LegacyTaskHistory taskId={task.taskId} tracking={tracking} />}
     </>}
     <p className="save-notice" role="status">{notice}</p>
   </section>

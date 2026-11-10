@@ -1,0 +1,29 @@
+{
+  "clientDate": "2026-11-10",
+  "unitComponentTests": {
+    "passed": 833,
+    "files": 41,
+    "newFocused": 36
+  },
+  "featureOnBrowser": {
+    "passed": 19,
+    "nativeExit": 0
+  },
+  "defaultOffBrowser": {
+    "passed": 223,
+    "nativeExit": 0
+  },
+  "lint": "passed",
+  "applicationTypecheck": "passed",
+  "qaTypecheck": "passed",
+  "build": "passed",
+  "originalPanelHtml": "identical with gate off and DEV false",
+  "screenshotsVisuallyReviewed": [
+    780,
+    1280,
+    1440
+  ],
+  "ownerAcceptance": "Pending",
+  "R07": "Pending",
+  "physicalMemoryOrLazyIOQualified": false
+}

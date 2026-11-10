@@ -1,0 +1,30 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test --config docs/qa/wp7-4-7/playwright.config.ts --workers=3
+
+
+Running 19 tests using 3 workers
+
+  ok  1 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:41:40 › 40-task app at 780px keeps actions accessible and history contained (1.5s)
+  ok  2 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:41:40 › 40-task app at 1280px keeps actions accessible and history contained (1.5s)
+  ok  5 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated partial QA is explicit and recoverable (386ms)
+  ok  6 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated empty QA is explicit and recoverable (334ms)
+  ok  7 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated unavailable QA is explicit and recoverable (403ms)
+  ok  3 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:14:1 › enabled App starts collapsed; keyboard paging and hide preserve selection, drafts and exact project data (2.8s)
+  ok  4 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:41:40 › 40-task app at 1440px keeps actions accessible and history contained (1.5s)
+  ok  8 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated invalid QA is explicit and recoverable (364ms)
+  ok  9 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated unsupported QA is explicit and recoverable (442ms)
+  ok 10 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated expired QA is explicit and recoverable (440ms)
+  ok 11 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated oversized QA is explicit and recoverable (544ms)
+  ok 12 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated mixed QA is explicit and recoverable (367ms)
+  ok 13 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:49:133 › isolated cancelled QA is explicit and recoverable (373ms)
+  ok 14 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:66:1 › delayed read cannot cross task changes; concurrent source requires explicit refresh (2.2s)
+  ok 15 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:77:49 › format 1 view preserves exact export contents and saved source; reload collapses disclosure (2.5s)
+  ok 16 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:77:49 › format 2 view preserves exact export contents and saved source; reload collapses disclosure (2.7s)
+  ok 17 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:77:49 › format 3 view preserves exact export contents and saved source; reload collapses disclosure (2.9s)
+  ok 18 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:77:49 › format 4 view preserves exact export contents and saved source; reload collapses disclosure (2.8s)
+  ok 19 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:77:49 › format 5 view preserves exact export contents and saved source; reload collapses disclosure (2.8s)
+
+  19 passed (11.5s)
+
+Native exit code: 0
