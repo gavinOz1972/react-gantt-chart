@@ -1,0 +1,1371 @@
+{
+  "assessmentOnly": true,
+  "clientDate": "2026-11-10",
+  "recordedAtUTC": "2026-11-10T06:48:29.138Z",
+  "cases": 24,
+  "rows": [
+    {
+      "id": "empty",
+      "acceptedLegacyProgress": true,
+      "taskCount": 0,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "created",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "complete",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline",
+        "readHistoricalRecord"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 1
+    },
+    {
+      "id": "reopened",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "never-completed",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "blocked",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "unknown-remaining",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "partial-history",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "Partial",
+            "reason": "Legacy source is not a complete general change log"
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "complete-no-reference",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "Partial",
+            "reason": "Legacy source is not a complete general change log"
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline",
+        "readHistoricalRecord"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 1
+    },
+    {
+      "id": "timestamp-ties",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline",
+        "readHistoricalRecord",
+        "readHistoricalRecord"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 2
+    },
+    {
+      "id": "work-corrected",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "work-retracted",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "no-baseline",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "dense100",
+      "acceptedLegacyProgress": true,
+      "taskCount": 100,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "retired",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ApprovedTargetPopulationDifference"
+        },
+        "critical": {
+          "status": "ApprovedTargetPopulationDifference"
+        },
+        "network": {
+          "status": "ApprovedTargetPopulationDifference"
+        },
+        "effort": {
+          "status": "ApprovedTargetPopulationDifference"
+        },
+        "forecast": {
+          "status": "ApprovedTargetPopulationDifference"
+        },
+        "health": {
+          "status": "ApprovedTargetPopulationDifference"
+        },
+        "baselineMarkers": {
+          "status": "ApprovedTargetPopulationDifference"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "restored",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "missing-history-invalid",
+      "acceptedLegacyProgress": false,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "Gap",
+          "codes": [
+            "CompletionEvidenceMissing"
+          ]
+        },
+        "health": {
+          "status": "Gap",
+          "codes": [
+            "CompletionEvidenceMissing"
+          ]
+        },
+        "baselineMarkers": {
+          "status": "Gap",
+          "codes": [
+            "CompletionEvidenceMissing"
+          ]
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "Partial",
+            "reason": "Legacy source is not a complete general change log"
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "forecast-disabled",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "at-risk",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "late-project",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "automatic-as-of",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "zero-capacity",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 0
+    },
+    {
+      "id": "same-day-actuals",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline",
+        "readHistoricalRecord",
+        "readHistoricalRecord"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 2
+    },
+    {
+      "id": "after-complete-release",
+      "acceptedLegacyProgress": true,
+      "taskCount": 3,
+      "fields": {
+        "schedule": {
+          "status": "ConditionalParity"
+        },
+        "critical": {
+          "status": "ConditionalParity"
+        },
+        "network": {
+          "status": "ConditionalParity"
+        },
+        "effort": {
+          "status": "ConditionalParity"
+        },
+        "forecast": {
+          "status": "ConditionalParity"
+        },
+        "health": {
+          "status": "ConditionalParity"
+        },
+        "baselineMarkers": {
+          "status": "ConditionalParity"
+        },
+        "progressImpact": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "CurrentGuidanceMissing",
+            "PriorCompletionContextMissing",
+            "AssumedStatusOriginMissing"
+          ]
+        },
+        "selectedWorkEntries": {
+          "status": "UnprovenContractGap",
+          "codes": [
+            "WorkEntryQueryMissing"
+          ]
+        },
+        "selectedStatusRows": {
+          "status": "ConditionalParity",
+          "coverage": {
+            "kind": "CompleteSince",
+            "revision": 17
+          },
+          "condition": "Requires explicit fixture legacyStatusEvent payload; not guaranteed by generic EventRecord payload"
+        }
+      },
+      "normalCalls": [
+        "loadOperational",
+        "readOriginalBaseline",
+        "readHistoricalRecord"
+      ],
+      "noNormalHistoryQuery": true,
+      "purposeCompletionReads": 1
+    }
+  ],
+  "unexpectedDifferences": [],
+  "semantics": "Conditional subset parity is not application-wide readiness. Tests that correctly expose a gap/difference may pass while semantic parity remains unproven.",
+  "normalReadMemoryOrPhysicalIOQualified": false
+}

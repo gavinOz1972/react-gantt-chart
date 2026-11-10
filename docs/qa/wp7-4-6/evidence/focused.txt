@@ -1,0 +1,14 @@
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/repository/operationalConsumerParity.test.tsx
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+
+ Test Files  1 passed (1)
+      Tests  96 passed (96)
+   Start at  00:40:15
+   Duration  1.03s (environment 57%, tests 20%, setup 11%, transform 6%, import 4%)
+
+Native exit code: 0

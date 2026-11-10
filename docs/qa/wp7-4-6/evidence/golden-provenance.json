@@ -1,0 +1,171 @@
+{
+  "clientDate": "2026-11-10",
+  "recordedAtUTC": "2026-11-10T06:25:05.350Z",
+  "independentExistingConsumerCapture": true,
+  "projectedAdapterExistedAtCapture": false,
+  "goldenSha256": "ba058f1f76f6ea32b0717d43cbf6daefd53cdf7d7725ac4915ffdff49b43b2c2",
+  "goldenBytes": 600506,
+  "fixtures": [
+    {
+      "id": "empty",
+      "taskCount": 0,
+      "edgeCount": 0,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "created",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "complete",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "reopened",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "never-completed",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "blocked",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "unknown-remaining",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "partial-history",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "complete-no-reference",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "timestamp-ties",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "work-corrected",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "work-retracted",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "no-baseline",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "dense100",
+      "taskCount": 100,
+      "edgeCount": 1034,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "retired",
+      "taskCount": 3,
+      "edgeCount": 0,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "restored",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "missing-history-invalid",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": false
+    },
+    {
+      "id": "forecast-disabled",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "at-risk",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "late-project",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "automatic-as-of",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "zero-capacity",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "same-day-actuals",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    },
+    {
+      "id": "after-complete-release",
+      "taskCount": 3,
+      "edgeCount": 1,
+      "acceptedLegacyProgress": true
+    }
+  ],
+  "producerHashes": {
+    "tests/legacyFixtures.ts": "f09f6faf1fb10bd91427297e79261506b25a8732c255d4f9753040cc2193040b",
+    "tests/observeLegacy.ts": "9b77b52627928aa6bd1f01a108ccee5d084fd53b91f839b0631089d2f64afd1e",
+    "scripts/capture-baseline.mjs": "40601a94dbdbdec603676c08a6010916d910603d5516ff63b40b11305fa7a1c3"
+  },
+  "existingSourceHashes": {
+    "src/domain/scheduler.ts": "952ba1ecef3758c96cbf4fb14841045601d3b05314b9794f950fe7f32e298392",
+    "src/domain/criticalPath.ts": "e09cc7dd1870124b2168461b0190c75e94c714a2bc58189fbe2a85e4f4479bdf",
+    "src/forecast/forecast.ts": "965209fab06fb5177ce37ede42880f984b347e62e56aa5dca4e10be746936bfc",
+    "src/progress/healthPresentation.ts": "5a6356152ac9784e8c3a499b6c3442ec9ffcc274c4573e080983b317ff3c4cc3",
+    "src/progress/taskProgress.ts": "ca80e494abf7892ef4183ef9e4a6f862dd5a75b7b391828ef39ca151ca810922",
+    "src/projection/progressImpact.ts": "6715595b9926066e7b6c22ff3b6def15da228b9a97937293ab7e02607a0f0825",
+    "src/workTracking/workTracking.ts": "31a6d214e8ccc842298074a1cda7ce8184b3922c20b9ce6099708b57a9f3c084",
+    "src/timeline/overlays.ts": "d585dd60820fd6842b4f6ad5eb2c7a1496a256245ee9f4972896878266e3b304",
+    "src/timeline/historyPresentation.ts": "aa139bb046e306b8992e30204aec2bd192fcddc7ee6008771023b27ba0089d54",
+    "src/network/layout.ts": "592a0321b055abbb1a49bf9d6c8b7910318d31c9d0d2f9feb13ba3b2faa82e1f"
+  }
+}
