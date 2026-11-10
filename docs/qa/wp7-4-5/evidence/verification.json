@@ -1,0 +1,70 @@
+{
+  "boundedUnusedCapability": true,
+  "clientDate": "2026-11-09",
+  "timezone": "America/Regina",
+  "sourceBase": "191f919b9929ef2a4b53083038b500e2e803af91",
+  "branch": "feature/wp7-stabilization",
+  "request": {
+    "filename": "Bugsys_WP7_4_5_Operational_Historical_Repository_Contracts.docx",
+    "sha256": "6e632b98301394d93eedee641bf9d75b63cb2fbba01e9d3fdae37f8fb3d0e176"
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+    "logicalCpus": 32
+  },
+  "checks": {
+    "focused": {
+      "exitCode": 0,
+      "cases": 76
+    },
+    "full": {
+      "exitCode": 0,
+      "unitComponentTests": 701,
+      "testFiles": 38,
+      "existingCases": 625,
+      "lint": true,
+      "typecheck": true,
+      "build": true,
+      "compileOnlyAssertionsIncluded": true
+    },
+    "browser": {
+      "nativeExitCode": 0,
+      "cases": 223,
+      "duration": "2.6 minutes",
+      "execution": "isolated starting-source export; final runtime assets byte-compared",
+      "ownedPort": 4173
+    }
+  },
+  "unpassedFutureGates": [
+    "Full /2 export/JCS/D and validation",
+    "Qualified capacity/reopen/recovery route",
+    "Production storage/native concurrency/durability/crash/auth",
+    "Consumer parity/application integration",
+    "Historical report UI/PDF",
+    "FR-HIST-01 snapshots"
+  ],
+  "exportPortable": "Unsupported; sink untouched",
+  "R07Final": false,
+  "protectedRefsVerifiedBeforeDelivery": {
+    "main": "a6a1c32c22a2bf074b161e52d523443602843dd7",
+    "v1.0-pre-progress": {
+      "tagObject": "a4157bc84392c770c27111da58d779948b110a56",
+      "peeled": "abb85011dafc9fb0876953e3132880e025ef65da"
+    },
+    "v1.1-pre-stabilization": {
+      "tagObject": "134305f2205eb993ab76672c2d2469d48d91a609",
+      "peeled": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+    }
+  },
+  "evidenceHashes": {
+    "focused.txt": "18ccfcd46b006daadfb8d08e99a903462c9e5923bf131d825c8212b6b73ee65f",
+    "check.txt": "696b09bce470cd8c41042713a90289a4e3d74ce5edc7cad1ae227cc24d6e3027",
+    "browser-all.txt": "b884f7ad97f3d4e165cac6e5b775621cd4792e8a8cb83a9e301416f365a1d566",
+    "baseline-build.txt": "8a46e0e5c3a467fb04ed2d2668031afa4c9046b705f193d08664f973da2a2fed"
+  }
+}

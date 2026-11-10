@@ -1,0 +1,3 @@
+# Stable authored test/document bytes and captured verification evidence.
+* text eol=lf
+evidence/** -text
