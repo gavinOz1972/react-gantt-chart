@@ -1,14 +1,75 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { HISTORY_MAX_BYTES, HISTORY_PAGE_SIZE, sameHistoryWatermark } from '../../history/selectedTaskHistory'
-import type { HistoryFailure, HistoryPage, HistorySession, SelectedTaskHistoryReader, TransitionRow } from '../../history/selectedTaskHistory'
+import type { HistoryFailure, HistoryFailureCode, HistoryPage, HistorySession, SelectedTaskHistoryReader, TransitionRow } from '../../history/selectedTaskHistory'
 import './selectedTaskHistory.css'
 
 interface View {
   reader?: SelectedTaskHistoryReader; phase: 'Closed' | 'Loading' | 'Ready' | 'Failed'
-  page?: HistoryPage; rows: readonly TransitionRow[]; error?: HistoryFailure; fallback?: boolean; canFallback?: boolean
+  page?: HistoryPage; session?: HistorySession; rows: readonly TransitionRow[]; error?: HistoryFailure; fallback?: boolean; canFallback?: boolean
 }
 const closed: View = { phase: 'Closed', rows: [] }
+function friendlyDate(value: string) {
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${value}T00:00:00Z`))
+}
+function recordedLocal(value: string) {
+  return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }).format(new Date(value))
+}
+function errorCopy(code: HistoryFailureCode) {
+  switch (code) {
+    case 'InvalidPayload': return { title: 'Unable to display task history', explanation: 'Some historical information is invalid; project data has not changed.', action: 'Retry reading history' }
+    case 'ReadExpired': case 'InvalidCursor': return { title: 'History needs to be refreshed.', action: 'Refresh history' }
+    case 'RecordTooLarge': return { title: 'This history entry is too large to display here.', action: 'Retry reading history' }
+    case 'MixedWatermark': return { title: 'History has changed—refresh to view a consistent version.', action: 'Refresh history' }
+    case 'Cancelled': return { title: 'Reading history was cancelled.', action: 'Retry reading history' }
+    case 'Unsupported': return { title: 'History is not supported for this source.', action: 'Retry reading history' }
+  }
+}
+function HistoryEntry({ row }: { row: TransitionRow }) {
+  const event = row.event, longReason = !!event.reason && event.reason.length > 160
+  return <li data-history-event={event.eventId}>
+    <strong>Changed from {event.fromStatus} to {event.toStatus}</strong>
+    <p className="history-effective-date"><time dateTime={event.date}>{friendlyDate(event.date)}</time></p>
+    {event.reason !== undefined && <p>Reason: {longReason ? event.reason.slice(0, 160).trimEnd() + '…' : event.reason}</p>}
+    <details className="history-entry-details"><summary>More about this change</summary>
+      {longReason && <p>Full reason: {event.reason}</p>}
+      {event.note !== undefined && <p>Note / evidence: {event.note === '' ? '(empty note recorded)' : event.note}</p>}
+      <p>Effective date: <time dateTime={event.date}>{friendlyDate(event.date)}</time> (date only; time unknown).</p>
+      <p>Recorded (local time): <time dateTime={event.recordedAt}>{recordedLocal(event.recordedAt)}</time>.</p>
+      {event.toStatus === 'Complete' && <>
+        <p>Historical completion details. The current task status is shown above.</p>
+        <p>Historical completion acknowledgement: recorded. {event.noCriteriaAcknowledged === true && 'No formal criteria explicitly acknowledged.'}</p>
+        <p>Committed finish at completion: {event.committedFinishDateAtCompletion ? friendlyDate(event.committedFinishDateAtCompletion) : 'Unknown'}</p>
+        <p>Project guidance at completion: {event.definitionOfDone === '' ? '(empty wording recorded)' : event.definitionOfDone ?? 'Unknown'}</p>
+        {!!event.criteriaSnapshot?.length && <ul>{event.criteriaSnapshot.map(c => <li key={c.criterionId}>{c.text} — satisfied</li>)}</ul>}
+      </>}
+    </details>
+  </li>
+}
+function HistoryDetails({ page, session, rows, error, changed }: { page?: HistoryPage; session?: HistorySession; rows: readonly TransitionRow[]; error?: HistoryFailure; changed: boolean }) {
+  const source = page?.source ?? session?.source
+  return <details className="history-provenance"><summary>History details</summary>
+    <p>These local records do not verify identity or provide a tamper-proof audit trail.</p>
+    {changed ? <p>Read diagnostics: the source changed; the previous read was released and its pages discarded.</p> : <>
+      {source ? <p>Source: loaded legacy plan. Format {source.formatVersion}, progress version {source.progressVersion}. Pages belong to one pinned in-memory read.</p> : <p>Source details are unavailable until a read opens.</p>}
+      {session && <p>Read resource: {session.watermark.resourceId}. Selected task: {session.taskId}.</p>}
+      {page ? <>
+        <p>Availability: {page.availability}. Coverage: {page.coverage.kind}. {page.coverage.reason}</p>
+        <p>Source positions belong to this loaded read, not permanent sequence IDs across edits. Separate decision IDs and actor identity are Unknown in legacy records.</p>
+      </> : <p>Availability and coverage have not been returned for this read.</p>}
+      {error && <p>Read diagnostics: {error.code}. {error.message}</p>}
+      {!!rows.length && <ol>{rows.map(row => <li key={row.event.eventId} data-history-metadata={row.event.eventId}>
+        <strong>Event ID: {row.event.eventId}</strong>
+        <dl><div><dt>Source position</dt><dd>{row.sequence}</dd></div>
+          <div><dt>Effective date (ISO)</dt><dd>{row.event.date} — date only; time Unknown</dd></div>
+          <div><dt>Recorded time (exact UTC)</dt><dd>{row.event.recordedAt}</dd></div>
+          <div><dt>Decision / reference ID</dt><dd>{row.decisionId ?? 'Unknown'}</dd></div>
+          <div><dt>Actor</dt><dd>{row.actor ?? 'Unknown'}</dd></div></dl>
+        <p>Original retained record, including available attestation and reference metadata:</p><pre>{JSON.stringify(row.event, null, 2)}</pre>
+      </li>)}</ol>}
+    </>}
+  </details>
+}
 export function SelectedTaskHistory({ taskId, reader, fallback }: { taskId: string; reader: SelectedTaskHistoryReader; fallback: ReactNode }) {
   const regionId = useId(), [view, setView] = useState<View>(closed)
   const active = useRef<{ reader: SelectedTaskHistoryReader; session: HistorySession } | null>(null)
@@ -29,7 +90,7 @@ export function SelectedTaskHistory({ taskId, reader, fallback }: { taskId: stri
     const controller = new AbortController(), requestId = ++generation.current
     pending.current = controller
     const previous = more ? view.rows : [], cursor = more ? view.page?.nextCursor : undefined
-    setView({ reader, phase: 'Loading', rows: previous, page: more ? view.page : undefined })
+    setView({ reader, phase: 'Loading', rows: previous, page: more ? view.page : undefined, session: more ? view.session : undefined })
     const current = () => !controller.signal.aborted && generation.current === requestId
     try {
       let session = more ? active.current?.session : undefined
@@ -41,53 +102,39 @@ export function SelectedTaskHistory({ taskId, reader, fallback }: { taskId: stri
       }
       const page = await reader.read(session, { cursor, limit: HISTORY_PAGE_SIZE, maxBytes: HISTORY_MAX_BYTES }, controller.signal)
       if (!current()) return
-      if (page.kind === 'Failure') { setView({ reader, phase: 'Failed', rows: previous, error: page, canFallback: true }); return }
+      if (page.kind === 'Failure') { setView({ reader, phase: 'Failed', rows: previous, page: more ? view.page : undefined, session, error: page, canFallback: true }); return }
       if (!sameHistoryWatermark(page.watermark, session.watermark) || page.taskId !== taskId || page.items.some(r => r.taskId !== taskId || r.event.taskId !== taskId) || page.items.length > HISTORY_PAGE_SIZE || page.deliveredBytes > HISTORY_MAX_BYTES || page.items.some((r, i) => i ? r.sequence >= page.items[i - 1].sequence : previous.length > 0 && r.sequence >= previous[previous.length - 1].sequence)) {
-        setView({ reader, phase: 'Failed', rows: [], error: { kind: 'Failure', code: 'MixedWatermark', message: 'These rows do not belong to the same selected-task read. Refresh history; no revisions were combined.' } }); return
+        setView({ reader, phase: 'Failed', rows: [], session, error: { kind: 'Failure', code: 'MixedWatermark', message: 'These rows do not belong to the same selected-task read. Refresh history; no revisions were combined.' } }); return
       }
-      setView({ reader, phase: 'Ready', rows: [...previous, ...page.items], page, canFallback: true })
+      setView({ reader, phase: 'Ready', rows: [...previous, ...page.items], page, session, canFallback: true })
     } catch {
-      if (current()) setView({ reader, phase: 'Failed', rows: previous, canFallback: !!active.current, error: { kind: 'Failure', code: 'Unsupported', message: 'History could not be read. Your loaded plan is unchanged.' } })
+      if (current()) setView({ reader, phase: 'Failed', rows: previous, page: more ? view.page : undefined, session: active.current?.session, canFallback: !!active.current, error: { kind: 'Failure', code: 'Unsupported', message: 'History could not be read. Your loaded plan is unchanged.' } })
     } finally { if (current()) pending.current = null }
   }
   function hide() { stop(); setView(closed) }
   const safeFallback = view.canFallback && (view.error && ['Unsupported', 'ReadExpired', 'RecordTooLarge'].includes(view.error.code) || view.page?.availability === 'Unavailable')
+  const failureCopy = view.error ? errorCopy(view.error.code) : undefined
+  const unavailable = view.page?.availability === 'Unavailable'
   return <section className="selected-task-history" aria-label="Selected task transition history">
     <button type="button" className="quiet" aria-expanded={view.phase !== 'Closed'} aria-controls={regionId} onClick={() => view.phase === 'Closed' ? void load() : hide()}>{view.phase === 'Closed' ? 'Show history' : 'Hide history'}</button>
     {view.phase !== 'Closed' && <div id={regionId} className="selected-history-content" aria-busy={busy}>
-      <h4>Recorded transition history</h4>
-      <p className="muted">Historical decisions, not current status. Actor identity and separate decision IDs are Unknown in legacy records. These records do not verify identity or provide a tamper-proof audit trail.</p>
-      {changed ? <p role="status">The loaded source changed. Refresh history to read the current source; previous pages were discarded.</p> : <>
+      <h4>Task history</h4>
+      <p className="muted">Recorded changes. The current task status is shown above.</p>
+      {changed ? <p role="status">History has changed—refresh to view a consistent version.</p> : <>
         {busy && <p role="status">Loading recorded transitions…</p>}
-        {view.page && <>
-          <p className="history-coverage"><strong>Partial coverage.</strong> {view.page.coverage.reason}</p>
-          <p className="muted">Source: loaded legacy plan. Format {view.page.source.formatVersion}, progress version 1. Pages belong to one pinned in-memory read.</p>
-          {view.page.availability === 'Unavailable' ? <p role="status">History unavailable: this older source did not retain task status history. An empty view does not prove that no decisions occurred.</p>
-            : !busy && !view.rows.length && <p>No matching recorded transitions in this loaded source.</p>}
-        </>}
-        {view.error && <p role="alert">{view.error.code === 'Cancelled' ? 'History request cancelled. Refresh history to try again.' : view.error.message}</p>}
-        <ol className="selected-history-rows">{view.rows.map(row => <li key={row.event.eventId} data-history-event={row.event.eventId}>
-          <strong>Recorded transition: {row.event.fromStatus} → {row.event.toStatus}</strong>
-          <dl><div><dt>Effective date</dt><dd><time dateTime={row.event.date}>{row.event.date}</time> (date only; time Unknown)</dd></div>
-            <div><dt>Recorded time</dt><dd><time dateTime={row.event.recordedAt}>{row.event.recordedAt}</time></dd></div>
-            <div><dt>Event ID / source position</dt><dd>{row.event.eventId} / {row.sequence}</dd></div>
-            <div><dt>Decision ID / actor</dt><dd>Unknown / Unknown</dd></div></dl>
-          {row.event.reason !== undefined && <p>Reason: {row.event.reason}</p>}
-          {row.event.note !== undefined && <p>Note / evidence: {row.event.note}</p>}
-          {row.event.toStatus === 'Complete' && <>
-            <p>Historical completion acknowledgement: recorded. {row.event.noCriteriaAcknowledged === true && 'No formal criteria explicitly acknowledged.'}</p>
-            <p>Committed finish at completion: {row.event.committedFinishDateAtCompletion ?? 'Unknown'}</p>
-            <p>Project guidance at completion: {row.event.definitionOfDone === '' ? '(empty wording recorded)' : row.event.definitionOfDone ?? 'Unknown'}</p>
-            {!!row.event.criteriaSnapshot?.length && <ul>{row.event.criteriaSnapshot.map(c => <li key={c.criterionId}>Criterion {c.criterionId}: {c.text} — satisfied</li>)}</ul>}
-          </>}
-        </li>)}</ol>
+        {failureCopy ? <p role="alert"><strong>{failureCopy.title}</strong>{failureCopy.explanation && <><br />{failureCopy.explanation}</>}</p>
+          : unavailable ? <p role="status"><strong>History unavailable.</strong><br />This project contains no accessible recorded history for this task.</p>
+            : view.page && !busy && !view.rows.length && <p>No recorded history for this task.</p>}
+        {view.page?.availability === 'Available' && <p className="history-coverage">Some earlier history may be unavailable</p>}
+        <ol className="selected-history-rows">{view.rows.map(row => <HistoryEntry key={row.event.eventId} row={row} />)}</ol>
         {view.phase === 'Ready' && view.page?.availability === 'Available' && (view.page.nextCursor
           ? <button type="button" className="quiet" onClick={() => void load(true)}>Load more history</button>
-          : <p>End of retained status history for this task; earlier or unrecorded decisions remain Unknown.</p>)}
+          : !!view.rows.length && <p>No more recorded entries.</p>)}
         {safeFallback && !view.fallback && <button type="button" className="quiet" onClick={() => setView(previous => ({ ...previous, fallback: true }))}>Show loaded legacy history</button>}
-        {view.fallback && <div><p role="status">Fallback: original already loaded legacy history. This is an unpaged local display, not a new fetch or proof of complete history.</p>{fallback}</div>}
+        {view.fallback && <div><p role="status">Showing the original loaded history without paging. Earlier or unrecorded changes may be unavailable.</p>{fallback}</div>}
       </>}
-      {(changed || view.phase === 'Failed' || view.page?.availability === 'Unavailable') && <button type="button" className="quiet" onClick={() => void load()}>Refresh history</button>}
+      {(changed || view.phase === 'Failed' || unavailable) && <button type="button" className="quiet" onClick={() => void load()}>{changed ? 'Refresh history' : failureCopy?.action ?? 'Retry reading history'}</button>}
+      <HistoryDetails page={changed ? undefined : view.page} session={changed ? undefined : view.session} rows={changed ? [] : view.rows} error={changed ? undefined : view.error} changed={changed} />
     </div>}
   </section>
 }

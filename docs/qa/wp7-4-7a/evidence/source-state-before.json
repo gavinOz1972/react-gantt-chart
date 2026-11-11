@@ -1,0 +1,68 @@
+[
+  {
+    "formatVersion": 1,
+    "taskId": "T1",
+    "availability": "Unavailable",
+    "coverage": {
+      "kind": "Partial",
+      "reason": "Only status transitions retained in this loaded legacy plan are available. Earlier deleted or unrecorded decisions and actor identity are unknown."
+    },
+    "returnedRows": 0,
+    "hasMore": false
+  },
+  {
+    "formatVersion": 1,
+    "taskId": "T2",
+    "availability": "Unavailable",
+    "coverage": {
+      "kind": "Partial",
+      "reason": "Only status transitions retained in this loaded legacy plan are available. Earlier deleted or unrecorded decisions and actor identity are unknown."
+    },
+    "returnedRows": 0,
+    "hasMore": false
+  },
+  {
+    "formatVersion": 1,
+    "taskId": "T3",
+    "availability": "Unavailable",
+    "coverage": {
+      "kind": "Partial",
+      "reason": "Only status transitions retained in this loaded legacy plan are available. Earlier deleted or unrecorded decisions and actor identity are unknown."
+    },
+    "returnedRows": 0,
+    "hasMore": false
+  },
+  {
+    "formatVersion": 5,
+    "taskId": "T1",
+    "availability": "Available",
+    "coverage": {
+      "kind": "Partial",
+      "reason": "Only status transitions retained in this loaded legacy plan are available. Earlier deleted or unrecorded decisions and actor identity are unknown."
+    },
+    "returnedRows": 20,
+    "hasMore": true
+  },
+  {
+    "formatVersion": 5,
+    "taskId": "T2",
+    "availability": "Available",
+    "coverage": {
+      "kind": "Partial",
+      "reason": "Only status transitions retained in this loaded legacy plan are available. Earlier deleted or unrecorded decisions and actor identity are unknown."
+    },
+    "returnedRows": 2,
+    "hasMore": false
+  },
+  {
+    "formatVersion": 5,
+    "taskId": "T3",
+    "availability": "Available",
+    "coverage": {
+      "kind": "Partial",
+      "reason": "Only status transitions retained in this loaded legacy plan are available. Earlier deleted or unrecorded decisions and actor identity are unknown."
+    },
+    "returnedRows": 0,
+    "hasMore": false
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "clientDate": "2026-11-10",
+  "base": "07faed745d66502033ab7a60ac9dfc612512fe8f",
+  "unitComponent": {
+    "passed": 845,
+    "files": 42,
+    "newUxTests": 12,
+    "focusedHistoryTests": 48
+  },
+  "featureBrowser": {
+    "passed": 31,
+    "existing": 19,
+    "new": 12
+  },
+  "baselineBrowser": {
+    "passed": 223
+  },
+  "originalSourceCapture": {
+    "passed": 4,
+    "base": "07faed745d66502033ab7a60ac9dfc612512fe8f"
+  },
+  "checks": {
+    "lint": "passed",
+    "applicationTypecheck": "passed",
+    "qaTypecheck": "passed",
+    "build": "passed"
+  },
+  "sourceMapping": "Existing typed mapping correct; Unavailable now takes primary precedence over empty/Partial presentation",
+  "ownerConditionalDisposition": "Recorded from WP7.4.7a document; acceptance boxes unmarked",
+  "findings": {
+    "UX7.4.7-001": "Open pending follow-up human review",
+    "QA7.4.7-002": "Open pending human unavailable-versus-empty check",
+    "R07": "Pending final review"
+  }
+}

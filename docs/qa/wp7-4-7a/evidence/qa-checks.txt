@@ -1,0 +1,6 @@
+
+> react-gantt-chart@0.0.0 lint
+> eslint .
+
+Lint exit code: 0
+QA typecheck exit code: 0

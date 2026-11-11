@@ -1,0 +1,5 @@
+{
+  "extends": "../wp7-4-7/tsconfig.json",
+  "compilerOptions": { "tsBuildInfoFile": "../../../node_modules/.tmp/tsconfig.wp747a.tsbuildinfo" },
+  "include": ["../../../src", "../wp7-4-7/qa/**/*.tsx", "../wp7-4-7/browser/**/*.ts", "browser/**/*.ts", "*.config.ts"]
+}

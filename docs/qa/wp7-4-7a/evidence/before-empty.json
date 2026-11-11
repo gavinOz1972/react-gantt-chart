@@ -1,0 +1,5 @@
+{
+  "scenario": "partial",
+  "task": "T3",
+  "visibleText": "Hide history\nRecorded transition history\n\nHistorical decisions, not current status. Actor identity and separate decision IDs are Unknown in legacy records. These records do not verify identity or provide a tamper-proof audit trail.\n\nPartial coverage. Only status transitions retained in this loaded legacy plan are available. Earlier deleted or unrecorded decisions and actor identity are unknown.\n\nSource: loaded legacy plan. Format 5, progress version 1. Pages belong to one pinned in-memory read.\n\nNo matching recorded transitions in this loaded source.\n\nEnd of retained status history for this task; earlier or unrecorded decisions remain Unknown."
+}

@@ -8,4 +8,14 @@
 .selected-history-rows dt { font-weight: 600; color: #52657b; margin: 0; }
 .selected-history-rows dd { margin: 0; }
 .selected-history-content p, .selected-history-content li, .selected-history-content dd { white-space: pre-wrap; overflow-wrap: anywhere; }
-.history-coverage { padding: 10px; background: #f2f6fa; border-left: 3px solid #728ba4; }
+.history-coverage { color: #52657b; font-size: .85rem; margin: 12px 0; }
+.history-effective-date { color: #52657b; margin: 5px 0; }
+.history-entry-details { margin: 10px 0 0; }
+.history-entry-details summary, .history-provenance summary { cursor: pointer; color: #28465f; }
+.history-entry-details > p, .history-entry-details > ul { margin: 10px 0; }
+.history-provenance { margin-top: 18px; padding-top: 12px; border-top: 1px solid #dce4ec; }
+.history-provenance pre { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .8rem; background: #f2f6fa; padding: 12px; border-radius: 4px; }
+.history-provenance dl { margin: 10px 0; }
+.history-provenance dl > div { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 5px 0; }
+.history-provenance dt { color: #52657b; font-weight: 600; margin: 0; }
+.history-provenance dd { font: inherit; margin: 0; }

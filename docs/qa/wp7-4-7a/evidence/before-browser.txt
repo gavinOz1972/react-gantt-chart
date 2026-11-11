@@ -1,0 +1,15 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test --config docs/qa/wp7-4-7a/before.config.ts --workers=2
+
+
+Running 4 tests using 2 workers
+
+  ok 2 [chromium] › docs\qa\wp7-4-7a\browser\before.spec.ts:8:1 › capture typed unavailable versus available-empty source mapping (16ms)
+  ok 3 [chromium] › docs\qa\wp7-4-7a\browser\before.spec.ts:20:133 › before empty screenshot (710ms)
+  ok 1 [chromium] › docs\qa\wp7-4-7a\browser\before.spec.ts:20:133 › before rows screenshot (757ms)
+  ok 4 [chromium] › docs\qa\wp7-4-7a\browser\before.spec.ts:20:133 › before unavailable screenshot (412ms)
+
+  4 passed (6.4s)
+
+Native exit code: 0
