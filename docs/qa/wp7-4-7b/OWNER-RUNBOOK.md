@@ -2,7 +2,9 @@
 
 WP7.4.7a acceptance and its two finding closures are recorded in
 [OWNER-DISPOSITION](../wp7-4-7a/OWNER-DISPOSITION.md). This checklist is for the
-new WP7.4.7b follow-up only; it has not been accepted on your behalf.
+WP7.4.7b follow-up. Gavin Osborne's November 11, 2026 acceptance is now recorded
+in [ACCEPTANCE](ACCEPTANCE.md) from the explicit WP7.4.8-R07 handoff. The original
+retest instructions and evidence below are retained.
 
 Use your existing feature-enabled development server, or start a free test port:
 
@@ -40,13 +42,14 @@ Unsetting `VITE_SELECTED_TASK_HISTORY` and restarting returns to the original
 display; no project migration or data rollback is needed. Different ports have
 separate browser libraries, so import an explicit JSON copy for real-plan testing.
 
-- [ ] History Audit Data label, contents and collapsed/keyboard behavior accepted.
-- [ ] Retry/refresh attempt and repeated-failure feedback accepted.
-- [ ] Rapid input, cancellation and task switching accepted.
-- [ ] No project/draft/calculation regression observed.
-- [ ] WP7.4.7b owner accepted within this bounded scope.
+- [x] History Audit Data label, contents and collapsed/keyboard behavior accepted.
+- [x] Retry/refresh attempt and repeated-failure feedback accepted.
+- [x] Rapid input and task switching accepted; cancellation safeguards retained.
+- [x] Owner project-data regression check passed.
+- [x] WP7.4.7b owner accepted within this bounded scope.
 
-Owner/date: ____________________ Notes: _________________________________
+Owner/date: Gavin Osborne / November 11, 2026, as supplied in WP7.4.8-R07.
+This closeout does not accept R07 or an overall WP7 release.
 
 R07 remains pending. The low-priority More about this change observation remains
 deferred. Do not infer storage/provider, migration, portable export, snapshots,

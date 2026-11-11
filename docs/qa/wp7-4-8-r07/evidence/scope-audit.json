@@ -1,0 +1,1497 @@
+{
+  "clientDate": "2026-11-11",
+  "recordedAtUTC": "2026-11-11T18:22:36.011Z",
+  "base": "8ae0eb4cff4e9f46785852bec9462f0b49518513",
+  "branch": "feature/wp7-stabilization",
+  "scope": "Assessment/documentation only plus explicitly supplied b acceptance",
+  "requirement": {
+    "path": "../react-gantt-chart/docs/WP_Req/Bugsys_WP7_4_8_R07_Release_Readiness_Assessment.docx",
+    "sha256": "44d56bbaca6170fffef5888e870fdf9a4797f5cd5c33381ebccd02ea64bb6579"
+  },
+  "administrativePaths": [
+    "docs/qa/wp7-4-7b/ACCEPTANCE.md",
+    "docs/qa/wp7-4-7b/README.md",
+    "docs/qa/wp7-4-7b/OWNER-RUNBOOK.md"
+  ],
+  "preservedOwnerEdits": 85,
+  "ownerFiles": [
+    {
+      "path": "docs/qa/wp7-1/evidence/as-of-date-modes.json",
+      "sha256": "043fe186e896bd33cc6935e9fb88ca5e0ba6c3155d230a79346517262cd6cd43",
+      "currentSha256": "043fe186e896bd33cc6935e9fb88ca5e0ba6c3155d230a79346517262cd6cd43"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e04-e05-chart.png",
+      "sha256": "5183af304b4f1178fd4aaf6821ec6f0592cf550cf38abfb030979ef6c0c44549",
+      "currentSha256": "5183af304b4f1178fd4aaf6821ec6f0592cf550cf38abfb030979ef6c0c44549"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e04-e05.json",
+      "sha256": "586711d58808fd2e7b5c0378e33d429f8b49ec45af326fc0959b690851fc4b1c",
+      "currentSha256": "586711d58808fd2e7b5c0378e33d429f8b49ec45af326fc0959b690851fc4b1c"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e06-e07-e10.json",
+      "sha256": "7b05bb20953dfee4ab0b6cced9b538b76cddb9fde3017eefc46ceee17716b0f1",
+      "currentSha256": "7b05bb20953dfee4ab0b6cced9b538b76cddb9fde3017eefc46ceee17716b0f1"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e13-forty-task.png",
+      "sha256": "0ef855352016cd2e6e9cb97595639eb4bb7b576c719e93f53b11af5c0bdc58c9",
+      "currentSha256": "0ef855352016cd2e6e9cb97595639eb4bb7b576c719e93f53b11af5c0bdc58c9"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/performance-regression-0.json",
+      "sha256": "4b2666355ed9889a35b4a8b3aa474f0a4c1ce448609b1b1e4e8edfe70b98234b",
+      "currentSha256": "4b2666355ed9889a35b4a8b3aa474f0a4c1ce448609b1b1e4e8edfe70b98234b"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-1280.json",
+      "sha256": "df354e077a44037540eb8488e52a28192e35dcf3c62eea8c9a96dda132906483",
+      "currentSha256": "df354e077a44037540eb8488e52a28192e35dcf3c62eea8c9a96dda132906483"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-1440.json",
+      "sha256": "1049e03d82e0131c80792288142745d28d6e90cf16254ec41e0eebd230dc3751",
+      "currentSha256": "1049e03d82e0131c80792288142745d28d6e90cf16254ec41e0eebd230dc3751"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-780.json",
+      "sha256": "f734d67de68ce39364987c545a886f982d592562bf304cbec88ca7cd16cc2832",
+      "currentSha256": "f734d67de68ce39364987c545a886f982d592562bf304cbec88ca7cd16cc2832"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-initial.png",
+      "sha256": "db1c65af71b13a8741fab902c25d5c873743e2e9ce396a29d87c68d92d88dc0f",
+      "currentSha256": "db1c65af71b13a8741fab902c25d5c873743e2e9ce396a29d87c68d92d88dc0f"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-revealed.png",
+      "sha256": "9c3b2d9aeeb698bc4ef8d0a405a725020847eff83b9db88225152290235d5522",
+      "currentSha256": "9c3b2d9aeeb698bc4ef8d0a405a725020847eff83b9db88225152290235d5522"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-1280.json",
+      "sha256": "ead475d16e8385cf18141d2ee7ddddc05dd6ca63b5c6ab974602bcfecbac9cf4",
+      "currentSha256": "ead475d16e8385cf18141d2ee7ddddc05dd6ca63b5c6ab974602bcfecbac9cf4"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-1440.json",
+      "sha256": "a9aeae7c9aeeed6e01489cfced9323c072ed56d5a1a29243a155374b608a1bef",
+      "currentSha256": "a9aeae7c9aeeed6e01489cfced9323c072ed56d5a1a29243a155374b608a1bef"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-780.json",
+      "sha256": "a946c27b6f9dffeba0f5c1af4e0cf7f9fa9d15018e612e21427d45cec73a4f43",
+      "currentSha256": "a946c27b6f9dffeba0f5c1af4e0cf7f9fa9d15018e612e21427d45cec73a4f43"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-initial.png",
+      "sha256": "db1c65af71b13a8741fab902c25d5c873743e2e9ce396a29d87c68d92d88dc0f",
+      "currentSha256": "db1c65af71b13a8741fab902c25d5c873743e2e9ce396a29d87c68d92d88dc0f"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-revealed.png",
+      "sha256": "627b558034a29739f3a740a04211ed98e1ea2f9f931fa7cc3c2d5093e621263b",
+      "currentSha256": "627b558034a29739f3a740a04211ed98e1ea2f9f931fa7cc3c2d5093e621263b"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/forty-gantt-1280.png",
+      "sha256": "c6af38c9bde9a1f22935ada061d67f4797c3c20813a1a8f1a3e90f19d1778fd6",
+      "currentSha256": "c6af38c9bde9a1f22935ada061d67f4797c3c20813a1a8f1a3e90f19d1778fd6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/forty-network-1280.png",
+      "sha256": "e633beae6be01234149307c84b633238ede73882edf59d3aa2685a57899f9ae6",
+      "currentSha256": "e633beae6be01234149307c84b633238ede73882edf59d3aa2685a57899f9ae6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/initialization-and-time.json",
+      "sha256": "1d35ac3e04b8886a268077a5214357ae8108247359dcffd6244f51ccc108764a",
+      "currentSha256": "1d35ac3e04b8886a268077a5214357ae8108247359dcffd6244f51ccc108764a"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-1280.json",
+      "sha256": "7b3fa0fa03e319f8402a139aedfdcf191694302389c34322ed83c5b62f743bef",
+      "currentSha256": "7b3fa0fa03e319f8402a139aedfdcf191694302389c34322ed83c5b62f743bef"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-1440.json",
+      "sha256": "efbdaa021198a91be4f76bf24e19a91162779c29b8bfbdc1e954fdc448bfc8db",
+      "currentSha256": "efbdaa021198a91be4f76bf24e19a91162779c29b8bfbdc1e954fdc448bfc8db"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-780.json",
+      "sha256": "8d57c965420d4ab12023e451fa131d24712b2125d6187978e62f539aca6fc7aa",
+      "currentSha256": "8d57c965420d4ab12023e451fa131d24712b2125d6187978e62f539aca6fc7aa"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-complete-summary.png",
+      "sha256": "a046c506d030c641689fc5eb3e3a074a463dd902b214fdcd4c04f817e19134d6",
+      "currentSha256": "a046c506d030c641689fc5eb3e3a074a463dd902b214fdcd4c04f817e19134d6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-logs-false.json",
+      "sha256": "41c8233f311ea4fb532a6c87db3a7b10ca3ffc79f97bc460f1f40509b333a981",
+      "currentSha256": "41c8233f311ea4fb532a6c87db3a7b10ca3ffc79f97bc460f1f40509b333a981"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-logs-true.json",
+      "sha256": "05f5598a7fadea795df028cbecfdcf26a02281523365ddfbb92b8b0d558cf7c6",
+      "currentSha256": "05f5598a7fadea795df028cbecfdcf26a02281523365ddfbb92b8b0d558cf7c6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-work-details.png",
+      "sha256": "166cdbbc537486498a3cece92c32a39cb36711fa2673799161e187c29d853f3e",
+      "currentSha256": "166cdbbc537486498a3cece92c32a39cb36711fa2673799161e187c29d853f3e"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/a-j-immediate.png",
+      "sha256": "388dace1281ff5ca20ee0ec6959f5d52b5401653c0b59091a67437256589ef26",
+      "currentSha256": "388dace1281ff5ca20ee0ec6959f5d52b5401653c0b59091a67437256589ef26"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/b-slack-absorbed.png",
+      "sha256": "26bf919a64120df3f58515cc9e1374e399352494e7c80612dcd6a2faf57dceec",
+      "currentSha256": "26bf919a64120df3f58515cc9e1374e399352494e7c80612dcd6a2faf57dceec"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l09.png",
+      "sha256": "9039f874ba552cba9a9799b85417e85bf5b412d7d9f47733ecc91c9cd54fabc5",
+      "currentSha256": "9039f874ba552cba9a9799b85417e85bf5b412d7d9f47733ecc91c9cd54fabc5"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l10.png",
+      "sha256": "99b533801f297de7885c533e5ba003b0bf777f0756da8095a81e7bf7248d171c",
+      "currentSha256": "99b533801f297de7885c533e5ba003b0bf777f0756da8095a81e7bf7248d171c"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l13.png",
+      "sha256": "c96f5b9b22047225c70d8eab4f77d97a9029ed09822f23238d0da938b5389a07",
+      "currentSha256": "c96f5b9b22047225c70d8eab4f77d97a9029ed09822f23238d0da938b5389a07"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l14b.png",
+      "sha256": "e68169abceb310cea3aebcfd4dd464d90e550cffb36a99903298f0777e8e2d00",
+      "currentSha256": "e68169abceb310cea3aebcfd4dd464d90e550cffb36a99903298f0777e8e2d00"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/d-date-only-precision.png",
+      "sha256": "6e5a39ca24d0ba397f88bb1706557df6bc31a7ac85c208744c5591a64effcb2f",
+      "currentSha256": "6e5a39ca24d0ba397f88bb1706557df6bc31a7ac85c208744c5591a64effcb2f"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/e-changed-driver-gantt.png",
+      "sha256": "a40ae5bae10c1f0c798abb83bb491fa405f15a2da55885141a59ef5aa737b619",
+      "currentSha256": "a40ae5bae10c1f0c798abb83bb491fa405f15a2da55885141a59ef5aa737b619"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/e-network.png",
+      "sha256": "9b8018b35fda6bf07ee691a6e09590cfdbfe3a731ea12eb3e64ce76f998a4a89",
+      "currentSha256": "9b8018b35fda6bf07ee691a6e09590cfdbfe3a731ea12eb3e64ce76f998a4a89"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/h-all-layers.png",
+      "sha256": "b87b03e2dadec3169c3c43c15d7973e102e6580d2b886cd7b67691d6e2694f15",
+      "currentSha256": "b87b03e2dadec3169c3c43c15d7973e102e6580d2b886cd7b67691d6e2694f15"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-30-browser.json",
+      "sha256": "05e2e45147b547c045e47a3e0486d71cadc4c8a9de4226db602ee6eb95446fab",
+      "currentSha256": "05e2e45147b547c045e47a3e0486d71cadc4c8a9de4226db602ee6eb95446fab"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-30-tasks.png",
+      "sha256": "d9fa80d3c8aa1c888dda37785ea876d2015748fb9b26b305db91c6bb36b53243",
+      "currentSha256": "d9fa80d3c8aa1c888dda37785ea876d2015748fb9b26b305db91c6bb36b53243"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-40-browser.json",
+      "sha256": "0d9f97c65a8652c126172bdfd32428a46a9badc850acecec2e2dba14583e5632",
+      "currentSha256": "0d9f97c65a8652c126172bdfd32428a46a9badc850acecec2e2dba14583e5632"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-40-tasks.png",
+      "sha256": "6608be3bf371e3b9a899696e04c9ba1e451e1a1adca45ba656fe6b72982327f2",
+      "currentSha256": "6608be3bf371e3b9a899696e04c9ba1e451e1a1adca45ba656fe6b72982327f2"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/nonworking-compressed.png",
+      "sha256": "5ff2560df00f0340df8f8641849244a113696a522f6044616e13129fbb763479",
+      "currentSha256": "5ff2560df00f0340df8f8641849244a113696a522f6044616e13129fbb763479"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/same-date-project-slot-delay.png",
+      "sha256": "05d613dc99e7c21ec1dcd2ecbb01f4e00a74c2c83883626e9d14e88c18174041",
+      "currentSha256": "05d613dc99e7c21ec1dcd2ecbb01f4e00a74c2c83883626e9d14e88c18174041"
+    },
+    {
+      "path": "docs/qa/wp7-3-3/evidence/08-weekend-compressed.png",
+      "sha256": "0d410e3328c2c50f7ef91aae743e229a9c9ec6b3d3dc59668c48a38ed1a9eced",
+      "currentSha256": "0d410e3328c2c50f7ef91aae743e229a9c9ec6b3d3dc59668c48a38ed1a9eced"
+    },
+    {
+      "path": "docs/qa/wp7-3-3/evidence/08-weekend-expanded.png",
+      "sha256": "a306096089add7e1bdec116fab681d411edb1db6d0108d7f7fa51f3d885af998",
+      "currentSha256": "a306096089add7e1bdec116fab681d411edb1db6d0108d7f7fa51f3d885af998"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-actions-1280.png",
+      "sha256": "aca22cb6568906368b265c3beb9e24e44dce73cb207f34b6b05e1c472c217670",
+      "currentSha256": "aca22cb6568906368b265c3beb9e24e44dce73cb207f34b6b05e1c472c217670"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-end-1280.png",
+      "sha256": "ee3bf7cd136340be9a091f29a3f32207323fd17144f19009df7f1ae211af24bb",
+      "currentSha256": "ee3bf7cd136340be9a091f29a3f32207323fd17144f19009df7f1ae211af24bb"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-start-1280.png",
+      "sha256": "b20ffa23d82489cb87aff9ac56144f9ff71cd4feea5df1a4f432197392523cb7",
+      "currentSha256": "b20ffa23d82489cb87aff9ac56144f9ff71cd4feea5df1a4f432197392523cb7"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c02-complete-summary.png",
+      "sha256": "02582fe19d458626c37c965fcc80385774af588f9e7a763dc037134d9287b348",
+      "currentSha256": "02582fe19d458626c37c965fcc80385774af588f9e7a763dc037134d9287b348"
+    },
+    {
+      "path": "docs/review/wp5-1-dependencies.png",
+      "sha256": "9388729a1445760ebe5e2b8338c3a37a717cf92429b1b695b99fbcab3da2d95a",
+      "currentSha256": "9388729a1445760ebe5e2b8338c3a37a717cf92429b1b695b99fbcab3da2d95a"
+    },
+    {
+      "path": "docs/review/wp5-1-editor.png",
+      "sha256": "74c8121b065c4d00c40574040197d983bce46d6ff679cd4f772eb3dbfea61b9b",
+      "currentSha256": "74c8121b065c4d00c40574040197d983bce46d6ff679cd4f772eb3dbfea61b9b"
+    },
+    {
+      "path": "docs/review/wp5-1-narrow-picker.png",
+      "sha256": "1b32ad171de5230f93d9a19c403034af0838248f8233f4d723ee445ac11fa919",
+      "currentSha256": "1b32ad171de5230f93d9a19c403034af0838248f8233f4d723ee445ac11fa919"
+    },
+    {
+      "path": "docs/review/wp5-1-narrow-workspace.png",
+      "sha256": "891844bf8c89c6fef0c058568f78253b7d4f85c6f314ebd2ea5cd8862da7b813",
+      "currentSha256": "891844bf8c89c6fef0c058568f78253b7d4f85c6f314ebd2ea5cd8862da7b813"
+    },
+    {
+      "path": "docs/review/wp5-1-workspace.png",
+      "sha256": "341dd60e8902ad5ef90af01d7464a2eb72a42d40ce419b3bd1bec2dd50b4c341",
+      "currentSha256": "341dd60e8902ad5ef90af01d7464a2eb72a42d40ce419b3bd1bec2dd50b4c341"
+    },
+    {
+      "path": "docs/review/wp5-2-network-fit.png",
+      "sha256": "791f695efbe48e4febfb6b838e3ff5b5cbd8c5fe89d6d51686166fc21d2dcd41",
+      "currentSha256": "791f695efbe48e4febfb6b838e3ff5b5cbd8c5fe89d6d51686166fc21d2dcd41"
+    },
+    {
+      "path": "docs/review/wp5-2-network-narrow-fit.png",
+      "sha256": "fe9b034dfc7975c65c53032365f65574ad6b08722f66b1545faf5679f808fb7a",
+      "currentSha256": "fe9b034dfc7975c65c53032365f65574ad6b08722f66b1545faf5679f808fb7a"
+    },
+    {
+      "path": "docs/review/wp5-2-network-zoomed.png",
+      "sha256": "4484b80cd486471924cf41ee44bba7502720fc2dcb806302cc3efb6e0ba05d71",
+      "currentSha256": "4484b80cd486471924cf41ee44bba7502720fc2dcb806302cc3efb6e0ba05d71"
+    },
+    {
+      "path": "docs/review/wp5-2-week-1440.png",
+      "sha256": "1fae21ce4eb0ff5cedc643f939bab5aff84610df5d0cb59d9efe255146cc5d40",
+      "currentSha256": "1fae21ce4eb0ff5cedc643f939bab5aff84610df5d0cb59d9efe255146cc5d40"
+    },
+    {
+      "path": "docs/review/wp5-2-week-780.png",
+      "sha256": "e1bde2896387bfaa060dbb6a78c27c0dce26da5667efa8bb035537d66752f789",
+      "currentSha256": "e1bde2896387bfaa060dbb6a78c27c0dce26da5667efa8bb035537d66752f789"
+    },
+    {
+      "path": "docs/review/wp6-1-baseline-desktop.png",
+      "sha256": "7f4a56a69780cb133afa56e3ac3f3efb4f97aa81794390aab224a3dd5765c69b",
+      "currentSha256": "7f4a56a69780cb133afa56e3ac3f3efb4f97aa81794390aab224a3dd5765c69b"
+    },
+    {
+      "path": "docs/review/wp6-1-baseline-narrow.png",
+      "sha256": "825dc6fb5d98a63472655708d280bdc5d6d3730b54ff68d3f83815ea0c6badcb",
+      "currentSha256": "825dc6fb5d98a63472655708d280bdc5d6d3730b54ff68d3f83815ea0c6badcb"
+    },
+    {
+      "path": "docs/review/wp6-1-legacy-backup.png",
+      "sha256": "92fcacd5621b4862b72abd6d9b34d65042990b56477459c402e6ac1c24467b6a",
+      "currentSha256": "92fcacd5621b4862b72abd6d9b34d65042990b56477459c402e6ac1c24467b6a"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-1440.png",
+      "sha256": "1d869994ab782040dbe61d4fc5440fc2fae995c48402050e1fbe42b091a8c5a4",
+      "currentSha256": "1d869994ab782040dbe61d4fc5440fc2fae995c48402050e1fbe42b091a8c5a4"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-600.png",
+      "sha256": "5daa91f6508d98a8577a1491c0ddf2bb9955f3542650595b542efe7ee44598fe",
+      "currentSha256": "5daa91f6508d98a8577a1491c0ddf2bb9955f3542650595b542efe7ee44598fe"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-780.png",
+      "sha256": "f2a08ce680cdb2612917472c9017e7e6dd29bb4cc2f54cd124b50f980c6f6cde",
+      "currentSha256": "f2a08ce680cdb2612917472c9017e7e6dd29bb4cc2f54cd124b50f980c6f6cde"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-1440.png",
+      "sha256": "86a4d26d391b7986af01e3d3432c580d5124df40b2a20f91dc6d942bcdc3d078",
+      "currentSha256": "86a4d26d391b7986af01e3d3432c580d5124df40b2a20f91dc6d942bcdc3d078"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-600.png",
+      "sha256": "bdae63eedeeb69dd4f975981c7c24fe6c212809a7b616317939597068029188e",
+      "currentSha256": "bdae63eedeeb69dd4f975981c7c24fe6c212809a7b616317939597068029188e"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-780.png",
+      "sha256": "f216481e6e6ae76797bb60efce052261536fd454ce4ff2f5417401422820c17b",
+      "currentSha256": "f216481e6e6ae76797bb60efce052261536fd454ce4ff2f5417401422820c17b"
+    },
+    {
+      "path": "docs/review/wp6-2-entry-form.png",
+      "sha256": "5392dba068c8c5178100bcd3d301cdbd67917e47055859990cc5642e346e73b4",
+      "currentSha256": "5392dba068c8c5178100bcd3d301cdbd67917e47055859990cc5642e346e73b4"
+    },
+    {
+      "path": "docs/review/wp6-2-work-desktop.png",
+      "sha256": "46abfad480ce5f8bf750618930601cba7f9ea5687d426a9a31f1ecded0809e5a",
+      "currentSha256": "46abfad480ce5f8bf750618930601cba7f9ea5687d426a9a31f1ecded0809e5a"
+    },
+    {
+      "path": "docs/review/wp6-2-work-narrow.png",
+      "sha256": "7535b9558ac6a4ca12f97018a62e4f02b513e93717a2d67423cd9d09813252df",
+      "currentSha256": "7535b9558ac6a4ca12f97018a62e4f02b513e93717a2d67423cd9d09813252df"
+    },
+    {
+      "path": "docs/review/wp6-3-details-1440.png",
+      "sha256": "a9c5557159b7923c970fc2110ad9429262436941623045819f43123805203311",
+      "currentSha256": "a9c5557159b7923c970fc2110ad9429262436941623045819f43123805203311"
+    },
+    {
+      "path": "docs/review/wp6-3-details-600.png",
+      "sha256": "b33c8fed3f451fd8efe26de022e42473eb800a893f4c346311f8da25334d3623",
+      "currentSha256": "b33c8fed3f451fd8efe26de022e42473eb800a893f4c346311f8da25334d3623"
+    },
+    {
+      "path": "docs/review/wp6-3-editable-chart-status.png",
+      "sha256": "56dc74f71bd787653cda307a5ab9a94c0ba588a1ddf485a382d1c0f132554be9",
+      "currentSha256": "56dc74f71bd787653cda307a5ab9a94c0ba588a1ddf485a382d1c0f132554be9"
+    },
+    {
+      "path": "docs/review/wp6-3-table-1440.png",
+      "sha256": "ecfcc5c9b6021015ee91e00cc79cdf24c86129ae3c54787cfa89b16fde1044f5",
+      "currentSha256": "ecfcc5c9b6021015ee91e00cc79cdf24c86129ae3c54787cfa89b16fde1044f5"
+    },
+    {
+      "path": "docs/review/wp6-3-table-600.png",
+      "sha256": "d628c41e7628ab55f7d7e855c603ef89d3b4d664f75bbde875b95aa1a1a2cb5c",
+      "currentSha256": "d628c41e7628ab55f7d7e855c603ef89d3b4d664f75bbde875b95aa1a1a2cb5c"
+    },
+    {
+      "path": "docs/review/wp6-4-forecast-1440.png",
+      "sha256": "4c0f30f199ee1031dda3dfb4402f94c050d8ffc377a1e2048e5159a542131097",
+      "currentSha256": "4c0f30f199ee1031dda3dfb4402f94c050d8ffc377a1e2048e5159a542131097"
+    },
+    {
+      "path": "docs/review/wp6-4-forecast-600.png",
+      "sha256": "26cf5fb9e82b12ec9f06af0f9d313d36e58034309d0d0f203acee5d34d4f908c",
+      "currentSha256": "26cf5fb9e82b12ec9f06af0f9d313d36e58034309d0d0f203acee5d34d4f908c"
+    },
+    {
+      "path": "docs/review/wp6-5-1-earlier-compressed.png",
+      "sha256": "e6dfe1ae4328b84aecea30ca2c1627708977deac5869f19bd0fca920a02513df",
+      "currentSha256": "e6dfe1ae4328b84aecea30ca2c1627708977deac5869f19bd0fca920a02513df"
+    },
+    {
+      "path": "docs/review/wp6-5-1-earlier-expanded.png",
+      "sha256": "bcc3f5cc4196020bbf628394ec2b0232b2772c7ed67a85499ba5db2215e1736a",
+      "currentSha256": "bcc3f5cc4196020bbf628394ec2b0232b2772c7ed67a85499ba5db2215e1736a"
+    },
+    {
+      "path": "docs/review/wp6-5-1-forecast-off.png",
+      "sha256": "298b3b95f51e53fa8524435bcf3770dad844bd74a9c6b9068af846ece67fd1a0",
+      "currentSha256": "298b3b95f51e53fa8524435bcf3770dad844bd74a9c6b9068af846ece67fd1a0"
+    },
+    {
+      "path": "docs/review/wp6-5-1-forecast-on.png",
+      "sha256": "f6f1d4af86e41d4bf15e252da5cdb5256614eef13536d278620588c868344cb3",
+      "currentSha256": "f6f1d4af86e41d4bf15e252da5cdb5256614eef13536d278620588c868344cb3"
+    },
+    {
+      "path": "docs/review/wp6-5-combined-compressed.png",
+      "sha256": "43759488aa2ff28478d6061c55f49e259427d767199f8b27c717ecdc68b9d424",
+      "currentSha256": "43759488aa2ff28478d6061c55f49e259427d767199f8b27c717ecdc68b9d424"
+    },
+    {
+      "path": "docs/review/wp6-5-combined-expanded.png",
+      "sha256": "40e6350672a6c7f6de60d4863613cfd7b860c25ad02c621343a5712543cbec74",
+      "currentSha256": "40e6350672a6c7f6de60d4863613cfd7b860c25ad02c621343a5712543cbec74"
+    },
+    {
+      "path": "docs/review/wp6-5-long-1440.png",
+      "sha256": "de0d14b70bfeca44c4546eb12190d817f596e7829012793dbf1a0df52c0934f1",
+      "currentSha256": "de0d14b70bfeca44c4546eb12190d817f596e7829012793dbf1a0df52c0934f1"
+    },
+    {
+      "path": "docs/review/wp6-5-long-600.png",
+      "sha256": "fb9432992f7547354eafcc7d90be8a5cbc5af7c01feb99812fc86aa84f767ef0",
+      "currentSha256": "fb9432992f7547354eafcc7d90be8a5cbc5af7c01feb99812fc86aa84f767ef0"
+    }
+  ],
+  "unchangedSourceTestConfigFiles": 215,
+  "sourceTestConfigHashes": [
+    {
+      "path": "docs/qa/wp7-4-7/playwright.config.ts",
+      "lfSha256": "63716461c6b9159ceb4b1778bb911f6249baca19840c95ade00e2789a8158bf1"
+    },
+    {
+      "path": "docs/qa/wp7-4-7/tsconfig.json",
+      "lfSha256": "7e7b64c0b3374b68f69addcc6e0d1a097fcb6904222566091f4b3dedf7d27072"
+    },
+    {
+      "path": "docs/qa/wp7-4-7a/before.config.ts",
+      "lfSha256": "d7fe16e2c854ad9295348feedba7c1cdef59203059d580459e98c81921cd1c1c"
+    },
+    {
+      "path": "docs/qa/wp7-4-7a/playwright.config.ts",
+      "lfSha256": "17ecdb5c03353a334982f9e993dcbfe5ba6c182163ae8ec7af7f4e436d882c7c"
+    },
+    {
+      "path": "docs/qa/wp7-4-7a/tsconfig.json",
+      "lfSha256": "1a5ed3ffdc3661982ee3c55d19a9a52454f97e1386bad5f22993cfc06adcf0c8"
+    },
+    {
+      "path": "docs/qa/wp7-4-7b/playwright.config.ts",
+      "lfSha256": "4bc63e0dc1400ba3336904c1bc22cf45cd0c7d7933d1a1fee4666c330102cc3a"
+    },
+    {
+      "path": "docs/qa/wp7-4-7b/tsconfig.json",
+      "lfSha256": "1f51eb9015e88daa35334d4ec5bccd3f1a97c64144f0860371eadcd80c563501"
+    },
+    {
+      "path": "eslint.config.js",
+      "lfSha256": "eaa3d177ba77659adba559cc9a803aff3412da8fff1d2f07bf4a7d89796efa8b"
+    },
+    {
+      "path": "package-lock.json",
+      "lfSha256": "ae6eec3b20e92a492963e62ea3ba234cca18a17fe6d0a81a14f3350641ac1609"
+    },
+    {
+      "path": "package.json",
+      "lfSha256": "3845357cbd2d5b2e894b90ec9be34aa461a6b5eaa8d3d8ddffcf48d2fcded137"
+    },
+    {
+      "path": "playwright.config.ts",
+      "lfSha256": "f7c4bd09fffa19616f4db731301aab3bf1df17658c741626281acaf6f7a8544e"
+    },
+    {
+      "path": "src/App.test.tsx",
+      "lfSha256": "481afc70287d6f6c748c68a2b92c838813e79dd7c57d0a94b9fd6a942540b68c"
+    },
+    {
+      "path": "src/App.tsx",
+      "lfSha256": "1c21b85cd221cd7187fc19656d9cd6dc951493a29af17e0965ea2a89d3f21d32"
+    },
+    {
+      "path": "src/baseline/README.md",
+      "lfSha256": "d3566c5be0dfc612488aa93c28367d06e58aceee3cb31c25ea244db9093b21c4"
+    },
+    {
+      "path": "src/baseline/baseline.test.ts",
+      "lfSha256": "a01c28a5626f1b18c55c299006b46d45660f998cdd17cecf60de9f7ae024409e"
+    },
+    {
+      "path": "src/baseline/baseline.ts",
+      "lfSha256": "84ad4ea632986d8988743379a9e6f1e2acff5e8736263addebcaf9c7b500e387"
+    },
+    {
+      "path": "src/components/.gitkeep",
+      "lfSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/components/BaselinePanel.tsx",
+      "lfSha256": "7a3720b2fc339659ccd4ef79f6257c527c408059fcdd614f774a0b5d0386cd0e"
+    },
+    {
+      "path": "src/components/ConfirmDialog.tsx",
+      "lfSha256": "746ecc72550b7eb8c29587dc2283e4d860be0b33a676603cf184d06399a52923"
+    },
+    {
+      "path": "src/components/DeleteTaskDialog.tsx",
+      "lfSha256": "8686c02b11da836fa0012b93eccf862ef691f8f9d4cb50e4aa0930727b34629d"
+    },
+    {
+      "path": "src/components/DependencyPicker.test.tsx",
+      "lfSha256": "e27993e20483bfb8e3e863e9f77d38ab661c86010da3df98bf41d5e64ebbc22e"
+    },
+    {
+      "path": "src/components/DependencyPicker.tsx",
+      "lfSha256": "e674c42955a7189de2c217827358ce156009482ae0df75a6bda302e997511caa"
+    },
+    {
+      "path": "src/components/EntryErrors.tsx",
+      "lfSha256": "5196c562f165c53d9607cf207899ec7481846a3e5626df8be5d50a19915ab0bc"
+    },
+    {
+      "path": "src/components/InlineField.tsx",
+      "lfSha256": "b85f68189494c250b6e6f359e7987325bd4fa18d032d73b43853e420720b317d"
+    },
+    {
+      "path": "src/components/ProjectEntry.test.tsx",
+      "lfSha256": "fb009b343ca248f90f169f79a44bf0d706d1a1cf395fe29ff01f5a9ab354c68b"
+    },
+    {
+      "path": "src/components/ProjectSettingsForm.tsx",
+      "lfSha256": "60351500989c54fc667845e7fe1964f83e61f85b25e2b446b4c18e87fec0bf74"
+    },
+    {
+      "path": "src/components/RemainingEffortField.test.tsx",
+      "lfSha256": "6e6980203805c7744a7342b1e6aa488e70437691101a111480fa5cdb010f9bf9"
+    },
+    {
+      "path": "src/components/RemainingEffortField.tsx",
+      "lfSha256": "d98fa0aee79b3f293b606d6ec728044c78a2b6415dac0e5bcf31f49830bf7a9f"
+    },
+    {
+      "path": "src/components/TaskEditor.tsx",
+      "lfSha256": "4695588523422e476329695a9df79bb890f2b5715f7e3b46ec1a8cd8a9bd01a8"
+    },
+    {
+      "path": "src/components/TaskInspection.tsx",
+      "lfSha256": "974911bb4fba9f4347b3ea8e6391b584470d4726989f33e121c33bff4a70f14c"
+    },
+    {
+      "path": "src/components/TaskManagement.test.tsx",
+      "lfSha256": "a7cbf40af719b64c37263f99de9753afffa2fc759e1abe871e42a1bc74192d5d"
+    },
+    {
+      "path": "src/components/TaskTable.tsx",
+      "lfSha256": "a97efba3034e8e7a352c0bd0c0eeb34d0f0a8cd23f3188cd80cbb6c281c75d40"
+    },
+    {
+      "path": "src/components/TaskWorkPanel.tsx",
+      "lfSha256": "3835d1b0ef7947c908c480e8ced098b54a34f6d118d922c9ee1f91b34b76cc42"
+    },
+    {
+      "path": "src/components/WorkspaceUsability.test.tsx",
+      "lfSha256": "7728ca1daf2f451c7082152b114e0d8afb9ad9fc56f2308279ffaaa6fe601572"
+    },
+    {
+      "path": "src/components/forecast/ForecastSettingsForm.tsx",
+      "lfSha256": "4fb16c7a05a6f5cfdf7bced4bd914b7da58a8950f1571649f408cbc09b68edb7"
+    },
+    {
+      "path": "src/components/forecast/ForecastSummary.tsx",
+      "lfSha256": "be574b07587a4e920fc22518bfea05a081c6bde128c5e11ddb78d1cd75446d69"
+    },
+    {
+      "path": "src/components/gantt/ActualImpactOverlays.tsx",
+      "lfSha256": "237a249b8b51f8d0064e4d8c9fec0c207503b24601df91467398e145312e04cc"
+    },
+    {
+      "path": "src/components/gantt/CriticalHighlight.test.tsx",
+      "lfSha256": "cf0f1b0c70f295017e1cf3379a48b276f3a164c752abc4faa9adae010eb464f1"
+    },
+    {
+      "path": "src/components/gantt/GanttChart.test.tsx",
+      "lfSha256": "6acac44075f17b8f7967e9828025acbf62aa560e44833701350150d086cc9bd3"
+    },
+    {
+      "path": "src/components/gantt/GanttChart.tsx",
+      "lfSha256": "c8d0eb7b40527893dab625b141744c7d9039216cabe47dd8dbf2695103b5f182"
+    },
+    {
+      "path": "src/components/gantt/HistoricalPresentation.test.tsx",
+      "lfSha256": "c36df1220c6138e3f7d0d18ed752ac88b03323cf827d567cc94119ec0afe2ec6"
+    },
+    {
+      "path": "src/components/gantt/ImpactRelations.tsx",
+      "lfSha256": "6b668e315c7a9a9521d2775f69dea43ee2cb03575bd54990c8db0be47b6a14b0"
+    },
+    {
+      "path": "src/components/gantt/ImpactSummary.tsx",
+      "lfSha256": "5da1b5f861ac3e45f1cd330de59a154b36651383b416fc189cfcc36d8d7d9578"
+    },
+    {
+      "path": "src/components/gantt/ProgressOverlays.tsx",
+      "lfSha256": "97f4b9d40e8aa24e08c5ef1ae45164803d1d8753f0e76694cce405bedfe8cda7"
+    },
+    {
+      "path": "src/components/gantt/TimelineHeader.tsx",
+      "lfSha256": "41978afc57dbe46b653e835a306175763664373a629781e52bfda4062bacb44f"
+    },
+    {
+      "path": "src/components/network/NetworkView.test.tsx",
+      "lfSha256": "78e3818b8644e863a6515f3b5a66d06fed06b56d274bf099c98a855cbbfb06d9"
+    },
+    {
+      "path": "src/components/network/NetworkView.tsx",
+      "lfSha256": "b71c1b010363fbdae1230e108a97e845a702f5ff7dc5441706c3eda4c11f1cfd"
+    },
+    {
+      "path": "src/components/persistence/ProjectStorage.test.tsx",
+      "lfSha256": "ac2614609c1b5474ed16fa90119cb61f249c95350d0070650403a23395d1314d"
+    },
+    {
+      "path": "src/components/persistence/ProjectStorage.tsx",
+      "lfSha256": "3cef8e009843aea2ad92629cf476bba72e7fa3be4a838ffd4ba79602c9df0de6"
+    },
+    {
+      "path": "src/components/progress/DefinitionOfDone.tsx",
+      "lfSha256": "43ffbf735d776697fe8977e1acde7f4f47c1d87004b31facec6c7308da9db37b"
+    },
+    {
+      "path": "src/components/progress/HealthBadge.tsx",
+      "lfSha256": "f5ee4b23e778019afb6d67d7529a8fd140cd8fc8b2b33b6ef37c600771b27857"
+    },
+    {
+      "path": "src/components/progress/LegacyTaskHistory.tsx",
+      "lfSha256": "ae940381abc73992c4ae6095390c524007954f04577b1c966e6f8637e0b0fede"
+    },
+    {
+      "path": "src/components/progress/SelectedTaskHistory.actions.test.tsx",
+      "lfSha256": "7ad6551b14f50bbd2927b3427d8c0d3ebafc437d6785e562098fe5a45cb980e0"
+    },
+    {
+      "path": "src/components/progress/SelectedTaskHistory.test.tsx",
+      "lfSha256": "d389d5457eec6bad033843b2a704609e1ae5388c1c8ba6f50d66a1c8589ae763"
+    },
+    {
+      "path": "src/components/progress/SelectedTaskHistory.tsx",
+      "lfSha256": "f78f396aad4bea14911b0b267edbc932c66dac8b26e7e892fa891b5f92494f34"
+    },
+    {
+      "path": "src/components/progress/SelectedTaskHistory.ux.test.tsx",
+      "lfSha256": "d06e6848f4780b41a3d2d625c18b3188db80fa794d20af0a5a0abcc95f74d205"
+    },
+    {
+      "path": "src/components/progress/StatusTransitionDialog.tsx",
+      "lfSha256": "80dd9bf13a2624436154be1d3ce1afb445979711b492176a584f45c94b095359"
+    },
+    {
+      "path": "src/components/progress/TaskStatusControl.tsx",
+      "lfSha256": "25c0dcace901194153c0488b825b9d02d91550020a4ac1e650fd786e647f12ac"
+    },
+    {
+      "path": "src/components/progress/TaskStatusPanel.tsx",
+      "lfSha256": "9c7a05d25df09aa9f196c1fd376ff24c9327d850bd7107c20964c52b60d044bc"
+    },
+    {
+      "path": "src/components/progress/localDate.ts",
+      "lfSha256": "8b5ed0ceb56400a9f9329e648da4e0dc9b6e26bfbf7ef2424824c292373f7e78"
+    },
+    {
+      "path": "src/components/progress/selectedTaskHistory.css",
+      "lfSha256": "bdf7ca63ac5d07d314a085246351851cf5753ceb6da590cd36e08ac5324f36ac"
+    },
+    {
+      "path": "src/components/progress/useLocalDate.ts",
+      "lfSha256": "9d6a841dbd5b40432d7d068a2cde40f1b4c6fc3861c3e1eb98e42644d96b3fd1"
+    },
+    {
+      "path": "src/components/projectEntry.test.ts",
+      "lfSha256": "814117a74f9a0473c9463717baad3c03478519595f9e098acf29d0287e8bef67"
+    },
+    {
+      "path": "src/components/projectEntry.ts",
+      "lfSha256": "af62643a914e1e506c2335c8ce376a6f42ea93fb52f887924234ed0b0897eae8"
+    },
+    {
+      "path": "src/domain/CRITICAL_PATH.md",
+      "lfSha256": "f50dbbd5fda69c01a3ea3e30db148d9a5865e171c943f928ab6479208bc4f16d"
+    },
+    {
+      "path": "src/domain/README.md",
+      "lfSha256": "74543ddd73640a4a549e581e5fa6a36d0623eb3c95f0fa50319d007fbcf5faf9"
+    },
+    {
+      "path": "src/domain/__tests__/calendar.test.ts",
+      "lfSha256": "7d58d0f13814938b1c35801bbf13b55c60b6448066ad5147624329e81d217f0e"
+    },
+    {
+      "path": "src/domain/__tests__/criticalPath.test.ts",
+      "lfSha256": "0841ed89cb803712823665053b40b782df398d555e9a94fbee4cc94a59ab1fdf"
+    },
+    {
+      "path": "src/domain/__tests__/scheduler.test.ts",
+      "lfSha256": "8403b493b278d2ab6a74973e008e0a217f49eb1adcba014acdedcf442f5d6fe1"
+    },
+    {
+      "path": "src/domain/__tests__/workingTime.test.ts",
+      "lfSha256": "352fd7ab9246e477f7f5672cf3a3c536956a11945229c1adca8117146bf62c80"
+    },
+    {
+      "path": "src/domain/calendar.ts",
+      "lfSha256": "3e777ec7df4c633f022fb4f218ca05bb67ce7a91221caca39a6a1005ec1dd3de"
+    },
+    {
+      "path": "src/domain/criticalPath.ts",
+      "lfSha256": "887770010a0c66eb76a199f72007cc27bd3d9ca271ab0d28272aed51dc6bc5b1"
+    },
+    {
+      "path": "src/domain/graph.ts",
+      "lfSha256": "ee6e3c18898092ee6a54aba00f0d0fc71d76f624bf947c764e133c5a49a58485"
+    },
+    {
+      "path": "src/domain/index.ts",
+      "lfSha256": "3de1d4fc68c406355969df5560d72b276448c4a991bd0cc4a330dcfeda25a129"
+    },
+    {
+      "path": "src/domain/scheduler.ts",
+      "lfSha256": "4dfe85eaf1e19b634ba6abb481bb23c9d09bd105972a328d6793bfe92cc92154"
+    },
+    {
+      "path": "src/domain/workingTime.ts",
+      "lfSha256": "bb6ae4b14289c134aef4d5ee7a771311084206cc5583b6b2e453b8b173b90535"
+    },
+    {
+      "path": "src/forecast/README.md",
+      "lfSha256": "7eede634c937962e0676f2735228eb23566f8c9018846d868eb4a86dfd20445d"
+    },
+    {
+      "path": "src/forecast/forecast.test.ts",
+      "lfSha256": "18915fab221852a53b733eae0c07015aa7f6c82b3758cb45da64d8477da864e6"
+    },
+    {
+      "path": "src/forecast/forecast.ts",
+      "lfSha256": "adf2c72518e70298d78d87afb216c17717fa8fe80708cf44f94d3e1dfe2ef588"
+    },
+    {
+      "path": "src/forecast/settings.ts",
+      "lfSha256": "5cd0bf7b5ea05791f8825c7f4ba398c54edefc308d8f5a2ce9f432f87619860c"
+    },
+    {
+      "path": "src/history/featureFlag.ts",
+      "lfSha256": "e1bc7c84274aca5661deded51ec87f9d98d9fd0b3ec30e1798985798bf207137"
+    },
+    {
+      "path": "src/history/selectedTaskHistory.test.ts",
+      "lfSha256": "d991a7b557f9cebc5a892c747ebfeed6566fc7c6f9f43e369f7fa77d530acdf1"
+    },
+    {
+      "path": "src/history/selectedTaskHistory.ts",
+      "lfSha256": "695b67ac9de15b1a15cda12d18be68a0f06d680d535e972c98ba34a53e4f1adc"
+    },
+    {
+      "path": "src/main.tsx",
+      "lfSha256": "2ace5fbd6f2739704b7953cad1b78d9f5863035bdab597295e21070f20bec0c1"
+    },
+    {
+      "path": "src/network/README.md",
+      "lfSha256": "a6b9517530a7debe6f442157b233ff91637fce7c095c8c2606d66b138e4d0436"
+    },
+    {
+      "path": "src/network/layout.test.ts",
+      "lfSha256": "7f0cfd0eb3e5017f6bef6b52d87993a67f1e100e20fca432fbd308c6676f7889"
+    },
+    {
+      "path": "src/network/layout.ts",
+      "lfSha256": "d492f5927a5edb328161530e2ff8b55679b8c7c58c575dd51b9ccc94e6b946b1"
+    },
+    {
+      "path": "src/network/viewport.test.ts",
+      "lfSha256": "92f7e9191ed971bb8a6c26b3c1801f1f6d85dc42175bb3fdbe1338b9bb20f78c"
+    },
+    {
+      "path": "src/network/viewport.ts",
+      "lfSha256": "88ace32f25766da1a2389372e118c32f1b5f2be0f966da48c884b1b322028f9c"
+    },
+    {
+      "path": "src/persistence/README.md",
+      "lfSha256": "4295a3390417a13bb81482393ec510188052bb0a7e3c5758785da2abb76c6fd1"
+    },
+    {
+      "path": "src/persistence/baselinePersistence.test.ts",
+      "lfSha256": "5c496a00368bda96798a3201a28dee7b45fdb9cf79522cd39e0be788af56e725"
+    },
+    {
+      "path": "src/persistence/forecastPersistence.test.ts",
+      "lfSha256": "e10bd3b7828b6d572d946472b6014906fb90ce5d6cc5429b9dcb0c02eb02f8aa"
+    },
+    {
+      "path": "src/persistence/localProjects.test.ts",
+      "lfSha256": "4b1bae753eaa4effaf190db1eb44354075312389ee13cf94baf8616c83ef6d9d"
+    },
+    {
+      "path": "src/persistence/localProjects.ts",
+      "lfSha256": "fcfd62927e0c9a7d2ba4ce6e0a53b5acad22d9d8e7c137d190ccdee9570ae7ab"
+    },
+    {
+      "path": "src/persistence/planInputs.ts",
+      "lfSha256": "5074d4c1703257c493e9e04cdcc7cee5aa32e0fab70f6c0de8ed330f5750b48d"
+    },
+    {
+      "path": "src/persistence/progressPersistence.test.ts",
+      "lfSha256": "09c692251d170dec3366ba92d872b037915c010aa30f4a5f04c697f810ab481d"
+    },
+    {
+      "path": "src/persistence/projectFile.test.ts",
+      "lfSha256": "d6387eaedf6a7bfe84009f749363aa62354642b964d1f3d6ce183f0d5b80b5fe"
+    },
+    {
+      "path": "src/persistence/projectFile.ts",
+      "lfSha256": "0d931d167c0de48c441d7492e9bf796cc4827e5ee65ff97de86183a6d5e877b0"
+    },
+    {
+      "path": "src/persistence/workPersistence.test.ts",
+      "lfSha256": "0464b181162a981f5a4f6bc41f9486a9778b8f65f09fda64902c85f51c2127e4"
+    },
+    {
+      "path": "src/planning/__fixtures__/benchmark.ts",
+      "lfSha256": "05cb0b99c6c421f7aff202d5d830ccbfd4e17c3a7ea65497c67974280518cb41"
+    },
+    {
+      "path": "src/planning/__fixtures__/cases.ts",
+      "lfSha256": "a910771732506156a3462f2a95220c95da7c06f8648e1fc3e8d6ae62a8ab9e6c"
+    },
+    {
+      "path": "src/planning/workingPlan.test.ts",
+      "lfSha256": "d15ccb840de61e6e73a59f4873a1cc423c1f58fc9b972a10993e9f8eb89da22a"
+    },
+    {
+      "path": "src/planning/workingPlan.ts",
+      "lfSha256": "166b08a0146268deaac6d68c1917581ea27e8aa9c9fa443118e38da67c91f112"
+    },
+    {
+      "path": "src/progress/README.md",
+      "lfSha256": "ca34c809de0d758ebbfc68cf1bdcef19a8885466ca9cbe019c6bf585ea169a59"
+    },
+    {
+      "path": "src/progress/healthPresentation.test.ts",
+      "lfSha256": "06b776f744711ec019dc08885c3ae8e7eef07d24a2431fbdf8339670bc3dc966"
+    },
+    {
+      "path": "src/progress/healthPresentation.ts",
+      "lfSha256": "33d979ceb4ee4130be2fb94e5512947be0999da239fdf067011247955afb39a6"
+    },
+    {
+      "path": "src/progress/taskProgress.test.ts",
+      "lfSha256": "ffe319212b65eaca438894d642dd8f6a5f7c403421702cbf1f91d2a598f9f6d1"
+    },
+    {
+      "path": "src/progress/taskProgress.ts",
+      "lfSha256": "8494f9bfc0246074f074c12a54f4d08928a73ea683924ad6fbdf5802be97df54"
+    },
+    {
+      "path": "src/projection/progressImpact.test.ts",
+      "lfSha256": "5623646d3ccf23207a639e092bf675db191cd887235c53ce6e2877850a02e661"
+    },
+    {
+      "path": "src/projection/progressImpact.ts",
+      "lfSha256": "41f1788559bff48e2da8b7ab7c3bab8c929905a5742c61e2fc48cb9c5e81fb74"
+    },
+    {
+      "path": "src/repository/operationalConsumerParity.test.tsx",
+      "lfSha256": "3ceb65fdb65fa5b9d2800c730e7e873856d7cf4e71ca1fe2628b2e94558da26b"
+    },
+    {
+      "path": "src/repository/operationalHistoryRepository.test.ts",
+      "lfSha256": "fc99e2686bd1556f714b3bccc76028bc4b410d8c37dc0f38ff14ab4a4243ca53"
+    },
+    {
+      "path": "src/repository/operationalHistoryRepository.ts",
+      "lfSha256": "b9330c8f8601b59b97ee65e0655a16687f1e0db267b25530c899e8d8674d6ea4"
+    },
+    {
+      "path": "src/repository/projectRepository.test.ts",
+      "lfSha256": "022def9f45be59e1a757db806a0af8d35c364fa3bb236d28af284f4311df0642"
+    },
+    {
+      "path": "src/repository/projectRepository.ts",
+      "lfSha256": "01bf80e844e3a6404f9f7bc264b3a3325bbdd14a7bbe19402ffb40b1850a4282"
+    },
+    {
+      "path": "src/styles/global.css",
+      "lfSha256": "b41c9cd390ea6304a4d70893fcb35626159ef10cce1456cf738adf16040f6bae"
+    },
+    {
+      "path": "src/taskManagement.test.ts",
+      "lfSha256": "db0fa77eec115167e7479a198586c6d2c43ed09906a138f9b4ea0212a3e14ebb"
+    },
+    {
+      "path": "src/taskManagement.ts",
+      "lfSha256": "18c94cf9c8a093f1894eafb9ea410c8bf3d6ed3eb3f3d8bec1f430f1c959631f"
+    },
+    {
+      "path": "src/test/baselineFixture.ts",
+      "lfSha256": "bfe0025e63d8462ae4a4e9ac132be33218d388904a030e2f4cf868e8a856acbf"
+    },
+    {
+      "path": "src/test/historyFixture.ts",
+      "lfSha256": "5eef83189a8f4254f40c2ab5065e39b5d9eff6f91de907ffc93f5b2d9707a100"
+    },
+    {
+      "path": "src/test/selectedHistoryFixture.ts",
+      "lfSha256": "e71f11d64c6c070e964f13b5ffce6432bc5d86a5a4e253969dd4fc7fa0337a3c"
+    },
+    {
+      "path": "src/test/setup.ts",
+      "lfSha256": "e20f6c79ce7842f29f0dd93957e8230a5cbb3b5f6ee691fef96d4f393b964cb3"
+    },
+    {
+      "path": "src/test/workFixture.ts",
+      "lfSha256": "8d7c5e10aff4185365a2332ff2371bd3dea49a1ebab955dfe34999838e554e2e"
+    },
+    {
+      "path": "src/timeline/README.md",
+      "lfSha256": "1972556e6680114c44fefa9caef9f3120599a1107125ca7326bcd6df13f6023c"
+    },
+    {
+      "path": "src/timeline/headers.test.ts",
+      "lfSha256": "9f9d04e0945121983b0f9bc4cb58fcb211b8c57b9d0af2219541222fd69a9fb2"
+    },
+    {
+      "path": "src/timeline/headers.ts",
+      "lfSha256": "9caf6aa4872de4e124931a09279c040ba61dc1df1f54ba2689dfbfc012b8a74a"
+    },
+    {
+      "path": "src/timeline/historyPresentation.test.ts",
+      "lfSha256": "5a7a64ada81bf6b0eed6eeff945934c19c2b3e453b177a19a06db8af07ae9a88"
+    },
+    {
+      "path": "src/timeline/historyPresentation.ts",
+      "lfSha256": "3e090e684d70bb9fa7ca45cf527d8e978446fa2132a292d5d2738fd4f2967575"
+    },
+    {
+      "path": "src/timeline/overlays.test.ts",
+      "lfSha256": "a433431031b37a75be043449b94ee5913bdab8992cb63f93735e8c90e7649dea"
+    },
+    {
+      "path": "src/timeline/overlays.ts",
+      "lfSha256": "122dfd267fc95f403dd643717ae3307f2de51dfc9096ec4c78226c21ed2af1f4"
+    },
+    {
+      "path": "src/timeline/projection.test.ts",
+      "lfSha256": "3f7d52e9996f3fc17e47878e20c7e2dbd0b2c2814c56c0a55a8e7ffb0822628c"
+    },
+    {
+      "path": "src/timeline/projection.ts",
+      "lfSha256": "69ccc5ad3c1ccda3ae65fedcc64d5cb824ff4b8782cbf51f558e91b4dc1de372"
+    },
+    {
+      "path": "src/types/criticalPath.ts",
+      "lfSha256": "1a99757547e6f2b1c6a151d291c53009dafb22a83ed8c7f223b3df3bc2d9afd2"
+    },
+    {
+      "path": "src/types/scheduling.ts",
+      "lfSha256": "f3e0f953eba7530f059019c283fb3eca8f3866d91cc773c6b6514e18ee5629bd"
+    },
+    {
+      "path": "src/workTracking/README.md",
+      "lfSha256": "5dd714a5860060ecaa0d836b138d7481c2240c28c398aea4805dfef2a0e61de0"
+    },
+    {
+      "path": "src/workTracking/workTracking.test.ts",
+      "lfSha256": "61ee8ca0d6a32673aab3db679bf3e896131161516143631666cd3037bddb630e"
+    },
+    {
+      "path": "src/workTracking/workTracking.ts",
+      "lfSha256": "0f5735d9eebeeb361aa0c9dc3f259e8524d9d020bb2dba0e53368ebf7f5ef318"
+    },
+    {
+      "path": "tests/baseline.spec.ts",
+      "lfSha256": "2647cb625ae3a8628342bf80e3a9de871ce8696d60f817042ff7cfb3102cf7c2"
+    },
+    {
+      "path": "tests/close-selected-task.spec.ts",
+      "lfSha256": "ae8361af2f7377bfa537c3a974aef68459ceb666d9306fc658644bfb0eb47ced"
+    },
+    {
+      "path": "tests/dependency-scroll.spec.ts",
+      "lfSha256": "5e2b28a3004d925e9902d9866f79b8d4bdff553f6cbff88d67b72f60fa5fd20e"
+    },
+    {
+      "path": "tests/dependencyHelpers.ts",
+      "lfSha256": "ba7c1d2ebbb6f967600a972b4c054da3b4718ea68ef4d571673d8df18b845417"
+    },
+    {
+      "path": "tests/fixtures/wp71/README.md",
+      "lfSha256": "1791072f82105d8161750526b3d58aa85d0f9878b76538351fb091df784a3146"
+    },
+    {
+      "path": "tests/fixtures/wp71/expected-anchors.json",
+      "lfSha256": "870e3d5ca93520b76be5377d93f3492621bb5b15d864c70de3eac59fd306f53e"
+    },
+    {
+      "path": "tests/fixtures/wp71/legacy-format-1.json",
+      "lfSha256": "d8cd8b5b1eceea3a486a8e58987fd9714cc79ff5a5b1b9f561d2fc11966b2589"
+    },
+    {
+      "path": "tests/fixtures/wp71/legacy-format-2.json",
+      "lfSha256": "da7dc6e6a65325fa3d51e08925bc7b26b4271c4f08a56657da43316dc295b03e"
+    },
+    {
+      "path": "tests/fixtures/wp71/legacy-format-3.json",
+      "lfSha256": "649acf9c9b613701b0d0845817692c7b1bb207c55f5f5868181b9e2479ea0796"
+    },
+    {
+      "path": "tests/fixtures/wp71/legacy-format-4.json",
+      "lfSha256": "be419e16fcde26a371d03ff9721993387eda5c456917724a16ff0063ed655bf8"
+    },
+    {
+      "path": "tests/fixtures/wp71/student-30-create.json",
+      "lfSha256": "34f8caf15534f8b5e25abb10732ff6776cb4173943ae222ed93b081871d4de8c"
+    },
+    {
+      "path": "tests/fixtures/wp71/student-30-prepared.json",
+      "lfSha256": "16f637917aa7fa467b5aa4244654b3d17bcbd4cbb911f033ec7fa8030ae6f5a8"
+    },
+    {
+      "path": "tests/fixtures/wp71/student-40-performance.json",
+      "lfSha256": "9a47754e9148e1fe645c013dd6ca105e90ed42790cddd99c1127ec0b9a796c7d"
+    },
+    {
+      "path": "tests/fixtures/wp732/README.md",
+      "lfSha256": "49ee07014a89c7ed3ab4c27f047b38219c3eecd1e6ecdd3155cd7470d1387996"
+    },
+    {
+      "path": "tests/fixtures/wp732/all-layers.json",
+      "lfSha256": "86ddaef2ededda1e5d9d75241a699e68d138a134cdb7a38a994493db149241b9"
+    },
+    {
+      "path": "tests/fixtures/wp732/as-of-only.json",
+      "lfSha256": "fba667d6ecdf809d5116acbce531729aa2df3e50a55f7d550dadcf53a4c36d02"
+    },
+    {
+      "path": "tests/fixtures/wp732/blocked-unknown.json",
+      "lfSha256": "96b35c6245d06ecf07194e0d4ecb0670cb4ae3942049b2be80a2251eed2c815a"
+    },
+    {
+      "path": "tests/fixtures/wp732/changed-driver.json",
+      "lfSha256": "534fb3730e3d7a61023eb74f1f34bb054515aaeb73386723d01a3c075d21b2be"
+    },
+    {
+      "path": "tests/fixtures/wp732/conflicting-history.json",
+      "lfSha256": "7fd9252b0bdfec5cfe1328974b38d377181dfeb27b8f9a6f492cb0ebe4e98854"
+    },
+    {
+      "path": "tests/fixtures/wp732/late-after-completion.json",
+      "lfSha256": "bfabc829389e55a9e6d1a5b52a632ff5e6461f06ff6352e0bc88c26cd0af906a"
+    },
+    {
+      "path": "tests/fixtures/wp732/late-before-completion.json",
+      "lfSha256": "c0433bc581f3ff76b6f912877526a0d3e192f8525584ab549318809e5f9bcfa1"
+    },
+    {
+      "path": "tests/fixtures/wp732/nonworking-actual.json",
+      "lfSha256": "3a3ed62000e4721de599b13a5965b13e0c70cc61952379a6908b83de27c89824"
+    },
+    {
+      "path": "tests/fixtures/wp732/reopened-unknown.json",
+      "lfSha256": "929960afe173af3e4be3df39e39f526adc338619c8fecfe61aa0ea7f19373e79"
+    },
+    {
+      "path": "tests/fixtures/wp732/roundtrip.json",
+      "lfSha256": "f05b9855e43def50be21740913edf5381827b0be84e75b928ad367004d3d417d"
+    },
+    {
+      "path": "tests/fixtures/wp732/same-day-precision.json",
+      "lfSha256": "34210ca47a19f245dd1c41251c22c9f4f7ef750b6836688dc5b9e0270e73f204"
+    },
+    {
+      "path": "tests/fixtures/wp732/slack-absorbed.json",
+      "lfSha256": "b161c5abddcb73c0755ddc3fbcc3aef93a780400c3004c002d4f3b8567813d86"
+    },
+    {
+      "path": "tests/fixtures/wp732/started-unknown.json",
+      "lfSha256": "47824bccc854a147c7ad5e7de5d54093e8a9d3e7a331067c43c500f76e0f8c90"
+    },
+    {
+      "path": "tests/fixtures/wp733/README.md",
+      "lfSha256": "8a330f00dc219449947d38d184cac4d498018e8e7ee328f0826c10dce36da7af"
+    },
+    {
+      "path": "tests/fixtures/wp733/absorbed.json",
+      "lfSha256": "e779394da9e1ebb458b2054ac6644f36baf25b437e7ce6906ed870dbd3ffbb36"
+    },
+    {
+      "path": "tests/fixtures/wp733/before.json",
+      "lfSha256": "676214d73454faf2ab7c53b7b4d49f5f8320c8145dc291937078ecfd122efb02"
+    },
+    {
+      "path": "tests/fixtures/wp733/blocked.json",
+      "lfSha256": "bff51cf0d07e34dc1a0d3d8a46eecbb16dba837c80066971fb0b1df1cb76f76b"
+    },
+    {
+      "path": "tests/fixtures/wp733/conflict.json",
+      "lfSha256": "505090bf38a781f0e1b8d9005b2deb1c02f591cd973f8e3bdb06057b925bab30"
+    },
+    {
+      "path": "tests/fixtures/wp733/driver.json",
+      "lfSha256": "7100826376bda8023d4c6ffdb5c3e7c19677b98d5d8e1524952c4f72776ae820"
+    },
+    {
+      "path": "tests/fixtures/wp733/early.json",
+      "lfSha256": "d5cc95f05d9459f3e5be6ba9fc2d9069dd9fe47c4db92b2176dc04e0c6bf1306"
+    },
+    {
+      "path": "tests/fixtures/wp733/future.json",
+      "lfSha256": "1b195e84e76bea6676046e68fbd669d90b67823f2e594c58e32acd015d842248"
+    },
+    {
+      "path": "tests/fixtures/wp733/late.json",
+      "lfSha256": "97d936a76565513daeb1aa14c703067bff4604bab58c61abc2aa292b9db08812"
+    },
+    {
+      "path": "tests/fixtures/wp733/leaf.json",
+      "lfSha256": "2e669e61ac354b6cd979d465650dd1ed05e8ab851eb39d74d93f60c1d3fea27d"
+    },
+    {
+      "path": "tests/fixtures/wp733/manifest.json",
+      "lfSha256": "f1b18ac5c4d933fa15eaafaab3fc3fcb6c791ef506222516de18d3143a505837"
+    },
+    {
+      "path": "tests/fixtures/wp733/missing-reference.json",
+      "lfSha256": "843f23320fff3fdd564a3d726ec24a4e2d7a33b13e486a004d1132937291a2fe"
+    },
+    {
+      "path": "tests/fixtures/wp733/on-time.json",
+      "lfSha256": "b9cf92a1237f78316871b12ff1b7104aa02e515cc6dee48a7fdc3ae480b0a998"
+    },
+    {
+      "path": "tests/fixtures/wp733/reopened.json",
+      "lfSha256": "f936d57e8e6f9706fb0d51b6bade4a22535cebdc1440f53f5d4c0b0374b8b6b4"
+    },
+    {
+      "path": "tests/fixtures/wp733/started.json",
+      "lfSha256": "b6b31a4bdeb81a05169931c5e2aa5a93ac5adfc06e50397a30416d063e2ef492"
+    },
+    {
+      "path": "tests/fixtures/wp733/tied.json",
+      "lfSha256": "ee23357f4cad72b7e7bfa56dfa86cab00c954c8f235a657d1a6a11029850f681"
+    },
+    {
+      "path": "tests/fixtures/wp733/weekend.json",
+      "lfSha256": "44024cebea18c0a5ec22b49f4b344d02bbc679ef5386c0f710493e43c947f900"
+    },
+    {
+      "path": "tests/forecast-visual-clarity.spec.ts",
+      "lfSha256": "5d888a1a141343c6ab56d273d38b42ffd3fafc62b84bf5cfc2c8b7069ed06a3c"
+    },
+    {
+      "path": "tests/forecast.spec.ts",
+      "lfSha256": "2825979d7e925fd4b8e59bbb1575baf577573cce15cbd31d3eba6a0d54308fc3"
+    },
+    {
+      "path": "tests/gantt.spec.ts",
+      "lfSha256": "45a32636da0cadce416e7e3923ab8b648cde4a15ca836fc16882636bc603b2cb"
+    },
+    {
+      "path": "tests/home.spec.ts",
+      "lfSha256": "c1e894a74c23ca1a8ce37c7d6d1448425ce938a9c2257b091cf8c70b7af42ae9"
+    },
+    {
+      "path": "tests/network-viewport.spec.ts",
+      "lfSha256": "83a49a7da321fb2d5660be167c04ee72c3c4443a0b9e9df4beee777fdad0a05b"
+    },
+    {
+      "path": "tests/progress-visualization.spec.ts",
+      "lfSha256": "f56afb6b48fe30f12d6d65cc76228a61573ccd37c4f0f574034532b8d4a7c8ce"
+    },
+    {
+      "path": "tests/project-entry.spec.ts",
+      "lfSha256": "5409ac34098e428737a2ef8a40615d99528ef5abfc2183a53cf03fa96f5f94ee"
+    },
+    {
+      "path": "tests/remaining-quick-entry.spec.ts",
+      "lfSha256": "9c6f8f8e5b90f3ac31fe17560364c7cbdfafdc68103aa19f1d72a0b8d57a1336"
+    },
+    {
+      "path": "tests/save-forecast-qa.spec.ts",
+      "lfSha256": "024177b46f1e2845ad0835aa512cdfabc10a00cae6a8b8396daa2143ac1b18ca"
+    },
+    {
+      "path": "tests/task-status.spec.ts",
+      "lfSha256": "b54099dbff420d2a03410d47028aeb868f69e3ccf55f91fd31b35d8598d14e69"
+    },
+    {
+      "path": "tests/week-header.spec.ts",
+      "lfSha256": "eb21cdfee045da4d198bade3c59d2af9d3f7844834b1c50bce81ae65f8a97a23"
+    },
+    {
+      "path": "tests/work-tracking.spec.ts",
+      "lfSha256": "3c1d0c58c9376469c03ba4778a5143d2bacac54a330e3959eb9eea30caeb9b4a"
+    },
+    {
+      "path": "tests/wp4.spec.ts",
+      "lfSha256": "73d6b2a7f7681b097906b9e4149f162f24156507121291421997f596dd273a57"
+    },
+    {
+      "path": "tests/wp5-1.spec.ts",
+      "lfSha256": "b666a1f7fa9d81e533b7029893f3303c11dc80a3e40f9926e56e93b88c4d57a6"
+    },
+    {
+      "path": "tests/wp5-2-fixtures.ts",
+      "lfSha256": "7b15f5e25939b82004eefbfa9819344984946ac1ac11eba36b312d9801573f6d"
+    },
+    {
+      "path": "tests/wp5.spec.ts",
+      "lfSha256": "7dcf97c3965257de019a64c0a5c8d7af9e605fd75b946ee8277fde4c42211efe"
+    },
+    {
+      "path": "tests/wp71/duplicate-access.spec.ts",
+      "lfSha256": "69982342312eb945e0af55fc822d5c390fe1f9bdd87610d0ac32b5ec09b89778"
+    },
+    {
+      "path": "tests/wp71/export-fixtures.mjs",
+      "lfSha256": "03d1df76e71d82a8070c1f191adffbf2fdacc493a0688d8cbaa74f254d6bc531"
+    },
+    {
+      "path": "tests/wp71/lifecycle.spec.ts",
+      "lfSha256": "77ea1138a52899281af17bbeb60582dda8a63b1becda7d7443808b12e59b23a9"
+    },
+    {
+      "path": "tests/wp71/performance.spec.ts",
+      "lfSha256": "2f37d74b36170f7028e4e5af489949bdc5f3ec966192e2fd71c5a76dbd42ddaa"
+    },
+    {
+      "path": "tests/wp71/studentFixture.ts",
+      "lfSha256": "26d427ba3adf8254af0315c6cf45376ee7d24c840d759b68fb47762b07fa66b6"
+    },
+    {
+      "path": "tests/wp72/usability-diagnostics.spec.ts",
+      "lfSha256": "a6787cebf8392893b2c1bba35dd53b68524eb1c4e50db355113ecba990994181"
+    },
+    {
+      "path": "tests/wp73/corrections.spec.ts",
+      "lfSha256": "889228c76a18d88966401578567756df615d333d9260394ad108e4d4bb3e7024"
+    },
+    {
+      "path": "tests/wp731/scenario-evidence.mjs",
+      "lfSha256": "2061f86934d05b9e40f614043a44f02b1becc895d27de634ec40195f43bc0e1d"
+    },
+    {
+      "path": "tests/wp732/benchmark.mjs",
+      "lfSha256": "e0435a2cf31a631eb291c7cb76b564d1b34012e11414aa1ac4eacf9a21763db9"
+    },
+    {
+      "path": "tests/wp732/export-fixtures.mjs",
+      "lfSha256": "af205758d4a7b904ed2220a376715c7342b30dba821339de39ab30aae611f341"
+    },
+    {
+      "path": "tests/wp732/fixtures.ts",
+      "lfSha256": "2d8ff0cb597b4a02050b797bd842b6c4d482c1f0d988a32297dca15e07c0db9d"
+    },
+    {
+      "path": "tests/wp732/progress-impact.spec.ts",
+      "lfSha256": "d5fcea1291e2ccdd2b27a4a001ded786eeb0b87f86f30c422dfb5984858c9587"
+    },
+    {
+      "path": "tests/wp733/export-fixtures.mjs",
+      "lfSha256": "12cb3733106d539746cfe222fe3e3527784beed726713c70c124f09a17d04e5d"
+    },
+    {
+      "path": "tests/wp733/historical-gantt.spec.ts",
+      "lfSha256": "04a9dc9d547eceb0df1f7957e3533f0c322dc4d02bc352df43e04f50f6903df4"
+    },
+    {
+      "path": "tsconfig.app.json",
+      "lfSha256": "34262afd8f9b78ccd86c78ff5a7b1629e01b17a384f1ec91a830ed7eced38952"
+    },
+    {
+      "path": "tsconfig.json",
+      "lfSha256": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808"
+    },
+    {
+      "path": "tsconfig.node.json",
+      "lfSha256": "d366cc0827139db39c61815f22491bbfda56c654354a42ad7795143d314e45e8"
+    },
+    {
+      "path": "vite.config.ts",
+      "lfSha256": "20d05b13e0420ef7e5c4116c6ecee9c38a5661c7a8301a7e6e7bedbf063dcbc9"
+    }
+  ],
+  "productionAssetsIdenticalToAcceptedB": true,
+  "assets": [
+    {
+      "path": "assets/index-C1Jwrj5E.css",
+      "bytes": 32226,
+      "sha256": "72d46bb402ceb864dedce43ae2c00d0b7bce8f9021088c1817048a988bc2424a"
+    },
+    {
+      "path": "assets/index-CemCM8Gv.js",
+      "bytes": 448178,
+      "sha256": "2cb1ff728ff97dc8c8740a226c7425b08997853a78abcf811c921536c67c7042"
+    },
+    {
+      "path": "index.html",
+      "bytes": 416,
+      "sha256": "757256f62732a610ed13c5f26a01bbba01643a7d32807e3ba44bbcc20cb4a961"
+    }
+  ],
+  "documentationLinksChecked": 56,
+  "authorityFiles": [
+    {
+      "path": "docs/qa/wp7-4-7b/ACCEPTANCE.md",
+      "sha256": "bdb7b94699b76fc8a937119596c10899fc559c416745662ab32728713788b581"
+    },
+    {
+      "path": "docs/qa/wp7-4-4d/OWNER-DISPOSITIONS.md",
+      "sha256": "1841a53afe69b9362dfffc94ce32971fc0c9076d02cb7cdbc6f3029fa08a313c"
+    },
+    {
+      "path": "docs/qa/wp7-1/FINDINGS.md",
+      "sha256": "1deb80a1e530af4ea6787efcd76ad07fa66978810eed7baa2f8aabece1b1b25a"
+    },
+    {
+      "path": "docs/qa/wp7-2/OWNER-REVIEW.md",
+      "sha256": "69045dc494092ca654061ee7ed6a02afc3f6293f6a1ab08bc378e970626a045d"
+    },
+    {
+      "path": "docs/qa/wp7-3/WP7-3-IMPLEMENTATION.md",
+      "sha256": "16eb9040ebe0a407506f0e21dffa4f5abf9baa8df135f12399082546d4efd690"
+    },
+    {
+      "path": "docs/qa/wp7-3/WP7-3-OWNER-RUNBOOK.md",
+      "sha256": "2c5573eb864820fa5e0804686e181b16ebf931abd67179afd292a3639087319e"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/ACCEPTANCE.md",
+      "sha256": "ceeb10ef32468b6884654eb973aba3f31d29a8aa158e81f9d7196b3f88ef1570"
+    },
+    {
+      "path": "docs/qa/wp7-3-3/ACCEPTANCE.md",
+      "sha256": "82ab16e53af72d009cabc360972a77682a7affcaaa3c9a7b8fb8e2745d043b38"
+    },
+    {
+      "path": "docs/qa/wp7-3-3/OPEN-FINDINGS.md",
+      "sha256": "96c3fa5bc3542b4ad1deaf80dc0727488b4c66413fbca7c26a5d795f34e79998"
+    },
+    {
+      "path": "docs/qa/wp7-4-3b/ACCEPTANCE.md",
+      "sha256": "0c1c2512c278a03a5f4f1d0c4159e9ac8df0e96df9551d3b6ce7999e5f843d91"
+    },
+    {
+      "path": "docs/qa/wp7-4-4/OWNER-DECISIONS.md",
+      "sha256": "5053f2aac5ecf463d836cb313bfc3e99b01cc53b8da6df9fd6cc3b66afa3588e"
+    },
+    {
+      "path": "docs/qa/wp7-4-4/FORMAT6-CONTRACT.md",
+      "sha256": "d86365775548cb9457a709a6e2e74e42eae74e67fde1f707344982c27adc3cae"
+    },
+    {
+      "path": "docs/qa/wp7-4-4/VALIDATION-AND-INTEGRITY.md",
+      "sha256": "c72fd9955b8215eb4e093ed3941f0055a74c3647377445e3f8ff432d70f650ef"
+    },
+    {
+      "path": "docs/qa/wp7-4-4/MIGRATION-POLICY.md",
+      "sha256": "40cd84f4c3fd261d91e2027bd9b65d846239a88fefba657b33ff0f9bb6a381d8"
+    },
+    {
+      "path": "docs/qa/wp7-4-4b/QUALIFICATION-MATRIX.md",
+      "sha256": "6cad18ce51025577424e41f003e99d64fa39b401d4b4ae22ba6a3816c91b1cc4"
+    },
+    {
+      "path": "docs/qa/wp7-4-4b/R07-FINAL-RECOMMENDATIONS.md",
+      "sha256": "5d953320fdd2a08211f923a10a6f917f6947906edc23c9c75bae012e1b8c76af"
+    },
+    {
+      "path": "docs/qa/wp7-4-4d/CONSOLIDATED-R07-CONTRACT.md",
+      "sha256": "ce20cec49d96bf292cef33d6239cfe0d657d481097ca4105af4c269db66b39a8"
+    },
+    {
+      "path": "docs/qa/wp7-4-5/README.md",
+      "sha256": "ec82100370741e66ded7149bdb1b515d26e7a13223711a4f86aeeaf7763889be"
+    },
+    {
+      "path": "docs/qa/wp7-4-6/GAPS-AND-GATES.md",
+      "sha256": "80272b9ed63e4f9a0c5655e4b3bfde49b39dd6206c87a3047c7113f8abc5ccb2"
+    },
+    {
+      "path": "docs/qa/wp7-4-4d/ACCEPTANCE-MATRIX.md",
+      "sha256": "cf106c397b8f04e8e31d7067fb8a1754c92cf857fd75048e69509b9f1f0512fc"
+    },
+    {
+      "path": "docs/qa/wp7-4-4d/REPOSITORY-AND-MEMORY-CONTRACT.md",
+      "sha256": "0f5cf4d67b5838af9a55ecef0866f3be562ddd9e6059e14b656ac759e29f37cd"
+    },
+    {
+      "path": "docs/qa/wp7-4-4d/HISTORICAL-REPORTING-CONTRACT.md",
+      "sha256": "758dbbcba9bc5d329675bac01aeec37bc0ee29bacbe50d8669087f55e31bd83c"
+    },
+    {
+      "path": "docs/qa/wp7-4-4d/COMPATIBILITY-AND-GATES.md",
+      "sha256": "d83943b5b195f86169971f1f09ed0abfc7c5b5a1668fd8094a233dbf3a6f735d"
+    },
+    {
+      "path": "docs/qa/wp7-4-4d/FUTURE-SNAPSHOT-REQUIREMENT.md",
+      "sha256": "92b67679a065c8e018f7b6595eac32a06d5f8df726518556ce014f85bd3f9a70"
+    },
+    {
+      "path": "docs/qa/wp7-4-7a/OWNER-DISPOSITION.md",
+      "sha256": "9402ff4ac898858794ba10b0561cf83243dac4521fcada937a1625ff679ac47c"
+    },
+    {
+      "path": "docs/qa/wp7-4-7b/INVESTIGATION.md",
+      "sha256": "f35d255835c2cc39ac138c0dbb223130648600d08caa2c7b23d640497c3fa082"
+    },
+    {
+      "path": "docs/qa/wp7-4-7b/VERIFICATION.md",
+      "sha256": "fcc6203cadcfe0108a0fc7963889de65d87e317d541f8cb760a1ebf3864736e2"
+    },
+    {
+      "path": "docs/qa/wp7-4-7b/OWNER-RUNBOOK.md",
+      "sha256": "acb8c10e470b91bd0da8a204d8f2c756ee3111b09f2f8de7095b38652e218cd3"
+    }
+  ],
+  "protectedRefs": {
+    "refs/heads/main": "a6a1c32c22a2bf074b161e52d523443602843dd7",
+    "refs/tags/v1.0-pre-progress": "a4157bc84392c770c27111da58d779948b110a56",
+    "refs/tags/v1.0-pre-progress^{}": "abb85011dafc9fb0876953e3132880e025ef65da",
+    "refs/tags/v1.1-pre-stabilization": "134305f2205eb993ab76672c2d2469d48d91a609",
+    "refs/tags/v1.1-pre-stabilization^{}": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+  },
+  "remotePrepublicationVerified": true,
+  "checks": {
+    "check": 0,
+    "unitTests": 858,
+    "unitFiles": 43,
+    "qaTypecheck": 0,
+    "defaultBrowser": {
+      "passed": 223,
+      "exit": 0
+    },
+    "featureBrowser": {
+      "passed": 38,
+      "exit": 0
+    },
+    "auditAllExit": 1,
+    "auditProductionExit": 0
+  },
+  "ownerStatus": {
+    "WP747b": "Owner accepted 2026-11-11",
+    "recoveryFeedback": "Closed by owner",
+    "moreAboutObservation": "Deferred unchanged",
+    "R07": "Pending final owner decision",
+    "overallWP7": "Pending owner decision"
+  },
+  "limitations": [
+    "No new participant/device/assistive technology study",
+    "No physical provider or complete /2 codec/export qualification",
+    "Historical vector/capacity qualification not rerun"
+  ],
+  "stagedBeforeAudit": [],
+  "expectedDeliveryPaths": [
+    "docs/qa/wp7-4-7b/ACCEPTANCE.md",
+    "docs/qa/wp7-4-7b/README.md",
+    "docs/qa/wp7-4-7b/OWNER-RUNBOOK.md",
+    "docs/qa/wp7-4-8-r07/evidence/baseline-browser.txt",
+    "docs/qa/wp7-4-8-r07/evidence/check.txt",
+    "docs/qa/wp7-4-8-r07/evidence/feature-browser.txt",
+    "docs/qa/wp7-4-8-r07/evidence/npm-audit-all.json",
+    "docs/qa/wp7-4-8-r07/evidence/npm-audit-exits.json",
+    "docs/qa/wp7-4-8-r07/evidence/npm-audit-production.json",
+    "docs/qa/wp7-4-8-r07/evidence/qa-typecheck.txt",
+    "docs/qa/wp7-4-8-r07/evidence/scope-audit.json",
+    "docs/qa/wp7-4-8-r07/OUTSTANDING-FINDINGS.md",
+    "docs/qa/wp7-4-8-r07/OWNER-REVIEW.md",
+    "docs/qa/wp7-4-8-r07/PROPOSED-CORRECTIONS.md",
+    "docs/qa/wp7-4-8-r07/R07-DECISION-SHEET.md",
+    "docs/qa/wp7-4-8-r07/README.md",
+    "docs/qa/wp7-4-8-r07/RELEASE-READINESS.md",
+    "docs/qa/wp7-4-8-r07/VERIFICATION.md"
+  ]
+}

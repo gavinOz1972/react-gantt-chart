@@ -33,5 +33,8 @@ unchanged. **More about this change** retains its current behavior; the owner's
 low-priority observation remains documented and deferred. No WP7.4.8 starts here.
 
 Use the [owner runbook](OWNER-RUNBOOK.md) for the short final retest.
-**WP7.4.7b acceptance is pending**. Its implementation is not self-accepted,
-and no new finding or R07 approval is implied.
+**WP7.4.7b was accepted by Gavin Osborne on November 11, 2026**, as explicitly
+recorded in [ACCEPTANCE](ACCEPTANCE.md) under the WP7.4.8-R07 authority.
+The recovery-feedback finding is owner-closed. Original verification and
+investigation evidence are retained. R07 and overall WP7/release acceptance
+remain pending; the low-priority More about this change observation is deferred.
