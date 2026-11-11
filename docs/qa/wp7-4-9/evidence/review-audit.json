@@ -1,0 +1,1233 @@
+{
+  "clientDate": "2026-11-11",
+  "recordedAtUTC": "2026-11-11T19:13:09.558Z",
+  "branch": "feature/wp7-stabilization",
+  "base": "ca46e9a9b5b603d621ca860c6493b60e5c24bb44",
+  "authority": "Current owner WP7.4.9 request: documentation and evidence review only",
+  "releaseTarget": "Classroom-ready Format 5",
+  "originalRequirements": [
+    {
+      "path": "../react-gantt-chart/docs/WP_Req/React_Gantt_WP7_1_End_to_End_Verification.docx",
+      "sha256": "c8d226204e230f09bfa0184993944b75f5bcc4a0fe4630a3b4acce710deb8935"
+    },
+    {
+      "path": "../react-gantt-chart/docs/WP_Req/React_Gantt_WP7_Progress_Consistency_and_Usability_Corrections.docx",
+      "sha256": "138832e6a234c40bbaee8ecebf1271a05245f01ca8a744f4d6253c417c0c46ec"
+    },
+    {
+      "path": "../react-gantt-chart/docs/WP_Req/Bugsys_Gantt_WP7_3_1_Late_Completion_Design.docx",
+      "sha256": "3c55ed4a1fcf5775db823b41cc02f22a1c22dac8d8af73471bea899c54b3abac"
+    },
+    {
+      "path": "../react-gantt-chart/docs/WP_Req/Bugsys_WP7_3_2_Implementation_Prompt.docx",
+      "sha256": "22706bfe95f6b1691bb0a4c0fa6bbf7e5efc399807fde8824fd8ff6323c73a11"
+    },
+    {
+      "path": "../react-gantt-chart/docs/WP_Req/Bugsys_WP7_3_3_Historical_Gantt_Presentation.docx",
+      "sha256": "33f332311eccb67803d4beda24cb77bcfc8948aee38b5589c29f0abae6368fac"
+    },
+    {
+      "path": "C:/Users/gavin/Downloads/Bugsys_Gantt_WP7_2_Usability_Assessment.docx",
+      "sha256": "d37d8766b58ebf0e03a8bc0140fd256021ad6e636522639d4ab2b828776cc889"
+    }
+  ],
+  "commitsValidated": [
+    "22bfd6a3afff6f78e977d9fde55405de9983cabd",
+    "284a7f921790473c26f5248cefdfe11584d03c5d",
+    "3dc291ec556aa0fbd1fae38e2fc9f1ba6acf0308",
+    "70dd0625243de143731f40d5338c6e4d0527ee4c",
+    "8a6bf3171d40f8aec5025e63e55f3f0c62018ad3",
+    "8ae0eb4cff4e9f46785852bec9462f0b49518513",
+    "a5a953e820615e2b1105f235f0060c5831e335bf",
+    "b09aae181589167889710b8992e3a82df35dd2b8",
+    "ca46e9a9b5b603d621ca860c6493b60e5c24bb44",
+    "ffd93a57854943d60ecbd66f03c188c110237724"
+  ],
+  "documentationLinksChecked": 66,
+  "sourceFilesReviewed": [
+    {
+      "path": "docs/qa/wp7-1/ASSESSMENT.md",
+      "workingSha256": "047d2ae3f89c6001fe3bcd79d5ff7711ceb2389aa45975ad88ad71d9990ab04b",
+      "committedSha256": "047d2ae3f89c6001fe3bcd79d5ff7711ceb2389aa45975ad88ad71d9990ab04b",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-1/FINDINGS.md",
+      "workingSha256": "1deb80a1e530af4ea6787efcd76ad07fa66978810eed7baa2f8aabece1b1b25a",
+      "committedSha256": "1deb80a1e530af4ea6787efcd76ad07fa66978810eed7baa2f8aabece1b1b25a",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-1/OWNER-RUNBOOK.md",
+      "workingSha256": "d96956de970497ac21eec0a08f7c6c5d2553f3b37d8835aba6731ebd99a77ab8",
+      "committedSha256": "d96956de970497ac21eec0a08f7c6c5d2553f3b37d8835aba6731ebd99a77ab8",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-2/UX-ASSESSMENT.md",
+      "workingSha256": "5ca7a6b9c941c02c1b5ebdfbd2fc917afa89fb851c5e2e9ab7a64bef94186d2c",
+      "committedSha256": "5ca7a6b9c941c02c1b5ebdfbd2fc917afa89fb851c5e2e9ab7a64bef94186d2c",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-2/UX-FINDINGS.md",
+      "workingSha256": "f7d42d8d4da32d0071b067bf68e633741a14520c6d236eea2ddecb81ede31981",
+      "committedSha256": "f7d42d8d4da32d0071b067bf68e633741a14520c6d236eea2ddecb81ede31981",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-2/WP7-3-CANDIDATES.md",
+      "workingSha256": "3fd8872364965e4f031c2a288306c15e89f328dd9a0e6a4c061d5f9e7cb7039c",
+      "committedSha256": "3fd8872364965e4f031c2a288306c15e89f328dd9a0e6a4c061d5f9e7cb7039c",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-2/OWNER-REVIEW.md",
+      "workingSha256": "69045dc494092ca654061ee7ed6a02afc3f6293f6a1ab08bc378e970626a045d",
+      "committedSha256": "69045dc494092ca654061ee7ed6a02afc3f6293f6a1ab08bc378e970626a045d",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3/WP7-3-IMPLEMENTATION.md",
+      "workingSha256": "16eb9040ebe0a407506f0e21dffa4f5abf9baa8df135f12399082546d4efd690",
+      "committedSha256": "16eb9040ebe0a407506f0e21dffa4f5abf9baa8df135f12399082546d4efd690",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3/WP7-3-OWNER-RUNBOOK.md",
+      "workingSha256": "2c5573eb864820fa5e0804686e181b16ebf931abd67179afd292a3639087319e",
+      "committedSha256": "2c5573eb864820fa5e0804686e181b16ebf931abd67179afd292a3639087319e",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-1/OWNER-DECISIONS.md",
+      "workingSha256": "1dd39d2cf33b2d641c3f9bc554c8fcb8303c6bf4557bbf081682a338c24dcb10",
+      "committedSha256": "1dd39d2cf33b2d641c3f9bc554c8fcb8303c6bf4557bbf081682a338c24dcb10",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-2/README.md",
+      "workingSha256": "3b3dfae8bf9cd70e0faf9355980802fd63a38e3de9043442b262477d9087e73e",
+      "committedSha256": "3b3dfae8bf9cd70e0faf9355980802fd63a38e3de9043442b262477d9087e73e",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-2/TRACEABILITY.md",
+      "workingSha256": "7f20a30b3c470346f3c4b99058057f7f178d6e1cd30adaff6c8c279ad8967f76",
+      "committedSha256": "7f20a30b3c470346f3c4b99058057f7f178d6e1cd30adaff6c8c279ad8967f76",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-2/ACCEPTANCE.md",
+      "workingSha256": "ceeb10ef32468b6884654eb973aba3f31d29a8aa158e81f9d7196b3f88ef1570",
+      "committedSha256": "ceeb10ef32468b6884654eb973aba3f31d29a8aa158e81f9d7196b3f88ef1570",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-3/README.md",
+      "workingSha256": "1e89c1b97be964089839791d33a5a9728132a77a939ec5a4a0de450ea5e6b8f1",
+      "committedSha256": "1e89c1b97be964089839791d33a5a9728132a77a939ec5a4a0de450ea5e6b8f1",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-3/TRACEABILITY.md",
+      "workingSha256": "66f9b995a5ab15b391e1574a6771492ec3d7aca316976587506f6f36dd7e0099",
+      "committedSha256": "66f9b995a5ab15b391e1574a6771492ec3d7aca316976587506f6f36dd7e0099",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-3/OPEN-FINDINGS.md",
+      "workingSha256": "96c3fa5bc3542b4ad1deaf80dc0727488b4c66413fbca7c26a5d795f34e79998",
+      "committedSha256": "96c3fa5bc3542b4ad1deaf80dc0727488b4c66413fbca7c26a5d795f34e79998",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-3/ACCEPTANCE.md",
+      "workingSha256": "82ab16e53af72d009cabc360972a77682a7affcaaa3c9a7b8fb8e2745d043b38",
+      "committedSha256": "82ab16e53af72d009cabc360972a77682a7affcaaa3c9a7b8fb8e2745d043b38",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-check.txt",
+      "workingSha256": "24ffc8b5feacb465ca492f063071a4b55742f79e6f1823df3715241b344ea045",
+      "committedSha256": "ec4e56a372695c2e3e82f3b9380fd0d23d3f9aef8b322a9056134d985e908bfe",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-full.txt",
+      "workingSha256": "c6327b7ea0e2b537b5174caa36393d6d239a5d8736e03ebab4236df23cee6497",
+      "committedSha256": "90e9e28ad4329ee988478b1c0799b18b6880053657a3645ad29d7da64f429b19",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/date-mode.txt",
+      "workingSha256": "ef19509fb75b8150d905b29c5a39783c48f453a1bb96b7b77e4b404e9d4dae78",
+      "committedSha256": "72cca1628e20a4dbe213f431be2c571c27ce0320092a0f9a9ffd94a1904c94f6",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-targeted.txt",
+      "workingSha256": "030f7246634716ad876139452ece0ecc819024bb71d4fd8bb69a7eadff418944",
+      "committedSha256": "b728ee7ad0ea79ad3ca69e28a64180568b3054c5ac6e4ebafad526cddebd9f51",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/performance-isolated.txt",
+      "workingSha256": "aa3fd49846b849a41cb3b6beee9bf47ae6e39cf5d02590e25c9e33a95f0e2403",
+      "committedSha256": "1490efb62910d86dddd7297f0a6e57003c6c7b383d6554de45ff1c21872452bb",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "tests/fixtures/wp71/README.md",
+      "workingSha256": "1791072f82105d8161750526b3d58aa85d0f9878b76538351fb091df784a3146",
+      "committedSha256": "1791072f82105d8161750526b3d58aa85d0f9878b76538351fb091df784a3146",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/diagnostics.txt",
+      "workingSha256": "4eae1d0153505470e8fbe26ef83744562a95ff0f6e42b436c776460bc1c46efb",
+      "committedSha256": "6457d64b715451c606d7777a6cd59516a5fe64d347d252b2b3d761b051d06c34",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/check.txt",
+      "workingSha256": "060c1e4f41962ca010776440c2b1185acceaf399888b2974443613b5700e2c73",
+      "committedSha256": "65813bc7385319ed781cbf3b8d398223f8b4c588ee7451795b9096d1e38bc5b7",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/browsers.txt",
+      "workingSha256": "64820b0de252cbb072e557bd2710b8d00e305d343fa9713012f3bf446221dd92",
+      "committedSha256": "184e47b6870a07f6b8d48c35a662a66d5bb660c838f40a4ef8f745dd18392b27",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3/WP7-3-VERIFICATION.md",
+      "workingSha256": "bf7c5ac914101d65c42ca3fdae0579974e81ff2e7662e505ae56a657fc6cc602",
+      "committedSha256": "bf7c5ac914101d65c42ca3fdae0579974e81ff2e7662e505ae56a657fc6cc602",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/check.txt",
+      "workingSha256": "65469794d60a456c943f96dfbd2336ce1349e47d927cd4ea919e0e864a40d5b1",
+      "committedSha256": "622cb6238e423b6f3132ec2c8f34b0db36f075b814299c9146637120606e3a92",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/browsers.txt",
+      "workingSha256": "6a069ad95c6609af9231425fce03e66601e40f1255d57ca284ed24c820b33152",
+      "committedSha256": "1f05278db38ca6e14f4961e013521748baf80177de4b57acddb89147e58ac4f6",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/check.txt",
+      "workingSha256": "736a7a4ebdedb7b7023ce5d0603ae72f744e72a5a56dbae0fa5564c7bded5308",
+      "committedSha256": "ad66c62a7ec2eb3d24f2844be9c41db91adeb20ba9fadc84e364d7e95048cabc",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/browser-all.txt",
+      "workingSha256": "ffea8d4d1a89c309fe3bf8e1eaed27d3cbc6ad4e7e2f521fd5223d5485758d9e",
+      "committedSha256": "ccfc450b3401b46d94a50fd7d004c23ea2504c7c2973e168ec16cdb205376833",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-2/VERIFICATION.md",
+      "workingSha256": "de72128d27a770155e763ef9526eb07ef865e5f0dd86d4c31f2bf9c137e276e3",
+      "committedSha256": "de72128d27a770155e763ef9526eb07ef865e5f0dd86d4c31f2bf9c137e276e3",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-1/SCENARIO-MATRIX.md",
+      "workingSha256": "95d403c5eb7e11c80da47a4bbbbc57539b7ebd0ab8f302b255c92cc9a2c733e6",
+      "committedSha256": "95d403c5eb7e11c80da47a4bbbbc57539b7ebd0ab8f302b255c92cc9a2c733e6",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-3/evidence/check.txt",
+      "workingSha256": "5c5c6c527336cbddd0632ba75946332c93bb33ba0736f1d3ef41c78a2a2d3dc1",
+      "committedSha256": "9dbf7548225c9815c8b3860b0e2e7a04e561b12e363253b4f999bec907ff82c5",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-3/evidence/browser-all.txt",
+      "workingSha256": "66601a6b7c72d2fa61af6ac234a778e9d4ba5092524c167a284b237bbfdf1d42",
+      "committedSha256": "78bf29468c3e393c1341891bfcbb9c6b629aa3163832c02f588849b3b1475af6",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-8-r07/VERIFICATION.md",
+      "workingSha256": "386091db3edb586bbca506d6e5cbb1bf64cfa36c78e2be2533998c92166d9744",
+      "committedSha256": "386091db3edb586bbca506d6e5cbb1bf64cfa36c78e2be2533998c92166d9744",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-8-r07/evidence/check.txt",
+      "workingSha256": "3603a28a5f77cd49fbe3d6cd5f802ae7e436efdfc888bdda3796778395ea5c7b",
+      "committedSha256": "3603a28a5f77cd49fbe3d6cd5f802ae7e436efdfc888bdda3796778395ea5c7b",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-8-r07/evidence/baseline-browser.txt",
+      "workingSha256": "0bed3f1217d6367007f478aa91426a7f0b2f673a4e3dcaf33b704a146f20c8e0",
+      "committedSha256": "0bed3f1217d6367007f478aa91426a7f0b2f673a4e3dcaf33b704a146f20c8e0",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-8-r07/evidence/feature-browser.txt",
+      "workingSha256": "650e8794474ebac3b445f7bed957a19633a255b19382599961d85f4570c444a6",
+      "committedSha256": "650e8794474ebac3b445f7bed957a19633a255b19382599961d85f4570c444a6",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-7a/OWNER-DISPOSITION.md",
+      "workingSha256": "9402ff4ac898858794ba10b0561cf83243dac4521fcada937a1625ff679ac47c",
+      "committedSha256": "9402ff4ac898858794ba10b0561cf83243dac4521fcada937a1625ff679ac47c",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-7b/ACCEPTANCE.md",
+      "workingSha256": "bdb7b94699b76fc8a937119596c10899fc559c416745662ab32728713788b581",
+      "committedSha256": "bdb7b94699b76fc8a937119596c10899fc559c416745662ab32728713788b581",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-8-r07/evidence/npm-audit-all.json",
+      "workingSha256": "9f0dc493db43b937121b44b99a818c229834d97043b449a5606ce9757b93645e",
+      "committedSha256": "9f0dc493db43b937121b44b99a818c229834d97043b449a5606ce9757b93645e",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-8-r07/evidence/npm-audit-production.json",
+      "workingSha256": "2c6ae786dae213361cce3f93895115576dff0d0b0c55b17431fb72209e221a59",
+      "committedSha256": "2c6ae786dae213361cce3f93895115576dff0d0b0c55b17431fb72209e221a59",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-3-3/OWNER-RUNBOOK.md",
+      "workingSha256": "39bb688afaf62fab89e2155e43b8f0b61d7bd6ef2771bf11939383b7b848e178",
+      "committedSha256": "39bb688afaf62fab89e2155e43b8f0b61d7bd6ef2771bf11939383b7b848e178",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "docs/qa/wp7-4-8-r07/OUTSTANDING-FINDINGS.md",
+      "workingSha256": "5d7bb0f16b679417d4082cfa12cc2a49b3fb75e5a6aaba0103a0311e9e2bd529",
+      "committedSha256": "5d7bb0f16b679417d4082cfa12cc2a49b3fb75e5a6aaba0103a0311e9e2bd529",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "tests/wp71/lifecycle.spec.ts",
+      "workingSha256": "77ea1138a52899281af17bbeb60582dda8a63b1becda7d7443808b12e59b23a9",
+      "committedSha256": "77ea1138a52899281af17bbeb60582dda8a63b1becda7d7443808b12e59b23a9",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "tests/wp71/performance.spec.ts",
+      "workingSha256": "2f37d74b36170f7028e4e5af489949bdc5f3ec966192e2fd71c5a76dbd42ddaa",
+      "committedSha256": "2f37d74b36170f7028e4e5af489949bdc5f3ec966192e2fd71c5a76dbd42ddaa",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "tests/wp71/duplicate-access.spec.ts",
+      "workingSha256": "69982342312eb945e0af55fc822d5c390fe1f9bdd87610d0ac32b5ec09b89778",
+      "committedSha256": "69982342312eb945e0af55fc822d5c390fe1f9bdd87610d0ac32b5ec09b89778",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "tests/wp72/usability-diagnostics.spec.ts",
+      "workingSha256": "a6787cebf8392893b2c1bba35dd53b68524eb1c4e50db355113ecba990994181",
+      "committedSha256": "a6787cebf8392893b2c1bba35dd53b68524eb1c4e50db355113ecba990994181",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "tests/wp73/corrections.spec.ts",
+      "workingSha256": "889228c76a18d88966401578567756df615d333d9260394ad108e4d4bb3e7024",
+      "committedSha256": "889228c76a18d88966401578567756df615d333d9260394ad108e4d4bb3e7024",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "src/projection/progressImpact.test.ts",
+      "workingSha256": "5623646d3ccf23207a639e092bf675db191cd887235c53ce6e2877850a02e661",
+      "committedSha256": "5623646d3ccf23207a639e092bf675db191cd887235c53ce6e2877850a02e661",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "tests/wp732/progress-impact.spec.ts",
+      "workingSha256": "d5fcea1291e2ccdd2b27a4a001ded786eeb0b87f86f30c422dfb5984858c9587",
+      "committedSha256": "d5fcea1291e2ccdd2b27a4a001ded786eeb0b87f86f30c422dfb5984858c9587",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "src/timeline/historyPresentation.test.ts",
+      "workingSha256": "5a7a64ada81bf6b0eed6eeff945934c19c2b3e453b177a19a06db8af07ae9a88",
+      "committedSha256": "5a7a64ada81bf6b0eed6eeff945934c19c2b3e453b177a19a06db8af07ae9a88",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "src/components/gantt/HistoricalPresentation.test.tsx",
+      "workingSha256": "c36df1220c6138e3f7d0d18ed752ac88b03323cf827d567cc94119ec0afe2ec6",
+      "committedSha256": "c36df1220c6138e3f7d0d18ed752ac88b03323cf827d567cc94119ec0afe2ec6",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "tests/wp733/historical-gantt.spec.ts",
+      "workingSha256": "04a9dc9d547eceb0df1f7957e3533f0c322dc4d02bc352df43e04f50f6903df4",
+      "committedSha256": "04a9dc9d547eceb0df1f7957e3533f0c322dc4d02bc352df43e04f50f6903df4",
+      "workingLFMatchesCommitted": true
+    },
+    {
+      "path": "src/history/featureFlag.ts",
+      "workingSha256": "e1bc7c84274aca5661deded51ec87f9d98d9fd0b3ec30e1798985798bf207137",
+      "committedSha256": "e1bc7c84274aca5661deded51ec87f9d98d9fd0b3ec30e1798985798bf207137",
+      "workingLFMatchesCommitted": true
+    }
+  ],
+  "sourcePathsValidated": [
+    "tests/wp71/lifecycle.spec.ts",
+    "tests/wp71/performance.spec.ts",
+    "tests/wp71/duplicate-access.spec.ts",
+    "tests/wp72/usability-diagnostics.spec.ts",
+    "tests/wp73/corrections.spec.ts",
+    "src/projection/progressImpact.test.ts",
+    "tests/wp732/progress-impact.spec.ts",
+    "src/timeline/historyPresentation.test.ts",
+    "src/components/gantt/HistoricalPresentation.test.tsx",
+    "tests/wp733/historical-gantt.spec.ts",
+    "src/history/featureFlag.ts"
+  ],
+  "rowsClassified": 66,
+  "proposedClassificationCounts": {
+    "Explicitly accepted": 6,
+    "Owner-tested, disposition pending": 3,
+    "Automated verification only": 41,
+    "Superseded": 5,
+    "Unresolved": 11
+  },
+  "crosswalkRows": [
+    {
+      "rowId": "71-PRE",
+      "sourceId": "WP7.0 prerequisite",
+      "proposedClassification": "Explicitly accepted",
+      "ownerAction": "No repeat of WP7.0 decision."
+    },
+    {
+      "rowId": "71-TV",
+      "sourceId": "TV01, TV02, A01, A03",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R1 accept the bounded evidence assessment; no need to recreate 30 tasks."
+    },
+    {
+      "rowId": "71-TRACE",
+      "sourceId": "TV03, TV04, OV03, A02, A04, A05",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R1 accept assessment/traceability with later dispositions below."
+    },
+    {
+      "rowId": "71-HANDOFF",
+      "sourceId": "OV01, OV02, A06",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "R1 explicit WP7.1 assessment disposition; use shared R2-R5 only for missing human observations."
+    },
+    {
+      "rowId": "71-E01",
+      "sourceId": "E01",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 representative create only if recollection cannot be mapped; accept automation for bulk creation."
+    },
+    {
+      "rowId": "71-E02",
+      "sourceId": "E02",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R5 representative dependency edit/undo if no specific prior observation."
+    },
+    {
+      "rowId": "71-E03",
+      "sourceId": "E03",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 current Actions/copy check; do not require old offscreen/Unknown behavior."
+    },
+    {
+      "rowId": "71-E04",
+      "sourceId": "E04",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "Shared R3/R4 current chart/navigation review, not old committed-bar visuals."
+    },
+    {
+      "rowId": "71-E05",
+      "sourceId": "E05",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R5 baseline/current comparison, no new baseline for an already-baselined plan."
+    },
+    {
+      "rowId": "71-E06",
+      "sourceId": "E06",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 review optional recorded-work meaning; R5 covers retained fields. No repeat of every arithmetic variant."
+    },
+    {
+      "rowId": "71-E07",
+      "sourceId": "E07",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 one completion/reopen route; accepted a/b history behavior is not retested."
+    },
+    {
+      "rowId": "71-E08",
+      "sourceId": "E08",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 date modes and R3 distinguish PA from FF; rely on independent automated arithmetic."
+    },
+    {
+      "rowId": "71-E09",
+      "sourceId": "E09",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 review final visual separation and inspect captured matrix; no mandatory repeat of 16 combinations."
+    },
+    {
+      "rowId": "71-E10",
+      "sourceId": "E10",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R5 one shared current-format round trip if not already specifically recalled."
+    },
+    {
+      "rowId": "71-E11",
+      "sourceId": "E11",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R1 may accept existing automated coverage; R5 only one representative legacy path if owner still needs confidence. No four-format repeat by default."
+    },
+    {
+      "rowId": "71-E12",
+      "sourceId": "E12",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 cancel plus R5 invalid draft/recovery only if missing; acknowledge no autosaved draft guarantee."
+    },
+    {
+      "rowId": "71-E13",
+      "sourceId": "E13",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "R4 identify existing specific device observation or run one combined 40-task check; broader student sampling stays RR-03."
+    },
+    {
+      "rowId": "71-E14",
+      "sourceId": "E14",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R5 shared preservation observation; accept exact equality evidence as machine evidence."
+    },
+    {
+      "rowId": "71-F01",
+      "sourceId": "QA71-001",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R1 accept test-maintenance disposition; R2 current date-mode meaning. No need to reproduce a nonexistent proven freeze."
+    },
+    {
+      "rowId": "71-F02",
+      "sourceId": "QA71-002",
+      "proposedClassification": "Superseded",
+      "ownerAction": "Current product acceptance is row 73-C06; do not ask to keep the old interaction."
+    },
+    {
+      "rowId": "71-F03",
+      "sourceId": "QA71-003",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "R1 acknowledge as an open finding; disposition under RR-04 separately. Accepting the assessment need not falsely declare the dependency risk fixed."
+    },
+    {
+      "rowId": "71-F04",
+      "sourceId": "QA71-004",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "Shared R4; distinguish owner-device acceptance from a conducted student/assistive study."
+    },
+    {
+      "rowId": "71-F05",
+      "sourceId": "QA71-005",
+      "proposedClassification": "Superseded",
+      "ownerAction": "Current acceptance is 73-C01. Keep original observation intact; do not reopen accepted history findings."
+    },
+    {
+      "rowId": "72-UX01",
+      "sourceId": "UX01, QA71-005",
+      "proposedClassification": "Superseded",
+      "ownerAction": "Accept diagnostic handoff under R1; current behavior via 73-C01."
+    },
+    {
+      "rowId": "72-UX02",
+      "sourceId": "UX02, UX72-004, C07",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "R1 record outside Format-5 classroom release scope or request separate future decision. No expansion implementation/test required for RR-01."
+    },
+    {
+      "rowId": "72-UX03",
+      "sourceId": "UX03, UX7-006, UX72-001/002/003",
+      "proposedClassification": "Superseded",
+      "ownerAction": "Current product checks 73-C02 through C05 under R2. Do not change forecast formulas to fix old display."
+    },
+    {
+      "rowId": "72-UX04",
+      "sourceId": "UX04, UX72-005, C08",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "R1 accept documented manual route as existing scope or state course concern; dedicated meeting screen remains optional future work."
+    },
+    {
+      "rowId": "72-UX05",
+      "sourceId": "UX05, UX72-006, C09",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "R1 keep outside Format-5 classroom scope or separately decide later; no fifth status or new storage now."
+    },
+    {
+      "rowId": "72-UX06",
+      "sourceId": "UX06, QA71-002, C06",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2/R3 assess current meanings once; original ambiguity replaced per 71-F02."
+    },
+    {
+      "rowId": "72-UX07",
+      "sourceId": "UX07, UX72-007, C10",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "R4 judge current navigation; R1 may leave C10 optional/outside release. Do not promise preserved horizontal anchor on scale/mode change."
+    },
+    {
+      "rowId": "72-POLICY",
+      "sourceId": "C01-C06 authorization",
+      "proposedClassification": "Explicitly accepted",
+      "ownerAction": "Do not re-ask which correction/policy to implement; post-implementation acceptance is separate."
+    },
+    {
+      "rowId": "72-ACCEPT",
+      "sourceId": "unnumbered section6 criteria",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "R1 explicitly accept or condition the assessment as a diagnostic handoff; no student study or optional feature implementation inferred."
+    },
+    {
+      "rowId": "73-C01",
+      "sourceId": "C01, QA71-005",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 identify prior specific pass or one current desktop/keyboard check."
+    },
+    {
+      "rowId": "73-C02",
+      "sourceId": "C02, UX7-006",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 representative Complete/retained-estimate understanding; machine variants need not all be repeated."
+    },
+    {
+      "rowId": "73-C03",
+      "sourceId": "C03, UX72-002",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 explain one no-log/partial-log example; no new logging requirement."
+    },
+    {
+      "rowId": "73-C04",
+      "sourceId": "C04, UX72-001",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 one create/edit/copy sequence or identify prior observation. Policy itself not reopened."
+    },
+    {
+      "rowId": "73-C05",
+      "sourceId": "C05, UX72-003",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 one cancel/confirm route; accept automated coverage of the other entry points if satisfactory."
+    },
+    {
+      "rowId": "73-C06",
+      "sourceId": "C06, QA71-002",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R2 mode meaning, R5 one round trip; no waiting for midnight."
+    },
+    {
+      "rowId": "73-GATE",
+      "sourceId": "package acceptance/preservation",
+      "proposedClassification": "Owner-tested, disposition pending",
+      "ownerAction": "R1 record a current explicit WP7.3 disposition after mapping recollection and any missing R2/R5 checks."
+    },
+    {
+      "rowId": "732-POLICY",
+      "sourceId": "D01-D09",
+      "proposedClassification": "Explicitly accepted",
+      "ownerAction": "No re-approval of calculation policies needed; D08's original appearance replaced below."
+    },
+    {
+      "rowId": "732-VIS",
+      "sourceId": "old D08 PA-outline/committed-bar hierarchy",
+      "proposedClassification": "Superseded",
+      "ownerAction": "Review current 733-01/02 in shared R3, not the old visual hierarchy."
+    },
+    {
+      "rowId": "732-AJ",
+      "sourceId": "A,J; D01,D02,D07,D08",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 before-to-Complete check once covers both packages."
+    },
+    {
+      "rowId": "732-B",
+      "sourceId": "B; D07",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 absorbed fixture or specific prior observation."
+    },
+    {
+      "rowId": "732-C",
+      "sourceId": "C; D03,D05",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 one uncertainty example and review matrix for other variants."
+    },
+    {
+      "rowId": "732-D",
+      "sourceId": "D; D01,D04",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 date-only/Monday explanation; same-day arithmetic remains automated."
+    },
+    {
+      "rowId": "732-E",
+      "sourceId": "E; D07",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 inspect captured tied/driver evidence; live only if owner cannot judge it."
+    },
+    {
+      "rowId": "732-F",
+      "sourceId": "F; D02,D06,D07",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 explain PA As-of versus FF; existing fixtures/matrix support attribution review."
+    },
+    {
+      "rowId": "732-G",
+      "sourceId": "G; D06,D09",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R5 one shared current-format round trip; explicitly re-enter PA As-of."
+    },
+    {
+      "rowId": "732-H",
+      "sourceId": "H; D08",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 representative toggles plus existing matrix inspection; no forced exhaustive replay."
+    },
+    {
+      "rowId": "732-I",
+      "sourceId": "I; D08",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "Shared R4 specific prior evidence or one live 40-task review."
+    },
+    {
+      "rowId": "732-GATE",
+      "sourceId": "preservation and known limits",
+      "proposedClassification": "Owner-tested, disposition pending",
+      "ownerAction": "R1 explicit current WP7.3.2 disposition, relying on shared R3-R5 and accepted automated scope."
+    },
+    {
+      "rowId": "733-POLICY",
+      "sourceId": "source section1",
+      "proposedClassification": "Explicitly accepted",
+      "ownerAction": "Do not re-ask whether overrun should be visible; judge implementation below."
+    },
+    {
+      "rowId": "733-01",
+      "sourceId": "bullet1, sections3-5",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 explain meanings from final chart; no student-study claim."
+    },
+    {
+      "rowId": "733-02",
+      "sourceId": "bullet2, case1",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 combined late completion view."
+    },
+    {
+      "rowId": "733-03",
+      "sourceId": "bullet3, case2",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "Same R3 observation as 733-02."
+    },
+    {
+      "rowId": "733-04",
+      "sourceId": "bullet4, sections3.3/4, case5",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 Monday explanation; inspect tied/driver evidence instead of mandatory extra live imports."
+    },
+    {
+      "rowId": "733-05",
+      "sourceId": "bullet5, case4",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 absorbed example and leaf capture."
+    },
+    {
+      "rowId": "733-06",
+      "sourceId": "bullet6, case7",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 inspect existing case matrix; live only if unclear."
+    },
+    {
+      "rowId": "733-07",
+      "sourceId": "bullet7, cases3/6",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "Shared R3 uncertainty sample; accept automated coverage of other variants explicitly if satisfied."
+    },
+    {
+      "rowId": "733-08",
+      "sourceId": "bullet8, case8/10",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R3 weekend/Compressed and matrix inspection; R4 actual-device density."
+    },
+    {
+      "rowId": "733-09",
+      "sourceId": "bullet9, section5",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "R4 one keyboard navigation review; required assistive qualification separately RR-03."
+    },
+    {
+      "rowId": "733-10",
+      "sourceId": "bullet10, case10",
+      "proposedClassification": "Unresolved",
+      "ownerAction": "Shared R3 immediacy and R4 device session or specific past observation."
+    },
+    {
+      "rowId": "733-11",
+      "sourceId": "bullet11, case9/section4",
+      "proposedClassification": "Automated verification only",
+      "ownerAction": "Shared R5; old formats covered by existing machine evidence unless owner identifies a gap."
+    },
+    {
+      "rowId": "733-GATE",
+      "sourceId": "package acceptance",
+      "proposedClassification": "Owner-tested, disposition pending",
+      "ownerAction": "R1 current explicit WP7.3.3 accept/conditions/further-review decision; record recalled observations accurately."
+    },
+    {
+      "rowId": "CLOSED-7A",
+      "sourceId": "WP7.4.7a, UX7.4.7-001, QA7.4.7-002",
+      "proposedClassification": "Explicitly accepted",
+      "ownerAction": "None; remain closed. No retest for historical reconciliation."
+    },
+    {
+      "rowId": "CLOSED-7B",
+      "sourceId": "WP7.4.7b recovery-feedback finding",
+      "proposedClassification": "Explicitly accepted",
+      "ownerAction": "None; remain closed. More about this change remains deferred."
+    }
+  ],
+  "historicalFindingIdsValidated": [
+    "QA7.4.7-002",
+    "QA71-001",
+    "QA71-002",
+    "QA71-003",
+    "QA71-004",
+    "QA71-005",
+    "UX7-006",
+    "UX7.4.7-001",
+    "UX72-001",
+    "UX72-002",
+    "UX72-003",
+    "UX72-004",
+    "UX72-005",
+    "UX72-006",
+    "UX72-007"
+  ],
+  "coverage": "WP7.1 TV01-04, E01-14, OV01-03, A01-06; WP7.2 UX01-07, candidates and section6; WP7.3 C01-06; WP7.3.2 D01-09/A-J; WP7.3.3 eleven bullets/cases1-10; accepted a/b retained",
+  "ownerRecollection": {
+    "source": "Current WP7.4.9 request",
+    "granularity": "Package-level testing recalled; no item-specific outcomes/version/date or approval supplied",
+    "recordedDate": "2026-11-11"
+  },
+  "humanObservations": [
+    "H01 original Duplicate report",
+    "H02 WP7.3.2 owner visual review in WP7.3.3 requirement",
+    "H03 explicit policies/scope only",
+    "H04 current broad recollection",
+    "H05 explicit accepted a/b closures retained"
+  ],
+  "runtimeTestsRerun": false,
+  "applicationChanges": false,
+  "historicalEvidenceRewritten": false,
+  "RR01": "Open; recommendation only, no closure",
+  "overallWP7Acceptance": "Not inferred",
+  "R07Format6": "Out of scope, unchanged",
+  "ownerEditsPreserved": [
+    {
+      "path": "docs/qa/wp7-1/evidence/as-of-date-modes.json",
+      "sha256": "043fe186e896bd33cc6935e9fb88ca5e0ba6c3155d230a79346517262cd6cd43"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e04-e05-chart.png",
+      "sha256": "5183af304b4f1178fd4aaf6821ec6f0592cf550cf38abfb030979ef6c0c44549"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e04-e05.json",
+      "sha256": "586711d58808fd2e7b5c0378e33d429f8b49ec45af326fc0959b690851fc4b1c"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e06-e07-e10.json",
+      "sha256": "7b05bb20953dfee4ab0b6cced9b538b76cddb9fde3017eefc46ceee17716b0f1"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/e13-forty-task.png",
+      "sha256": "0ef855352016cd2e6e9cb97595639eb4bb7b576c719e93f53b11af5c0bdc58c9"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/performance-regression-0.json",
+      "sha256": "4b2666355ed9889a35b4a8b3aa474f0a4c1ce448609b1b1e4e8edfe70b98234b"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-1280.json",
+      "sha256": "df354e077a44037540eb8488e52a28192e35dcf3c62eea8c9a96dda132906483"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-1440.json",
+      "sha256": "1049e03d82e0131c80792288142745d28d6e90cf16254ec41e0eebd230dc3751"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-780.json",
+      "sha256": "f734d67de68ce39364987c545a886f982d592562bf304cbec88ca7cd16cc2832"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-initial.png",
+      "sha256": "db1c65af71b13a8741fab902c25d5c873743e2e9ce396a29d87c68d92d88dc0f"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-keyboard-revealed.png",
+      "sha256": "9c3b2d9aeeb698bc4ef8d0a405a725020847eff83b9db88225152290235d5522"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-1280.json",
+      "sha256": "ead475d16e8385cf18141d2ee7ddddc05dd6ca63b5c6ab974602bcfecbac9cf4"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-1440.json",
+      "sha256": "a9aeae7c9aeeed6e01489cfced9323c072ed56d5a1a29243a155374b608a1bef"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-780.json",
+      "sha256": "a946c27b6f9dffeba0f5c1af4e0cf7f9fa9d15018e612e21427d45cec73a4f43"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-initial.png",
+      "sha256": "db1c65af71b13a8741fab902c25d5c873743e2e9ce396a29d87c68d92d88dc0f"
+    },
+    {
+      "path": "docs/qa/wp7-1/evidence/qa71-005-pointer-revealed.png",
+      "sha256": "627b558034a29739f3a740a04211ed98e1ea2f9f931fa7cc3c2d5093e621263b"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/forty-gantt-1280.png",
+      "sha256": "c6af38c9bde9a1f22935ada061d67f4797c3c20813a1a8f1a3e90f19d1778fd6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/forty-network-1280.png",
+      "sha256": "e633beae6be01234149307c84b633238ede73882edf59d3aa2685a57899f9ae6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/initialization-and-time.json",
+      "sha256": "1d35ac3e04b8886a268077a5214357ae8108247359dcffd6244f51ccc108764a"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-1280.json",
+      "sha256": "7b3fa0fa03e319f8402a139aedfdcf191694302389c34322ed83c5b62f743bef"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-1440.json",
+      "sha256": "efbdaa021198a91be4f76bf24e19a91162779c29b8bfbdc1e954fdc448bfc8db"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/navigation-780.json",
+      "sha256": "8d57c965420d4ab12023e451fa131d24712b2125d6187978e62f539aca6fc7aa"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-complete-summary.png",
+      "sha256": "a046c506d030c641689fc5eb3e3a074a463dd902b214fdcd4c04f817e19134d6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-logs-false.json",
+      "sha256": "41c8233f311ea4fb532a6c87db3a7b10ca3ffc79f97bc460f1f40509b333a981"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-logs-true.json",
+      "sha256": "05f5598a7fadea795df028cbecfdcf26a02281523365ddfbb92b8b0d558cf7c6"
+    },
+    {
+      "path": "docs/qa/wp7-2/evidence/ux7-006-work-details.png",
+      "sha256": "166cdbbc537486498a3cece92c32a39cb36711fa2673799161e187c29d853f3e"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/a-j-immediate.png",
+      "sha256": "388dace1281ff5ca20ee0ec6959f5d52b5401653c0b59091a67437256589ef26"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/b-slack-absorbed.png",
+      "sha256": "26bf919a64120df3f58515cc9e1374e399352494e7c80612dcd6a2faf57dceec"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l09.png",
+      "sha256": "9039f874ba552cba9a9799b85417e85bf5b412d7d9f47733ecc91c9cd54fabc5"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l10.png",
+      "sha256": "99b533801f297de7885c533e5ba003b0bf777f0756da8095a81e7bf7248d171c"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l13.png",
+      "sha256": "c96f5b9b22047225c70d8eab4f77d97a9029ed09822f23238d0da938b5389a07"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/c-l14b.png",
+      "sha256": "e68169abceb310cea3aebcfd4dd464d90e550cffb36a99903298f0777e8e2d00"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/d-date-only-precision.png",
+      "sha256": "6e5a39ca24d0ba397f88bb1706557df6bc31a7ac85c208744c5591a64effcb2f"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/e-changed-driver-gantt.png",
+      "sha256": "a40ae5bae10c1f0c798abb83bb491fa405f15a2da55885141a59ef5aa737b619"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/e-network.png",
+      "sha256": "9b8018b35fda6bf07ee691a6e09590cfdbfe3a731ea12eb3e64ce76f998a4a89"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/h-all-layers.png",
+      "sha256": "b87b03e2dadec3169c3c43c15d7973e102e6580d2b886cd7b67691d6e2694f15"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-30-browser.json",
+      "sha256": "05e2e45147b547c045e47a3e0486d71cadc4c8a9de4226db602ee6eb95446fab"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-30-tasks.png",
+      "sha256": "d9fa80d3c8aa1c888dda37785ea876d2015748fb9b26b305db91c6bb36b53243"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-40-browser.json",
+      "sha256": "0d9f97c65a8652c126172bdfd32428a46a9badc850acecec2e2dba14583e5632"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/i-40-tasks.png",
+      "sha256": "6608be3bf371e3b9a899696e04c9ba1e451e1a1adca45ba656fe6b72982327f2"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/nonworking-compressed.png",
+      "sha256": "5ff2560df00f0340df8f8641849244a113696a522f6044616e13129fbb763479"
+    },
+    {
+      "path": "docs/qa/wp7-3-2/evidence/same-date-project-slot-delay.png",
+      "sha256": "05d613dc99e7c21ec1dcd2ecbb01f4e00a74c2c83883626e9d14e88c18174041"
+    },
+    {
+      "path": "docs/qa/wp7-3-3/evidence/08-weekend-compressed.png",
+      "sha256": "0d410e3328c2c50f7ef91aae743e229a9c9ec6b3d3dc59668c48a38ed1a9eced"
+    },
+    {
+      "path": "docs/qa/wp7-3-3/evidence/08-weekend-expanded.png",
+      "sha256": "a306096089add7e1bdec116fab681d411edb1db6d0108d7f7fa51f3d885af998"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-actions-1280.png",
+      "sha256": "aca22cb6568906368b265c3beb9e24e44dce73cb207f34b6b05e1c472c217670"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-end-1280.png",
+      "sha256": "ee3bf7cd136340be9a091f29a3f32207323fd17144f19009df7f1ae211af24bb"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c01-start-1280.png",
+      "sha256": "b20ffa23d82489cb87aff9ac56144f9ff71cd4feea5df1a4f432197392523cb7"
+    },
+    {
+      "path": "docs/qa/wp7-3/evidence/c02-complete-summary.png",
+      "sha256": "02582fe19d458626c37c965fcc80385774af588f9e7a763dc037134d9287b348"
+    },
+    {
+      "path": "docs/review/wp5-1-dependencies.png",
+      "sha256": "9388729a1445760ebe5e2b8338c3a37a717cf92429b1b695b99fbcab3da2d95a"
+    },
+    {
+      "path": "docs/review/wp5-1-editor.png",
+      "sha256": "74c8121b065c4d00c40574040197d983bce46d6ff679cd4f772eb3dbfea61b9b"
+    },
+    {
+      "path": "docs/review/wp5-1-narrow-picker.png",
+      "sha256": "1b32ad171de5230f93d9a19c403034af0838248f8233f4d723ee445ac11fa919"
+    },
+    {
+      "path": "docs/review/wp5-1-narrow-workspace.png",
+      "sha256": "891844bf8c89c6fef0c058568f78253b7d4f85c6f314ebd2ea5cd8862da7b813"
+    },
+    {
+      "path": "docs/review/wp5-1-workspace.png",
+      "sha256": "341dd60e8902ad5ef90af01d7464a2eb72a42d40ce419b3bd1bec2dd50b4c341"
+    },
+    {
+      "path": "docs/review/wp5-2-network-fit.png",
+      "sha256": "791f695efbe48e4febfb6b838e3ff5b5cbd8c5fe89d6d51686166fc21d2dcd41"
+    },
+    {
+      "path": "docs/review/wp5-2-network-narrow-fit.png",
+      "sha256": "fe9b034dfc7975c65c53032365f65574ad6b08722f66b1545faf5679f808fb7a"
+    },
+    {
+      "path": "docs/review/wp5-2-network-zoomed.png",
+      "sha256": "4484b80cd486471924cf41ee44bba7502720fc2dcb806302cc3efb6e0ba05d71"
+    },
+    {
+      "path": "docs/review/wp5-2-week-1440.png",
+      "sha256": "1fae21ce4eb0ff5cedc643f939bab5aff84610df5d0cb59d9efe255146cc5d40"
+    },
+    {
+      "path": "docs/review/wp5-2-week-780.png",
+      "sha256": "e1bde2896387bfaa060dbb6a78c27c0dce26da5667efa8bb035537d66752f789"
+    },
+    {
+      "path": "docs/review/wp6-1-baseline-desktop.png",
+      "sha256": "7f4a56a69780cb133afa56e3ac3f3efb4f97aa81794390aab224a3dd5765c69b"
+    },
+    {
+      "path": "docs/review/wp6-1-baseline-narrow.png",
+      "sha256": "825dc6fb5d98a63472655708d280bdc5d6d3730b54ff68d3f83815ea0c6badcb"
+    },
+    {
+      "path": "docs/review/wp6-1-legacy-backup.png",
+      "sha256": "92fcacd5621b4862b72abd6d9b34d65042990b56477459c402e6ac1c24467b6a"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-1440.png",
+      "sha256": "1d869994ab782040dbe61d4fc5440fc2fae995c48402050e1fbe42b091a8c5a4"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-600.png",
+      "sha256": "5daa91f6508d98a8577a1491c0ddf2bb9955f3542650595b542efe7ee44598fe"
+    },
+    {
+      "path": "docs/review/wp6-2-1-chart-780.png",
+      "sha256": "f2a08ce680cdb2612917472c9017e7e6dd29bb4cc2f54cd124b50f980c6f6cde"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-1440.png",
+      "sha256": "86a4d26d391b7986af01e3d3432c580d5124df40b2a20f91dc6d942bcdc3d078"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-600.png",
+      "sha256": "bdae63eedeeb69dd4f975981c7c24fe6c212809a7b616317939597068029188e"
+    },
+    {
+      "path": "docs/review/wp6-2-1-table-780.png",
+      "sha256": "f216481e6e6ae76797bb60efce052261536fd454ce4ff2f5417401422820c17b"
+    },
+    {
+      "path": "docs/review/wp6-2-entry-form.png",
+      "sha256": "5392dba068c8c5178100bcd3d301cdbd67917e47055859990cc5642e346e73b4"
+    },
+    {
+      "path": "docs/review/wp6-2-work-desktop.png",
+      "sha256": "46abfad480ce5f8bf750618930601cba7f9ea5687d426a9a31f1ecded0809e5a"
+    },
+    {
+      "path": "docs/review/wp6-2-work-narrow.png",
+      "sha256": "7535b9558ac6a4ca12f97018a62e4f02b513e93717a2d67423cd9d09813252df"
+    },
+    {
+      "path": "docs/review/wp6-3-details-1440.png",
+      "sha256": "a9c5557159b7923c970fc2110ad9429262436941623045819f43123805203311"
+    },
+    {
+      "path": "docs/review/wp6-3-details-600.png",
+      "sha256": "b33c8fed3f451fd8efe26de022e42473eb800a893f4c346311f8da25334d3623"
+    },
+    {
+      "path": "docs/review/wp6-3-editable-chart-status.png",
+      "sha256": "56dc74f71bd787653cda307a5ab9a94c0ba588a1ddf485a382d1c0f132554be9"
+    },
+    {
+      "path": "docs/review/wp6-3-table-1440.png",
+      "sha256": "ecfcc5c9b6021015ee91e00cc79cdf24c86129ae3c54787cfa89b16fde1044f5"
+    },
+    {
+      "path": "docs/review/wp6-3-table-600.png",
+      "sha256": "d628c41e7628ab55f7d7e855c603ef89d3b4d664f75bbde875b95aa1a1a2cb5c"
+    },
+    {
+      "path": "docs/review/wp6-4-forecast-1440.png",
+      "sha256": "4c0f30f199ee1031dda3dfb4402f94c050d8ffc377a1e2048e5159a542131097"
+    },
+    {
+      "path": "docs/review/wp6-4-forecast-600.png",
+      "sha256": "26cf5fb9e82b12ec9f06af0f9d313d36e58034309d0d0f203acee5d34d4f908c"
+    },
+    {
+      "path": "docs/review/wp6-5-1-earlier-compressed.png",
+      "sha256": "e6dfe1ae4328b84aecea30ca2c1627708977deac5869f19bd0fca920a02513df"
+    },
+    {
+      "path": "docs/review/wp6-5-1-earlier-expanded.png",
+      "sha256": "bcc3f5cc4196020bbf628394ec2b0232b2772c7ed67a85499ba5db2215e1736a"
+    },
+    {
+      "path": "docs/review/wp6-5-1-forecast-off.png",
+      "sha256": "298b3b95f51e53fa8524435bcf3770dad844bd74a9c6b9068af846ece67fd1a0"
+    },
+    {
+      "path": "docs/review/wp6-5-1-forecast-on.png",
+      "sha256": "f6f1d4af86e41d4bf15e252da5cdb5256614eef13536d278620588c868344cb3"
+    },
+    {
+      "path": "docs/review/wp6-5-combined-compressed.png",
+      "sha256": "43759488aa2ff28478d6061c55f49e259427d767199f8b27c717ecdc68b9d424"
+    },
+    {
+      "path": "docs/review/wp6-5-combined-expanded.png",
+      "sha256": "40e6350672a6c7f6de60d4863613cfd7b860c25ad02c621343a5712543cbec74"
+    },
+    {
+      "path": "docs/review/wp6-5-long-1440.png",
+      "sha256": "de0d14b70bfeca44c4546eb12190d817f596e7829012793dbf1a0df52c0934f1"
+    },
+    {
+      "path": "docs/review/wp6-5-long-600.png",
+      "sha256": "fb9432992f7547354eafcc7d90be8a5cbc5af7c01feb99812fc86aa84f767ef0"
+    }
+  ],
+  "nonDocumentFilesPreserved": 213,
+  "acceptedRecordHashes": [
+    {
+      "path": "docs/qa/wp7-4-7a/OWNER-DISPOSITION.md",
+      "sha256": "9402ff4ac898858794ba10b0561cf83243dac4521fcada937a1625ff679ac47c"
+    },
+    {
+      "path": "docs/qa/wp7-4-7b/ACCEPTANCE.md",
+      "sha256": "bdb7b94699b76fc8a937119596c10899fc559c416745662ab32728713788b581"
+    }
+  ],
+  "protectedRefs": {
+    "refs/heads/main": "a6a1c32c22a2bf074b161e52d523443602843dd7",
+    "refs/tags/v1.0-pre-progress": "a4157bc84392c770c27111da58d779948b110a56",
+    "refs/tags/v1.0-pre-progress^{}": "abb85011dafc9fb0876953e3132880e025ef65da",
+    "refs/tags/v1.1-pre-stabilization": "134305f2205eb993ab76672c2d2469d48d91a609",
+    "refs/tags/v1.1-pre-stabilization^{}": "af96d3b257ddfdcbc7f26a968401d634d210aef6"
+  },
+  "remotePrepublicationVerified": true,
+  "committedChangesAfterK733": [
+    "src/App.tsx",
+    "src/components/progress/LegacyTaskHistory.tsx",
+    "src/components/progress/SelectedTaskHistory.actions.test.tsx",
+    "src/components/progress/SelectedTaskHistory.test.tsx",
+    "src/components/progress/SelectedTaskHistory.tsx",
+    "src/components/progress/SelectedTaskHistory.ux.test.tsx",
+    "src/components/progress/TaskStatusPanel.tsx",
+    "src/components/progress/selectedTaskHistory.css",
+    "src/history/featureFlag.ts",
+    "src/history/selectedTaskHistory.test.ts",
+    "src/history/selectedTaskHistory.ts",
+    "src/planning/__fixtures__/benchmark.ts",
+    "src/planning/__fixtures__/cases.ts",
+    "src/planning/workingPlan.test.ts",
+    "src/planning/workingPlan.ts",
+    "src/repository/operationalConsumerParity.test.tsx",
+    "src/repository/operationalHistoryRepository.test.ts",
+    "src/repository/operationalHistoryRepository.ts",
+    "src/repository/projectRepository.test.ts",
+    "src/repository/projectRepository.ts",
+    "src/test/selectedHistoryFixture.ts"
+  ],
+  "deliveryPaths": [
+    "docs/qa/wp7-4-9/ACCEPTANCE-CROSSWALK.md",
+    "docs/qa/wp7-4-9/EVIDENCE-REGISTER.md",
+    "docs/qa/wp7-4-9/OWNER-CHECKLIST.md",
+    "docs/qa/wp7-4-9/README.md",
+    "docs/qa/wp7-4-9/RELEASE-GATE-RECOMMENDATION.md",
+    "docs/qa/wp7-4-9/VERIFICATION.md",
+    "docs/qa/wp7-4-9/evidence/review-audit.json"
+  ]
+}
