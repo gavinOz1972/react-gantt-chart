@@ -1,0 +1,37 @@
+{
+  "clientDate": "2026-11-11",
+  "base": "22bfd6a3afff6f78e977d9fde55405de9983cabd",
+  "unitComponent": {
+    "passed": 858,
+    "files": 43,
+    "newActionCases": 13,
+    "focusedHistoryTests": 61
+  },
+  "featureBrowser": {
+    "passed": 38,
+    "existing": 31,
+    "newActionCases": 7
+  },
+  "baselineBrowser": {
+    "passed": 223
+  },
+  "beforeActionDiagnostics": {
+    "passed": 4,
+    "base": "22bfd6a3afff6f78e977d9fde55405de9983cabd"
+  },
+  "checks": {
+    "lint": "passed",
+    "applicationTypecheck": "passed",
+    "qaTypecheck": "passed",
+    "build": "passed"
+  },
+  "diagnosis": "Existing actions already opened fresh read/validation attempts; deterministic source failures persisted without visible completion feedback",
+  "ownerDisposition": {
+    "WP747a": "Accepted by Gavin Osborne as stated in WP7.4.7b handoff",
+    "UX7.4.7-001": "Closed by owner",
+    "QA7.4.7-002": "Closed by owner",
+    "WP747b": "Pending owner review",
+    "R07": "Pending final review"
+  },
+  "residual": "Low-priority More about this change observation deferred; function and scoped styles unchanged"
+}

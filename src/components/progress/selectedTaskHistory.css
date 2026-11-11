@@ -1,6 +1,7 @@
 .selected-task-history { border-top: 1px solid #dce4ec; margin-top: 22px; padding-top: 16px; min-width: 0; }
 .selected-history-content { margin-top: 14px; min-width: 0; }
 .selected-history-content > button { margin: 8px 8px 0 0; }
+.selected-history-content > button[aria-disabled=true] { opacity: .65; cursor: progress; }
 .selected-history-rows { padding-left: 22px; }
 .selected-history-rows > li { padding: 12px 0; border-bottom: 1px solid #dce4ec; }
 .selected-history-rows dl { margin: 10px 0; }

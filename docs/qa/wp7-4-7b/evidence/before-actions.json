@@ -1,0 +1,42 @@
+[
+  {
+    "scenario": "invalid",
+    "openAttempts": 2,
+    "pageReads": 0,
+    "releasedPriorSessions": 0,
+    "distinctSessions": 0,
+    "unchangedPrimary": "Unable to display task historySome historical information is invalid; project data has not changed.",
+    "sourceUnchanged": true,
+    "diagnosis": "Two fresh validation attempts; invalid source prevents opening/page dispatch"
+  },
+  {
+    "scenario": "expired",
+    "openAttempts": 2,
+    "pageReads": 2,
+    "releasedPriorSessions": 1,
+    "distinctSessions": 2,
+    "unchangedPrimary": "History needs to be refreshed.",
+    "sourceUnchanged": true,
+    "diagnosis": "Fresh read session and page dispatch; deterministic synthetic problem persists"
+  },
+  {
+    "scenario": "oversized",
+    "openAttempts": 2,
+    "pageReads": 2,
+    "releasedPriorSessions": 1,
+    "distinctSessions": 2,
+    "unchangedPrimary": "This history entry is too large to display here.",
+    "sourceUnchanged": true,
+    "diagnosis": "Fresh read session and page dispatch; deterministic synthetic problem persists"
+  },
+  {
+    "scenario": "mixed",
+    "openAttempts": 2,
+    "pageReads": 2,
+    "releasedPriorSessions": 1,
+    "distinctSessions": 2,
+    "unchangedPrimary": "History has changed—refresh to view a consistent version.",
+    "sourceUnchanged": true,
+    "diagnosis": "Fresh read session and page dispatch; deterministic synthetic problem persists"
+  }
+]

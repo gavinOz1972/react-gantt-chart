@@ -9,7 +9,7 @@ import { selectedHistoryFile } from '../../test/selectedHistoryFixture'
 const file = selectedHistoryFile()
 const reader = (formatVersion: 1 | 5 = 5, tracking = file.taskProgress!) => createLoadedTaskHistoryReader({ resourceId: 'ux-source', formatVersion, tracking, taskIds: file.tasks.map(t => t.taskId) })
 const show = () => fireEvent.click(screen.getByRole('button', { name: 'Show history' }))
-const details = () => fireEvent.click(screen.getByText('History details', { exact: true }))
+const details = () => fireEvent.click(screen.getByText('History Audit Data', { exact: true }))
 describe('WP7.4.7a student-facing history hierarchy', () => {
   test('Available-zero has the exact empty primary and never becomes Unavailable', async () => {
     render(<SelectedTaskHistory taskId="T3" reader={reader()} fallback={null} />); show()

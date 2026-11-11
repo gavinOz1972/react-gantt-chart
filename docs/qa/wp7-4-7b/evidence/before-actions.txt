@@ -1,0 +1,15 @@
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/test/wp747b-before.test.tsx
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/output/wp7-4-7b-verification/before
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  23:54:26
+   Duration  1.71s (environment 64%, tests 13%, setup 13%, transform 9%, import 1%)
+
+
+Native exit code: 0

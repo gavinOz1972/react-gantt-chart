@@ -1,0 +1,14 @@
+
+> react-gantt-chart@0.0.0 test
+> vitest run src/history/selectedTaskHistory.test.ts src/components/progress/SelectedTaskHistory.test.tsx src/components/progress/SelectedTaskHistory.ux.test.tsx src/components/progress/SelectedTaskHistory.actions.test.tsx
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+
+ Test Files  4 passed (4)
+      Tests  61 passed (61)
+   Start at  00:08:39
+   Duration  2.22s (environment 50%, tests 36%, setup 10%, transform 2%, import 2%)
+
+Native exit code: 0
