@@ -5,6 +5,8 @@ import type { TimelineAxis, TimelineDay } from '../../timeline/projection'
 import { clipOverlayPoint, overlayPoint } from '../../timeline/overlays'
 import { elapsedOverrun, hasHistoryConflict, hasPrimaryPA, historyCaption } from '../../timeline/historyPresentation'
 
+const actualDateLabel = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+
 export function ActualImpactOverlays({ item, asOf, axis, x, width, y, onSelect, days, gapPatternId }: {
   item: TaskImpact; asOf: string; axis: TimelineAxis; x: (unit: number) => number; width: number; y: number; onSelect: (id: string) => void; days: readonly TimelineDay[]
   gapPatternId: string
@@ -16,6 +18,15 @@ export function ActualImpactOverlays({ item, asOf, axis, x, width, y, onSelect, 
   const overrun = elapsedOverrun(axis, item)
   const start = overrun ? clipOverlayPoint(overrun.start, x, width) : null
   const end = overrun ? clipOverlayPoint(overrun.end, x, width) : null
+  const compact = axis.mode === 'compressed' && !!first?.omitted
+  const edge = first?.clipping || last?.clipping
+  const compactEdge = edge ? edge.startsWith('before') ? '< ' : '> ' : ''
+  const mergedOverrun = compact && !!overrun?.collapsed
+  const cardWidth = Math.min(184, width - 16)
+  const cardX = first ? Math.max(8, Math.min(width - cardWidth - 8, first.x + 12)) : 8
+  const comparison = overrun ? `+${overrun.calendarDays} calendar ${overrun.calendarDays === 1 ? 'day' : 'days'} late`
+    : !fact?.reference || fact.historical === 'Unknown' || fact.historical === 'Late' ? 'Comparison unavailable'
+    : fact.historical === 'Early' ? 'Completed early' : 'On committed date'
   const shifted = hasPrimaryPA(item) && item.shiftSlots !== '0'
   const paStart = item.start ? axis.startAt(item.start) : 0, paEnd = item.finish ? axis.finishAt(item.finish) : 0
   const left = Math.max(0, x(paStart)), right = Math.min(width, x(paEnd))
@@ -23,7 +34,7 @@ export function ActualImpactOverlays({ item, asOf, axis, x, width, y, onSelect, 
   const unknown = item.state === 'Unknown' || hasHistoryConflict(item)
   return <g className="actual-impact-overlays">
     <defs><pattern id={pattern} width={10} height={8} patternUnits="userSpaceOnUse"><rect width={10} height={8} fill="#fff0ed" /><circle cx={2} cy={2} r={1.2} fill="#a92b24" /><circle cx={7} cy={6} r={1.2} fill="#a92b24" /></pattern></defs>
-    {overrun && start && end && <g className={`historical-overrun${fact?.future || !fact?.active ? ' is-historical' : ''}`} role="button" tabIndex={0}
+    {overrun && start && end && !mergedOverrun && <g className={`historical-overrun${fact?.future || !fact?.active ? ' is-historical' : ''}`} role="button" tabIndex={0}
       aria-label={overrun.label} data-task-id={item.taskId} data-reference-date={fact!.reference} data-actual-date={fact!.date} data-calendar-days={overrun.calendarDays} data-collapsed={overrun.collapsed} data-start-unit={overrun.start.unit} data-end-unit={overrun.end.unit}
       onClick={() => onSelect(item.taskId)} onKeyDown={activate}>
       <title>{overrun.label}{start.clipping || end.clipping ? ' Offscreen extent; use Go to impact.' : ''}</title>
@@ -32,13 +43,22 @@ export function ActualImpactOverlays({ item, asOf, axis, x, width, y, onSelect, 
       {Math.abs(end.x - start.x) > 210 && <text x={start.x + 5} y={y + 34} fontSize={11} fill="#8c241f" stroke="white" strokeWidth={3} paintOrder="stroke">Elapsed late +{overrun.calendarDays}d</text>}
       <rect x={Math.max(0, Math.min(start.x, end.x) - 3)} y={y + 17} width={Math.max(16, Math.abs(end.x - start.x) + 6)} height={26} fill="transparent" />
     </g>}
-    {fact && first && last && <g role="button" tabIndex={0} className="actual-date-marker" aria-label={`Actual ${label}`} data-task-id={item.taskId} data-actual-date={fact.date} data-active={fact.active} data-future={fact.future} data-omitted={first.omitted} data-clipped={first.clipping || last.clipping || 'none'}
+    {fact && first && last && <g role="button" tabIndex={0} className={`actual-date-marker${compact ? ' collapsed-actual-marker' : ''}${mergedOverrun ? ' historical-overrun' : ''}`} aria-label={`Actual ${compact ? `${actualDateLabel.format(new Date(`${fact.date}T00:00:00Z`))}. ${comparison}. ` : ''}${mergedOverrun ? overrun!.label : label}${compact ? ' Collapsed nonworking date: labelled card anchored to the omitted calendar boundary; card width is not elapsed time or work.' : ''}`} data-task-id={item.taskId} data-actual-date={fact.date} data-active={fact.active} data-future={fact.future} data-omitted={first.omitted} data-clipped={first.clipping || last.clipping || 'none'}
+      {...(mergedOverrun ? { 'data-reference-date': fact.reference, 'data-calendar-days': overrun!.calendarDays, 'data-collapsed': true, 'data-start-unit': overrun!.start.unit, 'data-end-unit': overrun!.end.unit } : {})}
       onClick={() => onSelect(item.taskId)} onKeyDown={activate}>
       <title>{label} Whole-date bracket; display edge is not a measured finish hour.{first.omitted ? ' Nonworking date at collapsed calendar boundary.' : ''}{first.clipping || last.clipping ? ' Offscreen date: edge cue; use Go to impact.' : ''}</title>
+      {compact ? <>
+        <path className="collapsed-actual-anchor" data-boundary-x={first.x} d={`M ${first.x} ${y + 13} V ${y + 14} H ${Math.max(cardX + 6, Math.min(cardX + cardWidth - 6, first.x))}`} fill="none" stroke={overrun ? '#a92b24' : '#234961'} strokeWidth={1.5} />
+        <circle cx={first.x} cy={y + 13} r={0.75} fill={overrun ? '#a92b24' : '#234961'} />
+        <rect className="collapsed-actual-card" x={cardX} y={y + 14} width={cardWidth} height={30} rx={3} fill="white" stroke={overrun ? '#a92b24' : '#234961'} strokeDasharray={!fact.active || fact.future ? '4 2' : undefined} />
+        <text className="collapsed-actual-date" x={cardX + 6} y={y + 25} fontWeight={700} fontSize={10} fill={overrun ? '#942c26' : '#234961'}>{compactEdge}{!fact.active ? 'History A' : fact.future ? 'Future A' : 'Actual'} {actualDateLabel.format(new Date(`${fact.date}T00:00:00Z`))}</text>
+        <text className="collapsed-actual-comparison" x={cardX + 6} y={y + 40} fontSize={10} fill={overrun ? '#942c26' : '#234961'}>{comparison}</text>
+      </> : <>
       <path d={`M ${first.x} ${y + 42} V ${y + 18} H ${last.x} V ${y + 42}`} fill="none" stroke={overrun ? '#a92b24' : '#234961'} strokeWidth={3} strokeDasharray={fact.active && !fact.future ? undefined : '4 2'} />
       {first.omitted && <path d={`M ${first.x - 5} ${y + 20} l 10 16 m -10 0 l 10 -16`} stroke="#a92b24" strokeWidth={2} />}
       <text x={Math.max(4, Math.min(width - 65, first.x + 4))} y={y + 33} fontWeight={700} fontSize={11} fill={overrun ? '#942c26' : '#234961'} stroke="white" strokeWidth={3} paintOrder="stroke">{first.clipping ? '< ' : last.clipping ? '> ' : ''}{!fact.active ? 'History A' : fact.future ? 'Future A' : 'Actual'}</text>
       <rect x={Math.max(0, first.x - 4)} y={y + 16} width={Math.max(22, last.x - first.x + 8)} height={28} fill="transparent" />
+      </>}
     </g>}
     {shifted && right > left && <g className="pa-outline pa-primary" role="button" tabIndex={0} aria-label={`PA conditional window. ${label}`} data-task-id={item.taskId} data-start-date={item.start!.date} data-finish-date={item.finish!.date} data-cause={item.causes.join(', ')}
       onClick={() => onSelect(item.taskId)} onKeyDown={activate}>

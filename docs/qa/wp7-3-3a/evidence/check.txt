@@ -1,0 +1,43 @@
+
+> react-gantt-chart@0.0.0 check
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> react-gantt-chart@0.0.0 lint
+> eslint .
+
+
+> react-gantt-chart@0.0.0 typecheck
+> tsc -b --pretty false
+
+
+> react-gantt-chart@0.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 C:/Users/gavin/Documents/CodexProjects/GanttProject/wp7-stabilization
+
+
+ Test Files  44 passed (44)
+      Tests  864 passed (864)
+   Start at  00:35:17
+   Duration  10.58s (environment 50%, tests 31%, setup 13%, transform 4%, import 3%)
+
+    Isolate  44 workers spawned · ~1.35s startup each (spawn + environment, per file)
+             at least ~565ms faster with isolate: false — reuses workers across files instead of one per file
+
+
+> react-gantt-chart@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 74 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.41 kB │ gzip:   0.28 kB
+dist/assets/index-C1Jwrj5E.css   32.22 kB │ gzip:   7.49 kB
+dist/assets/index-B8778ybn.js   450.12 kB │ gzip: 135.34 kB
+
+✓ built in 156ms
+Native exit code: 0

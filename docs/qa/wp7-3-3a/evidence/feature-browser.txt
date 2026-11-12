@@ -1,0 +1,48 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test --config docs/qa/wp7-4-7b/playwright.config.ts --workers=3
+
+
+Running 38 tests using 3 workers
+
+  ok  3 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:42:40 › 40-task app at 780px keeps actions accessible and history contained (2.9s)
+  ok  1 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:42:40 › 40-task app at 1280px keeps actions accessible and history contained (3.0s)
+  ok  5 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated partial QA is explicit and recoverable (742ms)
+  ok  6 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated empty QA is explicit and recoverable (523ms)
+  ok  7 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated unavailable QA is explicit and recoverable (623ms)
+  ok  8 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated invalid QA is explicit and recoverable (553ms)
+  ok  4 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:42:40 › 40-task app at 1440px keeps actions accessible and history contained (2.7s)
+  ok  9 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated unsupported QA is explicit and recoverable (666ms)
+  ok  2 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:14:1 › enabled App starts collapsed; keyboard paging and hide preserve selection, drafts and exact project data (6.3s)
+  ok 10 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated expired QA is explicit and recoverable (659ms)
+  ok 12 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated mixed QA is explicit and recoverable (665ms)
+  ok 13 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated cancelled QA is explicit and recoverable (689ms)
+  ok 11 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:51:142 › isolated oversized QA is explicit and recoverable (845ms)
+  ok 14 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:68:1 › delayed read cannot cross task changes; concurrent source requires explicit refresh (2.4s)
+  ok 15 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:79:49 › format 1 view preserves exact export contents and saved source; reload collapses disclosure (3.9s)
+  ok 16 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:79:49 › format 2 view preserves exact export contents and saved source; reload collapses disclosure (4.1s)
+  ok 17 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:79:49 › format 3 view preserves exact export contents and saved source; reload collapses disclosure (3.9s)
+  ok 20 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:17:1 › student summary and keyboard disclosures preserve readable dates, local zone and exact evidence (995ms)
+  ok 18 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:79:49 › format 4 view preserves exact export contents and saved source; reload collapses disclosure (3.7s)
+  ok 21 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:39:1 › available empty T3 has the exact primary, with one visible Partial note (498ms)
+  ok 19 [chromium] › docs\qa\wp7-4-7\browser\history.spec.ts:79:49 › format 5 view preserves exact export contents and saved source; reload collapses disclosure (3.7s)
+  ok 22 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:48:40 › QA7.4.7-002 unavailable T1 never maps to empty/Partial primary (506ms)
+  ok 24 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:48:40 › QA7.4.7-002 unavailable T3 never maps to empty/Partial primary (558ms)
+  ok 23 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:48:40 › QA7.4.7-002 unavailable T2 never maps to empty/Partial primary (635ms)
+  ok 25 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:58:40 › 40-task primary hierarchy and actions fit 780px (1.6s)
+  ok 26 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:58:40 › 40-task primary hierarchy and actions fit 1280px (1.7s)
+  ok 27 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:58:40 › 40-task primary hierarchy and actions fit 1440px (1.7s)
+  ok 28 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:74:4 › invalid keeps concise primary separate from diagnostic evidence (501ms)
+  ok 30 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:74:4 › oversized keeps concise primary separate from diagnostic evidence (562ms)
+  ok 29 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:74:4 › expired keeps concise primary separate from diagnostic evidence (623ms)
+  ok 31 [chromium] › docs\qa\wp7-4-7a\browser\history-ux.spec.ts:74:4 › mixed keeps concise primary separate from diagnostic evidence (535ms)
+  ok 33 [chromium] › docs\qa\wp7-4-7b\browser\actions.spec.ts:10:70 › expired retry/refresh visibly completes even when the source problem persists (607ms)
+  ok 32 [chromium] › docs\qa\wp7-4-7b\browser\actions.spec.ts:10:70 › invalid retry/refresh visibly completes even when the source problem persists (636ms)
+  ok 34 [chromium] › docs\qa\wp7-4-7b\browser\actions.spec.ts:10:70 › oversized retry/refresh visibly completes even when the source problem persists (625ms)
+  ok 35 [chromium] › docs\qa\wp7-4-7b\browser\actions.spec.ts:10:70 › mixed retry/refresh visibly completes even when the source problem persists (582ms)
+  ok 38 [chromium] › docs\qa\wp7-4-7b\browser\actions.spec.ts:46:1 › History Audit Data is collapsed, keyboard accessible and retains the audit contents (591ms)
+  ok 36 [chromium] › docs\qa\wp7-4-7b\browser\actions.spec.ts:25:1 › rapid refresh shows progress, finishes once and retains keyboard focus (2.3s)
+  ok 37 [chromium] › docs\qa\wp7-4-7b\browser\actions.spec.ts:35:1 › selection change during refresh drops the cancelled attempt and its late result (2.4s)
+
+  38 passed (23.3s)
+Native exit code: 0

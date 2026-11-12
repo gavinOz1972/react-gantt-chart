@@ -1,0 +1,46 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test --config docs/qa/wp7-3-3a/playwright.config.ts --grep narrow day scale --workers=1
+
+
+Running 1 test using 1 worker
+
+  x  1 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:62:46 › collapsed date is readable, anchored and keyboard accessible at narrow day scale (6.1s)
+
+
+  1) [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:62:46 › collapsed date is readable, anchored and keyboard accessible at narrow day scale
+
+    Error: expect(locator).toHaveAccessibleName(expected) failed
+
+    Locator: locator('.collapsed-actual-marker')
+    Expected pattern: /Sat, Nov 7, 2026.*\+1 calendar day late.*not.*actual effort/
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAccessibleName" locator('.collapsed-actual-marker') with timeout 5000ms
+      - waiting for locator('.collapsed-actual-marker')
+
+
+      63 |   await load(page, scale)
+      64 |   const actual = page.locator('.collapsed-actual-marker')
+    > 65 |   await expect(actual).toHaveAccessibleName(/Sat, Nov 7, 2026.*\+1 calendar day late.*not.*actual effort/)
+         |                        ^
+      66 |   await expect(actual.locator('.collapsed-actual-date')).toHaveText('Actual Sat, Nov 7, 2026')
+      67 |   await expect(actual.locator('.collapsed-actual-comparison')).toHaveText('+1 calendar day late')
+      68 |   const anchor = Number(await actual.locator('.collapsed-actual-anchor').getAttribute('data-boundary-x'))
+        at C:\Users\gavin\Documents\CodexProjects\GanttProject\output\wp7-3-3a-verification\before\docs\qa\wp7-3-3a\browser\weekend.spec.ts:65:24
+
+    Error Context: test-results\wp733a\weekend-collapsed-date-is--924cb-essible-at-narrow-day-scale-chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\wp733a\weekend-collapsed-date-is--924cb-essible-at-narrow-day-scale-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\wp733a\weekend-collapsed-date-is--924cb-essible-at-narrow-day-scale-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:62:46 › collapsed date is readable, anchored and keyboard accessible at narrow day scale
+Expected original regression failure exit code: 1

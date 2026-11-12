@@ -1,0 +1,19 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test --config docs/qa/wp7-3-3a/playwright.config.ts --workers=3
+
+
+Running 9 tests using 3 workers
+
+  ok 3 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:62:46 › collapsed date is readable, anchored and keyboard accessible at narrow hour scale (2.2s)
+  ok 2 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:8:34 › reference screenshots at 600 (2.7s)
+  ok 1 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:8:34 › reference screenshots at 1440 (3.2s)
+  ok 4 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:62:46 › collapsed date is readable, anchored and keyboard accessible at narrow day scale (1.8s)
+  ok 5 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:62:46 › collapsed date is readable, anchored and keyboard accessible at narrow week scale (1.9s)
+  ok 6 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:80:58 › omitted-date missing preserves facts and qualifies historical comparison (1.5s)
+  ok 7 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:80:58 › omitted-date sunday preserves facts and qualifies historical comparison (1.6s)
+  ok 8 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:80:58 › omitted-date calendar preserves facts and qualifies historical comparison (1.5s)
+  ok 9 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:89:1 › all overlay combinations keep the collapsed label readable and JSON source unchanged (3.6s)
+
+  9 passed (11.1s)
+Native exit code: 0

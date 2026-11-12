@@ -1,0 +1,22 @@
+{
+  "card": {
+    "x": 52,
+    "y": 14,
+    "right": 236,
+    "bottom": 44
+  },
+  "date": {
+    "x": 57,
+    "y": 14,
+    "right": 167.78125,
+    "bottom": 28
+  },
+  "comparison": {
+    "x": 58,
+    "y": 29,
+    "right": 148.6337890625,
+    "bottom": 43
+  },
+  "width": 320,
+  "releaseTop": 45
+}

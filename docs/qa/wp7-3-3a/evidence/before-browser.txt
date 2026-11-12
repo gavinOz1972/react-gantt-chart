@@ -1,0 +1,12 @@
+
+> react-gantt-chart@0.0.0 test:e2e
+> playwright test --config docs/qa/wp7-3-3a/playwright.config.ts --grep reference screenshots --workers=2
+
+
+Running 2 tests using 2 workers
+
+  ok 1 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:8:34 › reference screenshots at 600 (2.4s)
+  ok 2 [chromium] › docs\qa\wp7-3-3a\browser\weekend.spec.ts:8:34 › reference screenshots at 1440 (2.7s)
+
+  2 passed (5.9s)
+Native exit code: 0
